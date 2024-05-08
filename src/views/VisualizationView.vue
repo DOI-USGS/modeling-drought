@@ -34,13 +34,13 @@
 <script setup>
   import { isMobile } from 'mobile-device-detect';
 
-  import text from "./../assets/text/text.js";
+  import text from "@/assets/text/text.js";
   import IntroSection from '@/components/IntroSection.vue'
   import SectionTitle from '@/components/SectionTitle.vue';
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
-  import RegionalViolins from '.././components/RegionalViolins.vue';
-  import BarChartExample from '.././components/BarChartExample.vue';
+  import RegionalViolins from '@/components/RegionalViolins.vue';
+  import BarChartExample from '@/components/BarChartExample.vue';
 
   // global variables
   const mobileView = isMobile;
