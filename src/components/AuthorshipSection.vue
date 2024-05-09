@@ -1,11 +1,11 @@
 <template>
   <VizSection
-    id="references"
+    id="authors"
     :figures="false"
     :fig-caption="false"
   >
-    <!-- TITLE -->
-    <template #title>
+    <!-- HEADING -->
+    <template #heading>
       <h2>
         Authors
       </h2>
