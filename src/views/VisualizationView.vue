@@ -14,18 +14,42 @@
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
-    <RegionalViolins 
-      :text="text.components.RegionalViolins"
-    />
     <SectionTitle
       :content="text.sections.B"
       :height=sectionTitleHeight
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
-    <BarChartExample 
-      :text="text.components.BarChartExample"
+    <SectionTitle
+      :content="text.sections.C"
+      :height=sectionTitleHeight
+      :overlay=true
+      :overlayOpacity=sectionTitleOverlayOpacity
     />
+    <SectionTitle
+      :content="text.sections.D"
+      :height=sectionTitleHeight
+      :overlay=true
+      :overlayOpacity=sectionTitleOverlayOpacity
+    />
+    <SectionTitle
+      :content="text.sections.E"
+      :height=sectionTitleHeight
+      :overlay=true
+      :overlayOpacity=sectionTitleOverlayOpacity
+    />    
+      <RegionalViolins 
+        :text="text.components.RegionalViolins"
+      />
+    <SectionTitle
+      :content="text.sections.F"
+      :height=sectionTitleHeight
+      :overlay=true
+      :overlayOpacity=sectionTitleOverlayOpacity
+    />
+      <BarChartExample 
+        :text="text.components.BarChartExample"
+      />
     <ReferencesSection />
     <AuthorshipSection />
   </section>
