@@ -1,5 +1,5 @@
 export default {
-    pageTitle: "Vue3 template",
+    pageTitle: "Modeling drought",
     sections: {
         A: {
             title: "How uncertainty is quantified",
