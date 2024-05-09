@@ -1,6 +1,6 @@
-# vue3-template
+# modeling-drought
 
-This project serves as a template for our site builds. It uses Vue 3 and Vite (currently version 5), and is configured to be built from GitLab using Jenkins.
+This visualization....
 
 ## To build the website locally
 Clone the repo. In the directory, run `npm install` to install the required modules. This repository requires `npm v20` to run. If you are using a later version of `npm`, you may [try using `nvm` to manage multiple versions of npm](https://betterprogramming.pub/how-to-change-node-js-version-between-projects-using-nvm-3ad2416bda7e).
@@ -117,7 +117,7 @@ When setting up a new project you'll need to take the following steps:
       * Use `'main.css'` for global page content styling that is exclusive of the USGS header and footer and is not component-specific (e.g., defining styles for standard text or figure container `<div>` elements, styling all section titles, etc.). For all colors, remember to reference color variables set in `'src/assets/css/base.css'`, e.g., `color: var(--color-title-text);`
       * Put component-specific styling in the `<style>` tags of specific components. Again, for all colors, remember to reference color variables set in `'src/assets/css/base.css'`, e.g., `color: var(--color-title-text);`
     * Page text setup
-      * TBD 
+      * All text content should be placed in `'src/assets/text/text.js'`. The master text object is imported in `'src/views/VisualziationView.vue'` and nested objects with text content for each component are passed to components as props. This allows the text throughout the page to be updated by making changes in a single location.
     * Class and ID naming conventions
       * TBD
     * JavaScript conventions
