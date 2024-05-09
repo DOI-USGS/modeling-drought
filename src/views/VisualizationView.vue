@@ -14,24 +14,28 @@
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
+    <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
     <SectionTitle
       :content="text.sections.B"
       :height=sectionTitleHeight
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
+    <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
     <SectionTitle
       :content="text.sections.C"
       :height=sectionTitleHeight
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
+    <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
     <SectionTitle
       :content="text.sections.D"
       :height=sectionTitleHeight
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
+    <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
     <SectionTitle
       :content="text.sections.E"
       :height=sectionTitleHeight
