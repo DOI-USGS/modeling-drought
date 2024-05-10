@@ -1,0 +1,16 @@
+rule all:
+    input:
+        "src/assets/svgs/ci_example.svg",
+        "src/assets/svgs/lf_example.svg"
+
+rule confidence_interval:
+    output:
+        "src/assets/svgs/ci_example.svg"
+    script:
+        'Task1/src/ConfidenceInterval.py'
+
+rule loss_function:
+    output:
+        "src/assets/svgs/lf_example.svg"
+    script:
+        'Task1/src/LossFunction.py'

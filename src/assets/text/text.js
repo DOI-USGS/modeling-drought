@@ -48,6 +48,18 @@ export default {
             paragraph3_bullet1: "Here is a bullet.",
             paragraph4: "And another paragraph."
         },
+        LossFunction: {
+            heading: "Loss Function (in-progess)",
+            paragraph1: "When we train the machine learning model, we incentivize it to find the best solution by penalizing it when it predicts incorrectly. The further the model being correct, the more we penalize it. If we penalize the model the same for under- and overestimations, the model will try to best estimate the observation (a median prediction). We tell the model the equally penalize under- and overestimations by specifying a loss function that is symmetric",
+            paragraph2: "The loss function determines how the model is penalized, the higher the line is, the more the model is penalized. Left of the median corresponds to underestimations, and right of the median corresponds to overestimations. We can change this loss function to change how the model is penalized for under- and overestimations. Hover your mouse over the loss function plot to see how it changes the model prediction below.",
+            caption: "Loss function (left) and stream flow percentile (right).",
+            paragraph3: "What did you see? When the left slope in the loss function is gentler than the right slope, the model favors low predictions. The other way around, the model favors higher predictions. If we know which predictions are low and which are high, we can bracket the range of the model's predictions, where encompasses the majority of the observations. This range defines the model's uncertainity."
+        },
+        ConfidenceInterval: {
+            heading: "Confidence Interval (in-progess)",
+            paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
+            caption: "Loss function (left) and stream flow percentile (right).",
+        },
         RegionalViolins: {
             heading: "svg import w/ d3-added interaction + v-for",
             paragraph1: "First paragraph of text.",
