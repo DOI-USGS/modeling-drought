@@ -7,6 +7,7 @@ from scipy import interpolate
 import re
 
 mpl.rcParams["font.family"] = "monospace"
+mpl.rcParams['svg.fonttype'] = 'none'
 
 # user parameters
 number_of_frames = 51
@@ -107,8 +108,8 @@ for i, lower_percentile in enumerate(ci_list):
 
     upper_percentile = 1.0 - lower_percentile
     # Add Popup loss function lines
-    ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, lower_percentile), color="tab:blue", alpha=0.0, zorder=2, gid = "LF LOWER " + str(i))
-    ax_LF.plot(x_LF,pinball_LF(x_LF, 0.0, upper_percentile),color="tab:orange", alpha=0.0, zorder=2, gid = "LF UPPER " + str(i))
+    ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, lower_percentile), color="tab:blue", alpha=0.0, zorder=2, gid = "LF-LOWER-" + str(i))
+    ax_LF.plot(x_LF,pinball_LF(x_LF, 0.0, upper_percentile),color="tab:orange", alpha=0.0, zorder=2, gid = "LF-UPPER-" + str(i))
 
     # calculate the corresponding z value
     z_val_lower = sp.stats.laplace_asymmetric.ppf(
@@ -138,10 +139,10 @@ for i, lower_percentile in enumerate(ci_list):
 
     # plot the forecast line
     ax_forecast.fill_between(
-        x_forecast, y_forecast_temp_lower, y_forecast_temp_upper, color=color_list[i], gid="CI PATCH " + str(i), alpha=0.00001,edgecolor='none',zorder=0
+        x_forecast, y_forecast_temp_lower, y_forecast_temp_upper, color=color_list[i], gid="CI-PATCH-" + str(i), alpha=0.00001,edgecolor='none',zorder=0
     )
-    ax_forecast.plot(x_forecast, y_forecast_temp_lower, color="tab:blue", gid="CI PATCH LOWER " + str(i), alpha=0.0, linestyle="--",zorder=0)
-    ax_forecast.plot(x_forecast, y_forecast_temp_upper, color="tab:orange", gid="CI PATCH UPPER " + str(i), alpha=0.0, linestyle="--",zorder=0)
+    ax_forecast.plot(x_forecast, y_forecast_temp_lower, color="tab:blue", gid="CI-PATCH-LOWER-" + str(i), alpha=0.0, linestyle="--",zorder=0)
+    ax_forecast.plot(x_forecast, y_forecast_temp_upper, color="tab:orange", gid="CI-PATCH-UPPER-" + str(i), alpha=0.0, linestyle="--",zorder=0)
 
     #get coordiante of upper bounds at x_max limit
     upper_interp = interpolate.interp1d(x_forecast.astype(float),y_forecast_temp_upper,kind='linear')
@@ -157,7 +158,7 @@ for i, lower_percentile in enumerate(ci_list):
     inside_proportion += [float(inside_count)/float(count)]
 
 # Add static loss function lines
-ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, 0.5), color="k", zorder=0, alpha = 0.0, gid='LF LOWER MEDIAN' )
+ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, 0.5), color="k", zorder=0, alpha = 0.0, gid='LF-LOWER-MEDIAN' )
 # loss function axis parameters
 ax_LF.tick_params(direction="out")
 ax_LF.set_ylim(0, 1)
@@ -170,9 +171,9 @@ ax_LF.spines["top"].set_visible(False)
 ax_LF.spines["right"].set_visible(False)
 
 # # add static forecast lines
-ax_forecast.plot(x_forecast, y_forecast_median, color="k",gid='CI PATCH MEDIAN',alpha=0.0)
+ax_forecast.plot(x_forecast, y_forecast_median, color="k",gid='CI-PATCH-MEDIAN',alpha=0.0)
 # # add popup forecast lines
-ax_forecast.plot(x_forecast, y_training, color="tab:red", alpha=0.75, gid="OBSERVED FORECAST LINE",zorder=2)
+ax_forecast.plot(x_forecast, y_training, color="tab:red", alpha=0.75, gid="OBSERVED-FORECAST-LINE",zorder=2)
 
 # add labels for the prediction quantiles
 labels_bump = 1.01
@@ -183,14 +184,14 @@ def selectable_text(ax,x,y,label,color,va,ha,gid,normal_boolean,bold_boolean):
         ax.text(x,y,label,color=color,va=va,ha=ha,gid=gid,transform=ax_forecast.transAxes,
         bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=1)
     if bold_boolean:
-        ax.text(x,y,label,fontweight='bold',color=color,va=va,ha=ha,gid=gid+" BOLD",transform=ax_forecast.transAxes,
+        ax.text(x,y,label,fontweight='bold',color=color,va=va,ha=ha,gid=gid+"-BOLD",transform=ax_forecast.transAxes,
         bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=0,alpha=0.0)
 
 # add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
-selectable_text(ax_forecast,labels_bump,median_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\nMedian","k","center","left","TAG MEDIAN",True,True)
+selectable_text(ax_forecast,labels_bump,median_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\nMedian","k","center","left","TAG-MEDIAN",True,False)
 for i,ci in enumerate(ci_list):
-    selectable_text(ax_forecast,labels_bump,upper_limit_ci[i],"Predicted\n"+str(int(100. * (1.0 - 2.0 * ci)))+"% CI",color_list[i],"center","left","TAG " +str(i),True,True)
-    selectable_text(ax_forecast,1.0,1.0, "The CI Contains\n"+str(round(inside_proportion[i]*100.,1))+"% of Observations","tab:red","bottom","right","TAG " + str(i) + " LABEL",False,True)
+    selectable_text(ax_forecast,labels_bump,upper_limit_ci[i],"Predicted\n"+str(int(100. * (1.0 - 2.0 * ci)))+"% CI",color_list[i],"center","left","TAG-" +str(i),True,False)
+    selectable_text(ax_forecast,1.0,1.0, "The CI Contains\n"+str(round(inside_proportion[i]*100.,1))+"% of Observations","tab:red","bottom","right","TAG-" + str(i) + "-LABEL",False,True)
 
 # forecast axis parameters
 ax_forecast.grid(visible=True, axis="y")

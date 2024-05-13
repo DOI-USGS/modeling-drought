@@ -17,7 +17,7 @@
 
         <!-- Is this the simplest way to set an image? -->
         <template #figures>
-            <div id="region-grid-container">
+            <div id="ci-grid-container">
                 <ciPlot
                     id="ci-svg"
                 />
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from "vue";
+    import { onMounted } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
     import ciPlot from "@/assets/svgs/ci_example.svg";
@@ -48,63 +48,53 @@
     });
     
     function mouseover(event) {
-        if (event.currentTarget.parentNode.id.startsWith("TAG")){
-            var tag_id = event.currentTarget.parentNode.id;
-            d3.select(document.getElementById(tag_id + " BOLD")).selectAll("g")
-                .style("opacity",1);
-            d3.select(document.getElementById(tag_id + " LABEL BOLD")).selectAll("g")
-                .style("opacity",1);
-            var line_id = event.currentTarget.parentNode.id.slice(4);
-            d3.select(document.getElementById("CI PATCH " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("fill-opacity",0.5)
-                .style("stroke-opacity",0.5);
-            d3.select(document.getElementById("CI PATCH LOWER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",1);
-            d3.select(document.getElementById("CI PATCH UPPER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",1);
-            d3.select(document.getElementById("LF LOWER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",1);
-            d3.select(document.getElementById("LF UPPER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",1);
+        if (event.currentTarget.id.startsWith("TAG")){
+            let tag_id = event.currentTarget.id;
+            d3.select(document.getElementById(tag_id)).selectAll("text")
+                .style("font-weight", 700);
+            d3.select(document.getElementById(tag_id + "-LABEL-BOLD")).selectAll("text")
+                .style("opacity", 1);
+            let line_id = event.currentTarget.id.slice(4);
+            d3.select(document.getElementById("CI-PATCH-" + line_id)).selectAll("path")
+                .style("fill-opacity", 0.5)
+                .style("stroke-opacity", 0.5);
+            d3.select(document.getElementById("CI-PATCH-LOWER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 1);
+            d3.select(document.getElementById("CI-PATCH-UPPER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 1);
+            d3.select(document.getElementById("LF-LOWER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 1);
+            d3.select(document.getElementById("LF-UPPER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 1);
         }
       }
 
     function mouseout(event) {
-        if (event.currentTarget.parentNode.id.startsWith("TAG")){
-            var tag_id = event.currentTarget.parentNode.id;
-            d3.select(document.getElementById(tag_id + " BOLD")).selectAll("g")
-                .style("opacity",0);
-            d3.select(document.getElementById(tag_id + " LABEL BOLD")).selectAll("g")
-                .style("opacity",0);
-            var line_id = event.currentTarget.parentNode.id.slice(4);
-            d3.select(document.getElementById("CI PATCH " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("fill-opacity",0)
-                .style("stroke-opacity",0);
-            d3.select(document.getElementById("CI PATCH LOWER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",0);
-            d3.select(document.getElementById("CI PATCH UPPER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",0);
-            d3.select(document.getElementById("LF LOWER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",0);
-            d3.select(document.getElementById("LF UPPER " + line_id)).selectAll("path")
-                .attr("r", 100)
-                .style("stroke-opacity",0);
+        if (event.currentTarget.id.startsWith("TAG")){
+            let tag_id = event.currentTarget.id;
+            d3.select(document.getElementById(tag_id)).selectAll("text")
+                .style("font-weight", 400);
+            d3.select(document.getElementById(tag_id + "-LABEL-BOLD")).selectAll("text")
+                .style("opacity", 0);
+            let line_id = event.currentTarget.id.slice(4);
+            d3.select(document.getElementById("CI-PATCH-" + line_id)).selectAll("path")
+                .style("fill-opacity", 0)
+                .style("stroke-opacity", 0);
+            d3.select(document.getElementById("CI-PATCH-LOWER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 0);
+            d3.select(document.getElementById("CI-PATCH-UPPER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 0);
+            d3.select(document.getElementById("LF-LOWER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 0);
+            d3.select(document.getElementById("LF-UPPER-" + line_id)).selectAll("path")
+                .style("stroke-opacity", 0);
         }
     }
     function addInteractions() {
-        // set viewbox for svg with wedges
+        // set viewbox for svg with confidence interval chart
         const lfSVG = d3.select("#ci-svg")
 
-        // Add interaction to wedges
+        // Add interaction to confidence interval chart
         lfSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
@@ -112,11 +102,11 @@
 </script>
 
 <style scoped lang="scss">
-    // What is the best way to set this up?
-    #region-grid-container {
+    #ci-grid-container {
         display: grid;
         width: 100%;
         max-width: 1200px;
+        margin: 0 auto 0 auto;
         grid-template-areas:
             "chart";
     }

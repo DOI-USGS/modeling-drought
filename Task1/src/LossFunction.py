@@ -7,11 +7,12 @@ from scipy import interpolate
 import re
 
 mpl.rcParams["font.family"] = "monospace"
+mpl.rcParams['svg.fonttype'] = 'none'
 
 # user parameters
 number_of_frames = 501
 min_percentile = 0.05
-forecast_data = np.load("Task_Data/in/ForJeffrey_0week_forecasts.npz")
+forecast_data = np.load("Task_Data/ForJeffrey_0week_forecasts.npz")
 prediction = -1  # -1 is the final prediction
 date_range = ['1988-01-01','1992-01-01']
 river_label = 'Colorado River Near Colorado-Utah State Line - 09163500'
@@ -99,7 +100,7 @@ for i, percentile in enumerate(
         x_LF,
         pinball_LF(x_LF, 0.0, percentile),
         color="k",
-        gid="LF " + str(i),
+        gid="LF-" + str(i),
         alpha=0.0,
     )
 
@@ -119,7 +120,7 @@ for i, percentile in enumerate(
 
     # plot the forecast line
     ax_forecast.plot(
-        x_forecast, y_forecast_temp, color="k", gid="FORECAST " + str(i), alpha=0.0
+        x_forecast, y_forecast_temp, color="k", gid="FORECAST-" + str(i), alpha=0.0
     )
 
 # Add static loss function lines
@@ -127,9 +128,9 @@ ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, min_percentile), color="tab:blue", linest
 ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, 0.5), color="k", zorder=0, linestyle="--")
 ax_LF.plot(x_LF,pinball_LF(x_LF, 0.0, 1.0 - min_percentile),color="tab:orange",linestyle="--")
 # Add Popup loss function lines
-ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, min_percentile), color="tab:blue", alpha=0.0, zorder=2, gid = "LOWER LF LINE")
-ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, 0.5), color="k", alpha=0.0, zorder=2, gid = "MEDIAN LF LINE")
-ax_LF.plot(x_LF,pinball_LF(x_LF, 0.0, 1.0 - min_percentile),color="tab:orange", alpha=0.0, zorder=2, gid = "UPPER LF LINE")
+ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, min_percentile), color="tab:blue", alpha=0.0, zorder=2, gid = "LOWER-LF-LINE")
+ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, 0.5), color="k", alpha=0.0, zorder=2, gid = "MEDIAN-LF-LINE")
+ax_LF.plot(x_LF,pinball_LF(x_LF, 0.0, 1.0 - min_percentile),color="tab:orange", alpha=0.0, zorder=2, gid = "UPPER-LF-LINE")
 # Fill between the lower and upper bounds
 ax_LF.fill_between(x_LF,pinball_LF(x_LF, 0.0, min_percentile), pinball_LF(x_LF, 0.0, 1.0 - min_percentile),color="tab:gray",alpha=0.3,edgecolor='none')
 # loss function axis parameters
@@ -148,10 +149,10 @@ ax_forecast.plot(x_forecast, y_forecast_lower, color="tab:blue", linestyle="--")
 ax_forecast.plot(x_forecast, y_forecast_median, color="k", linestyle="--")
 ax_forecast.plot(x_forecast, y_forecast_upper, color="tab:orange", linestyle="--")
 # add popup forecast lines
-ax_forecast.plot(x_forecast, y_training, color="tab:red", alpha=0.0, gid="OBSERVED FORECAST LINE")
-ax_forecast.plot(x_forecast, y_forecast_lower, color="tab:blue", alpha=0.0, zorder=2, gid = "LOWER FORECAST LINE")
-ax_forecast.plot(x_forecast, y_forecast_median, color="k", alpha=0.0, zorder=2, gid = "MEDIAN FORECAST LINE")
-ax_forecast.plot(x_forecast, y_forecast_upper, color="tab:orange", alpha=0.0, zorder=2, gid = "UPPER FORECAST LINE")
+ax_forecast.plot(x_forecast, y_training, color="tab:red", alpha=0.0, gid="OBSERVED-FORECAST-LINE")
+ax_forecast.plot(x_forecast, y_forecast_lower, color="tab:blue", alpha=0.0, zorder=2, gid = "LOWER-FORECAST-LINE")
+ax_forecast.plot(x_forecast, y_forecast_median, color="k", alpha=0.0, zorder=2, gid = "MEDIAN-FORECAST-LINE")
+ax_forecast.plot(x_forecast, y_forecast_upper, color="tab:orange", alpha=0.0, zorder=2, gid = "UPPER-FORECAST-LINE")
 #fill between upper and lower
 ax_forecast.fill_between(x_forecast,y_forecast_lower,y_forecast_upper,color="tab:gray",alpha=0.3,edgecolor='none')
 
@@ -165,14 +166,12 @@ upper_interp = interpolate.interp1d(x_forecast.astype(float),y_forecast_upper,ki
 def selectable_text(ax,x,y,label,color,va,ha,gid):
     ax.text(x,y,label,color=color,va=va,ha=ha,gid=gid,transform=ax_forecast.transAxes,
     bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=1)
-    ax.text(x,y,label,fontweight='bold',color=color,va=va,ha=ha,gid=gid+" BOLD",transform=ax_forecast.transAxes,
-    bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=0,alpha=0.0)
 
 # add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
-selectable_text(ax_forecast,labels_bump,lower_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\n5% Quantile","tab:blue","bottom","left","LOWER TAG")
-selectable_text(ax_forecast,labels_bump,median_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\nMedian","k","center","left","MEDIAN TAG")
-selectable_text(ax_forecast,labels_bump,upper_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\n95% Quantile","tab:orange","top","left","UPPER TAG")
-selectable_text(ax_forecast,1.0,1.0, "Show Observations","tab:red","bottom","right","OBSERVED TAG")
+selectable_text(ax_forecast,labels_bump,lower_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\n5% Quantile","tab:blue","bottom","left","LOWER-TAG")
+selectable_text(ax_forecast,labels_bump,median_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\nMedian","k","center","left","MEDIAN-TAG")
+selectable_text(ax_forecast,labels_bump,upper_interp(np.datetime64(date_range[-1]).astype(float))/100.0,"Predicted\n95% Quantile","tab:orange","top","left","UPPER-TAG")
+selectable_text(ax_forecast,1.0,1.0, "Show Observations","tab:red","bottom","right","OBSERVED-TAG")
 
 # forecast axis parameters
 ax_forecast.grid(visible=True, axis="y")
