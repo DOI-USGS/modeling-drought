@@ -46,7 +46,7 @@ forecast_files = ['ForJeffrey_0Week_forecasts.npz',
                   'ForJeffrey_13Week_forecasts.npz']
 for forecast_file in forecast_files:
     # load data
-    forecast_data = np.load("../in/" + forecast_file)
+    forecast_data = np.load("Task_Data/" + forecast_file)
     
     #add offset
     offset = int(str(forecast_data["forecast_horizon"])[:-6])
@@ -94,4 +94,4 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1,0,river_label,ha='right',va='bottom',alpha=0.5)
 
 #make svg
-fig.savefig("../out/forecast.png", dpi=150)
+fig.savefig("Task2/out/forecast.png", dpi=150)

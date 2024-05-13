@@ -11,7 +11,7 @@ mpl.rcParams["font.family"] = "monospace"
 # user parameters
 number_of_frames = 501
 min_percentile = 0.05
-forecast_data = np.load("Task1/in/ForJeffrey_0week_forecasts.npz")
+forecast_data = np.load("Task_Data/in/ForJeffrey_0week_forecasts.npz")
 prediction = -1  # -1 is the final prediction
 date_range = ['1988-01-01','1992-01-01']
 river_label = 'Colorado River Near Colorado-Utah State Line - 09163500'

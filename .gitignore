@@ -33,4 +33,7 @@ coverage
 # snakemake folder
 .snakemake
 
+#remove in/out files
+Task_Data
+*/out/*
 
