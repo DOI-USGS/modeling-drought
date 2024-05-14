@@ -14,7 +14,12 @@
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
-    <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
+      <LossFunction
+        :text="text.components.LossFunction"
+      />
+      <ConfidenceInterval
+        :text="text.components.ConfidenceInterval"
+      />
     <SectionTitle
       :content="text.sections.B"
       :height=sectionTitleHeight
@@ -42,18 +47,12 @@
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />    
-      <RegionalViolins 
-        :text="text.components.RegionalViolins"
-      />
     <SectionTitle
       :content="text.sections.F"
       :height=sectionTitleHeight
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
-      <BarChartExample 
-        :text="text.components.BarChartExample"
-      />
     <ReferencesSection />
     <AuthorshipSection />
   </section>
@@ -67,8 +66,9 @@
   import SectionTitle from '@/components/SectionTitle.vue';
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
-  import RegionalViolins from '@/components/RegionalViolins.vue';
-  import BarChartExample from '@/components/BarChartExample.vue';
+  import LossFunction from '@/components/LossFunction.vue';
+  import ConfidenceInterval from '@/components/ConfidenceInterval.vue';
+
 
   // global variables
   const mobileView = isMobile;

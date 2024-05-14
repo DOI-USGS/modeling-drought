@@ -26,3 +26,14 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# annoying mac files
+*.DS_Store
+
+# snakemake folder
+.snakemake
+
+#remove in/out files
+Task_Data
+*/out/*
+
