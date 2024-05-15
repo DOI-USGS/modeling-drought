@@ -48,14 +48,14 @@ const colorHighlight = '#FF9F00';
 const svg = ref(null);
 
 const nodes = ref([
-    { id: 'Ellie', group: 1, img: Ellie },
-    { id: 'John', group: 2, img: John },
-    { id: 'Althea', group: 3, img: Althea },
-    { id: 'Caelan', group: 1, img: Caelan },
-    { id: 'Jeremy', group: 2, img: Jeremy },
-    { id: 'Scott', group: 3, img: Scott },
-    { id: 'Person', group: 1, img: Person },
-    { id: 'Jake', group: 2, img: Person }
+    { id: 'Ellie', group: 1, img: Ellie, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'John', group: 2, img: John, url: 'https://www.usgs.gov/staff-profiles/john-c-hammond' },
+    { id: 'Althea', group: 3, img: Althea, url: 'https://www.usgs.gov/staff-profiles/althea-a-archer' },
+    { id: 'Caelan', group: 1, img: Caelan, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'Jeremy', group: 2, img: Jeremy, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'Scott', group: 3, img: Scott, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'Person', group: 1, img: Person, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'Jake', group: 2, img: Person, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' }
 ]);
 
 const edges = ref([]);
@@ -127,8 +127,34 @@ function drawGraph() {
         .attr('width', 1)
         .attr('preserveAspectRatio', 'xMidYMid slice');
 
-    node.append('title')
-        .text(d => d.id);
+    // Text labels (hidden by default)
+    const labels = svgElement.append('g')
+        .selectAll('text')
+        .data(nodes.value)
+        .join('text')
+        .text(d => d.id)
+        .attr('x', d => d.x)
+        .attr('y', d => d.y - nodeRadius - 10)
+        .attr('text-anchor', 'middle')
+        .style('visibility', 'hidden');
+
+    // Mouse interaction behavior
+    node.on('mouseover', (event, d) => {
+        d3.select(event.currentTarget)
+        .style('fill', 'orangered');
+        labels.filter(ld => ld.id === d.id)
+        .style('visibility', 'visible');
+    })
+    .on('mouseout', (event, d) => {
+        d3.select(event.currentTarget)
+        .style('fill', `url(#pattern-${d.id})`);
+        labels.filter(ld => ld.id === d.id)
+        .style('visibility', 'hidden');
+    })
+    .on('click', (event, d) => {
+        window.open(d.url, '_blank');
+     });
+
 
     simulation.on('tick', () => {
         link
@@ -140,6 +166,10 @@ function drawGraph() {
         node
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
+
+        labels
+            .attr('x', d => d.x)
+            .attr('y', d => d.y);
     });
 
     function drag(simulation) {
@@ -169,17 +199,5 @@ function drawGraph() {
 </script>
 
 <style scoped lang="scss">
-    #lf-grid-container {
-        display: grid;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto 0 auto;
-        grid-template-areas: "chart";
-    }
-    #lf-svg {
-        grid-area: chart;
-        place-self: center;
-        max-height: 90%;
-        max-width: 90%;
-    }
+
 </style>
