@@ -64,7 +64,7 @@ function generateEdges() {
     nodes.value.forEach((source, i) => {
         nodes.value.forEach((target, j) => {
             if (i !== j && Math.random() > 0.5) {
-                edges.value.push({ source: source.id, target: target.id });
+                edges.value.push({ source: source.id, target: target.id, length: Math.random()*100 });
             }
         });
     });
@@ -80,10 +80,15 @@ function drawGraph() {
     const edgeWidth = 2;
 
     const simulation = d3.forceSimulation(nodes.value)
-        .force('link', d3.forceLink(edges.value).id(d => d.id).distance(100))
-        .force('charge', d3.forceManyBody().strength(-300))
+        .force('link', d3.forceLink(edges.value).id(d => d.id).distance(d => d.length))
+        .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius*2));
+        .force('collision', d3.forceCollide().radius(nodeRadius*2))
+        //.force('jitter', () => nodes.value.forEach(d => {
+        //    // Apply a small random force to each node
+        //    d.x += (Math.random() - 0.5) * 10;
+        //    d.y += (Math.random() - 0.5) * 10;
+        //    }));
 
     const svgElement = d3.select(svg.value);
 
