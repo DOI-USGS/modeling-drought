@@ -24,18 +24,6 @@ export default {
             id: "sectionD",
             image: "sectionD_banner.jpg",
             alt: "Alt text for section D banner image"
-        },
-        E: {
-            title: "First example section - delete later",
-            id: "sectionE",
-            image: "sectionA_banner.png",
-            alt: "An overhead view of a river flowing through a snow-covered decidious forest."
-        },
-        F: {
-            title: "Second example section - delete later",
-            id: "sectionF",
-            image: "sectionB_banner.jpg",
-            alt: "An overhead view of a river flowing through a snow-covered decidious forest."
         }
     },
     components: {
