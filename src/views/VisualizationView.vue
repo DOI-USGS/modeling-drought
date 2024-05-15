@@ -40,19 +40,9 @@
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
-    <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
-    <SectionTitle
-      :content="text.sections.E"
-      :height=sectionTitleHeight
-      :overlay=true
-      :overlayOpacity=sectionTitleOverlayOpacity
-    />    
-    <SectionTitle
-      :content="text.sections.F"
-      :height=sectionTitleHeight
-      :overlay=true
-      :overlayOpacity=sectionTitleOverlayOpacity
-    />
+    <AboutTheTeam
+        :text="text.components.AboutTheTeam"
+      />
     <ReferencesSection />
     <AuthorshipSection />
   </section>
@@ -68,6 +58,7 @@
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
   import ConfidenceInterval from '@/components/ConfidenceInterval.vue';
+  import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
 
   // global variables
