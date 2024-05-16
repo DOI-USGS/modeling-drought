@@ -48,14 +48,27 @@ const colorHighlight = '#FF9F00';
 const svg = ref(null);
 
 const nodes = ref([
-    { id: 'Ellie', group: 1, img: Ellie, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
-    { id: 'John', group: 2, img: John, url: 'https://www.usgs.gov/staff-profiles/john-c-hammond' },
-    { id: 'Althea', group: 3, img: Althea, url: 'https://www.usgs.gov/staff-profiles/althea-a-archer' },
-    { id: 'Caelan', group: 1, img: Caelan, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
-    { id: 'Jeremy', group: 2, img: Jeremy, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
-    { id: 'Scott', group: 3, img: Scott, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
-    { id: 'Person', group: 1, img: Person, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
-    { id: 'Jake', group: 2, img: Person, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' }
+    { id: 'Ellie', group: 'IIDD', img: Ellie, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'John', group: 'MD-DE-DC', img: John, url: 'https://www.usgs.gov/staff-profiles/john-c-hammond' },
+    { id: 'Erik', group: 'OPP', img: John, url: 'https://www.usgs.gov/staff-profiles/erik-smith' },
+    { id: 'Kaysa', group: 'IIDD', img: John, url: 'labs.waterdata.usgs.gov/visualizations' },
+    { id: 'Jeffrey', group: 'IIDD', img: John, url: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang' },
+    { id: 'Cee', group: 'IIDD', img: John, url: 'https://www.usgs.gov/staff-profiles/cee-nell' },
+    { id: 'Althea', group:  'IIDD', img: Althea, url: 'https://www.usgs.gov/staff-profiles/althea-a-archer' },
+    { id: 'Caelan', group: 'OR', img: Caelan, url: 'https://www.usgs.gov/staff-profiles/caelan-e-simeone' },
+    { id: 'Jeremy', group:  'IIDD', img: Jeremy, url: 'https://scholar.google.com/citations?user=roIN6vgAAAAJ' },
+    { id: 'Scott', group: 'IMPD', img: Scott, url: 'https://www.usgs.gov/staff-profiles/scott-hamshaw' },
+    { id: 'Philip', group: 'ESPD', img: Person, url: 'https://www.usgs.gov/staff-profiles/phillip-goodling' },
+    { id: 'Roy', group: 'WY-MT', img: Person, url: 'https://www.usgs.gov/staff-profiles/roy-sando' },
+    { id: 'Aaron', group: 'WY-MT', img: Person, url: 'https://www.usgs.gov/staff-profiles/aaron-j-heldmyer' },
+    { id: 'Ryan', group: 'WY-MT', img: Person, url: 'https://www.usgs.gov/staff-profiles/ryan-r-mcshane' },
+    { id: 'Bryce', group: 'UT', img: Person, url: 'https://www.usgs.gov/index.php/staff-profiles/bryce-pulver' },
+    { id: 'Andrew', group: 'MD-DE-DC', img: Person, url: 'https://www.usgs.gov/staff-profiles/andrew-sekellick' },
+    { id: 'Leah', group: 'MD-DE-DC', img: Person, url: 'https://www.usgs.gov/staff-profiles/leah-e-staub' },
+    { id: 'David', group: 'IIDD', img: Person, url: 'https://www.usgs.gov/staff-profiles/david-watkins' },
+    { id: 'Michael', group: 'MD-DE-DC', img: Person, url: 'https://www.usgs.gov/staff-profiles/michael-e-wieczorek' },
+    { id: 'Kendall', group: 'MD-DE-DC', img: Person, url: 'https://www.usgs.gov/staff-profiles/jacob-zwart' },
+    { id: 'Jake', group:  'IIDD', img: Person, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' }
 ]);
 
 const edges = ref([]);
@@ -76,19 +89,14 @@ onMounted(() => {
 });
 
 function drawGraph() {
-    const nodeRadius = 40;
+    const nodeRadius = 30;
     const edgeWidth = 2;
 
     const simulation = d3.forceSimulation(nodes.value)
         .force('link', d3.forceLink(edges.value).id(d => d.id).distance(d => d.length))
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius*2))
-        //.force('jitter', () => nodes.value.forEach(d => {
-        //    // Apply a small random force to each node
-        //    d.x += (Math.random() - 0.5) * 10;
-        //    d.y += (Math.random() - 0.5) * 10;
-        //    }));
+        .force('collision', d3.forceCollide().radius(nodeRadius * 2));
 
     const svgElement = d3.select(svg.value);
 
@@ -114,9 +122,9 @@ function drawGraph() {
         .attr('r', nodeRadius)
         .attr('stroke', "black")
         .attr('stroke-width', 4)
-        .style('fill', d => `url(#pattern-${d.id})`);
+        .style('fill', d => `url(#pattern-${d.id})`)
+        .call(drag(simulation));
 
-    // Append images within patterns for filling circles
     const patterns = svgElement.append('defs')
         .selectAll('pattern')
         .data(nodes.value)
@@ -132,7 +140,6 @@ function drawGraph() {
         .attr('width', 1)
         .attr('preserveAspectRatio', 'xMidYMid slice');
 
-    // Text labels (hidden by default)
     const labels = svgElement.append('g')
         .selectAll('text')
         .data(nodes.value)
@@ -143,23 +150,21 @@ function drawGraph() {
         .attr('text-anchor', 'middle')
         .style('visibility', 'hidden');
 
-    // Mouse interaction behavior
     node.on('mouseover', (event, d) => {
         d3.select(event.currentTarget)
-        .style('fill', 'orangered');
+            .style('fill', 'orangered');
         labels.filter(ld => ld.id === d.id)
-        .style('visibility', 'visible');
+            .style('visibility', 'visible');
     })
-    .on('mouseout', (event, d) => {
+        .on('mouseout', (event, d) => {
         d3.select(event.currentTarget)
-        .style('fill', `url(#pattern-${d.id})`);
+            .style('fill', `url(#pattern-${d.id})`);
         labels.filter(ld => ld.id === d.id)
-        .style('visibility', 'hidden');
+            .style('visibility', 'hidden');
     })
-    .on('click', (event, d) => {
+        .on('click', (event, d) => {
         window.open(d.url, '_blank');
-     });
-
+    });
 
     simulation.on('tick', () => {
         link
@@ -169,8 +174,14 @@ function drawGraph() {
             .attr('y2', d => d.target.y);
 
         node
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y);
+            .attr('cx', d => {
+            d.x = Math.max(nodeRadius, Math.min(width - nodeRadius, d.x));
+            return d.x;
+        })
+            .attr('cy', d => {
+            d.y = Math.max(nodeRadius, Math.min(height - nodeRadius, d.y));
+            return d.y;
+        });
 
         labels
             .attr('x', d => d.x)
@@ -201,6 +212,7 @@ function drawGraph() {
             .on('end', dragended);
     }
 }
+
 </script>
 
 <style scoped lang="scss">
