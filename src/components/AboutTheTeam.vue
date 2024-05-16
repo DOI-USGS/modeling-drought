@@ -148,7 +148,8 @@ function drawGraph() {
         .attr('x', d => d.x)
         .attr('y', d => d.y - nodeRadius - 10)
         .attr('text-anchor', 'middle')
-        .style('visibility', 'hidden');
+        .style('visibility', 'hidden')
+        .style('pointer-events', 'none');
 
     node.on('mouseover', (event, d) => {
         d3.select(event.currentTarget)
