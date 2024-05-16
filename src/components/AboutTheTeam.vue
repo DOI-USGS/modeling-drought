@@ -1,6 +1,6 @@
 <template>
     <VizSection
-        id="loss-function"
+        id="the-team"
         :figures="true"
         :fig-caption="true"
     >
@@ -12,7 +12,9 @@
             <p v-html="text.paragraph2" />
         </template>
         <template #figures>
+            <div class="svg-container">
             <svg ref="svg" :width="width" :height="height"></svg>
+            </div>
         </template>
         <template #figureCaption>
             <p v-html="text.caption" />
@@ -29,12 +31,6 @@ import * as d3 from 'd3';
 import VizSection from '@/components/VizSection.vue';
 
 // Importing images from assets
-import Ellie from '@/assets/images/face.jpeg';
-import Jeremy from '@/assets/images/face.jpeg';
-import John from '@/assets/images/face.jpeg';
-import Althea from '@/assets/images/face.jpeg';
-import Caelan from '@/assets/images/face.jpeg';
-import Scott from '@/assets/images/face.jpeg';
 import Person from '@/assets/images/face.jpeg';
 
 defineProps({
@@ -48,16 +44,16 @@ const colorHighlight = '#FF9F00';
 const svg = ref(null);
 
 const nodes = ref([
-    { id: 'Ellie', group: 'IIDD', img: Ellie, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
-    { id: 'John', group: 'MD-DE-DC', img: John, url: 'https://www.usgs.gov/staff-profiles/john-c-hammond' },
-    { id: 'Erik', group: 'OPP', img: John, url: 'https://www.usgs.gov/staff-profiles/erik-smith' },
-    { id: 'Kaysa', group: 'IIDD', img: John, url: 'labs.waterdata.usgs.gov/visualizations' },
-    { id: 'Jeffrey', group: 'IIDD', img: John, url: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang' },
-    { id: 'Cee', group: 'IIDD', img: John, url: 'https://www.usgs.gov/staff-profiles/cee-nell' },
-    { id: 'Althea', group:  'IIDD', img: Althea, url: 'https://www.usgs.gov/staff-profiles/althea-a-archer' },
-    { id: 'Caelan', group: 'OR', img: Caelan, url: 'https://www.usgs.gov/staff-profiles/caelan-e-simeone' },
-    { id: 'Jeremy', group:  'IIDD', img: Jeremy, url: 'https://scholar.google.com/citations?user=roIN6vgAAAAJ' },
-    { id: 'Scott', group: 'IMPD', img: Scott, url: 'https://www.usgs.gov/staff-profiles/scott-hamshaw' },
+    { id: 'Ellie', group: 'IIDD', img: Person, url: 'https://www.usgs.gov/staff-profiles/elaheh-white' },
+    { id: 'John', group: 'MD-DE-DC', img: Person, url: 'https://www.usgs.gov/staff-profiles/john-c-hammond' },
+    { id: 'Erik', group: 'OPP', img: Person, url: 'https://www.usgs.gov/staff-profiles/erik-smith' },
+    { id: 'Kaysa', group: 'IIDD', img: Person, url: 'labs.waterdata.usgs.gov/visualizations' },
+    { id: 'Jeffrey', group: 'IIDD', img: Person, url: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang' },
+    { id: 'Cee', group: 'IIDD', img: Person, url: 'https://www.usgs.gov/staff-profiles/cee-nell' },
+    { id: 'Althea', group:  'IIDD', img: Person, url: 'https://www.usgs.gov/staff-profiles/althea-a-archer' },
+    { id: 'Caelan', group: 'OR', img: Person, url: 'https://www.usgs.gov/staff-profiles/caelan-e-simeone' },
+    { id: 'Jeremy', group:  'IIDD', img: Person, url: 'https://scholar.google.com/citations?user=roIN6vgAAAAJ' },
+    { id: 'Scott', group: 'IMPD', img: Person, url: 'https://www.usgs.gov/staff-profiles/scott-hamshaw' },
     { id: 'Philip', group: 'ESPD', img: Person, url: 'https://www.usgs.gov/staff-profiles/phillip-goodling' },
     { id: 'Roy', group: 'WY-MT', img: Person, url: 'https://www.usgs.gov/staff-profiles/roy-sando' },
     { id: 'Aaron', group: 'WY-MT', img: Person, url: 'https://www.usgs.gov/staff-profiles/aaron-j-heldmyer' },
@@ -217,5 +213,11 @@ function drawGraph() {
 </script>
 
 <style scoped lang="scss">
-
+.svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
 </style>
