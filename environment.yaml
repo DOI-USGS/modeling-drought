@@ -1,0 +1,9 @@
+name: drought
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - snakemake
+  - numpy
+  - matplotlib
+  - scipy

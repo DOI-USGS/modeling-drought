@@ -1,0 +1,25 @@
+rule all:
+    input:
+        "Task2/out/forecast.mp4"
+
+rule forecast:
+    output:
+        "Task2/tmp/forecast310.png"
+    script:
+        'Task2/src/Forecast.py'
+
+rule make_movie_LF:
+    input:
+        'Task2/tmp/forecast310.png'
+    output:
+        moviefile = 'Task2/out/forecast.mp4'
+    params:
+        framefolder = 'Task2/tmp/',
+        framerate = '20'
+    shell:
+        'ffmpeg -y '
+        '-r {params.framerate} '
+        '-f image2 -pattern_type glob '
+        '-i "{params.framefolder}/forecast*.png" '
+        '-vcodec libx264 -pix_fmt yuv420p '
+        '{output.moviefile}'
