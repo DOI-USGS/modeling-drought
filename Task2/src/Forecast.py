@@ -75,7 +75,7 @@ for j in range(310,520):
     ax_forecast.plot(x_forecast[:1+j], y_forecast_upper[:1+j], color="tab:orange")
     ax_forecast.fill_between(x_forecast[:1+j], y_forecast_lower[:1+j],y_forecast_upper[:1+j],color="tab:gray",alpha=0.3,edgecolor='none')
     ax_forecast.plot(x_forecast, y_training, color="tab:red",alpha=1.0)
-    ax_forecast.plot([x_forecast[j],x_forecast[j]],[0,100], color="k",linestyle='--')
+    ax_forecast.plot([x_forecast[j],x_forecast[j]],[0,100], color="k",linestyle='--',alpha=0.25)
 
     # add static forecast lines
     ax_forecast.plot(x_cloud , y_cloud_lower, color="tab:blue", linestyle="--",alpha=1.0)
