@@ -69,15 +69,22 @@ const nodes = ref([
 
 const edges = ref([]);
 
+// this function is generating random linkages between people using connectivity %
+// 
 function generateEdges() {
     nodes.value.forEach((source, i) => {
         nodes.value.forEach((target, j) => {
-            if (i !== j && Math.random() > 0.5) {
-                edges.value.push({ source: source.id, target: target.id, length: Math.random()*100 });
+            if (i !== j) {
+                const isSameGroup = source.group === target.group;
+                const probability = isSameGroup ? 0.9 : 0.05;  // setting random levels of connectivity within : among group
+                if (Math.random() < probability) {
+                    edges.value.push({ source: source.id, target: target.id, length: isSameGroup ? 30 : 100 });
+                }
             }
         });
     });
 }
+
 
 onMounted(() => {
     generateEdges();
@@ -88,11 +95,15 @@ function drawGraph() {
     const nodeRadius = 30;
     const edgeWidth = 2;
 
+    // groups color scale
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
+
     const simulation = d3.forceSimulation(nodes.value)
         .force('link', d3.forceLink(edges.value).id(d => d.id).distance(d => d.length))
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius * 2));
+        .force('collision', d3.forceCollide().radius(nodeRadius * 2))
+        .force('cluster', forceCluster(0.2));
 
     const svgElement = d3.select(svg.value);
 
@@ -116,7 +127,7 @@ function drawGraph() {
         .data(nodes.value)
         .join('circle')
         .attr('r', nodeRadius)
-        .attr('stroke', "black")
+        .attr('stroke', d => color(d.group))
         .attr('stroke-width', 4)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
@@ -165,20 +176,20 @@ function drawGraph() {
 
     simulation.on('tick', () => {
         link
-            .attr('x1', d => d.source.x)
-            .attr('y1', d => d.source.y)
-            .attr('x2', d => d.target.x)
-            .attr('y2', d => d.target.y);
+            .attr('x1', d => constrain(d.source.x, nodeRadius, width - nodeRadius))
+            .attr('y1', d => constrain(d.source.y, nodeRadius, height - nodeRadius))
+            .attr('x2', d => constrain(d.target.x, nodeRadius, width - nodeRadius))
+            .attr('y2', d => constrain(d.target.y, nodeRadius, height - nodeRadius));
 
         node
             .attr('cx', d => {
-            d.x = Math.max(nodeRadius, Math.min(width - nodeRadius, d.x));
-            return d.x;
-        })
+                d.x = constrain(d.x, nodeRadius, width - nodeRadius);
+                return d.x;
+            })
             .attr('cy', d => {
-            d.y = Math.max(nodeRadius, Math.min(height - nodeRadius, d.y));
-            return d.y;
-        });
+                d.y = constrain(d.y, nodeRadius, height - nodeRadius);
+                return d.y;
+            });
 
         labels
             .attr('x', d => d.x)
@@ -207,6 +218,29 @@ function drawGraph() {
             .on('start', dragstarted)
             .on('drag', dragged)
             .on('end', dragended);
+    }
+    function constrain(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    function forceCluster() {
+        const strength = 0.1;
+        return alpha => {
+            nodes.value.forEach(d => {
+                const cluster = nodes.value.find(n => n.group === d.group);
+                if (cluster && cluster !== d) {
+                    const x = d.x - cluster.x;
+                    const y = d.y - cluster.y;
+                    const l = Math.sqrt(x * x + y * y);
+                    const r = nodeRadius * 2;
+                    if (l !== r) {
+                        const ratio = (l - r) / l * alpha * strength;
+                        d.vx -= x * ratio;
+                        d.vy -= y * ratio;
+                    }
+                }
+            });
+        };
     }
 }
 
