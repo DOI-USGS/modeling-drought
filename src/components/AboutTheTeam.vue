@@ -76,9 +76,9 @@ function generateEdges() {
         nodes.value.forEach((target, j) => {
             if (i !== j) {
                 const isSameGroup = source.group === target.group;
-                const probability = isSameGroup ? 0.9 : 0.05;  // setting random levels of connectivity within : among group
+                const probability = isSameGroup ? 0.5 : 0.05;  // setting random levels of connectivity within : among group
                 if (Math.random() < probability) {
-                    edges.value.push({ source: source.id, target: target.id, length: isSameGroup ? 30 : 100 });
+                    edges.value.push({ source: source.id, target: target.id, length: isSameGroup ? 20 : 100 });
                 }
             }
         });
