@@ -22,7 +22,7 @@ export default {
         initials: 'CN',
         profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell',
         role: 'team lead',
-        contribution: 'acted in an advisory role, contributed to website development, and reviewed code'
+        contribution: 'lead the project'
       },
       {
         firstName: 'Hayley',
