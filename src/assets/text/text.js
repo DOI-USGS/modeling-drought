@@ -59,6 +59,11 @@ export default {
             heading: "Confidence Interval (in-progess)",
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Hover your mouse over the 4 predictions to see the loss functions (left) and corresponding confidence intervals (right).",
+        },
+        Forecast: {
+            heading: "Forecast (in-progess)",
+            paragraph1: "",
+            caption: "Hover your mouse over the plot to see the how the model forcasts drought.",
         }
     }
 }
