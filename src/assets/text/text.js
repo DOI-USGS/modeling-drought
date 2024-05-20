@@ -24,18 +24,6 @@ export default {
             id: "sectionD",
             image: "sectionD_banner.jpg",
             alt: "Alt text for section D banner image"
-        },
-        E: {
-            title: "First example section - delete later",
-            id: "sectionE",
-            image: "sectionA_banner.png",
-            alt: "An overhead view of a river flowing through a snow-covered decidious forest."
-        },
-        F: {
-            title: "Second example section - delete later",
-            id: "sectionF",
-            image: "sectionB_banner.jpg",
-            alt: "An overhead view of a river flowing through a snow-covered decidious forest."
         }
     },
     components: {
@@ -59,6 +47,11 @@ export default {
             heading: "Confidence Interval (in-progess)",
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Hover your mouse over the 4 predictions to see the loss functions (left) and corresponding confidence intervals (right).",
+        },
+        AboutTheTeam: {
+            heading: "USGS researchers and data scientists collaborate",
+            paragraph1: "That's how science gets done. Here is a paragraph about the team. They're making it happen at USGS.",
+            caption: "A caption could go here",
         }
     }
 }
