@@ -7,6 +7,7 @@ from scipy import interpolate
 import re
 
 mpl.rcParams["font.family"] = "monospace"
+mpl.rcParams['svg.fonttype'] = 'none'
 
 # user parameters
 number_of_frames = 501
@@ -96,6 +97,13 @@ for j in range(310,520):
     # #fill between upper and lower
     ax_forecast.fill_between(x_cloud,y_cloud_lower,y_cloud_upper,color="tab:gray",alpha=0.0,edgecolor='none',gid='forecast_patch_'+str(j))
 
+def selectable_text(ax,x,y,label,color,va,ha,gid):
+    ax.text(x,y,label,color=color,va=va,ha=ha,gid=gid,transform=ax_forecast.transAxes,
+    bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=1)
+
+# add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
+selectable_text(ax_forecast,1.0,1.0, "Toggle Observations","tab:red","bottom","right","OBSERVED-TAG")
+
 # forecast axis parameters
 ax_forecast.plot(x_forecast, y_training, color="tab:red",alpha=0.0,gid='observation_full')
 ax_forecast.grid(visible=True, axis="y")
@@ -113,14 +121,6 @@ ax_forecast.set_title("Streamflow Percentile", loc="left",weight='bold')
 ax_forecast.spines["top"].set_visible(False)
 ax_forecast.spines["right"].set_visible(False)
 ax_forecast.set_axisbelow(True)
-
-
-def selectable_text(ax,x,y,label,color,va,ha,gid):
-    ax.text(x,y,label,color=color,va=va,ha=ha,gid=gid,transform=ax_forecast.transAxes,
-    bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=1)
-
-# add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
-selectable_text(ax_forecast,1.0,1.0, "Toggle Observations","tab:red","bottom","right","OBSERVED-TAG")
 
 #river label
 plt.figtext(1,0,river_label,ha='right',va='bottom',alpha=0.5)

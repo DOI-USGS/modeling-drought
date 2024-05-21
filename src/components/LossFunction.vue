@@ -69,6 +69,7 @@
         }
         if (event.currentTarget.id.endsWith("-TAG")){
             let line_id = event.currentTarget.id.slice(0, -4);
+            console.log (d3.select("#" + line_id + "-TAG").selectAll("text"))
             d3.select("#" + line_id + "-TAG").selectAll("text")
                 .style("font-weight", 700);
             d3.select("#" + line_id + "-FORECAST-LINE").selectAll("path")
