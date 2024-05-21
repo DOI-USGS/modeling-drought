@@ -26,6 +26,9 @@
       :overlay=true
       :overlayOpacity=sectionTitleOverlayOpacity
     />
+      <Forecast
+        :text="text.components.Forecast"
+      />
     <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
     <SectionTitle
       :content="text.sections.C"
@@ -58,6 +61,7 @@
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
   import ConfidenceInterval from '@/components/ConfidenceInterval.vue';
+  import Forecast from '@/components/Forecast.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
 

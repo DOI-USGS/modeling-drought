@@ -36,4 +36,5 @@ coverage
 #remove in/out files
 Task_Data
 */out/*
+*/tmp/*
 
