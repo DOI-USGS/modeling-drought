@@ -102,7 +102,7 @@ def selectable_text(ax,x,y,label,color,va,ha,gid):
     bbox=dict(facecolor="w", alpha=0.0000001, edgecolor="none", pad=0.0),zorder=1)
 
 # add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
-selectable_text(ax_forecast,1.0,1.0, "Toggle Observations","tab:red","bottom","right","OBSERVED-TAG")
+selectable_text(ax_forecast,1.0,1.0, "Toggle Observations","tab:red","bottom","right","toggle-observations")
 
 # forecast axis parameters
 ax_forecast.plot(x_forecast, y_training, color="tab:red",alpha=0.0,gid='observation_full')

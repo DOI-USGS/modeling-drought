@@ -100,17 +100,17 @@
     }
 
     function click(event) {
-        if (event.currentTarget.id.startsWith("OBSERVED-TAG")){
+        if (event.currentTarget.id.startsWith("toggle-observations")){
             //observation line toggle
             let observation_opacity = 0.5;
             if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == 0){
-                d3.select("#OBSERVED-TAG").selectAll("text")
+                d3.select("#toggle-observations").selectAll("text")
                     .style("font-weight", 700);
                 d3.select("#observation_full").selectAll("path")
                     .style("stroke-opacity", observation_opacity);
             } else if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == observation_opacity){
-                d3.select(event.currentTarget.id).selectAll("text")
-                    .style("#OBSERVED-TAG", 400);
+                d3.select("#toggle-observations").selectAll("text")
+                    .style("font-weight", 400);
                 d3.select("#observation_full").selectAll("path")
                     .style("stroke-opacity", 0);
             }
