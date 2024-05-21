@@ -57,22 +57,22 @@
             let line_id = event.currentTarget.id.slice(15);
             //forecast lines
             d3.select("#forecast_lower_" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+                .style("stroke-opacity", 1);
             d3.select("#forecast_middl_" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+                .style("stroke-opacity", 1);
             d3.select("#forecast_patch_" + line_id).selectAll("path")
-                .style("fill", d3.rgb(0,0,0,0.1))
+                .style("fill", d3.rgb(0,0,0,0.1));
             d3.select("#forecast_upper_" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+                .style("stroke-opacity", 1);
             //prediction lines
             d3.select("#prediction_lower_" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+                .style("stroke-opacity", 1);
             d3.select("#prediction_middl_" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+                .style("stroke-opacity", 1);
             d3.select("#prediction_patch_" + line_id).selectAll("path")
-                .style("fill", d3.rgb(0,0,0,0.2))
+                .style("fill", d3.rgb(0,0,0,0.2));
             d3.select("#prediction_upper_" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+                .style("stroke-opacity", 1);
         }
       }
 
@@ -80,35 +80,39 @@
         if (event.currentTarget.id.startsWith("forecast_hover_")){
             let line_id = event.currentTarget.id.slice(15);
             d3.select("#forecast_lower_" + line_id).selectAll("path")
-                .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0);
             d3.select("#forecast_middl_" + line_id).selectAll("path")
-                .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0);
             d3.select("#forecast_patch_" + line_id).selectAll("path")
-                .style("fill", d3.rgb(0,0,0,0))
+                .style("fill", d3.rgb(0,0,0,0));
             d3.select("#forecast_upper_" + line_id).selectAll("path")
-                .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0);
             //prediction lines
             d3.select("#prediction_lower_" + line_id).selectAll("path")
-                .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0);
             d3.select("#prediction_middl_" + line_id).selectAll("path")
-                .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0);
             d3.select("#prediction_patch_" + line_id).selectAll("path")
-                .style("fill", d3.rgb(0,0,0,0))
+                .style("fill", d3.rgb(0,0,0,0));
             d3.select("#prediction_upper_" + line_id).selectAll("path")
-                .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0);
         }
     }
 
     function click(event) {
-        if (event.currentTarget.id.startsWith("OBSERVED-TAG")){
+        if (event.currentTarget.id.startsWith("toggle-observations")){
             //observation line toggle
-            let observation_opacity = 0.5
+            let observation_opacity = 0.5;
             if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == 0){
+                d3.select("#toggle-observations").selectAll("text")
+                    .style("font-weight", 700);
                 d3.select("#observation_full").selectAll("path")
-                    .style("stroke-opacity", observation_opacity)
+                    .style("stroke-opacity", observation_opacity);
             } else if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == observation_opacity){
+                d3.select("#toggle-observations").selectAll("text")
+                    .style("font-weight", 400);
                 d3.select("#observation_full").selectAll("path")
-                    .style("stroke-opacity", observation_opacity)
+                    .style("stroke-opacity", 0);
             }
         }
     }
