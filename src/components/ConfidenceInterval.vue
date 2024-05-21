@@ -50,21 +50,21 @@
     function mouseover(event) {
         if (event.currentTarget.id.startsWith("TAG")){
             let tag_id = event.currentTarget.id;
-            d3.select(document.getElementById(tag_id)).selectAll("text")
+            d3.select("#" + tag_id).selectAll("text")
                 .style("font-weight", 700);
-            d3.select(document.getElementById(tag_id + "-LABEL-BOLD")).selectAll("text")
+            d3.select("#" + tag_id + "-LABEL-BOLD").selectAll("text")
                 .style("opacity", 1);
             let line_id = event.currentTarget.id.slice(4);
-            d3.select(document.getElementById("CI-PATCH-" + line_id)).selectAll("path")
+            d3.select("#CI-PATCH-" + line_id).selectAll("path")
                 .style("fill-opacity", 0.5)
                 .style("stroke-opacity", 0.5);
-            d3.select(document.getElementById("CI-PATCH-LOWER-" + line_id)).selectAll("path")
+            d3.select("#CI-PATCH-LOWER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 1);
-            d3.select(document.getElementById("CI-PATCH-UPPER-" + line_id)).selectAll("path")
+            d3.select("#CI-PATCH-UPPER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 1);
-            d3.select(document.getElementById("LF-LOWER-" + line_id)).selectAll("path")
+            d3.select("#LF-LOWER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 1);
-            d3.select(document.getElementById("LF-UPPER-" + line_id)).selectAll("path")
+            d3.select("#LF-UPPER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 1);
         }
       }
@@ -72,21 +72,21 @@
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("TAG")){
             let tag_id = event.currentTarget.id;
-            d3.select(document.getElementById(tag_id)).selectAll("text")
+            d3.select("#" + tag_id).selectAll("text")
                 .style("font-weight", 400);
-            d3.select(document.getElementById(tag_id + "-LABEL-BOLD")).selectAll("text")
+            d3.select("#" + tag_id + "-LABEL-BOLD").selectAll("text")
                 .style("opacity", 0);
             let line_id = event.currentTarget.id.slice(4);
-            d3.select(document.getElementById("CI-PATCH-" + line_id)).selectAll("path")
+            d3.select("#CI-PATCH-" + line_id).selectAll("path")
                 .style("fill-opacity", 0)
                 .style("stroke-opacity", 0);
-            d3.select(document.getElementById("CI-PATCH-LOWER-" + line_id)).selectAll("path")
+            d3.select("#CI-PATCH-LOWER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 0);
-            d3.select(document.getElementById("CI-PATCH-UPPER-" + line_id)).selectAll("path")
+            d3.select("#CI-PATCH-UPPER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 0);
-            d3.select(document.getElementById("LF-LOWER-" + line_id)).selectAll("path")
+            d3.select("#LF-LOWER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 0);
-            d3.select(document.getElementById("LF-UPPER-" + line_id)).selectAll("path")
+            d3.select("#LF-UPPER-" + line_id).selectAll("path")
                 .style("stroke-opacity", 0);
         }
     }

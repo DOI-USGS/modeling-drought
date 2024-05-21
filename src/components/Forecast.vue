@@ -52,59 +52,67 @@
         addInteractions();
     });
     
-    function mouseover(event,to_remove_line_id) {
+    function mouseover(event) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
             let line_id = event.currentTarget.id.slice(15);
             //forecast lines
-            d3.select(document.getElementById("forecast_lower_" + line_id)).selectAll("path")
+            d3.select("#forecast_lower_" + line_id).selectAll("path")
                 .style("stroke-opacity", 1)
-            d3.select(document.getElementById("forecast_middl_" + line_id)).selectAll("path")
+            d3.select("#forecast_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", 1)
-            d3.select(document.getElementById("forecast_patch_" + line_id)).selectAll("path")
+            d3.select("#forecast_patch_" + line_id).selectAll("path")
                 .style("fill", d3.rgb(0,0,0,0.1))
-            d3.select(document.getElementById("forecast_upper_" + line_id)).selectAll("path")
+            d3.select("#forecast_upper_" + line_id).selectAll("path")
                 .style("stroke-opacity", 1)
             //prediction lines
-            d3.select(document.getElementById("prediction_lower_" + line_id)).selectAll("path")
+            d3.select("#prediction_lower_" + line_id).selectAll("path")
                 .style("stroke-opacity", 1)
-            d3.select(document.getElementById("prediction_middl_" + line_id)).selectAll("path")
+            d3.select("#prediction_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", 1)
-            d3.select(document.getElementById("prediction_patch_" + line_id)).selectAll("path")
+            d3.select("#prediction_patch_" + line_id).selectAll("path")
                 .style("fill", d3.rgb(0,0,0,0.2))
-            d3.select(document.getElementById("prediction_upper_" + line_id)).selectAll("path")
+            d3.select("#prediction_upper_" + line_id).selectAll("path")
                 .style("stroke-opacity", 1)
-            //observation line
-            d3.select(document.getElementById("observation_" + line_id)).selectAll("path")
-                .style("stroke-opacity", 1)
-
         }
       }
 
-    function mouseout(event, to_remove_line_id) {
+    function mouseout(event) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
             let line_id = event.currentTarget.id.slice(15);
-            d3.select(document.getElementById("forecast_lower_" + line_id)).selectAll("path")
+            d3.select("#forecast_lower_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0)
-            d3.select(document.getElementById("forecast_middl_" + line_id)).selectAll("path")
+            d3.select("#forecast_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0)
-            d3.select(document.getElementById("forecast_patch_" + line_id)).selectAll("path")
+            d3.select("#forecast_patch_" + line_id).selectAll("path")
                 .style("fill", d3.rgb(0,0,0,0))
-            d3.select(document.getElementById("forecast_upper_" + line_id)).selectAll("path")
+            d3.select("#forecast_upper_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0)
             //prediction lines
-            d3.select(document.getElementById("prediction_lower_" + line_id)).selectAll("path")
+            d3.select("#prediction_lower_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0)
-            d3.select(document.getElementById("prediction_middl_" + line_id)).selectAll("path")
+            d3.select("#prediction_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0)
-            d3.select(document.getElementById("prediction_patch_" + line_id)).selectAll("path")
+            d3.select("#prediction_patch_" + line_id).selectAll("path")
                 .style("fill", d3.rgb(0,0,0,0))
-            d3.select(document.getElementById("prediction_upper_" + line_id)).selectAll("path")
-                .style("stroke-opacity", 0)
-            //observation line
-            d3.select(document.getElementById("observation_" + line_id)).selectAll("path")
+            d3.select("#prediction_upper_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0)
         }
     }
+
+    function click(event) {
+        if (event.currentTarget.id.startsWith("OBSERVED-TAG")){
+            //observation line toggle
+            let observation_opacity = 0.5
+            if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == 0){
+                d3.select("#observation_full").selectAll("path")
+                    .style("stroke-opacity", observation_opacity)
+            } else if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == observation_opacity){
+                d3.select("#observation_full").selectAll("path")
+                    .style("stroke-opacity", observation_opacity)
+            }
+        }
+    }
+
     function addInteractions() {
         // set viewbox for svg with loss function chart
         const forecastSVG = d3.select("#forecast-svg")
@@ -113,6 +121,7 @@
         forecastSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
+            .on("click", (event) => click(event))
     }
 </script>
 
