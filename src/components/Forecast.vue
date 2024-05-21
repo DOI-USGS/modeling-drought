@@ -108,7 +108,7 @@
                     .style("stroke-opacity", observation_opacity)
             } else if (d3.select("#observation_full").selectAll("path").style("stroke-opacity") == observation_opacity){
                 d3.select("#observation_full").selectAll("path")
-                    .style("stroke-opacity", observation_opacity)
+                    .style("stroke-opacity", 0)
             }
         }
     }
