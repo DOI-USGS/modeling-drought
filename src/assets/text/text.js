@@ -43,8 +43,8 @@ export default {
             caption: "Hover your mouse in the gray region to see the relationship between the loss function (left) and the stream flow percentile prediciton (right).",
             paragraph3: "What did you see? When the left slope in the loss function is gentler than the right slope, the model favors low predictions. The other way around, the model favors higher predictions. If we know which predictions are low and which are high, we can bracket the range of the model's predictions, where encompasses the majority of the observations. This range defines the model's uncertainity."
         },
-        ConfidenceInterval: {
-            heading: "Confidence Interval",
+        PredictionInterval: {
+            heading: "Prediction Interval",
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Hover your mouse over the 4 predictions to see the loss functions (left) and corresponding confidence intervals (right).",
         },
