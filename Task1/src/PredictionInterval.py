@@ -143,8 +143,8 @@ for i, lower_percentile in enumerate(pi_list):
     ax_forecast.fill_between(
         x_forecast, y_forecast_temp_lower, y_forecast_temp_upper, color=facecolor_list[i], gid="PI-PATCH-" + str(i), alpha=0.00001,edgecolor='none',zorder=0
     )
-    ax_forecast.plot(x_forecast, y_forecast_temp_lower, color="tab:blue", gid="PI-PATCH-LOWER-" + str(i), alpha=0.0, linestyle="--",zorder=0)
-    ax_forecast.plot(x_forecast, y_forecast_temp_upper, color="tab:orange", gid="PI-PATCH-UPPER-" + str(i), alpha=0.0, linestyle="--",zorder=0)
+    ax_forecast.plot(x_forecast, y_forecast_temp_lower, color="tab:blue", gid="PI-PATCH-LOWER-" + str(i), alpha=0.0,zorder=0)
+    ax_forecast.plot(x_forecast, y_forecast_temp_upper, color="tab:orange", gid="PI-PATCH-UPPER-" + str(i), alpha=0.0,zorder=0)
 
     #get coordiante of upper bounds at x_max limit
     lower_interp = interpolate.interp1d(x_forecast.astype(float),y_forecast_temp_lower,kind='linear')
@@ -177,7 +177,7 @@ ax_LF.plot(x_LF, pinball_LF(x_LF, 0.0, 0.5), color="k", zorder=0, alpha = 0.0, g
 ax_LF.tick_params(direction="out")
 ax_LF.set_ylim(0, 1)
 ax_LF.set_xlim(-1, 1)
-ax_LF.set_xticks(x_LF, ["Low", "Median", "High"])
+ax_LF.set_xticks(x_LF, ["Lower", "Median", "Uppper"])
 ax_LF.get_yaxis().set_ticks([0, 0.5, 1.0], ["Less\nPenalty\n", "", "More\nPenalty"])
 ax_LF.set_xlabel("Estimate")
 ax_LF.set_title("Loss Function", loc="left",weight='bold')

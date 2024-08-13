@@ -171,7 +171,7 @@ ax_LF.fill_between(x_LF,pinball_LF(x_LF, 0.0, min_percentile), pinball_LF(x_LF, 
 ax_LF.tick_params(direction="out")
 ax_LF.set_ylim(0, 1)
 ax_LF.set_xlim(-1, 1)
-ax_LF.set_xticks(x_LF, ["Low", "Median", "High"])
+ax_LF.set_xticks(x_LF, ["Lower", "Median", "Uppper"])
 ax_LF.get_yaxis().set_ticks([0, 0.5, 1.0], ["Less\nPenalty\n", "", "More\nPenalty"])
 ax_LF.set_xlabel("Estimate")
 ax_LF.set_title("Loss Function", loc="left",weight='bold')
