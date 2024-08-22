@@ -171,3 +171,8 @@
         max-width: 80%;
     }
 </style>
+<style>
+    #toggle-observations-lf {
+        cursor: pointer;
+    }
+</style>
