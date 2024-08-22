@@ -113,6 +113,8 @@
 
     function mouseover(event) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
+            d3.select("#"+event.currentTarget.id).selectAll("path")
+                .style("stroke-opacity", 0.1);
             let line_id_base = event.currentTarget.id.slice(15);
             draw_line(line_id_base)
         }
@@ -120,6 +122,8 @@
 
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
+            d3.select("#"+event.currentTarget.id).selectAll("path")
+                .style("stroke-opacity", 0.0);
             let line_id_base = event.currentTarget.id.slice(15);
             remove_line(line_id_base)
         }
