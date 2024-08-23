@@ -5,9 +5,6 @@
         {{ text.pageTitle }}
       </h1>
     </div>
-    <IntroSection
-      :text="text.components.IntroSection"
-    />
     <SectionTitle
       :content="text.sections.A"
       :height=sectionTitleHeight

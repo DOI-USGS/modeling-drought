@@ -56,18 +56,23 @@
             d3.select("#PI-PATCH-" + line_id).selectAll("path")
                 .style("fill-opacity", 0.5)
                 .style("stroke-opacity", 1);
-            d3.select("#PI-PATCH-LOWER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 1);
-            d3.select("#PI-PATCH-UPPER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 1);
-            d3.select("#LF-LOWER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 1);
-            d3.select("#LF-UPPER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 1);
-            let hrefval = d3.select("#PI-missed-" + line_id + " use").attr("xlink:href")
-            d3.select("#PI-missed-" + line_id).select(hrefval)
-                .style("stroke-opacity", 1);
-
+            if (line_id != "MEDIAN"){
+                d3.select("#PI-PATCH-LOWER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 1);
+                d3.select("#PI-PATCH-UPPER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 1);
+                d3.select("#LF-LOWER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 1);
+                d3.select("#LF-UPPER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 1);
+                let hrefval = d3.select("#PI-missed-" + line_id + " use").attr("xlink:href")
+                d3.select("#PI-missed-" + line_id).select(hrefval)
+                    .style("stroke-opacity", 1);
+                d3.select("#legend-pi-missed").selectAll("use")
+                            .style("stroke-opacity", 1);
+                d3.select("#legend-pi-missed").selectAll("text")
+                            .style("opacity", 1);
+            }
             // get ids
             let shadow_id = 'shadow-' + event.currentTarget.id;
             // get button distance changes
@@ -90,17 +95,23 @@
             d3.select("#PI-PATCH-" + line_id).selectAll("path")
                 .style("fill-opacity", 0)
                 .style("stroke-opacity", 0);
-            d3.select("#PI-PATCH-LOWER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 0);
-            d3.select("#PI-PATCH-UPPER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 0);
-            d3.select("#LF-LOWER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 0);
-            d3.select("#LF-UPPER-" + line_id).selectAll("path")
-                .style("stroke-opacity", 0);
-            let hrefval = d3.select("#PI-missed-" + line_id + " use").attr("xlink:href")
-            d3.select("#PI-missed-" + line_id).select(hrefval)
-                .style("stroke-opacity", 0);
+            if (line_id != "MEDIAN"){
+                d3.select("#PI-PATCH-LOWER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 0);
+                d3.select("#PI-PATCH-UPPER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 0);
+                d3.select("#LF-LOWER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 0);
+                d3.select("#LF-UPPER-" + line_id).selectAll("path")
+                    .style("stroke-opacity", 0);
+                let hrefval = d3.select("#PI-missed-" + line_id + " use").attr("xlink:href")
+                d3.select("#PI-missed-" + line_id).select(hrefval)
+                    .style("stroke-opacity", 0);
+                d3.select("#legend-pi-missed").selectAll("use")
+                            .style("stroke-opacity", 0);
+                d3.select("#legend-pi-missed").selectAll("text")
+                            .style("opacity", 0);
+            }
 
             // get ids
             let shadow_id = 'shadow-' + event.currentTarget.id;
@@ -111,27 +122,23 @@
         }
     }
 
-    function mouseleave(event) {
-        if (event.currentTarget.id.startsWith("figure-predictioninterval")){
-            d3.select("#annotation_buttons2").selectAll("text")
-                .style("opacity",1);
-            for(let i=1;i<=4;i++){
-                d3.select("#annotation_buttons2_arrow"+i.toString()).selectAll("path")
-                    .style("opacity", 1);
-            }
+    function annotation(opacity){
+        d3.select("#annotation_buttons2").selectAll("text")
+            .style("opacity",opacity);
+        for(let i=1;i<=4;i++){
+            d3.select("#annotation_buttons2_arrow"+i.toString()).selectAll("path")
+                .style("opacity", opacity);
         }
     }
 
-    function mouseenter(event) {
-        if (event.currentTarget.id.startsWith("figure-predictioninterval")){
-            d3.select("#annotation_buttons2").selectAll("text")
-                .style("opacity",0);
-            for(let i=1;i<=4;i++){
-                d3.select("#annotation_buttons2_arrow"+i.toString()).selectAll("path")
-                    .style("opacity", 0);
-            }
-        }
+    function mouseleave() {
+        annotation(1.0)
     }
+
+    function mouseenter() {
+        annotation(0.0)
+    }
+
     function addInteractions() {
         // set viewbox for svg with confidence interval chart
         const lfSVG = d3.select("#pi-svg")
@@ -146,12 +153,19 @@
         d3.select("#TAG-2").attr('transform','translate(0,0)');
         d3.select("#shadow-TAG-2").attr('transform','translate(0,0)');
 
+        // remove legend until user selects a prediction interval
+        d3.select("#legend-pi-missed").selectAll("use")
+                    .style("stroke-opacity", 0);
+        d3.select("#legend-pi-missed").selectAll("text")
+                    .style("opacity", 0);
+
         // Add interaction to confidence interval chart
+        lfSVG.selectAll("#figure-predictioninterval")
+            .on("mouseleave", () => mouseleave())
+            .on("mouseenter", () => mouseenter())
         lfSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
-            .on("mouseleave", (event) => mouseleave(event))
-            .on("mouseenter", (event) => mouseenter(event))
     }
 </script>
 
@@ -167,12 +181,34 @@
     #pi-svg {
         grid-area: chart;
         place-self: center;
-        max-height: 80%;
-        max-width: 80%;
+        max-height: 100%;
+        max-width: 100%;
     }
 </style>
+
 <style>
-    #toggle-observations-lf {
-        cursor: pointer;
+    #TAG-0 {
+        cursor: default;
+    }
+    #TAG-1 {
+        cursor: default;
+    }
+    #TAG-2 {
+        cursor: default;
+    }
+    #TAG-MEDIAN {
+        cursor: default;
+    }
+    #shadow-TAG-0 {
+        cursor: default;
+    }
+    #shadow-TAG-1 {
+        cursor: default;
+    }
+    #shadow-TAG-2 {
+        cursor: default;
+    }
+    #shadow-TAG-MEDIAN {
+        cursor: default;
     }
 </style>

@@ -133,9 +133,15 @@
     }
 
     // when mouse is clicked
-    function click(event) {
-        if (event.currentTarget.id.startsWith("toggle-observations-lf")){
-
+    function click(switchoff) {
+        // switch off the button no matter what if in the switchoff mode (true)
+        if (switchoff === true) {
+            d3.select("#toggle-observations-lf").attr('transform','translate(0,0)');
+            d3.select("#shadow-toggle-observations-lf").attr('transform','translate(0,0)');
+            d3.select("#observation-full-lf").selectAll("path")
+                .style("stroke-opacity", 0);
+        }
+        else{
             // get button distance changes
             let button_distance_y = d3.select("#shadow-toggle-observations-lf").select("text").attr('y') - d3.select("#toggle-observations-lf").select("text").attr('y');
             let button_distance_x = d3.select("#toggle-observations-lf").select("text").attr('x') - d3.select("#shadow-toggle-observations-lf").select("text").attr('x');
@@ -161,43 +167,37 @@
         }
     }
 
-    // when mouse leaves plot
-    function mouseleave(event,default_line) {
-        if (event.currentTarget.id.startsWith("figure-lossfunction")){
-            // draw default line
-            draw_paired_lines(default_line);
-            // add annotations
-            d3.select("#annotation_lossfunction").selectAll("text")
-                .style("opacity", 1);
-            d3.select("#annotation_lossfunction_arrow").selectAll("path")
-                .style("opacity", 1);
-            d3.select("#annotation_buttons1").selectAll("text")
-                .style("opacity",1);
-            for(let i=1;i<=4;i++){
-                d3.select("#annotation_buttons1_arrow"+i.toString()).selectAll("path")
-                    .style("opacity", 1);
-            }
+    function annotation(opacity){
+        d3.select("#annotation_lossfunction").selectAll("text")
+            .style("opacity", opacity);
+        d3.select("#annotation_lossfunction_arrow").selectAll("path")
+            .style("opacity", opacity);
+        d3.select("#annotation_buttons1").selectAll("text")
+            .style("opacity",opacity);
+        for(let i=1;i<=4;i++){
+            d3.select("#annotation_buttons1_arrow"+i.toString()).selectAll("path")
+                .style("opacity", opacity);
         }
     }
 
-    // when mouse enters plot
-    function mouseenter(event,default_line) {
-        if (event.currentTarget.id.startsWith("figure-lossfunction")){
-            // remove default line
-            remove_paired_lines(default_line);
-            // remove annotations
-            d3.select("#annotation_lossfunction").selectAll("text")
-                .style("opacity", 0);
-            d3.select("#annotation_lossfunction_arrow").selectAll("path")
-                .style("opacity", 0);
-            d3.select("#annotation_buttons1").selectAll("text")
-                .style("opacity", 0);
-            for(let i=1;i<=4;i++){
-                d3.select("#annotation_buttons1_arrow"+i.toString()).selectAll("path")
-                    .style("opacity", 0);
-            }
-        }
+    // when mouse leaves plot
+    function mouseleave(default_line) {
+        // draw default line
+        draw_paired_lines(default_line);
+        // add annotations
+        annotation(1.0)
+        // remove observation
+        click(true)
     }
+
+    // when mouse enters plot
+    function mouseenter(default_line) {
+        // remove default line
+        remove_paired_lines(default_line);
+        // add annotations
+        annotation(0.0)
+    }
+
     function addInteractions() {
         // set viewbox for svg with loss function chart
         const lfSVG = d3.select("#lf-svg")
@@ -213,16 +213,18 @@
         d3.select("#shadow-LOWER-TAG").attr('transform','translate(0,0)');
         d3.select("#MEDIAN-TAG").attr('transform','translate(0,0)');
         d3.select("#shadow-MEDIAN-TAG").attr('transform','translate(0,0)');
-        d3.select("#MEDIAN-TAG").attr('transform','translate(0,0)');
-        d3.select("#shadow-MEDIAN-TAG").attr('transform','translate(0,0)');
+        d3.select("#UPPER-TAG").attr('transform','translate(0,0)');
+        d3.select("#shadow-UPPER-TAG").attr('transform','translate(0,0)');
 
         // Add interaction to loss function chart
+        lfSVG.select("#figure-lossfunction")
+            .on("mouseleave", () => mouseleave(default_line))
+            .on("mouseenter", () => mouseenter(default_line));
+        lfSVG.selectAll("#toggle-observations-lf")
+            .on("click", () => click(false));
         lfSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
-            .on("click", (event) => click(event))
-            .on("mouseleave", (event) => mouseleave(event,default_line))
-            .on("mouseenter", (event) => mouseenter(event,default_line))
     }
 </script>
 
@@ -238,7 +240,34 @@
     #lf-svg {
         grid-area: chart;
         place-self: center;
-        max-height: 80%;
-        max-width: 80%;
+        max-height: 100%;
+        max-width: 100%;
+    }
+</style>
+
+<style>
+    #toggle-observations-lf {
+        cursor: pointer;
+    }
+    #LOWER-TAG {
+        cursor: default;
+    }
+    #MEDIAN-TAG {
+        cursor: default;
+    }
+    #UPPER-TAG {
+        cursor: default;
+    }
+    #shadow-toggle-observations-lf {
+        cursor: default;
+    }
+    #shadow-LOWER-TAG {
+        cursor: default;
+    }
+    #shadow-MEDIAN-TAG {
+        cursor: default;
+    }
+    #shadow-UPPER-TAG {
+        cursor: default;
     }
 </style>

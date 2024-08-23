@@ -7,15 +7,7 @@ from scipy import interpolate
 import pyarrow.feather as feather
 import re
 import os
-
-parent = os.getcwd()
-mpl.font_manager.fontManager.addfont(parent + '/Task_Data/Univers-Condensed.otf')
-prop = mpl.font_manager.FontProperties(fname= parent + '/Task_Data/Univers-Condensed.otf')
-#mpl.rcParams['font.size'] = font_size_base = 8
-mpl.rcParams["font.family"] = "sans-serif"
-mpl.rcParams["font.sans-serif"] = [prop.get_name()]
-mpl.rcParams['svg.fonttype'] = 'none'
-mpl.rcParams['lines.linewidth'] = 1.0
+from defaults import *
 
 # user parameters
 number_of_frames = 501
@@ -125,14 +117,6 @@ ax_forecast.plot(x_forecast[j] + x_cloud_smooth.astype(int), PchipInterpolator(n
 # #fill between upper and lower
 ax_forecast.fill_between(x_forecast[j] + x_cloud_smooth.astype(int),PchipInterpolator(np.array(offset) * 7, np.array(y_cloud_lower))(x_cloud_smooth),PchipInterpolator(np.array(offset) * 7, np.array(y_cloud_upper))(x_cloud_smooth),color="tab:gray",alpha=0.5,edgecolor='none',gid='forecast_patch_'+str(j))
 
-def selectable_text(ax,x,y,label,color,va,ha,gid):
-    ax.text(x,y,label,color='w',va=va,ha=ha,gid=gid,transform=ax_forecast.transAxes,
-        bbox=dict(facecolor=color,boxstyle='round', alpha=1, edgecolor="k",pad=0.10,linewidth=0.75),zorder=1)
-    shadow_color = (0.4,0.4,0.4)
-    shadow_offset_x = 0.004
-    shadow_offset_y = -0.005
-    ax.text(x+shadow_offset_x,y+shadow_offset_y,label,color=shadow_color,va=va,ha=ha,gid=gid,transform=ax_forecast.transAxes,
-        bbox=dict(facecolor=shadow_color,boxstyle='round', alpha=1, edgecolor=shadow_color,pad=0.10,linewidth=0.75),zorder=0)
 
 # add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
 selectable_text(ax_forecast,0.99,1.02, "Toggle Observations","tab:red","bottom","right","toggle-observations-forecast")

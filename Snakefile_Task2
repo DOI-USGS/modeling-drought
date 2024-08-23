@@ -1,7 +1,7 @@
 rule all:
     input:
         "src/assets/svgs/fc_example.svg",
-        "src/assets/svgs/forecast_cloud.svg"
+        #"src/assets/svgs/forecast_cloud.svg"
 
 rule forecast:
     output:
