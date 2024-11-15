@@ -181,8 +181,8 @@
     #pi-svg {
         grid-area: chart;
         place-self: center;
-        max-height: 100%;
-        max-width: 100%;
+        height: 100%;
+        width: 100%;
     }
 </style>
 
