@@ -5,9 +5,6 @@
         {{ text.pageTitle }}
       </h1>
     </div>
-    <IntroSection
-      :text="text.components.IntroSection"
-    />
     <SectionTitle
       :content="text.sections.A"
       :height=sectionTitleHeight
@@ -17,8 +14,8 @@
       <LossFunction
         :text="text.components.LossFunction"
       />
-      <ConfidenceInterval
-        :text="text.components.ConfidenceInterval"
+      <PredictionInterval
+        :text="text.components.PredictionInterval"
       />
     <SectionTitle
       :content="text.sections.B"
@@ -62,7 +59,7 @@
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
-  import ConfidenceInterval from '@/components/ConfidenceInterval.vue';
+  import PredictionInterval from '@/components/PredictionInterval.vue';
   import Forecast from '@/components/Forecast.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
