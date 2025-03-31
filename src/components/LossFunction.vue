@@ -18,6 +18,13 @@
 
         <!-- Is this the simplest way to set an image? -->
         <template #figures>
+            <ToggleSwitch 
+                v-for="layer, index in layers"
+                :key="index"
+                v-model="layer.visible" 
+                :label="layer.label"
+                :rightColor="layer.color"
+            />
             <div id="lf-grid-container">
                 <lfPlot
                     id="lf-svg"
@@ -36,15 +43,56 @@
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, reactive, watch } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import ToggleSwitch from "@/components/ToggleSwitch.vue"
     import lfPlot from "@/assets/svgs/lf_example.svg";
+import { median } from "d3";
 
     // define props
     defineProps({
         text: { type: Object }
     })
+
+    // set up reactive variables
+    const layers = reactive({
+        observations: {
+            label: 'Observations',
+            visible: false,
+            color: 'var(--color-observations)'
+        },
+        quantile95: {
+            label: '95% Quantile',
+            visible: false,
+            id: 'UPPER',
+            color: 'var(--color-quantile-95)'
+        },
+        median: {
+            label: 'Median',
+            visible: false,
+            id: 'MEDIAN',
+            color: 'var(--color-median)'
+        },
+        quantile5: {
+            label: '5% Quantile',
+            visible: true,
+            id: 'LOWER',
+            color: 'var(--color-quantile-5)'
+        }
+    });
+
+    // Watches currentFilterOption for changes and updates map to use correct data field for paint
+    watch(layers, () => {
+        const obsOpacity = layers.observations.visible ? 1 : 0;
+        toggleObservations(obsOpacity)
+        const upperOpacity = layers.quantile95.visible ? 1 : 0;
+        toggleForecastLine(layers.quantile95.id, upperOpacity)
+        const medianOpacity = layers.median.visible ? 1 : 0;
+        toggleForecastLine(layers.median.id, medianOpacity)
+        const lowerOpacity = layers.quantile5.visible ? 1 : 0;
+        toggleForecastLine(layers.quantile5.id, lowerOpacity)
+    });
 
     // Declare behavior on mounted
     // functions called here
@@ -225,6 +273,19 @@
         lfSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
+    }
+
+    function toggleObservations(targetOpacity) {
+        // const currentOpacity = d3.select("#observation-full-lf").selectAll("path").style("stroke-opacity");
+        // const targetOpacity = currentOpacity == 1 ? 0 : 1;
+        d3.select("#observation-full-lf").selectAll("path")
+            .style("stroke-opacity", targetOpacity);
+    }
+    function toggleForecastLine(targetID, targetOpacity) {
+        d3.select("#" + targetID + "-FORECAST-LINE").selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+            d3.select("#" + targetID +  "-LF-LINE").selectAll("path")
+                .style("stroke-opacity", targetOpacity);
     }
 </script>
 
