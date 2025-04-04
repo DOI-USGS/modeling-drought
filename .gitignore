@@ -33,6 +33,9 @@ coverage
 # snakemake folder
 .snakemake
 
+# cached pycache folder
+__pycache__
+
 #remove in/out files
 Task_Data
 */out/*

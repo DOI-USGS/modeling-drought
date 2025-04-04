@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="432pt" height="360pt" viewBox="0 0 432 360" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure-lossfunction">
+  <g id="patch_1">
+   <path d="M 0 360 
+L 432 360 
+L 432 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axis-lossfunction4">
+   <g id="patch_2">
+    <path d="M 43.2 306 
+L 410.4 306 
+L 410.4 36 
+L 43.2 36 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="md9a7ae244f" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#md9a7ae244f" x="61.378218" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="61.378218" y="320.220312" transform="rotate(-0 61.378218 320.220312)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#md9a7ae244f" x="86.827723" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="86.827723" y="320.220312" transform="rotate(-0 86.827723 320.220312)">1</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#md9a7ae244f" x="112.277228" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="112.277228" y="320.220312" transform="rotate(-0 112.277228 320.220312)">2</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#md9a7ae244f" x="163.176238" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="163.176238" y="320.220312" transform="rotate(-0 163.176238 320.220312)">4</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#md9a7ae244f" x="264.974257" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="264.974257" y="320.220312" transform="rotate(-0 264.974257 320.220312)">8</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#md9a7ae244f" x="392.221782" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="392.221782" y="320.220312" transform="rotate(-0 392.221782 320.220312)">13</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: middle" x="226.8" y="333.35" transform="rotate(-0 226.8 333.35)">Prediction Horizon in Weeks</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <path d="M 43.2 306 
+L 410.4 306 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <defs>
+       <path id="ma69b735851" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#ma69b735851" x="43.2" y="306" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: end" x="36.2" y="309.610156" transform="rotate(-0 36.2 309.610156)">0%</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <path d="M 43.2 252 
+L 410.4 252 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#ma69b735851" x="43.2" y="252" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: end" x="36.2" y="255.610156" transform="rotate(-0 36.2 255.610156)">20%</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_11">
+      <path d="M 43.2 198 
+L 410.4 198 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#ma69b735851" x="43.2" y="198" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: end" x="36.2" y="201.610156" transform="rotate(-0 36.2 201.610156)">40%</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <path d="M 43.2 144 
+L 410.4 144 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#ma69b735851" x="43.2" y="144" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: end" x="36.2" y="147.610156" transform="rotate(-0 36.2 147.610156)">60%</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <path d="M 43.2 90 
+L 410.4 90 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#ma69b735851" x="43.2" y="90" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: end" x="36.2" y="93.610156" transform="rotate(-0 36.2 93.610156)">80%</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_17">
+      <path d="M 43.2 36 
+L 410.4 36 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#ma69b735851" x="43.2" y="36" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font: 10px 'Univers 57 Condensed', sans-serif; text-anchor: end" x="36.2" y="39.610156" transform="rotate(-0 36.2 39.610156)">100%</text>
+     </g>
+    </g>
+   </g>
+   <g id="drought-forecast-summary-patch">
+    <defs>
+     <path id="mf7bfd0d6aa" d="M 86.827723 -68.846566 
+L 86.827723 -180.122515 
+L 112.277228 -222.251489 
+L 163.176238 -245.921068 
+L 264.974257 -253.7921 
+L 392.221782 -264.415844 
+L 392.221782 -86.237313 
+L 392.221782 -86.237313 
+L 264.974257 -81.16433 
+L 163.176238 -75.240325 
+L 112.277228 -72.570095 
+L 86.827723 -68.846566 
+z
+"/>
+    </defs>
+    <g clip-path="url(#p794dd05d8b)">
+     <use xlink:href="#mf7bfd0d6aa" x="0" y="360" style="fill: #d62728; fill-opacity: 0.15"/>
+    </g>
+   </g>
+   <g id="wet-forecast-summary-patch">
+    <defs>
+     <path id="mef6f4690e3" d="M 86.827723 -213.787308 
+L 86.827723 -305.235077 
+L 112.277228 -300.76847 
+L 163.176238 -295.571133 
+L 264.974257 -291.405783 
+L 392.221782 -291.079223 
+L 392.221782 -125.844186 
+L 392.221782 -125.844186 
+L 264.974257 -138.987221 
+L 163.176238 -151.688639 
+L 112.277228 -178.951451 
+L 86.827723 -213.787308 
+z
+"/>
+    </defs>
+    <g clip-path="url(#p794dd05d8b)">
+     <use xlink:href="#mef6f4690e3" x="0" y="360" style="fill: #1f77b4; fill-opacity: 0.15"/>
+    </g>
+   </g>
+   <g id="drought-forecast-summary-line">
+    <path d="M 86.827723 266.642653 
+L 112.277228 244.585092 
+L 163.176238 226.55173 
+L 264.974257 221.540511 
+L 392.221782 201.221137 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #d62728; stroke-opacity: 0.15; stroke-linecap: square"/>
+   </g>
+   <g id="wet-forecast-summary-line">
+    <path d="M 86.827723 83.774696 
+L 112.277228 96.836574 
+L 163.176238 115.255733 
+L 264.974257 128.828396 
+L 392.221782 140.372918 
+" clip-path="url(#p794dd05d8b)" style="fill: none; stroke: #1f77b4; stroke-opacity: 0.15; stroke-linecap: square"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 43.2 306 
+L 43.2 36 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 43.2 306 
+L 410.4 306 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_14">
+    <text style="font: 700 12px 'Univers 57 Condensed', sans-serif; text-anchor: start" x="43.2" y="30" transform="rotate(-0 43.2 30)">Streamflow Predictions (Drought and Wet Periods)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p794dd05d8b">
+   <rect x="43.2" y="36" width="367.2" height="270"/>
+  </clipPath>
+ </defs>
+</svg>
