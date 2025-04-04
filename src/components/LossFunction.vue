@@ -204,7 +204,7 @@
     #lf-grid-container {
         display: grid;
         width: 100%;
-        max-width: 1200px;
+        max-height: 750px;
         margin: 3rem auto 4rem auto;
         grid-template-areas:
             "chart";
