@@ -1,28 +1,32 @@
 <template>
-    <VizSection
-        id="the-team"
-        :figures="true"
-        :fig-caption="true"
-    >
-        <template #heading>
-            <h2>{{ text.heading }}</h2>
-        </template>
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-            <p v-html="text.paragraph2" />
-        </template>
-        <template #figures>
-            <div class="svg-container">
-            <svg ref="svg" :width="width" :height="height"></svg>
-            </div>
-        </template>
-        <template #figureCaption>
-            <p v-html="text.caption" />
-        </template>
-        <template #belowExplanation>
-            <p v-html="text.paragraph3" />
-        </template>
-    </VizSection>
+  <VizSection
+    id="the-team"
+    :figures="true"
+    :fig-caption="true"
+  >
+    <template #heading>
+      <h2>{{ text.heading }}</h2>
+    </template>
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
+    </template>
+    <template #figures>
+      <div class="svg-container">
+        <svg
+          ref="svg"
+          :width="width"
+          :height="height"
+        />
+      </div>
+    </template>
+    <template #figureCaption>
+      <p v-html="text.caption" />
+    </template>
+    <template #belowExplanation>
+      <p v-html="text.paragraph3" />
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -34,7 +38,12 @@ import VizSection from '@/components/VizSection.vue';
 import Person from '@/assets/images/face.jpeg';
 
 defineProps({
-    text: { type: Object }
+    text: { 
+      type: Object,
+      default() {
+        return {}
+      } 
+    }
 });
 
 const width = 800;

@@ -1,35 +1,35 @@
 <template>
-    <VizSection
-        id="confidence-interval"
-        :figures="true"
-        :fig-caption="true"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-            <RadioGroup
-                v-model="selectedLayer"
-                :options="layers"
-            />
-        </template>
-        <template #figures>
-            <div id="pi-grid-container">
-                <ciPlot
-                    id="pi-svg"
-                />
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        <p v-html="text.caption" />
-        </template>
-    </VizSection>
+  <VizSection
+    id="confidence-interval"
+    :figures="true"
+    :fig-caption="true"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2>
+        {{ text.heading }}
+      </h2>
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+      <RadioGroup
+        v-model="selectedLayer"
+        :options="layers"
+      />
+    </template>
+    <template #figures>
+      <div id="pi-grid-container">
+        <ciPlot
+          id="pi-svg"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption>
+      <p v-html="text.caption" />
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -41,7 +41,12 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+        text: { 
+            type: Object,
+            default() {
+                return {}
+            } 
+        }
     })
 
     // define reactive variables
