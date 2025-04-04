@@ -78,38 +78,17 @@ const nodes = ref([
     { id: 'Hayley', name: 'Hayley Corson-Dosch', group:  'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/HCorson-Dosch.png', url: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'}
 ]);
 
-const edges = ref([]);
-
 // create centers for each grouping
 const groupCenters = new Map();
 const groupCount = new Set(nodes.value.map(d => d.group)).size;
 
-
-// this function is generating random linkages between people using connectivity %
-// 
-function generateEdges() {
-    nodes.value.forEach((source, i) => {
-        nodes.value.forEach((target, j) => {
-            if (i !== j) {
-                const isSameGroup = source.group === target.group;
-                const probability = isSameGroup ? 0.5 : 0.05;  // setting random levels of connectivity within : among group
-                if (Math.random() < probability) {
-                    edges.value.push({ source: source.id, target: target.id, length: isSameGroup ? 20 : 100 });
-                }
-            }
-        });
-    });
-}
-
-
 onMounted(() => {
-    generateEdges();
+
     drawGraph();
 });
 
 function drawGraph() {
-    const nodeRadius = 40;
-    const edgeWidth = 0;
+    const nodeRadius = 50;
 
     // groups color scale
     const color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -126,10 +105,10 @@ function drawGraph() {
     });
 
     const simulation = d3.forceSimulation(nodes.value)
-        .force('link', d3.forceLink(edges.value).id(d => d.id).distance(d => d.length))
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius * 2))
+        .force('collision', d3.forceCollide().radius(nodeRadius*1.1))
+        // custom clustering force that pulls each node towards its' group center
         .force('cluster', forceCluster(0.2));
 
     const svgElement = d3.select(svg.value);
@@ -140,14 +119,6 @@ function drawGraph() {
         .attr("id", d => `clip-${d.id}`)
         .append("circle")
         .attr("r", nodeRadius);
-
-    const link = svgElement.append('g')
-        .attr('stroke', 'black')
-        .attr('stroke-opacity', 0.6)
-        .selectAll('line')
-        .data(edges.value)
-        .join('line')
-        .attr('stroke-width', edgeWidth);
 
     const node = svgElement.append('g')
         .selectAll('circle')
@@ -202,12 +173,7 @@ function drawGraph() {
     });
 
     simulation.on('tick', () => {
-        link
-            .attr('x1', d => constrain(d.source.x, nodeRadius, width - nodeRadius))
-            .attr('y1', d => constrain(d.source.y, nodeRadius, height - nodeRadius))
-            .attr('x2', d => constrain(d.target.x, nodeRadius, width - nodeRadius))
-            .attr('y2', d => constrain(d.target.y, nodeRadius, height - nodeRadius));
-
+        
         node
             .attr('cx', d => {
                 d.x = constrain(d.x, nodeRadius, width - nodeRadius);
@@ -250,22 +216,19 @@ function drawGraph() {
         return Math.max(min, Math.min(max, value));
     }
 
-    function forceCluster() {
-        const strength = 0.1;
+    function forceCluster(strength = 0.1) {
         return alpha => {
             nodes.value.forEach(d => {
-                const cluster = nodes.value.find(n => n.group === d.group);
-                if (cluster && cluster !== d) {
-                    const x = d.x - cluster.x;
-                    const y = d.y - cluster.y;
-                    const l = Math.sqrt(x * x + y * y);
-                    const r = nodeRadius * 2;
-                    if (l !== r) {
-                        const ratio = (l - r) / l * alpha * strength;
-                        d.vx -= x * ratio;
-                        d.vy -= y * ratio;
-                    }
-                }
+                // get the target center for the circle's group
+                const center = groupCenters.get(d.group);
+
+                // find the distance between the circle and the center
+                const dx = center.x - d.x;
+                const dy = center.y - d.y;
+
+                // adjust the force so the circle is pulled towards the group center
+                d.vx += dx * strength * alpha;
+                d.vy += dy * strength * alpha;
             });
         };
     }
