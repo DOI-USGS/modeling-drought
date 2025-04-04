@@ -52,6 +52,7 @@ const colorHighlight = '#FF9F00';
 
 const svg = ref(null);
 
+
 const nodes = ref([
     { id: 'Althea', name: 'Althea Archer', group:  'IIDD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs', url: 'https://www.usgs.gov/staff-profiles/althea-a-archer'},
     { id: 'Jeremy', name: 'Jeremy Diaz', group: 'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/jeremy_diaz.jpg', url: 'https://scholar.google.com/citations?user=roIN6vgAAAAJ'},
@@ -79,6 +80,11 @@ const nodes = ref([
 
 const edges = ref([]);
 
+// create centers for each grouping
+const groupCenters = new Map();
+const groupCount = new Set(nodes.value.map(d => d.group)).size;
+
+
 // this function is generating random linkages between people using connectivity %
 // 
 function generateEdges() {
@@ -102,11 +108,22 @@ onMounted(() => {
 });
 
 function drawGraph() {
-    const nodeRadius = 30;
-    const edgeWidth = 2;
+    const nodeRadius = 40;
+    const edgeWidth = 0;
 
     // groups color scale
     const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    const groupNames = [...new Set(nodes.value.map(d => d.group))];
+    const groupCenters = new Map();
+    const radius = Math.min(width, height) / 2.5;
+
+    groupNames.forEach((group, i) => {
+        const angle = (i / groupCount) * 2 * Math.PI;
+        const cx = width / 2 + radius * Math.cos(angle);
+        const cy = height / 2 + radius * Math.sin(angle);
+        groupCenters.set(group, { x: cx, y: cy });
+    });
 
     const simulation = d3.forceSimulation(nodes.value)
         .force('link', d3.forceLink(edges.value).id(d => d.id).distance(d => d.length))
