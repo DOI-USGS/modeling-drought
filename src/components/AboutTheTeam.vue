@@ -95,12 +95,10 @@ function drawGraph() {
 
     const groupNames = [...new Set(nodes.value.map(d => d.group))];
     const groupCenters = new Map();
-    const radius = Math.min(width, height) / 2.5;
 
-    groupNames.forEach((group, i) => {
-        const angle = (i / groupCount) * 2 * Math.PI;
-        const cx = width / 2 + radius * Math.cos(angle);
-        const cy = height / 2 + radius * Math.sin(angle);
+    groupNames.forEach(group => {
+        const cx = width / 2 + (Math.random() - 0.5) * width * 0.5;
+        const cy = height / 2 + (Math.random() - 0.5) * height * 0.5;
         groupCenters.set(group, { x: cx, y: cy });
     });
 
