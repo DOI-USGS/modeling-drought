@@ -1,40 +1,36 @@
 <template>
-    <VizSection
-        id="forecast-summary"
-        :figures="true"
-        :fig-caption="true"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-        </template>
-
-
-        <!-- Is this the simplest way to set an image? -->
-        <template #figures>
-            <div id="fc-grid-container">
-                <fcPlot
-                    id="fc-svg"
-                />
-            </div>
-            <div id="fcwd-grid-container">
-                <fcwdPlot
-                    id="fcwd-svg"
-                />
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        <p v-html="text.caption" />
-        </template>
-
-    </VizSection>
+  <VizSection
+    id="forecast-summary"
+    :figures="true"
+    :fig-caption="true"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2>
+        {{ text.heading }}
+      </h2>
+    </template>
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+    </template>
+    <!-- FIGURES -->
+    <template #figures>
+      <div id="fc-grid-container">
+        <fcPlot
+          id="fc-svg"
+        />
+      </div>
+      <div id="fcwd-grid-container">
+        <fcwdPlot
+          id="fcwd-svg"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption>
+      <p v-html="text.caption" />
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -46,7 +42,12 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+        text: { 
+            type: Object,
+            default() {
+                return {}
+            } 
+        }
     })
 
     // Declare behavior on mounted
