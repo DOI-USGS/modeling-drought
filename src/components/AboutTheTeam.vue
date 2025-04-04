@@ -48,8 +48,7 @@ defineProps({
 
 const width = 800;
 const height = 600;
-const colorHighlight = '#FF9F00';
-const nodeRadius = 35;
+const nodeRadius = 45;
 
 const svg = ref(null);
 
@@ -86,9 +85,7 @@ onMounted(() => {
 
 function drawGraph() {
 
-    // groups color scale
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
-
+    // for group positioning
     const groupNames = [...new Set(nodes.value.map(d => d.group))];
     const groupCenters = new Map();
 
@@ -98,6 +95,17 @@ function drawGraph() {
         groupCenters.set(group, { x: cx, y: cy });
     });
 
+    // for group visual fx
+    const groupAuras = new Map();
+
+    groupNames.forEach((group, i) => {
+        const t = i / groupNames.length; // normalize to [0, 1]
+        const color = d3.interpolatePlasma(t); // or interpolateCool, Turbo, Plasma
+        groupAuras.set(group, color);
+    });
+
+
+    // force simulation to control positioning
     const simulation = d3.forceSimulation(nodes.value)
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
@@ -105,6 +113,7 @@ function drawGraph() {
         // custom clustering force that pulls each node towards its' group center
         .force('cluster', forceCluster(0.4));
 
+    // build the svg
     const svgElement = d3.select(svg.value);
 
     svgElement.append("defs").selectAll("clipPath")
@@ -114,6 +123,7 @@ function drawGraph() {
         .append("circle")
         .attr("r", nodeRadius);
 
+    // add circles to create rippling aura effect
     const rippleGroup = svgElement.append('g')
         .attr('class', 'ripples')
 
@@ -122,13 +132,32 @@ function drawGraph() {
         .data(nodes.value)
         .join('circle')
         .attr('r', nodeRadius)
-        .attr('stroke', d => color(d.group))
-        .attr('stroke', 'black')
+        .attr('stroke', d => groupAuras.get(d.group))
         .attr('stroke-width', 2)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
 
-    const patterns = svgElement.append('defs')
+
+    // svg defs
+    const defs = svgElement.append('defs');
+
+    defs.append('filter')
+        .attr('id', 'psychedelic-glow')
+        .attr('x', '-50%')
+        .attr('y', '-50%')
+        .attr('width', '200%')
+        .attr('height', '200%')
+        .html(`
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 20 -10" result="goo"/>
+            <feBlend in="SourceGraphic" in2="goo" />
+        `);
+
+    defs.append('defs')
         .selectAll('pattern')
         .data(nodes.value)
         .enter()
@@ -137,12 +166,14 @@ function drawGraph() {
         .attr('height', 1)
         .attr('width', 1)
         .attr('patternContentUnits', 'objectBoundingBox')
+        // add profile images
         .append('image')
         .attr('href', d => d.img)
         .attr('height', 1)
         .attr('width', 1)
         .attr('preserveAspectRatio', 'xMidYMid slice');
 
+    // name labels for mouseover
     const labels = svgElement.append('g')
         .selectAll('text')
         .data(nodes.value)
@@ -154,10 +185,10 @@ function drawGraph() {
         .style('visibility', 'hidden')
         .style('pointer-events', 'none');
 
+    //mouseover effects
     node.on('mouseover', (event, d) => {
         d3.select(event.currentTarget)
-            .style('fill', d => color(d.group))
-            .style('fill', 'black');
+            .style('fill', d => groupAuras.get(d.group));
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'visible')
             .style('fill', 'white');
@@ -175,6 +206,7 @@ function drawGraph() {
         window.open(d.url, '_blank');
     });
 
+    // allow circles to move
     simulation.on('tick', () => {
         
         node
@@ -192,6 +224,7 @@ function drawGraph() {
             .attr('y', d => d.y);
     });
 
+    // allow dragging of circles
     function drag(simulation) {
         function dragstarted(event) {
             if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -215,6 +248,8 @@ function drawGraph() {
             .on('drag', dragged)
             .on('end', dragended);
     }
+
+    // but dont drag outside the container
     function constrain(value, min, max) {
         return Math.max(min+10, Math.min(max-10, value));
     }
@@ -236,28 +271,29 @@ function drawGraph() {
         };
     }
     function createRippleEffect(d) {
-    const rippleCount = 100;
-    const duration = 2500;
-    const rippleRadius = nodeRadius * 3;
+        const rippleCount = 3;
+        const duration = 1000;
+        const rippleRadius = nodeRadius * 2;
 
-    for (let i = 0; i < rippleCount; i++) {
-        rippleGroup.append('circle')
-            .attr('cx', d.x)
-            .attr('cy', d.y)
-            .attr('r', 0)
-            .attr('fill', 'none')
-            .attr('stroke', d3.interpolateRainbow(Math.random()))
-            .attr('stroke-width', 5)
-            .attr('opacity', 0.5)
-            .transition()
-            .delay(i * 150)
-            .duration(duration)
-            .ease(d3.easeSinInOut)
-            .attr('r', rippleRadius)
-            .attr('opacity', 0)
-            .remove();
+        for (let i = 0; i < rippleCount; i++) {
+            rippleGroup.append('circle')
+                .attr('cx', d.x)
+                .attr('cy', d.y)
+                .attr('r', 0)
+                .attr('fill', 'none')
+                .attr('stroke', groupAuras.get(d.group))
+                .attr('stroke-width', 9)
+                .attr('opacity', 0.8)
+                .attr('filter', 'url(#psychedelic-glow)')
+                .transition()
+                .delay(i * 200)
+                .duration(duration)
+                .ease(d3.easeSinInOut)
+                .attr('r', rippleRadius)
+                .attr('opacity', 0)
+                .remove();
+        }
     }
-}
 
 }
 
