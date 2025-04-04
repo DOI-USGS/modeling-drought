@@ -53,33 +53,34 @@
     })
 
     // set up reactive variables
-    const layers = reactive({
-        observations: {
+    const layers = reactive([
+        {
             label: 'Observations',
+            id: 'observation',
             visible: false,
             color: 'var(--color-observations)'
         },
-        quantile95: {
+        {
             label: '95% Quantile',
-            visible: false,
             id: 'UPPER',
+            visible: false,
             color: 'var(--color-quantile-95)'
         },
-        median: {
+        {
             label: 'Median',
-            visible: false,
             id: 'MEDIAN',
+            visible: false,
             color: 'var(--color-median)'
         },
-        quantile5: {
+        {
             label: '5% Quantile',
-            visible: true,
             id: 'LOWER',
+            visible: true,
             color: 'var(--color-quantile-5)'
         }
-    });
+    ]);
 
-    // Watches currentFilterOption for changes and updates map to use correct data field for paint
+    // Watches layers for changes and updates figure layers
     watch(layers, () => {
         updateFigure();
     });
@@ -92,20 +93,28 @@
     });
     
     function updateFigure() {
-        const obsOpacity = layers.observations.visible ? 1 : 0;
-        toggleObservations(obsOpacity)
-        const upperOpacity = layers.quantile95.visible ? 1 : 0;
-        toggleForecastLine(layers.quantile95.id, upperOpacity)
-        const medianOpacity = layers.median.visible ? 1 : 0;
-        toggleForecastLine(layers.median.id, medianOpacity)
-        const lowerOpacity = layers.quantile5.visible ? 1 : 0;
-        toggleForecastLine(layers.quantile5.id, lowerOpacity)
+        layers.map(layer => {
+            const targetOpacity = layer.visible ? 1 : 0;
+            toggleLayer(layer.id, targetOpacity)
+        })
+    }
+
+    function toggleLayer(targetID, targetOpacity) {
+        if (targetID == 'observation') {
+            d3.select("#" + targetID + "-full-lf").selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+        } else {
+            d3.select("#" + targetID + "-FORECAST-LINE").selectAll("path")
+                    .style("stroke-opacity", targetOpacity);
+            d3.select("#" + targetID +  "-LF-LINE").selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+        }
     }
 
     // Draw the paired loss function and forecast lines
     function draw_paired_lines(line_id) {
         d3.select("#LF-" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+            .style("stroke-opacity", 1)
         d3.select("#FORECAST-" + line_id).selectAll("path")
             .style("stroke-opacity", 1)
     }
@@ -184,17 +193,6 @@
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
     }
-
-    function toggleObservations(targetOpacity) {
-        d3.select("#observation-full-lf").selectAll("path")
-            .style("stroke-opacity", targetOpacity);
-    }
-    function toggleForecastLine(targetID, targetOpacity) {
-        d3.select("#" + targetID + "-FORECAST-LINE").selectAll("path")
-                .style("stroke-opacity", targetOpacity);
-            d3.select("#" + targetID +  "-LF-LINE").selectAll("path")
-                .style("stroke-opacity", targetOpacity);
-    }
 </script>
 
 <style scoped lang="scss">
@@ -211,32 +209,5 @@
         place-self: center;
         height: 100%;
         width: 100%;
-    }
-</style>
-
-<style>
-    #toggle-observations-lf {
-        cursor: pointer;
-    }
-    #LOWER-TAG {
-        cursor: default;
-    }
-    #MEDIAN-TAG {
-        cursor: default;
-    }
-    #UPPER-TAG {
-        cursor: default;
-    }
-    #shadow-toggle-observations-lf {
-        cursor: default;
-    }
-    #shadow-LOWER-TAG {
-        cursor: default;
-    }
-    #shadow-MEDIAN-TAG {
-        cursor: default;
-    }
-    #shadow-UPPER-TAG {
-        cursor: default;
     }
 </style>

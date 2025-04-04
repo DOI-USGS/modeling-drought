@@ -89,6 +89,7 @@ defineEmits(['update:modelValue']);
   display: flex;
   align-items: start;
   gap: 10px;
+  margin-bottom: 0.3rem;
 }
 
 /* toggle label for positioning */
