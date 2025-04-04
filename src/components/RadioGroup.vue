@@ -7,7 +7,7 @@
       :class="{ selected: modelValue === option.value }"
       :style="{
         backgroundColor: modelValue === option.value
-          ? `${option.color}20`  // 20 is ~12% opacity in hex
+          ? `${option.color}20` // 20 is ~12% opacity in hex
           : 'transparent'
       }"
     >
@@ -16,16 +16,16 @@
         class="radio-input"
         :value="option.value"
         :checked="modelValue === option.value"
-        @change="$emit('update:modelValue', option.value)"
         name="radio-group"
-      />
+        @change="$emit('update:modelValue', option.value)"
+      >
       <span
         class="radio-button"
         :style="{
           borderColor: modelValue === option.value ? option.color || activeColor : inactiveColor,
           backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
         }"
-      ></span>
+      />
 
       <span
         class="radio-text"
@@ -39,7 +39,10 @@
 
 <script setup>
 defineProps({
-  modelValue: [String, Number], // v-model binding for selected value
+  modelValue: {
+    type: String,
+    default: ''
+  }, // v-model binding for selected value
 
   // array of radio options: [{ label: 'Option 1', value: 'opt1' }, ...]
   options: {

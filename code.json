@@ -2,8 +2,8 @@
   {
     "name": "modeling-drought",
     "organization": "U.S. Geological Survey",
-    "description": "Drought machine learning methods and evaluation",
-    "version": "{version}",
+    "description": "The methodology behind USGS streamflow drought modeling",
+    "version": "main",
     "status": "Development",
     "permissions": {
       "usageType": "openSource",
@@ -14,7 +14,7 @@
         }
       ]
     },
-    "homepageURL": "https://github.com/DOI-USGS/modeling-drought/",
+    "homepageURL": "https://water.usgs.gov/vizlab/modeling-drought/",
     "downloadURL": "https://code.usgs.gov/wma/vizlab/modeling-drought/-/archive/main/modeling-drought-main.zip",
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/modeling-drought/-/raw/main/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/modeling-drought.git",
@@ -34,7 +34,7 @@
       "email": "hcorson-dosch@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2023-11-30"
+      "metadataLastUpdated": "2025-04-04"
     }
   }
 ]

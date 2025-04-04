@@ -1,6 +1,12 @@
 <template>
-  <div class="checkbox_wrap toggle-container" aria-label="Toggle container">
-    <label class="toggle-label" aria-hidden="true">
+  <div
+    class="checkbox_wrap toggle-container"
+    aria-label="Toggle container"
+  >
+    <label
+      class="toggle-label"
+      aria-hidden="true"
+    >
       <!-- Left label for either/or use case -->
       <span 
         v-if="leftLabel" 
@@ -16,25 +22,26 @@
         type="checkbox" 
         class="toggle-input" 
         :checked="modelValue"
-        @change="$emit('update:modelValue', !modelValue)" 
+        aria-hidden="true" 
+        @change="$emit('update:modelValue', !modelValue)"
+      >
+      <span 
+        class="toggle-slider"
+        :style="{ backgroundColor: modelValue ? rightColor : leftColor }"
         aria-hidden="true"
       />
-      <span 
-       class="toggle-slider"
-       :style="{ backgroundColor: modelValue ? rightColor : leftColor }"
-        aria-hidden="true"
-       ></span>
 
       <!-- Right label for either/or use case or single toggle label -->
       <span 
         v-if="rightLabel" 
         class="toggle-text" 
         :class="{ tactive: modelValue, inactive: !modelValue }"
-        aria-hidden="true"      >
-      {{ rightLabel }}
-    </span>
-     <!-- Single label -->
-     <span 
+        aria-hidden="true"
+      >
+        {{ rightLabel }}
+      </span>
+      <!-- Single label -->
+      <span 
         v-else-if="label" 
         class="toggle-text"
         :class="{ tactive: modelValue, inactive: !modelValue }"
@@ -53,17 +60,20 @@ defineProps({
   // optional props for either/or labels
   leftLabel: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
   rightLabel: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
 
   // optional prop for single label (on/off use case)
   label: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
   // colors for each label and inactive state
   leftColor: {

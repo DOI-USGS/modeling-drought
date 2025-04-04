@@ -1,43 +1,43 @@
 <template>
-    <VizSection
-        id="forecast"
-        :figures="true"
-        :fig-caption="true"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-            <p v-html="text.paragraph2" />
-            <ToggleSwitch 
-                v-for="layer, index in layers"
-                :key="index"
-                v-model="layer.visible" 
-                :label="layer.label"
-                :rightColor="layer.color"
-            />
-        </template>
-        <template #figures>
-            <div id="fc-grid-container">
-                <fcPlot
-                    id="fc-svg"
-                />
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        <p v-html="text.caption" />
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph3" />
-        </template>
-    </VizSection>
+  <VizSection
+    id="forecast"
+    :figures="true"
+    :fig-caption="true"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2>
+        {{ text.heading }}
+      </h2>
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
+      <ToggleSwitch 
+        v-for="layer, index in layers"
+        :key="index"
+        v-model="layer.visible" 
+        :label="layer.label"
+        :right-color="layer.color"
+      />
+    </template>
+    <template #figures>
+      <div id="fc-grid-container">
+        <fcPlot
+          id="fc-svg"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption>
+      <p v-html="text.caption" />
+    </template>
+    <!-- EXPLANATION -->
+    <template #belowExplanation>
+      <p v-html="text.paragraph3" />
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -49,7 +49,12 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+        text: { 
+            type: Object,
+            default() {
+                return {}
+            } 
+        }
     })
 
     // set up reactive variables
