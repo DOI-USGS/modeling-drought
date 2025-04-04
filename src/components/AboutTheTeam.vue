@@ -156,7 +156,7 @@ function drawGraph() {
 
     node.on('mouseover', (event, d) => {
         d3.select(event.currentTarget)
-            .style('fill', 'orangered');
+            .style('fill', d => color(d.group));
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'visible');
     })
