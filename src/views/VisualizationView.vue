@@ -29,6 +29,9 @@
     <ForecastConfidence
       :text="text.components.Forecast"
     />
+    <ForecastSummary
+      :text="text.components.ForecastSummary"
+    />
     <SectionTitle
       :content="text.sections.C"
       :height="sectionTitleHeight"
@@ -67,6 +70,7 @@
   import LossFunction from '@/components/LossFunction.vue';
   import PredictionInterval from '@/components/PredictionInterval.vue';
   import ForecastConfidence from '@/components/ForecastConfidence.vue';
+  import ForecastSummary from '@/components/ForecastSummary.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
 
