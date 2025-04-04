@@ -49,6 +49,7 @@ defineProps({
 const width = 800;
 const height = 600;
 const colorHighlight = '#FF9F00';
+const nodeRadius = 35;
 
 const svg = ref(null);
 
@@ -78,17 +79,12 @@ const nodes = ref([
     { id: 'Hayley', name: 'Hayley Corson-Dosch', group:  'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/HCorson-Dosch.png', url: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'}
 ]);
 
-// create centers for each grouping
-const groupCenters = new Map();
-const groupCount = new Set(nodes.value.map(d => d.group)).size;
-
 onMounted(() => {
 
     drawGraph();
 });
 
 function drawGraph() {
-    const nodeRadius = 50;
 
     // groups color scale
     const color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -105,9 +101,9 @@ function drawGraph() {
     const simulation = d3.forceSimulation(nodes.value)
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius*1.1))
+        .force('collision', d3.forceCollide().radius(nodeRadius*1.2))
         // custom clustering force that pulls each node towards its' group center
-        .force('cluster', forceCluster(0.2));
+        .force('cluster', forceCluster(0.4));
 
     const svgElement = d3.select(svg.value);
 
@@ -118,13 +114,17 @@ function drawGraph() {
         .append("circle")
         .attr("r", nodeRadius);
 
+    const rippleGroup = svgElement.append('g')
+        .attr('class', 'ripples')
+
     const node = svgElement.append('g')
         .selectAll('circle')
         .data(nodes.value)
         .join('circle')
         .attr('r', nodeRadius)
         .attr('stroke', d => color(d.group))
-        .attr('stroke-width', 4)
+        .attr('stroke', 'black')
+        .attr('stroke-width', 2)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
 
@@ -156,9 +156,14 @@ function drawGraph() {
 
     node.on('mouseover', (event, d) => {
         d3.select(event.currentTarget)
-            .style('fill', d => color(d.group));
+            .style('fill', d => color(d.group))
+            .style('fill', 'black');
         labels.filter(ld => ld.id === d.id)
-            .style('visibility', 'visible');
+            .style('visibility', 'visible')
+            .style('fill', 'white');
+
+        createRippleEffect(d)
+
     })
         .on('mouseout', (event, d) => {
         d3.select(event.currentTarget)
@@ -211,7 +216,7 @@ function drawGraph() {
             .on('end', dragended);
     }
     function constrain(value, min, max) {
-        return Math.max(min, Math.min(max, value));
+        return Math.max(min+10, Math.min(max-10, value));
     }
 
     function forceCluster(strength = 0.1) {
@@ -230,6 +235,30 @@ function drawGraph() {
             });
         };
     }
+    function createRippleEffect(d) {
+    const rippleCount = 100;
+    const duration = 2500;
+    const rippleRadius = nodeRadius * 3;
+
+    for (let i = 0; i < rippleCount; i++) {
+        rippleGroup.append('circle')
+            .attr('cx', d.x)
+            .attr('cy', d.y)
+            .attr('r', 0)
+            .attr('fill', 'none')
+            .attr('stroke', d3.interpolateRainbow(Math.random()))
+            .attr('stroke-width', 5)
+            .attr('opacity', 0.5)
+            .transition()
+            .delay(i * 150)
+            .duration(duration)
+            .ease(d3.easeSinInOut)
+            .attr('r', rippleRadius)
+            .attr('opacity', 0)
+            .remove();
+    }
+}
+
 }
 
 </script>
