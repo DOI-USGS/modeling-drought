@@ -53,6 +53,11 @@ export default {
             paragraph1: "",
             caption: "Hover your mouse over the plot to see the how the model forcasts drought.",
         },
+        ForecastSummary: {
+            heading: "Forecast Summary",
+            paragraph1: "",
+            caption: "Hover your mouse over the plot to see ...TBA",
+        },
         AboutTheTeam: {
             heading: "USGS researchers and data scientists collaborate",
             paragraph1: "That's how science gets done. Here is a paragraph about the team. They're making it happen at USGS.",

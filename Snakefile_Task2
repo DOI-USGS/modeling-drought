@@ -1,6 +1,7 @@
 rule all:
     input:
         "src/assets/svgs/fc_example.svg",
+        "src/assets/svgs/fc_summary.svg"
         #"src/assets/svgs/forecast_cloud.svg"
 
 rule forecast:
@@ -14,3 +15,9 @@ rule forecast_confidence:
         "src/assets/svgs/forecast_cloud.svg"
     script:
         'Task2/src/ForecastConfidence.py'
+
+rule summary:
+    output:
+        "src/assets/svgs/fc_summary.svg"
+    script:
+        'Task2/src/ForecastSummary.py'

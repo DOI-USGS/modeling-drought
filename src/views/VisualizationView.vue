@@ -26,6 +26,9 @@
       <Forecast
         :text="text.components.Forecast"
       />
+      <ForecastSummary
+        :text="text.components.ForecastSummary"
+      />
     <!-- Put component(s) here. Use VizSection template inside component (as in Introsection.Vue, RegionalViolins.vue, BarChartExample.vue)-->
     <SectionTitle
       :content="text.sections.C"
@@ -61,6 +64,7 @@
   import LossFunction from '@/components/LossFunction.vue';
   import PredictionInterval from '@/components/PredictionInterval.vue';
   import Forecast from '@/components/Forecast.vue';
+  import ForecastSummary from '@/components/ForecastSummary.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
 
