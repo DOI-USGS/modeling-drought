@@ -15,6 +15,9 @@
   --medium-orange: #E48951;
   --usgs-blue: #00264c;
   --usgs-green: #006F41;
+  --brick-red: #d62728;
+  --bright-orange: #fe7f0e;
+  --royal-blue: #1f77b3;
 
   font-size: 62.5%;
 
@@ -36,6 +39,12 @@
   --color-map-focal: var(--medium-orange);
   --color-map-default: var(--white);
   --color-USGS-header-footer: var(--usgs-blue);
+  --color-observations: var(--brick-red);
+  --color-median: var(--black-soft);
+  --color-quantile-95: var(--bright-orange);
+  --color-quantile-5: var(--royal-blue);
+  --inactive-grey: #CCCCCC;
+  --inactive-text-grey: #757575;
 }
 
 /* @media (prefers-color-scheme: dark) {

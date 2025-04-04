@@ -14,9 +14,14 @@
         <template #aboveExplanation>
             <p v-html="text.paragraph1" />
             <p v-html="text.paragraph2" />
+            <ToggleSwitch 
+                v-for="layer, index in layers"
+                :key="index"
+                v-model="layer.visible" 
+                :label="layer.label"
+                :rightColor="layer.color"
+            />
         </template>
-
-        <!-- Is this the simplest way to set an image? -->
         <template #figures>
             <div id="lf-grid-container">
                 <lfPlot
@@ -36,9 +41,10 @@
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, reactive, watch } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import ToggleSwitch from "@/components/ToggleSwitch.vue"
     import lfPlot from "@/assets/svgs/lf_example.svg";
 
     // define props
@@ -46,16 +52,69 @@
         text: { type: Object }
     })
 
+    // set up reactive variables
+    const layers = reactive([
+        {
+            label: 'Observations',
+            id: 'observation',
+            visible: false,
+            color: 'var(--color-observations)'
+        },
+        {
+            label: '95% Quantile',
+            id: 'UPPER',
+            visible: false,
+            color: 'var(--color-quantile-95)'
+        },
+        {
+            label: 'Median',
+            id: 'MEDIAN',
+            visible: false,
+            color: 'var(--color-median)'
+        },
+        {
+            label: '5% Quantile',
+            id: 'LOWER',
+            visible: true,
+            color: 'var(--color-quantile-5)'
+        }
+    ]);
+
+    // Watches layers for changes and updates figure layers
+    watch(layers, () => {
+        updateFigure();
+    });
+
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        updateFigure();
         addInteractions();
     });
     
+    function updateFigure() {
+        layers.map(layer => {
+            const targetOpacity = layer.visible ? 1 : 0;
+            toggleLayer(layer.id, targetOpacity)
+        })
+    }
+
+    function toggleLayer(targetID, targetOpacity) {
+        if (targetID == 'observation') {
+            d3.select("#" + targetID + "-full-lf").selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+        } else {
+            d3.select("#" + targetID + "-FORECAST-LINE").selectAll("path")
+                    .style("stroke-opacity", targetOpacity);
+            d3.select("#" + targetID +  "-LF-LINE").selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+        }
+    }
+
     // Draw the paired loss function and forecast lines
     function draw_paired_lines(line_id) {
         d3.select("#LF-" + line_id).selectAll("path")
-                .style("stroke-opacity", 1)
+            .style("stroke-opacity", 1)
         d3.select("#FORECAST-" + line_id).selectAll("path")
             .style("stroke-opacity", 1)
     }
@@ -80,26 +139,6 @@
             let line_id = event.currentTarget.id.slice(9);
             draw_paired_lines(line_id);
         }
-        // if hovered over buttons
-        if (event.currentTarget.id.endsWith("-TAG") && event.currentTarget.id.startsWith("shadow") == false){
-            // get ids
-            let current_id = event.currentTarget.id;
-            let shadow_id = 'shadow-' + event.currentTarget.id;
-            // get button distance changes
-            let button_distance_y = d3.select("#"+shadow_id).select("text").attr('y') - d3.select("#"+current_id).select("text").attr('y');
-            let button_distance_x = d3.select("#"+current_id).select("text").attr('x') - d3.select("#"+shadow_id).select("text").attr('x');
-
-            // move button down
-            d3.select("#"+current_id).attr('transform','translate(0,'+button_distance_y.toString()+')');
-            // move shadow under button
-            d3.select("#"+shadow_id).attr('transform','translate('+button_distance_x.toString()+',0)');
-            // draw corresponding lines
-            let line_id = event.currentTarget.id.slice(0, -4);
-            d3.select("#" + line_id + "-FORECAST-LINE").selectAll("path")
-                .style("stroke-opacity", 1);
-            d3.select("#" + line_id +  "-LF-LINE").selectAll("path")
-                .style("stroke-opacity", 1);
-        }
       }
 
     // Function when mouse is over plot, moving off item
@@ -113,57 +152,6 @@
         if (event.currentTarget.id.startsWith("FORECAST")){
             let line_id = event.currentTarget.id.slice(9);
             remove_paired_lines(line_id)
-        }
-        // if hovered away from buttons
-        if (event.currentTarget.id.endsWith("TAG") && event.currentTarget.id.startsWith("shadow") == false){
-            // get ids
-            let current_id = event.currentTarget.id;
-            let shadow_id = 'shadow-' + event.currentTarget.id;
-            // move button up
-            d3.select("#"+current_id).attr('transform','translate(0,0)');
-            // move shadow out
-            d3.select("#"+shadow_id).attr('transform','translate(0,0)');
-            // remove corresponding lines
-            let line_id = event.currentTarget.id.slice(0, -4);
-            d3.select("#" + line_id + "-FORECAST-LINE").selectAll("path")
-                .style("stroke-opacity", 0);
-            d3.select("#" + line_id +  "-LF-LINE").selectAll("path")
-                .style("stroke-opacity", 0);
-        }
-    }
-
-    // when mouse is clicked
-    function click(switchoff) {
-        // switch off the button no matter what if in the switchoff mode (true)
-        if (switchoff === true) {
-            d3.select("#toggle-observations-lf").attr('transform','translate(0,0)');
-            d3.select("#shadow-toggle-observations-lf").attr('transform','translate(0,0)');
-            d3.select("#observation-full-lf").selectAll("path")
-                .style("stroke-opacity", 0);
-        }
-        else{
-            // get button distance changes
-            let button_distance_y = d3.select("#shadow-toggle-observations-lf").select("text").attr('y') - d3.select("#toggle-observations-lf").select("text").attr('y');
-            let button_distance_x = d3.select("#toggle-observations-lf").select("text").attr('x') - d3.select("#shadow-toggle-observations-lf").select("text").attr('x');
-
-            // is button pressed or not
-            let pressed_distance = parseFloat(d3.select("#toggle-observations-lf").attr('transform').split(',')[1])
-            if (pressed_distance == 0){
-                d3.select("#toggle-observations-lf").attr('transform','translate(0,'+button_distance_y.toString()+')');
-                d3.select("#shadow-toggle-observations-lf").attr('transform','translate('+button_distance_x.toString()+',0)');
-            } else {
-                d3.select("#toggle-observations-lf").attr('transform','translate(0,0)');
-                d3.select("#shadow-toggle-observations-lf").attr('transform','translate(0,0)');
-            }
-            //observation line toggle
-            let observation_opacity = 1.0;
-            if (d3.select("#observation-full-lf").selectAll("path").style("stroke-opacity") == 0){
-                d3.select("#observation-full-lf").selectAll("path")
-                    .style("stroke-opacity", observation_opacity);
-            } else if (d3.select("#observation-full-lf").selectAll("path").style("stroke-opacity") == observation_opacity){
-                d3.select("#observation-full-lf").selectAll("path")
-                    .style("stroke-opacity", 0);
-            }
         }
     }
 
@@ -181,19 +169,13 @@
     }
 
     // when mouse leaves plot
-    function mouseleave(default_line) {
-        // draw default line
-        draw_paired_lines(default_line);
+    function mouseleave() {
         // add annotations
         annotation(1.0)
-        // remove observation
-        click(true)
     }
 
     // when mouse enters plot
-    function mouseenter(default_line) {
-        // remove default line
-        remove_paired_lines(default_line);
+    function mouseenter() {
         // add annotations
         annotation(0.0)
     }
@@ -202,26 +184,11 @@
         // set viewbox for svg with loss function chart
         const lfSVG = d3.select("#lf-svg")
 
-        // set default line
-        let default_line = 0;
-        draw_paired_lines(default_line);
-
-        // set initial button transform, fills the attributes
-        d3.select("#toggle-observations-lf").attr('transform','translate(0,0)');
-        d3.select("#shadow-toggle-observations-lf").attr('transform','translate(0,0)');
-        d3.select("#LOWER-TAG").attr('transform','translate(0,0)');
-        d3.select("#shadow-LOWER-TAG").attr('transform','translate(0,0)');
-        d3.select("#MEDIAN-TAG").attr('transform','translate(0,0)');
-        d3.select("#shadow-MEDIAN-TAG").attr('transform','translate(0,0)');
-        d3.select("#UPPER-TAG").attr('transform','translate(0,0)');
-        d3.select("#shadow-UPPER-TAG").attr('transform','translate(0,0)');
-
         // Add interaction to loss function chart
         lfSVG.select("#figure-lossfunction")
-            .on("mouseleave", () => mouseleave(default_line))
-            .on("mouseenter", () => mouseenter(default_line));
-        lfSVG.selectAll("#toggle-observations-lf")
-            .on("click", () => click(false));
+            .on("mouseleave", () => mouseleave())
+            .on("mouseenter", () => mouseenter());
+
         lfSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
@@ -242,32 +209,5 @@
         place-self: center;
         height: 100%;
         width: 100%;
-    }
-</style>
-
-<style>
-    #toggle-observations-lf {
-        cursor: pointer;
-    }
-    #LOWER-TAG {
-        cursor: default;
-    }
-    #MEDIAN-TAG {
-        cursor: default;
-    }
-    #UPPER-TAG {
-        cursor: default;
-    }
-    #shadow-toggle-observations-lf {
-        cursor: default;
-    }
-    #shadow-LOWER-TAG {
-        cursor: default;
-    }
-    #shadow-MEDIAN-TAG {
-        cursor: default;
-    }
-    #shadow-UPPER-TAG {
-        cursor: default;
     }
 </style>

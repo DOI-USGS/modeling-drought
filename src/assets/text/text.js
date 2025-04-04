@@ -27,15 +27,6 @@ export default {
         }
     },
     components: {
-        IntroSection: {
-            heading: "Introduction",
-            paragraph1: "Here is a paragraph with some introductory context for this viz.",
-            paragraph2: "Here is another paragraph of introductory context.",
-            caption: "This is a caption for this figure.",
-            paragraph3: "Here's a paragraph that follows the figure.",
-            paragraph3_bullet1: "Here is a bullet.",
-            paragraph4: "And another paragraph."
-        },
         LossFunction: {
             heading: "Loss Function",
             paragraph1: "When we train the machine learning model, we incentivize it to find the best solution by penalizing it when it predicts incorrectly. The further the model being correct, the more we penalize it. If we penalize the model the same for under- and overestimations, the model will try to best estimate the observation (a median prediction). We tell the model the equally penalize under- and overestimations by specifying a loss function that is symmetric",
@@ -46,7 +37,7 @@ export default {
         PredictionInterval: {
             heading: "Prediction Interval",
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
-            caption: "Hover your mouse over the 4 predictions to see the loss functions (left) and corresponding confidence intervals (right).",
+            caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
         },
         Forecast: {
             heading: "Forecast",

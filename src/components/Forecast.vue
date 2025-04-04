@@ -14,9 +14,14 @@
         <template #aboveExplanation>
             <p v-html="text.paragraph1" />
             <p v-html="text.paragraph2" />
+            <ToggleSwitch 
+                v-for="layer, index in layers"
+                :key="index"
+                v-model="layer.visible" 
+                :label="layer.label"
+                :rightColor="layer.color"
+            />
         </template>
-
-        <!-- Is this the simplest way to set an image? -->
         <template #figures>
             <div id="fc-grid-container">
                 <fcPlot
@@ -36,9 +41,10 @@
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, reactive, watch } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import ToggleSwitch from "@/components/ToggleSwitch.vue"
     import fcPlot from "@/assets/svgs/fc_example.svg";
 
     // define props
@@ -46,12 +52,42 @@
         text: { type: Object }
     })
 
+    // set up reactive variables
+    const layers = reactive([
+        {
+            label: 'Observations',
+            id: 'observation',
+            visible: false,
+            color: 'var(--color-observations)'
+        }
+    ]);
+
+    // Watches layers for changes and updates figure layers
+    watch(layers, () => {
+        updateFigure();
+    });
+
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        updateFigure();
         addInteractions();
     });
 
+    function updateFigure() {
+        layers.map(layer => {
+            const targetOpacity = layer.visible ? 1 : 0;
+            toggleLayer(layer.id, targetOpacity)
+        })
+    }
+
+    function toggleLayer(targetID, targetOpacity) {
+        if (targetID == 'observation') {
+            d3.select("#" + targetID + "-full-forecast").selectAll("path")
+                .style("stroke-opacity", targetOpacity)
+        } 
+    }
+    
     function draw_line(line_id_base,lookback) {
         for (let i = 0; i < lookback; i++) {
             let line_id = (parseInt(line_id_base) - i * 7).toString()
@@ -80,41 +116,6 @@
             .style("stroke-opacity", 0);
     }
 
-    function click(switchoff) {
-        // switch off the button no matter what if in the switchoff mode (true)
-        if (switchoff === true) {
-                d3.select("#toggle-observations-forecast").attr('transform','translate(0,0)');
-                d3.select("#shadow-toggle-observations-forecast").attr('transform','translate(0,0)');
-                d3.select("#observation-full-forecast").selectAll("path")
-                    .style("stroke-opacity", 0);
-        }
-        else {
-            // get button distance changes
-            let button_distance_y = d3.select("#shadow-toggle-observations-forecast").select("text").attr('y') - d3.select("#toggle-observations-forecast").select("text").attr('y');
-            let button_distance_x = d3.select("#toggle-observations-forecast").select("text").attr('x') - d3.select("#shadow-toggle-observations-forecast").select("text").attr('x');
-        
-            let pressed_distance = parseFloat(d3.select("#toggle-observations-forecast").attr('transform').split(',')[1]);
-            // is button pressed or not
-            if (pressed_distance == 0){
-                d3.select("#toggle-observations-forecast").attr('transform','translate(0,'+button_distance_y.toString()+')');
-                d3.select("#shadow-toggle-observations-forecast").attr('transform','translate('+button_distance_x.toString()+',0)');
-            } else {
-                d3.select("#toggle-observations-forecast").attr('transform','translate(0,0)');
-                d3.select("#shadow-toggle-observations-forecast").attr('transform','translate(0,0)');
-            }
-
-            //observation line toggle
-            let observation_opacity = 1.0;
-            if (d3.select("#observation-full-forecast").selectAll("path").style("stroke-opacity") == 0){
-                d3.select("#observation-full-forecast").selectAll("path")
-                    .style("stroke-opacity", observation_opacity);
-            } else if (d3.select("#observation-full-forecast").selectAll("path").style("stroke-opacity") == observation_opacity){
-                d3.select("#observation-full-forecast").selectAll("path")
-                    .style("stroke-opacity", 0);
-            }
-        }
-    }
-
     function mouseover(event,lookback) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
             d3.select("#"+event.currentTarget.id).selectAll("path")
@@ -138,19 +139,13 @@
             .style("opacity", opacity);
         d3.select("#annotation_forecast_arrow").selectAll("path")
             .style("opacity", opacity);
-        d3.select("#annotation_buttons3").selectAll("text")
-            .style("opacity",opacity);
-        d3.select("#annotation_buttons3_arrow1").selectAll("path")
-            .style("opacity", opacity);
     }
 
     function mouseleave(default_line,lookback) {
         // draw default line
         draw_line(default_line,lookback);
         // add annotation
-        annotation(1.0)     
-        // remove observation
-        click(true)
+        annotation(1.0)
     }
 
     function mouseenter(default_line,lookback) {
@@ -169,16 +164,10 @@
         var default_line = "13055"
         draw_line(default_line,lookback)
 
-        // set initial button transform, fills the attributes
-        d3.select("#toggle-observations-forecast").attr('transform','translate(0,0)');
-        d3.select("#shadow-toggle-observations-forecast").attr('transform','translate(0,0)');
-
         // Add interaction to loss function chart
         fcSVG.select("#axis-forecast")
             .on("mouseleave", () => mouseleave(default_line,lookback))
             .on("mouseenter", () => mouseenter(default_line,lookback));
-        fcSVG.select("#toggle-observations-forecast")
-            .on("click", () => click(false));
         fcSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event,lookback))
             .on("mouseout", (event) => mouseout(event,lookback))
@@ -199,13 +188,5 @@
         place-self: center;
         height: 100%;
         width: 100%;
-    }
-</style>
-<style>
-    #toggle-observations-forecast {
-        cursor: pointer;
-    }
-    #shadow-toggle-observations-forecast {
-        cursor: default;
     }
 </style>
