@@ -160,57 +160,8 @@ for i, lower_percentile in enumerate(pi_list):
         zorder=3,
     )
 
-# add labels for the prediction quantiles
-median_interp = interpolate.interp1d(
-    x_forecast.astype(float), y_forecast_median, kind="linear"
-)
-
-# add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
-bbox = selectable_text(
-    ax_forecast,
-    labels_bump,
-    median_interp(np.datetime64(date_range[-1]).astype(float)) / 100.0,
-    "Median",
-    "w",
-    "k",
-    (0.6, 0.6, 0.6),
-    "center",
-    "left",
-    "TAG-MEDIAN",
-)
-ax_forecast.annotate(
-    "Hover over\nbuttons",
-    fontweight="bold",
-    va="center",
-    ha="center",
-    xy=(bbox.x0, 0.5 * (bbox.y1 + bbox.y0)),
-    xytext=annotation_label_loc_pi,
-    xycoords="axes fraction",
-    zorder=10,
-    gid="annotation_buttons2",
-    arrowprops=dict(
-        facecolor="black",
-        gid="annotation_buttons2_arrow1",
-        arrowstyle="->",
-        shrinkA=10,
-        shrinkB=12,
-        connectionstyle="arc3,rad=-0.2",
-        alpha=0.8,
-    ),
-)
 for i, pi in enumerate(pi_list):
-    bbox = selectable_text(
-        ax_forecast,
-        labels_bump,
-        lower_limit_pi[i],
-        str(int(100.0 * (1.0 - 2.0 * pi))) + "% PI",
-        "k",
-        facecolor_list[i],
-        "k",
-        va_list[i],
-        "left",
-        "TAG-" + str(i),
-    )
+
     popup_text(
         ax_forecast,
         0.6,
@@ -224,26 +175,6 @@ for i, pi in enumerate(pi_list):
         "center",
         "center",
         "TAG-" + str(i) + "-LABEL",
-    )
-    ax_forecast.annotate(
-        "Hover over\nbuttons",
-        fontweight="bold",
-        va="center",
-        ha="center",
-        alpha=0.0,
-        xy=(bbox.x0, 0.5 * (bbox.y1 + bbox.y0)),
-        xytext=annotation_label_loc_pi,
-        xycoords="axes fraction",
-        zorder=10,
-        arrowprops=dict(
-            facecolor="black",
-            gid="annotation_buttons2_arrow" + str(i + 2),
-            arrowstyle="->",
-            shrinkA=10,
-            shrinkB=12,
-            connectionstyle="arc3,rad=-0.2",
-            alpha=0.8,
-        ),
     )
 
 ### Loss Function Plot
