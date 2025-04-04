@@ -13,9 +13,11 @@
         <!-- FIGURES -->
         <template #aboveExplanation>
             <p v-html="text.paragraph1" />
+            <RadioGroup
+                v-model="selectedLayer"
+                :options="layers"
+            />
         </template>
-
-        <!-- Is this the simplest way to set an image? -->
         <template #figures>
             <div id="pi-grid-container">
                 <ciPlot
@@ -31,9 +33,10 @@
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, reactive, ref, watch } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import RadioGroup from '@/components/RadioGroup.vue'
     import ciPlot from "@/assets/svgs/pi_example.svg";
 
     // define props
@@ -41,131 +44,86 @@
         text: { type: Object }
     })
 
+    // define reactive variables
+    const selectedLayer = ref('MEDIAN')
+    const layers = reactive([
+        {
+            label: 'Median',
+            value: 'MEDIAN',
+            color: '#929292'
+        },
+        {
+            label: '50% prediction interval',
+            value: '2',
+            color: '#929292'
+        },
+        {
+            label: '75% prediction interval',
+            value: '1',
+            color: '#929292'
+        },
+        {
+            label: '90% prediction interval',
+            value: '0',
+            color: '#929292'
+        }
+    ])
+
+    // Watches selectedLayer for changes and updates figure layers
+    watch(selectedLayer, () => {
+        updateFigure()
+    })
+
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addInteractions();
-    });
-    
-    function mouseover(event) {
-        if (event.currentTarget.id.startsWith("TAG")){
-            let tag_id = event.currentTarget.id;
-            d3.select("#" + tag_id + "-LABEL-BOLD").selectAll("text")
-                .style("opacity", 1);
-            let line_id = event.currentTarget.id.slice(4);
-            d3.select("#PI-PATCH-" + line_id).selectAll("path")
-                .style("fill-opacity", 0.5)
-                .style("stroke-opacity", 1);
-            if (line_id != "MEDIAN"){
-                d3.select("#PI-PATCH-LOWER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 1);
-                d3.select("#PI-PATCH-UPPER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 1);
-                d3.select("#LF-LOWER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 1);
-                d3.select("#LF-UPPER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 1);
-                let hrefval = d3.select("#PI-missed-" + line_id + " use").attr("xlink:href")
-                d3.select("#PI-missed-" + line_id).select(hrefval)
-                    .style("stroke-opacity", 1);
-                d3.select("#legend-pi-missed").selectAll("use")
-                            .style("stroke-opacity", 1);
-                d3.select("#legend-pi-missed").selectAll("text")
-                            .style("opacity", 1);
-            }
-            // get ids
-            let shadow_id = 'shadow-' + event.currentTarget.id;
-            // get button distance changes
-            let button_distance_y = d3.select("#"+shadow_id).select("text").attr('y') - d3.select("#"+tag_id).select("text").attr('y');
-            let button_distance_x = d3.select("#"+tag_id).select("text").attr('x') - d3.select("#"+shadow_id).select("text").attr('x');
-
-            // move button down
-            d3.select("#"+tag_id).attr('transform','translate(0,'+button_distance_y.toString()+')');
-            // move shadow under button
-            d3.select("#"+shadow_id).attr('transform','translate('+button_distance_x.toString()+',0)');
-        }
-      }
-
-    function mouseout(event) {
-        if (event.currentTarget.id.startsWith("TAG")){
-            let tag_id = event.currentTarget.id;
-            d3.select("#" + tag_id + "-LABEL-BOLD").selectAll("text")
-                .style("opacity", 0);
-            let line_id = event.currentTarget.id.slice(4);
-            d3.select("#PI-PATCH-" + line_id).selectAll("path")
-                .style("fill-opacity", 0)
-                .style("stroke-opacity", 0);
-            if (line_id != "MEDIAN"){
-                d3.select("#PI-PATCH-LOWER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 0);
-                d3.select("#PI-PATCH-UPPER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 0);
-                d3.select("#LF-LOWER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 0);
-                d3.select("#LF-UPPER-" + line_id).selectAll("path")
-                    .style("stroke-opacity", 0);
-                let hrefval = d3.select("#PI-missed-" + line_id + " use").attr("xlink:href")
-                d3.select("#PI-missed-" + line_id).select(hrefval)
-                    .style("stroke-opacity", 0);
-                d3.select("#legend-pi-missed").selectAll("use")
-                            .style("stroke-opacity", 0);
-                d3.select("#legend-pi-missed").selectAll("text")
-                            .style("opacity", 0);
-            }
-
-            // get ids
-            let shadow_id = 'shadow-' + event.currentTarget.id;
-            // move button back
-            d3.select("#"+tag_id).attr('transform','translate(0,0)');
-            // move shadow back
-            d3.select("#"+shadow_id).attr('transform','translate(0,0)');
-        }
-    }
-
-    function annotation(opacity){
+        // FOR NOW, drop button annotations (won't exist in futurre)
+        // hide annotations
         d3.select("#annotation_buttons2").selectAll("text")
-            .style("opacity",opacity);
+            .style("opacity", 0);
         for(let i=1;i<=4;i++){
             d3.select("#annotation_buttons2_arrow"+i.toString()).selectAll("path")
-                .style("opacity", opacity);
+                .style("opacity", 0);
+        }
+        // update figure based on radio button selection
+        updateFigure();
+    });
+
+    function updateFigure() {
+        layers.map(layer => {
+            const targetOpacity = layer.value === selectedLayer.value ? 1 : 0;
+            toggleLayer(layer.value, targetOpacity)
+        })
+        const legendOpacity = selectedLayer.value == 'MEDIAN' ? 0 : 1;
+        toggleLegend(legendOpacity)
+    }
+
+    function toggleLayer(targetID, targetOpacity) {
+        d3.select("#TAG-" + targetID + "-LABEL-BOLD").selectAll("text")
+            .style("opacity", targetOpacity);
+        d3.select("#PI-PATCH-" + targetID).selectAll("path")
+            .style("fill-opacity", targetOpacity * 0.5)
+            .style("stroke-opacity", targetOpacity);
+        if (targetID != "MEDIAN"){
+            d3.select("#PI-PATCH-LOWER-" + targetID).selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+            d3.select("#PI-PATCH-UPPER-" + targetID).selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+            d3.select("#LF-LOWER-" + targetID).selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+            d3.select("#LF-UPPER-" + targetID).selectAll("path")
+                .style("stroke-opacity", targetOpacity);
+            let hrefval = d3.select("#PI-missed-" + targetID + " use").attr("xlink:href")
+            d3.select("#PI-missed-" + targetID).select(hrefval)
+                .style("stroke-opacity", targetOpacity);
         }
     }
 
-    function mouseleave() {
-        annotation(1.0)
-    }
-
-    function mouseenter() {
-        annotation(0.0)
-    }
-
-    function addInteractions() {
-        // set viewbox for svg with confidence interval chart
-        const lfSVG = d3.select("#pi-svg")
-
-        // set initial button transform, fills the attributes
-        d3.select("#TAG-MEDIAN").attr('transform','translate(0,0)');
-        d3.select("#shadow-TAG-MEDIAN").attr('transform','translate(0,0)');
-        d3.select("#TAG-0").attr('transform','translate(0,0)');
-        d3.select("#shadow-TAG-0").attr('transform','translate(0,0)');
-        d3.select("#TAG-1").attr('transform','translate(0,0)');
-        d3.select("#shadow-TAG-1").attr('transform','translate(0,0)');
-        d3.select("#TAG-2").attr('transform','translate(0,0)');
-        d3.select("#shadow-TAG-2").attr('transform','translate(0,0)');
-
-        // remove legend until user selects a prediction interval
+    function toggleLegend(targetOpacity) {
         d3.select("#legend-pi-missed").selectAll("use")
-                    .style("stroke-opacity", 0);
+            .style("stroke-opacity", targetOpacity);
         d3.select("#legend-pi-missed").selectAll("text")
-                    .style("opacity", 0);
-
-        // Add interaction to confidence interval chart
-        lfSVG.selectAll("#figure-predictioninterval")
-            .on("mouseleave", () => mouseleave())
-            .on("mouseenter", () => mouseenter())
-        lfSVG.selectAll("g")
-            .on("mouseover", (event) => mouseover(event))
-            .on("mouseout", (event) => mouseout(event))
+            .style("opacity", targetOpacity);
     }
 </script>
 
@@ -183,32 +141,5 @@
         place-self: center;
         height: 100%;
         width: 100%;
-    }
-</style>
-
-<style>
-    #TAG-0 {
-        cursor: default;
-    }
-    #TAG-1 {
-        cursor: default;
-    }
-    #TAG-2 {
-        cursor: default;
-    }
-    #TAG-MEDIAN {
-        cursor: default;
-    }
-    #shadow-TAG-0 {
-        cursor: default;
-    }
-    #shadow-TAG-1 {
-        cursor: default;
-    }
-    #shadow-TAG-2 {
-        cursor: default;
-    }
-    #shadow-TAG-MEDIAN {
-        cursor: default;
     }
 </style>
