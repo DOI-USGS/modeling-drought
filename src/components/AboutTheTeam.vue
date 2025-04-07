@@ -99,7 +99,7 @@ function drawGraph() {
     const groupAuras = new Map();
 
     groupNames.forEach((group, i) => {
-        const t = i / groupNames.length; // normalize to [0, 1]
+        const t = (1+i) / (groupNames.length+5); // normalize to [0, 1]
         const color = d3.interpolateTurbo(t); // or interpolateCool, Turbo, Plasma
         groupAuras.set(group, color);
     });
@@ -157,7 +157,8 @@ function drawGraph() {
             <feBlend in="SourceGraphic" in2="goo" />
         `);
 
-    defs.append('defs')
+    // define styles for images in bubbles
+    const patterns = defs.append('defs')
         .selectAll('pattern')
         .data(nodes.value)
         .enter()
@@ -166,13 +167,22 @@ function drawGraph() {
         .attr('height', 1)
         .attr('width', 1)
         .attr('patternContentUnits', 'objectBoundingBox')
-        // add profile images
-        .append('image')
+
+    // add profile images
+    patterns.append('image')
         .attr('href', d => d.img)
         .attr('height', 1)
         .attr('width', 1)
         .style('opacity', 0.8)
-        .attr('preserveAspectRatio', 'xMidYMid slice');
+        .attr('preserveAspectRatio', 'xMidYMid slice')
+        .style('filter', 'grayscale(100%)'); // greyscale images
+
+    // fill images same color as group
+    patterns.append('rect')
+        .attr('width', 1)
+        .attr('height', 1)
+        .attr('fill', d => groupAuras.get(d.group))
+        .style('opacity', 0.1);
 
     // name labels for mouseover
     const labels = svgElement.append('g')
