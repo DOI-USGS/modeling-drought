@@ -50,9 +50,9 @@ export default {
             caption1Responsive: "Tap the plot to see ...TBA",
         },
         AboutTheTeam: {
-            heading: "USGS researchers and data scientists collaborate",
-            paragraph1: "That's how science gets done. Here is a paragraph about the team. They're making it happen at USGS.",
-            caption: "A caption could go here",
+            heading: "Collaboration across the water community",
+            paragraph1: "An interdisciplinary team of USGS researchers and data scientists are working together to forecast drought at a national-scale.",
+            caption: " ",
         }
     }
 }
