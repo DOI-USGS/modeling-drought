@@ -182,8 +182,7 @@ function drawGraph() {
         .attr('x', d => d.x)
         .attr('y', d => d.y - nodeRadius - 10)
         .attr('text-anchor', 'middle')
-        .style('visibility', 'hidden')
-        .style('pointer-events', 'none');
+        .style('visibility', 'hidden');
 
     //mouseover effects
     node.on('mouseover', (event, d) => {
@@ -271,8 +270,8 @@ function drawGraph() {
         };
     }
     function createRippleEffect(d) {
-        const rippleCount = 3;
-        const duration = 1000;
+        const rippleCount = 2;
+        const duration = 2000;
         const rippleRadius = nodeRadius * 2;
 
         for (let i = 0; i < rippleCount; i++) {
@@ -286,7 +285,7 @@ function drawGraph() {
                 .attr('opacity', 0.8)
                 .attr('filter', 'url(#psychedelic-glow)')
                 .transition()
-                .delay(i * 200)
+                .delay((i-1) * 400)
                 .duration(duration)
                 .ease(d3.easeSinInOut)
                 .attr('r', rippleRadius)
