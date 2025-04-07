@@ -100,7 +100,7 @@ function drawGraph() {
 
     groupNames.forEach((group, i) => {
         const t = i / groupNames.length; // normalize to [0, 1]
-        const color = d3.interpolatePlasma(t); // or interpolateCool, Turbo, Plasma
+        const color = d3.interpolateTurbo(t); // or interpolateCool, Turbo, Plasma
         groupAuras.set(group, color);
     });
 
@@ -133,7 +133,7 @@ function drawGraph() {
         .join('circle')
         .attr('r', nodeRadius)
         .attr('stroke', d => groupAuras.get(d.group))
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 4)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
 
@@ -171,6 +171,7 @@ function drawGraph() {
         .attr('href', d => d.img)
         .attr('height', 1)
         .attr('width', 1)
+        .style('opacity', 0.8)
         .attr('preserveAspectRatio', 'xMidYMid slice');
 
     // name labels for mouseover
@@ -182,12 +183,14 @@ function drawGraph() {
         .attr('x', d => d.x)
         .attr('y', d => d.y - nodeRadius - 10)
         .attr('text-anchor', 'middle')
-        .style('visibility', 'hidden');
+        .style('visibility', 'hidden')
+        .attr('pointer-events', 'none');
 
     //mouseover effects
     node.on('mouseover', (event, d) => {
         d3.select(event.currentTarget)
-            .style('fill', d => groupAuras.get(d.group));
+            .style('fill', d => groupAuras.get(d.group))
+            .style('opacity', 0.8);
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'visible')
             .style('fill', 'white');
@@ -197,7 +200,8 @@ function drawGraph() {
     })
         .on('mouseout', (event, d) => {
         d3.select(event.currentTarget)
-            .style('fill', `url(#pattern-${d.id})`);
+            .style('fill', `url(#pattern-${d.id})`)
+            .style('opacity', 1);
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'hidden');
     })
@@ -270,8 +274,8 @@ function drawGraph() {
         };
     }
     function createRippleEffect(d) {
-        const rippleCount = 2;
-        const duration = 2000;
+        const rippleCount = 1;
+        const duration = 1000;
         const rippleRadius = nodeRadius * 2;
 
         for (let i = 0; i < rippleCount; i++) {
@@ -285,7 +289,7 @@ function drawGraph() {
                 .attr('opacity', 0.8)
                 .attr('filter', 'url(#psychedelic-glow)')
                 .transition()
-                .delay((i-1) * 400)
+                .delay((i-1) * 600)
                 .duration(duration)
                 .ease(d3.easeSinInOut)
                 .attr('r', rippleRadius)
