@@ -1,6 +1,6 @@
 export default {
   // Do not update title w/o checking with Cee/Hayley - we want this to be consistent across sites
-  title: "USGS Vizlab",
+  title: "",
   // Do not update author text w/o checking with Cee/Hayley - we want this to be consistent across sites
   authorText: "This site was created by the {projectTeam}. {leadAuthors} led the project with contributions from {additionalAuthors}, and {lastAuthor}.",
   // do not delete section. delete individuals as needed. modify content as needed

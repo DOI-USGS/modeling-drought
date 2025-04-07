@@ -6,9 +6,9 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <h2>
+      <h3>
         {{ text.heading }}
-      </h2>
+      </h3>
     </template>
     <!-- FIGURES -->
     <template #aboveExplanation>
