@@ -5,7 +5,7 @@
     :fig-caption="true"
   >
     <template #heading>
-      <h2>{{ text.heading }}</h2>
+      <h3>{{ text.heading }}</h3>
     </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
