@@ -66,7 +66,7 @@ const nodes = ref([
     { id: 'Bryce', name: 'Bryce Pulver', group: 'UT', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/Bryce.jpg?h=3f136433&itok=NjoyKU5C', url: 'https://www.usgs.gov/staff-profiles/bryce-pulver' },
     { id: 'Jesse', name: 'Jesse Ross', group: 'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/jesse_ross.jpg', url: '' },
     { id: 'Roy', name: 'Roy Sando', group: 'WY-MT', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/gen70991PicForKathy.jpg?itok=nIlDArWf', url: 'https://www.usgs.gov/staff-profiles/roy-sando' },
-    { id: 'Anteneh', name: 'Anteneh Sarbanes', group: 'MD-DE-DC', img: Person, url: '' },
+    { id: 'Anteneh', name: 'Anteneh Sarbanes', group: 'OSD', img: Person, url: '' },
     { id: 'Andrew', name: 'Andrew Sekellick', group: 'MD-DE-DC', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/me_3.jpg?itok=y70cpj2J', url: 'https://www.usgs.gov/staff-profiles/andrew-sekellick' },
     { id: 'Caelan', name: 'Caelan Simeone', group: 'OR', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/simeone_USGS_Profile.jpg?itok=tL8i5X5H', url: 'https://www.usgs.gov/staff-profiles/caelan-e-simeone' },
     { id: 'Erik', name: 'Erik Smith', group: 'OPP', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/SmithErik.png?itok=LJ-7BX9I', url: 'https://www.usgs.gov/staff-profiles/erik-smith' },
