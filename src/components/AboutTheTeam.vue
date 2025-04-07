@@ -203,7 +203,10 @@ function drawGraph() {
             .style('opacity', 0.8);
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'visible')
-            .style('fill', 'white');
+            .style('fill', 'white')
+            .style('font-weight', '800')
+            .style('stroke', 'black')
+            .style('stroke-weight', '0.1');
 
         createRippleEffect(d)
 
@@ -320,4 +323,8 @@ function drawGraph() {
     width: 100%;
     height: 100%;
 }
+svg {
+  overflow: visible;
+}
+
 </style>
