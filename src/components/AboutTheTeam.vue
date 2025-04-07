@@ -109,7 +109,7 @@ function drawGraph() {
     const simulation = d3.forceSimulation(nodes.value)
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius*1.2))
+        .force('collision', d3.forceCollide().radius(nodeRadius*1.1))
         // custom clustering force that pulls each node towards its' group center
         .force('cluster', forceCluster(0.4));
 
