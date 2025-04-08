@@ -89,10 +89,10 @@ body {
   overscroll-behavior: none;
 }
 h1 {
-  font-size: 6rem;
+  font-size: 5.6rem;
   font-weight: 200;
   color: var(--color-title-text);
-  padding: 5rem 0 5rem 0;
+  padding: 8rem 0 8rem 0;
   @media only screen and (max-width: 600px) {
     font-size: 5rem;
     padding: 3rem 0 3rem 0;
@@ -102,7 +102,8 @@ h2 {
   font-size: 3.6rem;
   font-weight: 300;
   color: var(--color-title-text);
-  padding: 1rem 0 1rem 0;
+  padding: 5rem 0 0 0;
+  margin-bottom: 2rem;
   @media only screen and (max-width: 600px) {
     font-size: 3.2rem;
   }  
@@ -111,7 +112,7 @@ h3 {
   font-size: 2.6rem;
   font-weight: 600;
   color: var(--color-title-text);
-  padding: 3rem 0 1rem 0;
+  padding: 0 0 1rem 0;
 }
 p, text, li {
   padding: 0 0 1rem 0;
