@@ -281,10 +281,12 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task1/out/pi_example.svg", dpi=96, metadata=None)
+fig.savefig("Task1/out/pi_example_mobile.svg", dpi=96, metadata=None)
 
 # remove metadata
-remove_metadata("Task1/out/pi_example.svg", "src/assets/svgs/pi_example.svg")
+remove_metadata(
+    "Task1/out/pi_example_mobile.svg", "src/assets/svgs/pi_example_mobile.svg"
+)
 
 # making desktop version
 fig.set_size_inches(
