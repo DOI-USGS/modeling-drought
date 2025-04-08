@@ -214,6 +214,7 @@ function drawGraph() {
         .attr('x', d => d.x)
         .attr('y', d => d.y - nodeRadius - 10)
         .attr('text-anchor', 'middle')
+        .attr("dominant-baseline", "central")
         .style('visibility', 'hidden')
         .attr('pointer-events', 'none');
 
