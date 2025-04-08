@@ -16,6 +16,7 @@
       <RadioGroup
         v-model="selectedLayer"
         :options="layers"
+        :centercolor="centerColor"
       />
     </template>
     <template #figures>
@@ -55,7 +56,7 @@
         {
             label: 'Median',
             value: 'MEDIAN',
-            color: '#929292'
+            color: '#00264c'
         },
         {
             label: '50% prediction interval',
@@ -73,6 +74,9 @@
             color: '#929292'
         }
     ])
+
+    // define global variables
+    const centerColor = 'var(--color-background)'
 
     // Watches selectedLayer for changes and updates figure layers
     watch(selectedLayer, () => {
