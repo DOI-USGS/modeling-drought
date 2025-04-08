@@ -37,7 +37,7 @@
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup from '@/components/RadioGroup.vue'
-    import ciPlot from "@/assets/svgs/pi_example.svg";
+    import ciPlot from "@/assets/svgs/pi_example_desktop.svg";
 
     // define props
     defineProps({
@@ -136,7 +136,7 @@
     #pi-grid-container {
         display: grid;
         width: 100%;
-        max-height: 750px;
+        max-width: 1200px;
         margin: 3rem auto 4rem auto;
         grid-template-areas:
             "chart";

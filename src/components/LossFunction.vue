@@ -45,7 +45,7 @@
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
-    import lfPlot from "@/assets/svgs/lf_example.svg";
+    import lfPlot from "@/assets/svgs/lf_example_desktop.svg";
 
     // define props
     defineProps({
@@ -204,7 +204,7 @@
     #lf-grid-container {
         display: grid;
         width: 100%;
-        max-height: 750px;
+        max-width: 1200px;
         margin: 3rem auto 4rem auto;
         grid-template-areas:
             "chart";
