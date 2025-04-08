@@ -1,3 +1,4 @@
+import ForecastConfidence from "../../components/ForecastConfidence.vue";
 import references from "./references";
 
 export default {
@@ -35,14 +36,14 @@ export default {
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
         },
-        Forecast: {
+        ForecastConfidence: {
             heading: "Forecast",
-            paragraph1: "",
-            caption: "Hover your mouse over the plot to see the how the model forcasts drought.",
+            paragraph1: "A paragraph.",
+            caption: "Hover your mouse over the plot to see how the model forecasts streamflow drought.",
         },
         ForecastSummary: {
             heading: "Forecast Summary",
-            paragraph1: "",
+            paragraph1: "A paragraph.",
             caption: "Hover your mouse over the plot to see ...TBA",
         },
         AboutTheTeam: {

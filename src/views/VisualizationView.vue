@@ -19,12 +19,6 @@
         </span>
       </h2>
     </div>
-    <!--SectionTitle
-      :content="text.sections.A"
-      :height="sectionTitleHeight"
-      :overlay="true"
-      :overlay-opacity="sectionTitleOverlayOpacity"
-    /-->
     <LossFunction
       :text="text.components.LossFunction"
     />
@@ -43,7 +37,7 @@
       </h2>
     </div>
     <ForecastConfidence
-      :text="text.components.Forecast"
+      :text="text.components.ForecastConfidence"
     />
     <ForecastSummary
       :text="text.components.ForecastSummary"

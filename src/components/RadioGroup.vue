@@ -79,6 +79,7 @@ defineEmits(['update:modelValue']);
   row-gap: 2px;
   column-gap: 16px;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .radio-label {
