@@ -5,7 +5,10 @@
     :fig-caption="false"
   >
     <!-- HEADING -->
-    <template #heading>
+    <template 
+      v-if="references.title"
+      #heading
+    >
       <h1
         v-if="titleLevel === '1'"
         v-html="references.title"

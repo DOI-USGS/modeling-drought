@@ -1,8 +1,7 @@
 <template>
   <section id="visualization-container">
     <div
-      id="title-container"
-      :class="{ mobile: mobileView}"
+      class="text-container"
     >
       <h1 
         class="title" 
@@ -106,7 +105,7 @@
 </template>
 
 <script setup>
-  import { isMobile } from 'mobile-device-detect';
+  // import { isMobile } from 'mobile-device-detect';
 
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
@@ -120,17 +119,10 @@
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
   // global variables
-  const mobileView = isMobile;
+  // const mobileView = isMobile;
 </script>
 
 <style scoped>
-#title-container {
-  max-width: 80rem; /* 70 pixels on desktop */
-  margin: 0 auto 0 auto;
-}
-#title-container.mobile {
-  max-width: 90vw; /* 90% of view width on mobile */
-}
 .title {
   font-family: sans-serif; /* This is fallback font for old browsers */
   font-family: var(--title-font);
@@ -145,6 +137,6 @@
 }
 .subtitle span {
   position: relative;
-  top: 2.0rem;
+  top: 1rem;
 }
 </style>

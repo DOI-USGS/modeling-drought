@@ -74,6 +74,10 @@
 <style lang="scss">
   $spacing: 2rem;
 
+  .vizSection {
+    margin: 4rem 0 0 0;
+  }
+
   /*#####vizSectionContent#####*/
   .vizSectionContent {
     flex: 1;
