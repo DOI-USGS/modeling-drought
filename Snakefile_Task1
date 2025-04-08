@@ -1,16 +1,16 @@
 rule all:
     input:
-        "src/assets/svgs/lf_example.svg",
-        "src/assets/svgs/pi_example.svg",
+        "src/assets/svgs/lf_example_mobile.svg",
+        "src/assets/svgs/pi_example_mobile.svg",
 
 rule loss_function:
     output:
-        "src/assets/svgs/lf_example.svg"
+        "src/assets/svgs/lf_example_mobile.svg"
     script:
         'Task1/src/LossFunction.py'
 
 rule prediction_interval:
     output:
-        "src/assets/svgs/pi_example.svg"
+        "src/assets/svgs/pi_example_mobile.svg"
     script:
         'Task1/src/PredictionInterval.py'
