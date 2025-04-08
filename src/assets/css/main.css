@@ -36,3 +36,6 @@ text {
 .emph {
   font-weight: 800;
 }
+.toggle-container {
+  margin-top: 1rem;
+}
