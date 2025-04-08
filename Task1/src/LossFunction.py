@@ -4,18 +4,24 @@ import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
 from scipy import interpolate
-from defaults import *
-from functions import *
-from parameters import *
+from Task_config.defaults import *
+from Task_config.functions import *
+from Task_config.parameters import *
 
 ### Plotting
 
 # make figure
-fig = plt.figure(1, figsize=(6, 6), gid="figure-" + basename_gid_lf)
+fig = plt.figure(
+    1,
+    figsize=(target_plotwidth_in_mobile, target_plotwidth_in_mobile / aspect_mobile),
+    gid="figure-" + basename_gid_lf,
+)
 # add axes for loss function
-ax_LF = fig.add_axes([0.333, 0.1, 0.333, 0.333], gid="axis-" + basename_gid_lf + "1")
+ax_LF = fig.add_axes([0.125, 0.575, 0.825, 0.375], gid="axis-" + basename_gid_lf + "1")
 # add axes for the forecast
-ax_forecast = fig.add_axes([0.1, 0.55, 0.8, 0.4], gid="axis-" + basename_gid_lf + "2")
+ax_forecast = fig.add_axes(
+    [0.125, 0.075, 0.825, 0.375], gid="axis-" + basename_gid_lf + "2"
+)
 
 ### Data Arrays
 
@@ -81,17 +87,18 @@ for i, percentile in enumerate(
 # annotations
 ax_LF.annotate(
     "Drag mouse over\ngray region",
-    fontweight="bold",
+    color=ratio_5,
     va="center",
     ha="center",
     xy=(-0.8, 0.1),
     xytext=(-0.1, 0.65),
     arrowprops=dict(
-        facecolor="black",
+        facecolor=ratio_5,
+        edgecolor=ratio_5,
         gid="annotation_lossfunction_arrow",
         arrowstyle="fancy",
         connectionstyle="arc3,rad=0.3",
-        alpha=0.8,
+        alpha=1.0,
     ),
     zorder=10,
     gid="annotation_lossfunction",
@@ -109,7 +116,7 @@ ax_LF.plot(
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, 0.5),
-    color="k",
+    color=median_color_hex,
     zorder=0,
     linestyle="--",
     alpha=static_alpha,
@@ -142,7 +149,7 @@ ax_LF.plot(
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, 0.5),
-    color="k",
+    color=median_color_hex,
     alpha=0.0,
     zorder=2,
     gid="MEDIAN-LF-LINE",
@@ -161,12 +168,11 @@ ax_LF.tick_params(direction="out")
 ax_LF.set_ylim(0, 1)
 ax_LF.set_xlim(-1, 1)
 ax_LF.set_xticks(x_LF, ["Lower", "Median", "Upper"])
-ax_LF.get_yaxis().set_ticks([0, 0.5, 1.0], ["Less\nPenalty\n", "", "More\nPenalty"])
-ax_LF.set_xlabel("Estimate")
-ax_LF.set_title("Loss Function", loc="left", weight="bold")
+ax_LF.set_yticks([0, 0.5, 1.0], ["Less\nPenalty\n", "", "More\nPenalty"])
+ax_LF.set_xlabel("Estimate", weight="semibold")
+ax_LF.set_title("Loss Function", loc="left", weight="extra bold", color="k")
 ax_LF.spines["top"].set_visible(False)
 ax_LF.spines["right"].set_visible(False)
-
 ### Forecast Plot
 # add static forecast lines
 ax_forecast.plot(
@@ -177,7 +183,11 @@ ax_forecast.plot(
     alpha=static_alpha,
 )
 ax_forecast.plot(
-    x_forecast, y_forecast_median, color="k", linestyle="--", alpha=static_alpha
+    x_forecast,
+    y_forecast_median,
+    color=median_color_hex,
+    linestyle="--",
+    alpha=static_alpha,
 )
 ax_forecast.plot(
     x_forecast,
@@ -199,7 +209,7 @@ ax_forecast.fill_between(
 ax_forecast.plot(
     x_forecast,
     y_training,
-    color="tab:red",
+    color=observation_color_hex,
     linestyle=obs_linestyle,
     alpha=0.0,
     gid="observation-full-lf",
@@ -215,7 +225,7 @@ ax_forecast.plot(
 ax_forecast.plot(
     x_forecast,
     y_forecast_median,
-    color="k",
+    color=median_color_hex,
     alpha=0.0,
     zorder=2,
     gid="MEDIAN-FORECAST-LINE",
@@ -230,7 +240,7 @@ ax_forecast.plot(
 )
 
 # forecast axis parameters
-ax_forecast.grid(visible=True, axis="y")
+ax_forecast.grid(visible=True, axis="y", clip_on=False)
 ax_forecast.tick_params(direction="out")
 ax_forecast.set_ylim(0, 100.0)
 ax_forecast.set_xlim(np.datetime64(date_range[0]), np.datetime64(date_range[-1]))
@@ -240,10 +250,13 @@ x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)
 x_ticks_labels = [i for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
-    [0, 20, 40, 60, 80, 100], ["0%", "20%", "40%", "60%", "80%", "100%"]
+    [0, 20, 40, 60, 80, 100],
+    ["0%", "20%", "40%", "60%", "80%", "100%"],
 )
-ax_forecast.set_xlabel("Date")
-ax_forecast.set_title("Streamflow Percentile", loc="left", weight="bold")
+ax_forecast.set_xlabel("Date", weight="semibold")
+ax_forecast.set_title(
+    "Streamflow Percentile", loc="left", weight="extra bold", color="k"
+)
 ax_forecast.spines["top"].set_visible(False)
 ax_forecast.spines["right"].set_visible(False)
 ax_forecast.set_axisbelow(True)
@@ -252,7 +265,23 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task1/out/lf_example.svg", dpi=150, metadata=None)
+fig.savefig("Task1/out/lf_example.svg", dpi=96, metadata=None)
 
 # remove metadata
 remove_metadata("Task1/out/lf_example.svg", "src/assets/svgs/lf_example.svg")
+
+# making desktop version
+fig.set_size_inches(
+    target_plotwidth_in_desktop, target_plotwidth_in_desktop / aspect_desktop
+)
+ax_LF.set_position([0.125 / 2.0, 0.075 * 2.0, 0.825 / 3.0, 0.375 * 2.0])
+ax_forecast.set_position(
+    [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0]
+)
+# make svg
+fig.savefig("Task1/out/lf_example_desktop.svg", dpi=96, metadata=None)
+
+# remove metadata
+remove_metadata(
+    "Task1/out/lf_example_desktop.svg", "src/assets/svgs/lf_example_desktop.svg"
+)
