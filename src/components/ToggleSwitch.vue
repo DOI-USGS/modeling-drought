@@ -141,7 +141,7 @@ defineEmits(['update:modelValue']);
   height: 20px;
   border-radius: 20px;
   transition: background-color 0.3s ease;
-  border: 1px solid var(--black-soft);
+  /* border: 1px solid var(--black-soft); */
 }
 
 .toggle-slider::before {
@@ -151,16 +151,17 @@ defineEmits(['update:modelValue']);
   height: 16px;
   background-color: white;
   border-radius: 50%;
-  top: 1.5px;
-  left: 1.5px;
+  top: 2px;
+  left: 2px;
   transition: transform 0.3s ease;
-  border: 1px solid var(--black-soft); 
+  /* border: 1px solid var(--black-soft);  */
 }
 
 /* move slider to the right when checked */
 .toggle-input:checked + .toggle-slider::before {
+  top: 2px;
   transform: translateX(20px);
-  border: 1px solid var(--black-soft); 
+  /* border: 1px solid var(--black-soft);  */
 }
 
 </style>
