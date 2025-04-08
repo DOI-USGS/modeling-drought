@@ -7,7 +7,7 @@
       :class="{ selected: modelValue === option.value }"
       :style="{
         backgroundColor: modelValue === option.value
-          ? `${option.color}0D` || `${activecolor}0D` // 20 is ~12% opacity in hex
+          ? `${option.color}0D` // 0D is ~5% opacity in hex
           : 'transparent'
       }"
     >
@@ -22,14 +22,14 @@
       <span
         class="radio-button"
         :style="{
-          borderColor: modelValue === option.value ? option.color || activecolor : inactivecolor,
-          backgroundColor: modelValue === option.value ? option.color || activecolor : 'transparent'
+          borderColor: modelValue === option.value ? option.color || activeColor : inactiveColor,
+          backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
         }"
       />
       <span
         class="radio-check"
         :style="{
-          backgroundColor: modelValue === option.value ? centercolor : 'transparent'
+          backgroundColor: modelValue === option.value ? centerColor : 'transparent'
         }"
       />
       <span
@@ -56,15 +56,15 @@ defineProps({
   },
 
   // optional colors
-  activecolor: {
+  activeColor: {
     type: String,
     default: 'var(--black-soft)'
   },
-  inactivecolor: {
+  inactiveColor: {
     type: String,
     default: 'var(--inactive-grey)'
   },
-  centercolor: {
+  centerColor: {
     type: String,
     default: 'var(--black-soft)'
   },
