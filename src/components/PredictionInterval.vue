@@ -16,7 +16,7 @@
       <RadioGroup
         v-model="selectedLayer"
         :options="layers"
-        :centercolor="centerColor"
+        :center-color="centerColor"
       />
     </template>
     <template #figures>
