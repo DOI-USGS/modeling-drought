@@ -19,8 +19,8 @@
   --brick-red: #d62728;
   --bright-orange: #fe7f0e;
   --royal-blue: #1f77b3;
-  --dark-mustard: #B58F36;
-  --grey-blue: #507282;
+  --dark-mustard: #B78935;
+  --grey-blue: #406992;
   --tan: #DCD5A8;
   --medium-brown: #A7693F;
   --very-dark-red: #680000;
@@ -52,7 +52,7 @@
   --color-median: var(--usgs-blue);
   --color-quantile-95: var(--grey-blue);
   --color-quantile-5: var(--dark-mustard);
-  --inactive-grey: #CCCCCC;
+  --inactive-grey: #949494; /* #CCCCCC;*/
   --inactive-text-grey: #757575;
 }
 
