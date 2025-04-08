@@ -7,7 +7,7 @@
       :class="{ selected: modelValue === option.value }"
       :style="{
         backgroundColor: modelValue === option.value
-          ? `${option.color}20` // 20 is ~12% opacity in hex
+          ? `${option.color}0D` || `${activecolor}0D` // 20 is ~12% opacity in hex
           : 'transparent'
       }"
     >
@@ -22,11 +22,16 @@
       <span
         class="radio-button"
         :style="{
-          borderColor: modelValue === option.value ? option.color || activeColor : inactiveColor,
-          backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
+          borderColor: modelValue === option.value ? option.color || activecolor : inactivecolor,
+          backgroundColor: modelValue === option.value ? option.color || activecolor : 'transparent'
         }"
       />
-
+      <span
+        class="radio-check"
+        :style="{
+          backgroundColor: modelValue === option.value ? centercolor : 'transparent'
+        }"
+      />
       <span
         class="radio-text"
         :class="{ ractive: modelValue === option.value }"
@@ -51,14 +56,18 @@ defineProps({
   },
 
   // optional colors
-  activeColor: {
+  activecolor: {
     type: String,
     default: 'var(--black-soft)'
   },
-  inactiveColor: {
+  inactivecolor: {
     type: String,
     default: 'var(--inactive-grey)'
-  }
+  },
+  centercolor: {
+    type: String,
+    default: 'var(--black-soft)'
+  },
 });
 
 defineEmits(['update:modelValue']);
@@ -96,7 +105,7 @@ defineEmits(['update:modelValue']);
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid var(--inactive-grey);
+  border: 2px solid;
   position: relative;
   transition: border-color 0.3s ease;
   display: flex;
@@ -104,11 +113,11 @@ defineEmits(['update:modelValue']);
   justify-content: center;
 }
 
-.radio-input:checked + .radio-button::after {
-  content: "";
+.radio-check {
+  position: absolute;
+  transform: translate(4px,0);
   width: 8px;
   height: 8px;
-  background-color: var(--black-soft);
   border-radius: 50%;
 }
 
