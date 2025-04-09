@@ -95,10 +95,7 @@ function resizeAndDraw() {
   width = bounds.width;
   height = bounds.height;
   nodeRadius = Math.min(width, height) * 0.07;
-
-  console.log('SVG bounds:', bounds.width, bounds.height);
-
-
+  
   d3.select(svg.value).selectAll('*').remove();
   drawGraph();
 }
