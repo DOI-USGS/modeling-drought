@@ -369,7 +369,7 @@ function drawGraph() {
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .svg-container {
     display: flex;
     position: relative;
@@ -385,10 +385,12 @@ svg {
   display: block;
 }
 .group-label {
-  color: white;
+  color: black;
   padding: 0.1em 0.4em;
-  border-radius: 4px;
+  border-radius: 8px;
   margin: 0 0.2em;
   display: inline-block;
+  font-weight: 500;
+  line-height: 1.4;
 }
 </style>
