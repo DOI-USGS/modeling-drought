@@ -15,6 +15,7 @@
       <div class="svg-container">
         <svg
           ref="svg"
+          class="svg"
           :width="width"
           :height="height"
         />
@@ -30,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 import * as d3 from 'd3';
 import VizSection from '@/components/VizSection.vue';
 
@@ -46,9 +47,9 @@ defineProps({
     }
 });
 
-const width = 800;
-const height = 600;
-const nodeRadius = 45;
+let width = 0;
+let height = 0;
+let nodeRadius = 45;
 
 const svg = ref(null);
 
@@ -80,16 +81,30 @@ const nodes = ref([
 
 onMounted(() => {
 
-    drawGraph();
+    resizeAndDraw();
+
+    window.addEventListener('resize', resizeAndDraw);
+    
+
 });
 
+// adjust the cluster space based on svg and screen 
+function resizeAndDraw() {
+  if (!svg.value) return;
+
+  const bounds = svg.value.getBoundingClientRect();
+  width = bounds.width;
+  height = bounds.height;
+  nodeRadius = Math.min(width, height) * 0.07;
+
+  console.log('SVG bounds:', bounds.width, bounds.height);
+
+
+  d3.select(svg.value).selectAll('*').remove();
+  drawGraph();
+}
+
 function drawGraph() {
-
-    // dimensions based on window size
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let nodeRadius = Math.min(width, height) * 0.03; 
-
 
     // for group positioning
     const groupNames = [...new Set(nodes.value.map(d => d.group))];
@@ -324,13 +339,17 @@ function drawGraph() {
 <style scoped lang="scss">
 .svg-container {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 60vh;
 }
 svg {
+  width: 100%;
+  height: 100%;
   overflow: visible;
+  display: block;
 }
 
 </style>
