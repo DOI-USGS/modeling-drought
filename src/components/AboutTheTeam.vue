@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import * as d3 from 'd3';
 import VizSection from '@/components/VizSection.vue';
 
@@ -52,7 +52,6 @@ let height = 0;
 let nodeRadius = 45;
 
 const svg = ref(null);
-
 
 const nodes = ref([
     { id: 'Althea', name: 'Althea Archer', group:  'IIDD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs', url: 'https://www.usgs.gov/staff-profiles/althea-a-archer'},
@@ -79,13 +78,13 @@ const nodes = ref([
     { id: 'Hayley', name: 'Hayley Corson-Dosch', group:  'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/HCorson-Dosch.png', url: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'}
 ]);
 
+// for group visual fx
+const groupAuras = new Map();
+const groupColors = ref({});
+
 onMounted(() => {
-
     resizeAndDraw();
-
     window.addEventListener('resize', resizeAndDraw);
-    
-
 });
 
 // adjust the cluster space based on svg and screen 
@@ -104,6 +103,26 @@ function resizeAndDraw() {
   drawGraph();
 }
 
+// computed styles based on group colors
+const groupStyles = computed(() => {
+  return Object.entries(groupColors.value).map(([group, color]) => {
+    return `.group-label:contains('${group}') { background-color: ${color}; color: white; padding: 0.1em 0.4em; border-radius: 4px; margin: 0 0.2em; }`;
+  }).join('\n');
+});
+
+// inject dynamic style tag
+watch(groupColors, () => {
+  const style = document.getElementById('group-style') || document.createElement('style');
+  style.id = 'group-style';
+
+  style.innerHTML = Object.entries(groupColors.value).map(([group, color]) => {
+    return `.group-label[data-group='${group}'] { background-color: ${color}; }`;
+  }).join('\n');
+
+  document.head.appendChild(style);
+}, { immediate: true });
+
+
 function drawGraph() {
 
     // for group positioning
@@ -116,8 +135,13 @@ function drawGraph() {
         groupCenters.set(group, { x: cx, y: cy });
     });
 
-    // for group visual fx
-    const groupAuras = new Map();
+    function updateGroupColors() {
+        const colorMap = {};
+        groupAuras.forEach((color, group) => {
+            colorMap[group] = color;
+        });
+        groupColors.value = colorMap;
+    }
 
     groupNames.forEach((group, i) => {
         const t = (3+i) / (groupNames.length+6); // normalize to [0, 1]
@@ -339,6 +363,8 @@ function drawGraph() {
         }
     }
 
+    updateGroupColors();
+
 }
 
 </script>
@@ -358,5 +384,11 @@ svg {
   overflow: visible;
   display: block;
 }
-
+.group-label {
+  color: white;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  margin: 0 0.2em;
+  display: inline-block;
+}
 </style>
