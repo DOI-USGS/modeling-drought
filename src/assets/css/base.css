@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 /* semantic color variables for this project */
 /* Define colors */
@@ -14,36 +13,46 @@
   --medium-blue: #4365A8;
   --medium-orange: #E48951;
   --usgs-blue: #00264c;
+  --faded-usgs-blue: #d8dee4;
+  --less-faded-usgs-blue: #65788a;
   --usgs-green: #006F41;
   --brick-red: #d62728;
   --bright-orange: #fe7f0e;
   --royal-blue: #1f77b3;
+  --dark-mustard: #B78935;
+  --grey-blue: #406992;
+  --tan: #DCD5A8;
+  --medium-brown: #A7693F;
+  --very-dark-red: #680000;
+  --dark-red: #883e3a;
 
   font-size: 62.5%;
 
-  --title-font: Roboto Slab;
-  --default-font: Source Sans Pro;
+  --title-font: 'Source Sans 3';
+  --default-font: 'Source Sans 3';
 }
 
 /* Declare color variables */
 :root {
   --color-background: var(--white);
+  --color-lowlight: var(--faded-usgs-blue);
   --color-text: var(--black-soft);
-  --color-title-text: var(--dodger-blue);
+  --color-title-text: var(--usgs-blue);
+  --color-subtitle-text: var(--usgs-blue);
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--medium-grey);
-  --color-link: var(--medium-purple);
+  --color-link: var(--grey-blue);
   --color-bar-focal: var(--medium-blue);
   --color-bar-default: var(--medium-grey);
   --color-map-focal: var(--medium-orange);
   --color-map-default: var(--white);
   --color-USGS-header-footer: var(--usgs-blue);
-  --color-observations: var(--brick-red);
-  --color-median: var(--black-soft);
-  --color-quantile-95: var(--bright-orange);
-  --color-quantile-5: var(--royal-blue);
-  --inactive-grey: #CCCCCC;
+  --color-observations: var(--dark-red);
+  --color-median: var(--usgs-blue);
+  --color-quantile-95: var(--grey-blue);
+  --color-quantile-5: var(--dark-mustard);
+  --inactive-grey: #949494; /* #CCCCCC;*/
   --inactive-text-grey: #757575;
 }
 
@@ -80,14 +89,30 @@ body {
   overscroll-behavior: none;
 }
 h1 {
-  font-size: 5rem;
-  font-weight: 800;
-  padding: 0rem 0 1rem 0;
+  font-size: 5.6rem;
+  font-weight: 200;
+  color: var(--color-title-text);
+  padding: 8rem 0 8rem 0;
+  @media only screen and (max-width: 600px) {
+    font-size: 5rem;
+    padding: 3rem 0 3rem 0;
+  }
 }
 h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  padding: 3rem 0 1rem 0;
+  font-size: 3.6rem;
+  font-weight: 300;
+  color: var(--color-title-text);
+  padding: 5rem 0 0 0;
+  margin-bottom: 2rem;
+  @media only screen and (max-width: 600px) {
+    font-size: 3.2rem;
+  }  
+}
+h3 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: var(--color-title-text);
+  padding: 0 0 1.5rem 0;
 }
 p, text, li {
   padding: 0 0 1rem 0;

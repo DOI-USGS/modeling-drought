@@ -6,21 +6,23 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <h2>
+      <h3>
         {{ text.heading }}
-      </h2>
+      </h3>
     </template>
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
       <p v-html="text.paragraph2" />
-      <ToggleSwitch 
-        v-for="layer, index in layers"
-        :key="index"
-        v-model="layer.visible" 
-        :label="layer.label"
-        :right-color="layer.color"
-      />
+      <div class="toggle-container">
+        <ToggleSwitch 
+          v-for="layer, index in layers"
+          :key="index"
+          v-model="layer.visible" 
+          :label="layer.label"
+          :right-color="layer.color"
+        />
+      </div>
     </template>
     <template #figures>
       <div id="lf-grid-container">

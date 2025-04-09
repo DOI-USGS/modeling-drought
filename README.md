@@ -69,9 +69,9 @@ When setting up a new project you'll need to take the following steps:
     * [x] Delete `'src/components/BarChartExample.vue'` and `'public/state_facility_type_summmary.csv'`
     * [x] Delete `'src/components/RegionalViolins.vue'`, the 16 associated `'.png'` files in `'src/assets/images'`, and the two `'.svg'` files in `'src/assets/svgs'`
     * [x] In `'src/views/VisualizationView.vue'` delete the import statements for both components in the `<script setup>` section and the references to the components in the html `<template>`
-    * [ ] Also delete the two example banner images in `'src/assets/images'` used as placeholders in the example section titles
+    * [x] Also delete the two example banner images in `'src/assets/images'` used as placeholders in the example section titles
 3. If not using, delete the section title template component from the site
-    * [ ] `'src/components/SectionTitle.vue'`
+    * [x] `'src/components/SectionTitle.vue'`
 4. Update project-specific attributions and references
     * [x] Update content of `'src/text/authors.js'` to list project authors. Do not edit the structure of this file
     * [ ] Update content of `'src/text/references.js'` to list project references. Do not edit the structure of this file

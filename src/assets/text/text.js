@@ -1,29 +1,26 @@
+import ForecastConfidence from "../../components/ForecastConfidence.vue";
+import references from "./references";
+
 export default {
-    pageTitle: "Modeling drought",
+    pageTitle: "Modeling <span class='emph'>streamflow</span> drought",
     sections: {
         A: {
             title: "How uncertainty is quantified",
-            id: "sectionA",
-            image: "sectionA_banner.png",
-            alt: "An overhead view of a braided river, surrounded by snow-covered ground."
         },
         B: {
             title: "How confidence changes with lead time",
-            id: "sectionB",
-            image: "sectionB_banner.jpg",
-            alt: "An overhead view of a river flowing through a snow-covered decidious forest."
         },
         C: {
             title: "Event-driven metrics for model evaluation",
-            id: "sectionC",
-            image: "sectionC_banner.jpg",
-            alt: "Alt text for section C banner image"
         },
         D: {
             title: "About the data-driven drought team",
-            id: "sectionD",
-            image: "sectionD_banner.jpg",
-            alt: "Alt text for section D banner image"
+        },
+        references: {
+            title: "References"
+        },
+        authors: {
+            title: "USGS Vizlab"
         }
     },
     components: {
@@ -39,14 +36,14 @@ export default {
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
         },
-        Forecast: {
+        ForecastConfidence: {
             heading: "Forecast",
-            paragraph1: "",
-            caption: "Hover your mouse over the plot to see the how the model forcasts drought.",
+            paragraph1: "A paragraph.",
+            caption: "Hover your mouse over the plot to see how the model forecasts streamflow drought.",
         },
         ForecastSummary: {
             heading: "Forecast Summary",
-            paragraph1: "",
+            paragraph1: "A paragraph.",
             caption: "Hover your mouse over the plot to see ...TBA",
         },
         AboutTheTeam: {

@@ -7,7 +7,7 @@
       :class="{ selected: modelValue === option.value }"
       :style="{
         backgroundColor: modelValue === option.value
-          ? `${option.color}20` // 20 is ~12% opacity in hex
+          ? `${option.color}0D` // 0D is ~5% opacity in hex
           : 'transparent'
       }"
     >
@@ -26,7 +26,12 @@
           backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
         }"
       />
-
+      <span
+        class="radio-check"
+        :style="{
+          backgroundColor: modelValue === option.value ? centerColor : 'transparent'
+        }"
+      />
       <span
         class="radio-text"
         :class="{ ractive: modelValue === option.value }"
@@ -58,7 +63,11 @@ defineProps({
   inactiveColor: {
     type: String,
     default: 'var(--inactive-grey)'
-  }
+  },
+  centerColor: {
+    type: String,
+    default: 'var(--black-soft)'
+  },
 });
 
 defineEmits(['update:modelValue']);
@@ -70,6 +79,7 @@ defineEmits(['update:modelValue']);
   row-gap: 2px;
   column-gap: 16px;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .radio-label {
@@ -96,7 +106,7 @@ defineEmits(['update:modelValue']);
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid var(--inactive-grey);
+  border: 2px solid;
   position: relative;
   transition: border-color 0.3s ease;
   display: flex;
@@ -104,11 +114,11 @@ defineEmits(['update:modelValue']);
   justify-content: center;
 }
 
-.radio-input:checked + .radio-button::after {
-  content: "";
+.radio-check {
+  position: absolute;
+  transform: translate(4px,0);
   width: 8px;
   height: 8px;
-  background-color: var(--black-soft);
   border-radius: 50%;
 }
 
