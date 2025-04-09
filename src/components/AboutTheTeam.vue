@@ -149,15 +149,17 @@ function drawGraph() {
         .attr('class', 'ripples')
 
     const node = svgElement.append('g')
-        .selectAll('circle')
+        .selectAll('a')
         .data(nodes.value)
-        .join('circle')
+        .join('a')
+        .attr('xlink:href', d => d.url || null)
+        .attr('target', '_blank')
+        .append('circle')
         .attr('r', nodeRadius)
         .attr('stroke', d => groupAuras.get(d.group))
         .attr('stroke-width', 4)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
-
 
     // svg defs
     const defs = svgElement.append('defs');
@@ -220,9 +222,11 @@ function drawGraph() {
 
     //mouseover effects
     node.on('mouseover', (event, d) => {
+
         d3.select(event.currentTarget)
             .style('fill', d => groupAuras.get(d.group))
             .style('opacity', 0.8);
+
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'visible')
             .style('fill', 'black')
@@ -232,17 +236,19 @@ function drawGraph() {
 
         createRippleEffect(d)
 
-    })
+        })
         .on('mouseout', (event, d) => {
-        d3.select(event.currentTarget)
-            .style('fill', `url(#pattern-${d.id})`)
-            .style('opacity', 1);
-        labels.filter(ld => ld.id === d.id)
-            .style('visibility', 'hidden');
-    })
+
+            d3.select(event.currentTarget)
+                .style('fill', `url(#pattern-${d.id})`)
+                .style('opacity', 1);
+
+            labels.filter(ld => ld.id === d.id)
+                .style('visibility', 'hidden');
+        })
         .on('click', (event, d) => {
-        window.open(d.url, '_blank');
-    });
+            window.open(d.url, '_blank');
+        });
 
     // allow circles to move
     simulation.on('tick', () => {
