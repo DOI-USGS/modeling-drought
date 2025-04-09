@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import * as d3 from 'd3';
 import VizSection from '@/components/VizSection.vue';
 
@@ -85,6 +85,12 @@ onMounted(() => {
 
 function drawGraph() {
 
+    // dimensions based on window size
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let nodeRadius = Math.min(width, height) * 0.03; 
+
+
     // for group positioning
     const groupNames = [...new Set(nodes.value.map(d => d.group))];
     const groupCenters = new Map();
@@ -99,7 +105,7 @@ function drawGraph() {
     const groupAuras = new Map();
 
     groupNames.forEach((group, i) => {
-        const t = (1+i) / (groupNames.length+5); // normalize to [0, 1]
+        const t = (3+i) / (groupNames.length+6); // normalize to [0, 1]
         const color = d3.interpolateTurbo(t); // or interpolateCool, Turbo, Plasma
         groupAuras.set(group, color);
     });
@@ -203,10 +209,10 @@ function drawGraph() {
             .style('opacity', 0.8);
         labels.filter(ld => ld.id === d.id)
             .style('visibility', 'visible')
-            .style('fill', 'white')
+            .style('fill', 'black')
             .style('font-weight', '800')
-            .style('stroke', 'black')
-            .style('stroke-weight', '0.1');
+            .style('stroke', 'white')
+            .style('stroke-width', '0.1');
 
         createRippleEffect(d)
 
