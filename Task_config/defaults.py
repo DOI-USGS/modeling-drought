@@ -50,8 +50,8 @@ def hex_to_rgb(hex_color):
     return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
 
 
-lower_color_limit_hex = "#406992"
-upper_color_limit_hex = "#B78935"
+lower_color_limit_hex = "#B78935"
+upper_color_limit_hex = "#406992"
 observation_color_hex = "#883e3a"
 median_color_hex = "#00264c"
 
