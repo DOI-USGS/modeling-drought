@@ -272,11 +272,14 @@ remove_metadata(
     "Task1/out/lf_example_mobile.svg", "src/assets/svgs/lf_example_mobile.svg"
 )
 
-# making desktop version
+# to make the desktop version, we first adjust the figure size to a more horizontal aspect
 fig.set_size_inches(
     target_plotwidth_in_desktop, target_plotwidth_in_desktop / aspect_desktop
 )
+
+# we then set a new position for the loss function plot and make it more square
 ax_LF.set_position([0.125 / 2.0, 0.075 * 2.0, 0.825 / 3.0, 0.375 * 2.0])
+# last we stretch the forecase plot to make it wider
 ax_forecast.set_position(
     [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0]
 )
