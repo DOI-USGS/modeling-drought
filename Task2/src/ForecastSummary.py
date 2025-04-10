@@ -5,17 +5,24 @@ import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
 from scipy import interpolate
-from defaults import *
-from functions import *
-from parameters import *
+from Task_config.defaults import *
+from Task_config.functions import *
+from Task_config.parameters import *
 
 ### Plotting
 
 # make figure
-fig_pred_interval = plt.figure(1, figsize=(6, 5), gid="figure-" + basename_gid_lf)
+fig_pred_interval = plt.figure(
+    1,
+    figsize=(
+        target_single_plotwidth,
+        target_single_plotwidth / aspect_single_plot,
+    ),
+    gid="figure-" + basename_gid_forecast_summary_1,
+)
 # add axes for the forecast
 ax_pred_interval = fig_pred_interval.add_axes(
-    [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_lf + "3"
+    [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_forecast_summary_1
 )
 
 ### Data Arrays
@@ -65,10 +72,12 @@ ax_pred_interval.set_xticks(
     [0, 7, 14, 28, 56, 91],
     [0, 1, 2, 4, 8, 13],
 )
-ax_pred_interval.set_title("Streamflow Prediction Interval", loc="left", weight="bold")
+ax_pred_interval.set_title(
+    "Streamflow Prediction Interval", loc="left", weight="extra bold", color="k"
+)
 ax_pred_interval.spines["top"].set_visible(False)
 ax_pred_interval.spines["right"].set_visible(False)
-ax_pred_interval.set_xlabel("Prediction Horizon in Weeks")
+ax_pred_interval.set_xlabel("Prediction Horizon in Weeks", weight="semibold")
 ax_pred_interval.grid(visible=True, axis="y")
 ax_pred_interval.set_axisbelow(True)
 ax_pred_interval.tick_params(direction="out")
@@ -78,13 +87,22 @@ fig_pred_interval.savefig("Task2/out/fc_summary.png", dpi=150, metadata=None)
 fig_pred_interval.savefig("Task2/out/fc_summary.svg", dpi=150, metadata=None)
 
 # remove metadata
-remove_metadata("Task2/out/fc_summary.svg", "src/assets/svgs/fc_summary.svg")
+remove_metadata_and_fix("Task2/out/fc_summary.svg", "src/assets/svgs/fc_summary.svg")
 
 
 # make figure
-fig_wd = plt.figure(2, figsize=(6, 5), gid="figure-" + basename_gid_lf)
+fig_wd = plt.figure(
+    2,
+    figsize=(
+        target_single_plotwidth,
+        target_single_plotwidth / aspect_single_plot,
+    ),
+    gid="figure-" + basename_gid_forecast_summary_2,
+)
 # add axes for the forecast
-ax_wd = fig_wd.add_axes([0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_lf + "4")
+ax_wd = fig_wd.add_axes(
+    [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_forecast_summary_2
+)
 
 drought_top = (drought_data["ave_q95_when_obs_drought"]).to_list()
 drought_bottom = (drought_data["ave_q05_when_obs_drought"]).to_list()
@@ -146,18 +164,22 @@ ax_wd.set_xticks(
     [0, 1, 2, 4, 8, 13],
 )
 ax_wd.set_title(
-    "Streamflow Predictions (Drought and Wet Periods)", loc="left", weight="bold"
+    "Streamflow Predictions (Drought and Wet Periods)",
+    loc="left",
+    weight="extra bold",
+    color="k",
 )
 ax_wd.spines["top"].set_visible(False)
 ax_wd.spines["right"].set_visible(False)
-ax_wd.set_xlabel("Prediction Horizon in Weeks")
+ax_wd.set_xlabel("Prediction Horizon in Weeks", weight="semibold")
 ax_wd.grid(visible=True, axis="y")
 ax_wd.set_axisbelow(True)
 ax_wd.tick_params(direction="out")
 
 # make svg
-fig_wd.savefig("Task2/out/fc_wd_summary.png", dpi=150, metadata=None)
-fig_wd.savefig("Task2/out/fc_wd_summary.svg", dpi=150, metadata=None)
+fig_wd.savefig("Task2/out/fc_wd_summary.svg", metadata=None)
 
 # remove metadata
-remove_metadata("Task2/out/fc_wd_summary.svg", "src/assets/svgs/fc_wd_summary.svg")
+remove_metadata_and_fix(
+    "Task2/out/fc_wd_summary.svg", "src/assets/svgs/fc_wd_summary.svg"
+)

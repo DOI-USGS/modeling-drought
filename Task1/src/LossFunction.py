@@ -13,7 +13,10 @@ from Task_config.parameters import *
 # make figure
 fig = plt.figure(
     1,
-    figsize=(target_plotwidth_in_mobile, target_plotwidth_in_mobile / aspect_mobile),
+    figsize=(
+        target_plotwidth_in_mobile,
+        target_plotwidth_in_mobile / aspect_double_plot_mobile,
+    ),
     gid="figure-" + basename_gid_lf,
 )
 # add axes for loss function
@@ -274,7 +277,8 @@ remove_metadata_and_fix(
 
 # to make the desktop version, we first adjust the figure size to a more horizontal aspect
 fig.set_size_inches(
-    target_plotwidth_in_desktop, target_plotwidth_in_desktop / aspect_desktop
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_desktop / aspect_double_plot_desktop,
 )
 
 # we then set a new position for the loss function plot and make it more square

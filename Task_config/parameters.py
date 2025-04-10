@@ -49,6 +49,8 @@ missed_marker_size = 8.0
 
 ### Forecast
 basename_gid_forecast = "forecast"
+basename_gid_forecast_summary_1 = "forecast_summary_1"
+basename_gid_forecast_summary_2 = "forecast_summary_2"
 offset = [0, 1, 2, 4, 8, 13]
 dt = 7
 dense_dt = 1
