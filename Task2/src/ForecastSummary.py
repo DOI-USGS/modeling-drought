@@ -43,7 +43,7 @@ ax_pred_interval.fill_between(
     horizon_weeks,
     avg_width_top,
     np.zeros_like(avg_width_top),
-    color="tab:green",
+    color=median_color_hex,
     linewidth=0.0,
     alpha=0.5,
     label="Median Prediction",
@@ -124,7 +124,7 @@ ax_wd.fill_between(
     horizon_weeks,
     drought_top,
     drought_bottom,
-    color="tab:red",
+    color=lower_color_limit_hex,
     linewidth=0.0,
     alpha=0.15,
     gid="drought-forecast-summary-patch",
@@ -132,7 +132,7 @@ ax_wd.fill_between(
 ax_wd.plot(
     horizon_weeks,
     drought_mid,
-    color="tab:red",
+    color=lower_color_limit_hex,
     alpha=0.15,
     gid="drought-forecast-summary-line",
 )
@@ -142,7 +142,7 @@ ax_wd.fill_between(
     horizon_weeks,
     wet_top,
     wet_bottom,
-    color="tab:blue",
+    color=upper_color_limit_hex,
     linewidth=0.0,
     alpha=0.15,
     gid="wet-forecast-summary-patch",
@@ -150,7 +150,7 @@ ax_wd.fill_between(
 ax_wd.plot(
     horizon_weeks,
     wet_mid,
-    color="tab:blue",
+    color=upper_color_limit_hex,
     alpha=0.15,
     gid="wet-forecast-summary-line",
 )
