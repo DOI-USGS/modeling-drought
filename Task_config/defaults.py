@@ -4,12 +4,14 @@ import matplotlib as mpl
 import matplotlib.font_manager as font_manager
 
 # Set default font size
-target_fontsize_px = 16  # 12pt font
+target_fontsize_px = 20  # in px
+target_fontsize_px_title = 24  # in px
+# These are the target widths on the website.
 target_plotwidth_px_mobile = 700
 target_plotwidth_px_desktop = 1200
-default_viewport_px = 96
-target_plotwidth_in_mobile = target_plotwidth_px_mobile / default_viewport_px
-target_plotwidth_in_desktop = target_plotwidth_px_desktop / default_viewport_px
+matplotlib_error_correction = 72  # matplotlib works in pt, but svg comes out in px. This fixes things with the remove_metadata_and_fix function.
+target_plotwidth_in_mobile = target_plotwidth_px_mobile / matplotlib_error_correction
+target_plotwidth_in_desktop = target_plotwidth_px_desktop / matplotlib_error_correction
 aspect_mobile = 1.0
 aspect_desktop = 3.0
 
@@ -19,18 +21,15 @@ ratio_5 = "#6E6E6E"
 ratio_3 = "#949494"
 ratio_1_5 = "#D1D1D1"
 
-# fonts
-font_path = (
-    os.getcwd() + "/Task_config/SourceSans3-VariableFont_wght.ttf"
-)  # Your font path goes here
-font_manager.fontManager.addfont(font_path)
-prop = font_manager.FontProperties(fname=font_path)
+# adjust
+font_manager.weight_dict.update({"light": 300})
 
 mpl.rcParams["font.family"] = "sans-serif"
-mpl.rcParams["font.sans-serif"] = prop.get_name()
+mpl.rcParams["font.sans-serif"] = "Source Sans 3"  # prop.get_name()
 mpl.rcParams["font.weight"] = "light"
-mpl.rcParams["font.size"] = 12
+mpl.rcParams["font.size"] = target_fontsize_px
 mpl.rcParams["text.color"] = ratio_7
+mpl.rcParams["axes.titlesize"] = target_fontsize_px_title
 mpl.rcParams["axes.labelcolor"] = ratio_7
 mpl.rcParams["xtick.labelcolor"] = ratio_7
 mpl.rcParams["ytick.labelcolor"] = ratio_7

@@ -259,7 +259,7 @@ start_year = 1971 + np.datetime64(date_range[0], "Y").astype(int)
 end_year = 1971 + np.datetime64(date_range[-1], "Y").astype(int)
 x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)]
 x_ticks_labels = [i for i in range(start_year, end_year)]
-ax_forecast.set_xticks(x_ticks, x_ticks_labels, weight="light")
+ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
     [0, 20, 40, 60, 80, 100],
     ["0%", "20%", "40%", "60%", "80%", "100%"],
@@ -281,10 +281,10 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task1/out/pi_example_mobile.svg", dpi=96, metadata=None)
+fig.savefig("Task1/out/pi_example_mobile.svg", metadata=None)
 
 # remove metadata
-remove_metadata(
+remove_metadata_and_fix(
     "Task1/out/pi_example_mobile.svg", "src/assets/svgs/pi_example_mobile.svg"
 )
 
@@ -300,9 +300,9 @@ ax_forecast.set_position(
     [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0]
 )
 # make svg
-fig.savefig("Task1/out/pi_example_desktop.svg", dpi=96, metadata=None)
+fig.savefig("Task1/out/pi_example_desktop.svg", metadata=None)
 
 # remove metadata
-remove_metadata(
+remove_metadata_and_fix(
     "Task1/out/pi_example_desktop.svg", "src/assets/svgs/pi_example_desktop.svg"
 )

@@ -31,11 +31,24 @@ def forecast_format(y):
 
 
 # remove annoying metadata that sets vue warnings off
-def remove_metadata(infile, outfile):
-    output = open(outfile, "w")
-    input = open(infile).read()
-    output.write(re.sub("<metadata>.*?</metadata>\n", "", input, flags=re.DOTALL))
-    output.close()
+def remove_metadata_and_fix(infile, outfile):
+    with open(infile, "r") as input_file:
+        input_content = input_file.read()
+
+    # Remove <metadata> sections
+    modified_content = re.sub(
+        r"<metadata>.*?</metadata>\n?", "", input_content, flags=re.DOTALL
+    )
+
+    # Convert pt to px
+    # This is a required workaround because Matplotlib correctly sizes the image based on the dpi and 72 points per inch
+    # However, it incorrectly write the text as px, despite it actually being the size in pts (some weird scaling?)
+    # By simply changing the size of the canvas as px instead of pt. Everything should be fixed.
+    # NOTE: For this to work font must be specified in pixels, despite matplotlib documentation saying it's in points.
+    modified_content = modified_content.replace("pt", "px")
+
+    with open(outfile, "w") as output_file:
+        output_file.write(modified_content)
 
 
 def selectable_text(ax, x, y, label, fontcolor, facecolor, edgecolor, va, ha, gid):

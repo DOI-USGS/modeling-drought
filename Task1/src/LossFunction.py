@@ -265,10 +265,10 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task1/out/lf_example_mobile.svg", dpi=96, metadata=None)
+fig.savefig("Task1/out/lf_example_mobile.svg", metadata=None)
 
 # remove metadata
-remove_metadata(
+remove_metadata_and_fix(
     "Task1/out/lf_example_mobile.svg", "src/assets/svgs/lf_example_mobile.svg"
 )
 
@@ -284,9 +284,9 @@ ax_forecast.set_position(
     [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0]
 )
 # make svg
-fig.savefig("Task1/out/lf_example_desktop.svg", dpi=96, metadata=None)
+fig.savefig("Task1/out/lf_example_desktop.svg", metadata=None)
 
 # remove metadata
-remove_metadata(
+remove_metadata_and_fix(
     "Task1/out/lf_example_desktop.svg", "src/assets/svgs/lf_example_desktop.svg"
 )
