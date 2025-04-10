@@ -26,7 +26,12 @@
     </template>
     <template #figures>
       <div id="lf-grid-container">
-        <lfPlot
+        <lfPlotMobile
+          v-if="mobileView"
+          id="lf-svg"
+        />
+        <lfPlotDesktop
+          v-else
           id="lf-svg"
         />
       </div>
@@ -45,9 +50,14 @@
 <script setup>
     import { onMounted, reactive, watch } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
-    import lfPlot from "@/assets/svgs/lf_example_desktop.svg";
+    import lfPlotDesktop from "@/assets/svgs/lf_example_desktop.svg";
+    import lfPlotMobile from "@/assets/svgs/lf_example_mobile.svg";
+
+    // global variables
+    const mobileView = isMobile;
 
     // define props
     defineProps({
