@@ -6,9 +6,9 @@ from scipy import interpolate
 import pyarrow.feather as feather
 import re
 import os
-from defaults import *
-from functions import *
-from parameters import *
+from Task_config.defaults import *
+from Task_config.functions import *
+from Task_config.parameters import *
 
 ### Data Arrays
 
@@ -219,7 +219,7 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task2/out/fc_example.svg", dpi=150)
+fig.savefig("Task2/out/fc_example.svg", metadata=None)
 
 # remove metadata
-remove_metadata("Task2/out/fc_example.svg", "src/assets/svgs/fc_example.svg")
+remove_metadata_and_fix("Task2/out/fc_example.svg", "src/assets/svgs/fc_example.svg")
