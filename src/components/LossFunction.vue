@@ -26,8 +26,12 @@
     </template>
     <template #figures>
       <div id="lf-grid-container">
+        <lfPlotTablet
+          v-if="mobileView && windowSizeStore.windowWidth > 500"
+          id="lf-svg"
+        />
         <lfPlotMobile
-          v-if="mobileView"
+          v-else-if="mobileView && windowSizeStore.windowWidth <= 500"
           id="lf-svg"
         />
         <lfPlotDesktop
@@ -54,10 +58,15 @@
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
     import lfPlotDesktop from "@/assets/svgs/lf_example_desktop.svg";
+    import lfPlotTablet from "@/assets/svgs/lf_example_tablet.svg";
     import lfPlotMobile from "@/assets/svgs/lf_example_mobile.svg";
+    import { useWindowSizeStore } from '@/stores/WindowSizeStore';
 
     // global variables
     const mobileView = isMobile;
+    const windowSizeStore = useWindowSizeStore();
+
+    console.log(windowSizeStore.windowWidth)
 
     // define props
     defineProps({

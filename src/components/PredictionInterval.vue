@@ -21,8 +21,12 @@
     </template>
     <template #figures>
       <div id="pi-grid-container">
+        <piPlotTablet
+          v-if="mobileView && windowSizeStore.windowWidth > 500"
+          id="pi-svg"
+        />
         <piPlotMobile
-          v-if="mobileView"
+          v-else-if="mobileView && windowSizeStore.windowWidth <= 500"
           id="pi-svg"
         />
         <piPlotDesktop
@@ -45,10 +49,13 @@
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup from '@/components/RadioGroup.vue'
     import piPlotDesktop from "@/assets/svgs/pi_example_desktop.svg";
+    import piPlotTablet from "@/assets/svgs/pi_example_tablet.svg";
     import piPlotMobile from "@/assets/svgs/pi_example_mobile.svg";
+    import { useWindowSizeStore } from '@/stores/WindowSizeStore';
 
     // global variables
     const mobileView = isMobile;
+    const windowSizeStore = useWindowSizeStore();
 
     // define props
     defineProps({
