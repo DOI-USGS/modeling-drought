@@ -14,8 +14,8 @@ from Task_config.parameters import *
 fig = plt.figure(
     1,
     figsize=(
-        target_plotwidth_in_mobile,
-        target_plotwidth_in_mobile / aspect_double_plot_mobile,
+        target_plotwidth_in_tablet,
+        target_plotwidth_in_tablet / aspect_double_plot_tablet,
     ),
     gid="figure-" + basename_gid_lf,
 )
@@ -268,11 +268,11 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task1/out/lf_example_mobile.svg", metadata=None)
+fig.savefig("Task1/out/lf_example_tablet.svg", metadata=None)
 
 # remove metadata
 remove_metadata_and_fix(
-    "Task1/out/lf_example_mobile.svg", "src/assets/svgs/lf_example_mobile.svg"
+    "Task1/out/lf_example_tablet.svg", "src/assets/svgs/lf_example_tablet.svg"
 )
 
 # to make the desktop version, we first adjust the figure size to a more horizontal aspect
@@ -293,4 +293,22 @@ fig.savefig("Task1/out/lf_example_desktop.svg", metadata=None)
 # remove metadata
 remove_metadata_and_fix(
     "Task1/out/lf_example_desktop.svg", "src/assets/svgs/lf_example_desktop.svg"
+)
+
+# to make the mobile version, we first adjust the figure size to a more horizontal aspect
+fig.set_size_inches(
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_mobile / aspect_double_plot_mobile,
+)
+
+# we then set a new position for the loss function plot and make it more square
+ax_LF.set_position([0.14, 0.6, 0.8, 0.333])
+# last we stretch the forecase plot to make it wider
+ax_forecast.set_position([0.14, 0.1, 0.8, 0.333])
+# make svg
+fig.savefig("Task1/out/lf_example_mobile.svg", metadata=None)
+
+# remove metadata
+remove_metadata_and_fix(
+    "Task1/out/lf_example_mobile.svg", "src/assets/svgs/lf_example_mobile.svg"
 )
