@@ -4,18 +4,21 @@ import matplotlib as mpl
 import matplotlib.font_manager as font_manager
 
 # Set default font size
-target_fontsize_px = 20  # in px
-target_fontsize_px_title = 24  # in px
+target_fontsize_px = 16  # in px
+target_fontsize_px_title = 20  # in px
 # These are the target widths on the website.
 target_single_plotwidth_px = 700
-target_plotwidth_px_mobile = 700
+target_plotwidth_px_mobile = 400
+target_plotwidth_px_tablet = 700
 target_plotwidth_px_desktop = 1200
 matplotlib_error_correction = 72  # matplotlib works in pt, but svg comes out in px. This fixes things with the remove_metadata_and_fix function.
 target_single_plotwidth = target_single_plotwidth_px / matplotlib_error_correction
 target_plotwidth_in_mobile = target_plotwidth_px_mobile / matplotlib_error_correction
+target_plotwidth_in_tablet = target_plotwidth_px_tablet / matplotlib_error_correction
 target_plotwidth_in_desktop = target_plotwidth_px_desktop / matplotlib_error_correction
 aspect_single_plot = 1.333
-aspect_double_plot_mobile = 1.0
+aspect_double_plot_mobile = 0.8
+aspect_double_plot_tablet = 1.0
 aspect_double_plot_desktop = 3.0
 
 # Shades of Gray
