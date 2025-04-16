@@ -27,11 +27,11 @@
     <template #figures>
       <div id="lf-grid-container">
         <lfPlotTablet
-          v-if="mobileView && windowSizeStore.windowWidth > 500"
+          v-if="tabletView"
           id="lf-svg"
         />
         <lfPlotMobile
-          v-else-if="mobileView && windowSizeStore.windowWidth <= 500"
+          v-else-if="mobileView"
           id="lf-svg"
         />
         <lfPlotDesktop
@@ -55,18 +55,16 @@
     import { onMounted, reactive, watch } from "vue";
     import * as d3 from 'd3';
     import { isMobile } from 'mobile-device-detect';
+    import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
     import lfPlotDesktop from "@/assets/svgs/lf_example_desktop.svg";
     import lfPlotTablet from "@/assets/svgs/lf_example_tablet.svg";
     import lfPlotMobile from "@/assets/svgs/lf_example_mobile.svg";
-    import { useWindowSizeStore } from '@/stores/WindowSizeStore';
 
     // global variables
     const mobileView = isMobile;
-    const windowSizeStore = useWindowSizeStore();
-
-    console.log(windowSizeStore.windowWidth)
+    const tabletView = isTablet;
 
     // define props
     defineProps({
