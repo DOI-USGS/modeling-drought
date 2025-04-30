@@ -15,14 +15,9 @@
     </template>
     <!-- FIGURES -->
     <template #figures>
-      <div id="fc-grid-container">
-        <fcPlot
-          id="fc-svg"
-        />
-      </div>
-      <div id="fcwd-grid-container">
-        <fcwdPlot
-          id="fcwd-svg"
+      <div id="fc-summary-grid-container">
+        <fcsumPlot
+          id="fc-summary-svg"
         />
       </div>
     </template>
@@ -41,8 +36,7 @@
     import { isMobile } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import fcPlot from "@/assets/svgs/fc_summary.svg";
-    import fcwdPlot from "@/assets/svgs/fc_wd_summary.svg";
+    import fcsumPlot from "@/assets/svgs/fc_summary_desktop.svg";
 
     // global variables
     const mobileView = isMobile;
@@ -64,49 +58,49 @@
         addInteractions();
     });
     
+
+    // Draw the percent width line and label
+    function drew_prediction_width(pw_id) {
+        d3.select("#prediction-width-line-" + pw_id).selectAll("path")
+            .style("stroke-opacity", 1)
+        d3.select("#prediction-width-label-percent-" + pw_id).selectAll("text")
+            .style("opacity", 1);
+    }
+
+    // Draw the percent width line and label
+    function remove_prediction_width(pw_id) {
+        d3.select("#prediction-width-line-" + pw_id).selectAll("path")
+            .style("stroke-opacity", 0)
+        d3.select("#prediction-width-label-percent-" + pw_id).selectAll("text")
+            .style("opacity", 0);
+    }
+
     function mouseover(event) {
-        if (event.currentTarget.id.startsWith("drought-forecast-summary")){
-            d3.select("#drought-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.5);
-            d3.select("#drought-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.75);
-        }
-        if (event.currentTarget.id.startsWith("wet-forecast-summary")){
-            d3.select("#wet-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.5);
-            d3.select("#wet-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.75);
+      if (event.currentTarget.id.startsWith("prediction-width-hover")){
+            let pw_id = event.currentTarget.id.slice(23);
+            drew_prediction_width(pw_id);
         }
       }
 
     function mouseout(event) {
-        if (event.currentTarget.id.startsWith("drought-forecast-summary")){
-            d3.select("#drought-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.15);
-            d3.select("#drought-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.15);
-        }
-        if (event.currentTarget.id.startsWith("wet-forecast-summary")){
-            d3.select("#wet-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.15);
-            d3.select("#wet-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.15);
+      if (event.currentTarget.id.startsWith("prediction-width-hover")){
+            let pw_id = event.currentTarget.id.slice(23);
+            remove_prediction_width(pw_id);
         }
       }
 
     function addInteractions() {
         // set viewbox for svg with confidence interval chart
-        const fcwdSVG = d3.select("#fcwd-svg")
-
+        const fcsumSVG = d3.select("#fc-summary-svg")
         // Add interaction to confidence interval chart
-        fcwdSVG.selectAll("g")
+        fcsumSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
     }
 </script>
 
 <style scoped lang="scss">
-    #fc-grid-container {
+    #fc-summary-grid-container {
         display: grid;
         width: 100%;
         max-width: 800px;
@@ -114,21 +108,7 @@
         grid-template-areas:
             "chart";
     }
-    #fc-svg {
-        grid-area: chart;
-        place-self: center;
-        height: 100%;
-        width: 100%;
-    }
-    #fcwd-grid-container {
-        display: grid;
-        width: 100%;
-        max-width: 800px;
-        margin: 3rem auto 4rem auto;
-        grid-template-areas:
-            "chart";
-    }
-    #fcwd-svg {
+    #fc-summary-svg {
         grid-area: chart;
         place-self: center;
         height: 100%;

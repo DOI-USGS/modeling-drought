@@ -109,3 +109,46 @@ def popup_text(ax, x, y, label, fontcolor, facecolor, edgecolor, va, ha, gid):
         zorder=2,
         alpha=0.0,
     )
+
+
+# sankey bar
+def sankey_bar(ax, xloc, yloc, height, width, color, alpha, gid=""):
+    if yloc >= 0.0:
+        ax.fill_between(
+            [xloc - width * 0.5, xloc + width * 0.5],
+            [yloc + height, yloc + height],
+            [yloc, yloc],
+            color=color,
+            linewidth=0.0,
+            alpha=alpha,
+            gid=gid,
+        )
+    else:
+        ax.fill_between(
+            [xloc - width * 0.5, xloc + width * 0.5],
+            [yloc, yloc],
+            [yloc - height, yloc - height],
+            color=color,
+            linewidth=0.0,
+            alpha=alpha,
+            gid=gid,
+        )
+
+
+# sankey label
+def sankey_label(ax, xloc, yloc, height, label, ha, pad, alpha=1.0, gid=""):
+    ax.text(
+        xloc + pad, yloc + height / 2.0, label, ha=ha, va="center", alpha=alpha, gid=gid
+    )
+
+
+# sankey swoop
+def sankey_swoop(ax, x1, x2, width, y1, y2, height, color, alpha=0.2, gid=""):
+    sigmoid_swoopiness = 2.0
+    x_mid = (x1 + x2) / 2.0
+
+    points = 100
+    x = np.linspace(x1 + 0.5 * width, x2 - 0.5 * width, 100)
+    y_lower = y1 + (y2 - y1) * (1.0 / (1.0 + np.exp(-sigmoid_swoopiness * (x - x_mid))))
+    y_upper = y_lower + height
+    ax.fill_between(x, y_lower, y_upper, color=color, alpha=alpha, linewidth=0, gid=gid)
