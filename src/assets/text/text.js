@@ -49,6 +49,11 @@ export default {
             caption1Desktop: "Hover your mouse over the plot to see ...TBA",
             caption1Responsive: "Tap the plot to see ...TBA",
         },
+        ForecastTrueFalse: {
+            heading: "Forecast True False",
+            paragraph1: "A paragraph.",
+            caption: "Hover your mouse over the plot to see ...TBA",
+        },
         AboutTheTeam: {
             heading: "Collaboration across the water community",
             paragraph1: "An interdisciplinary team of USGS researchers and data scientists are working together to forecast streamflow drought at a national scale.",

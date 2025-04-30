@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="399.6px" height="299.52px" viewBox="0 0 399.6 299.52" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure-forecast_summary_1">
+  <g id="patch_1">
+   <path d="M 0 299.52 
+L 399.6 299.52 
+L 399.6 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axis-forecast_summary_1">
+   <g id="FillBetweenPolyCollection_1">
+    <defs>
+     <path id="me1f1c2ed2f" d="M 96.57 -157.248 
+L 96.57 -157.248 
+L 116.3835 -203.631148 
+L 136.197 -218.433968 
+L 175.824 -226.662396 
+L 255.078 -228.150529 
+L 354.1455 -230.701818 
+L 354.1455 -83.794182 
+L 354.1455 -83.794182 
+L 255.078 -86.345471 
+L 175.824 -87.833604 
+L 136.197 -96.062032 
+L 116.3835 -110.864852 
+L 96.57 -157.248 
+z
+"/>
+    </defs>
+    <g clip-path="url(#pccf133dafa)">
+     <use xlink:href="#me1f1c2ed2f" x="0" y="299.52" style="fill: #00264c; fill-opacity: 0.25"/>
+    </g>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="mb35d836927" d="M -5 5 
+L 5 5 
+L 5 -5 
+L -5 -5 
+z
+" style="stroke: #595959"/>
+    </defs>
+    <g clip-path="url(#pccf133dafa)">
+     <use xlink:href="#mb35d836927" x="96.57" y="142.272" style="fill: #595959; stroke: #595959"/>
+    </g>
+   </g>
+   <g id="line2d_1">
+    <path d="M 96.57 142.272 
+L 116.3835 95.888852 
+L 136.197 81.086032 
+L 175.824 72.857604 
+L 255.078 71.369471 
+L 354.1455 68.818182 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #406992; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 96.57 142.272 
+L 116.3835 188.655148 
+L 136.197 203.457968 
+L 175.824 211.686396 
+L 255.078 213.174529 
+L 354.1455 215.725818 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #b78935; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 96.57 142.272 
+L 354.1455 142.272 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #00264c; stroke-opacity: 0.75; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 116.3835 220.896 
+L 116.3835 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #595959"/>
+   </g>
+   <g id="prediction-width-line-1">
+    <path d="M 116.3835 220.896 
+L 116.3835 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #595959; stroke-opacity: 0; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 136.197 220.896 
+L 136.197 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #595959"/>
+   </g>
+   <g id="prediction-width-line-2">
+    <path d="M 136.197 220.896 
+L 136.197 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #595959; stroke-opacity: 0; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 175.824 220.896 
+L 175.824 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #595959"/>
+   </g>
+   <g id="prediction-width-line-3">
+    <path d="M 175.824 220.896 
+L 175.824 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #595959; stroke-opacity: 0; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 255.078 220.896 
+L 255.078 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #595959"/>
+   </g>
+   <g id="prediction-width-line-4">
+    <path d="M 255.078 220.896 
+L 255.078 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #595959; stroke-opacity: 0; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 354.1455 220.896 
+L 354.1455 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #595959"/>
+   </g>
+   <g id="prediction-width-line-5">
+    <path d="M 354.1455 220.896 
+L 354.1455 63.648 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #595959; stroke-opacity: 0; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="prediction-width-label-week-2">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(39.96 120.14875)">Issue date:</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(39.96 137.56425)">streamflow</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(39.96 154.97975)">percentile</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(39.96 172.39525)">known</text>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="304.61175" y="138.7195" transform="rotate(-0 304.61175 138.7195)">Median prediction</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="304.61175" y="82.921971" transform="rotate(-0 304.61175 82.921971)">Upper prediction</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="304.61175" y="209.622029" transform="rotate(-0 304.61175 209.622029)">Lower prediction</text>
+   </g>
+   <g id="prediction-width-label-percent-1">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(92.7035 42.68)">1 week:</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(60.736 60.0955)">+/-20.6 percentile</text>
+   </g>
+   <g id="prediction-width-label-percent-2">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(109.317 42.68)">2 weeks:</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(80.5495 60.0955)">+/-27.2 percentile</text>
+   </g>
+   <g id="prediction-width-label-percent-3">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(148.944 42.68)">4 weeks:</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(120.1765 60.0955)">+/-30.9 percentile</text>
+   </g>
+   <g id="prediction-width-label-percent-4">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(228.198 42.68)">8 weeks:</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(199.4305 60.0955)">+/-31.6 percentile</text>
+   </g>
+   <g id="prediction-width-label-percent-5">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(323.48925 42.68)">13 weeks:</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(298.498 60.0955)">+/-32.7 percentile</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 800; font-size: 20px; font-family: 'Source Sans 3', sans-serif; text-anchor: start" x="39.96" y="23.952" transform="rotate(-0 39.96 23.952)">Streamflow Prediction Interval</text>
+   </g>
+   <g id="prediction-width-hover-1">
+    <path d="M 116.3835 254.592 
+L 116.3835 29.952 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 40; stroke-linecap: square"/>
+   </g>
+   <g id="prediction-width-hover-2">
+    <path d="M 136.197 254.592 
+L 136.197 29.952 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 40; stroke-linecap: square"/>
+   </g>
+   <g id="prediction-width-hover-3">
+    <path d="M 175.824 254.592 
+L 175.824 29.952 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 40; stroke-linecap: square"/>
+   </g>
+   <g id="prediction-width-hover-4">
+    <path d="M 255.078 254.592 
+L 255.078 29.952 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 40; stroke-linecap: square"/>
+   </g>
+   <g id="prediction-width-hover-5">
+    <path d="M 354.1455 254.592 
+L 354.1455 29.952 
+" clip-path="url(#pccf133dafa)" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 40; stroke-linecap: square"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pccf133dafa">
+   <rect x="39.96" y="29.952" width="339.66" height="224.64"/>
+  </clipPath>
+ </defs>
+</svg>

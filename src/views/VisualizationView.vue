@@ -42,6 +42,9 @@
     <ForecastSummary
       :text="text.components.ForecastSummary"
     />
+    <ForecastTrueFalse
+      :text="text.components.ForecastTrueFalse"
+    />
     <div
       class="text-container"
     >
@@ -110,6 +113,7 @@
   import PredictionInterval from '@/components/PredictionInterval.vue';
   import ForecastConfidence from '@/components/ForecastConfidence.vue';
   import ForecastSummary from '@/components/ForecastSummary.vue';
+  import ForecastTrueFalse from '@/components/ForecastTrueFalse.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
   // global variables
