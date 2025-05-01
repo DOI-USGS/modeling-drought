@@ -88,8 +88,8 @@ for i, percentile in enumerate(
     )
 
 # annotations
-ax_LF.annotate(
-    "Drag mouse over\ngray region",
+annotation_instructions = ax_LF.annotate(
+    "Tap in the\ngray region",
     color=ratio_5,
     va="center",
     ha="center",
@@ -287,6 +287,7 @@ ax_LF.set_position([0.125 / 2.0, 0.075 * 2.0, 0.825 / 3.0, 0.375 * 2.0])
 ax_forecast.set_position(
     [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0]
 )
+annotation_instructions.set_text("Drag mouse over\ngray region")
 # make svg
 fig.savefig("Task1/out/lf_example_desktop.svg", metadata=None)
 
@@ -305,6 +306,9 @@ fig.set_size_inches(
 ax_LF.set_position([0.14, 0.6, 0.8, 0.333])
 # last we stretch the forecase plot to make it wider
 ax_forecast.set_position([0.14, 0.1, 0.8, 0.333])
+
+annotation_instructions.set_text("Tap in the\ngray region")
+
 # make svg
 fig.savefig("Task1/out/lf_example_mobile.svg", metadata=None)
 
