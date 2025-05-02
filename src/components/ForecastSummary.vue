@@ -28,7 +28,9 @@
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption>
-      <p v-html="text.caption" />
+      <p v-if="tabletView" v-html="text.caption1Responsive" />
+      <p v-else-if="mobileView" v-html="text.caption1Responsive" />
+      <p v-else v-html="text.caption1Desktop" />
     </template>
   </VizSection>
 </template>
@@ -36,9 +38,15 @@
 <script setup>
     import { onMounted } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
+    import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import fcPlot from "@/assets/svgs/fc_summary.svg";
     import fcwdPlot from "@/assets/svgs/fc_wd_summary.svg";
+
+    // global variables
+    const mobileView = isMobile;
+    const tabletView = isTablet;
 
     // define props
     defineProps({

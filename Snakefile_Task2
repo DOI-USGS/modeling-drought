@@ -1,6 +1,6 @@
 rule all:
     input:
-        "src/assets/svgs/fc_example.svg",
+        # "src/assets/svgs/fc_example.svg",
         "src/assets/svgs/fc_summary.svg"
         #"src/assets/svgs/forecast_cloud.svg"
 
