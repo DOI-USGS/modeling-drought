@@ -155,7 +155,7 @@ sankey_bar(
     -1.0 * pad,
     D_ND,
     width,
-    ratio_3,
+    lower_color_limit_hex_half_alpha,
     bar_alpha,
     gid="tf-bar-YD-ND",
 )
@@ -165,7 +165,7 @@ sankey_bar(
     1.0 * pad,
     ND_D,
     width,
-    ratio_3,
+    upper_color_limit_hex_half_alpha,
     bar_alpha,
     gid="tf-bar-ND-YD",
 )
@@ -234,7 +234,7 @@ sankey_swoop(
     -0.5 * pad,
     -pad,
     -D_ND,
-    ratio_3,
+    lower_color_limit_hex_half_alpha,
     swoop_alpha,
     gid="tf-swoop-YD-ND",
 )
@@ -259,7 +259,7 @@ sankey_swoop(
     0.5 * pad,
     pad,
     ND_D,
-    ratio_3,
+    upper_color_limit_hex_half_alpha,
     swoop_alpha,
     gid="tf-swoop-ND-YD",
 )
