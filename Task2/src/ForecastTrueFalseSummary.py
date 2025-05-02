@@ -12,7 +12,7 @@ from Task_config.parameters import *
 ### Data Arrays
 # load drought data
 tf_d = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts.csv"
+    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_interpolated.csv"
 )
 
 horizon_weeks = tf_d["horizon"]
@@ -43,57 +43,54 @@ ax_true_false = fig_true_false.add_axes(
 # labeling
 text_bump = 0.5
 label_pad = 0.1
-for i in range(0, 5):
+for i in range(0, len(tf_d)):
+
+    ax_true_false.fill_between(
+        [i + label_pad, i + 1 - label_pad],
+        [D_D_list[i], D_D_list[i]],
+        [ND_D_list[i], ND_D_list[i]],
+        facecolor="w",
+        # edgecolor=ratio_7,
+    )
+
     ax_true_false.fill_between(
         [i + label_pad, i + 1 - label_pad],
         [D_D_list[i], D_D_list[i]],
         [0.0, 0.0],
         facecolor=lower_color_limit_hex,
-        edgecolor=ratio_7,
+        # edgecolor=ratio_7,
     )
     ax_true_false.fill_between(
         [i + label_pad, i + 1 - label_pad],
         [D_ND_list[i], D_ND_list[i]],
         [D_D_list[i], D_D_list[i]],
-        facecolor=ratio_3,
-        edgecolor=ratio_7,
+        facecolor=lower_color_limit_hex,
+        alpha=0.5,
+        # edgecolor=ratio_7,
     )
     ax_true_false.fill_between(
         [i + label_pad, i + 1 - label_pad],
         [ND_D_list[i], ND_D_list[i]],
         [D_ND_list[i], D_ND_list[i]],
-        facecolor=ratio_3,
-        edgecolor=ratio_7,
+        facecolor=upper_color_limit_hex,
+        alpha=0.5,
+        # edgecolor=ratio_7,
     )
     ax_true_false.fill_between(
         [i + label_pad, i + 1 - label_pad],
         [ND_ND_list[i], ND_ND_list[i]],
         [ND_D_list[i], ND_D_list[i]],
         facecolor=upper_color_limit_hex,
-        edgecolor=ratio_7,
+        # edgecolor=ratio_7,
     )
 
-    # ax_true_false.text(
-    #     horizon_weeks[i],
-    #     D_D_list[i] / D_list[i] * 100.0 + text_bump,
-    #     str(round(D_D_list[i] / D_list[i] * 100.0, 1)) + "%",
-    #     ha="left",
-    #     va="bottom",
-    # )
-    # ax_true_false.text(
-    #     horizon_weeks[i],
-    #     ND_ND_list[i] / ND_list[i] * 100.0 + text_bump,
-    #     str(round(ND_ND_list[i] / ND_list[i] * 100.0, 1)) + "%",
-    #     ha="left",
-    #     va="bottom",
-    # )
 
 ax_true_false.set_ylim(0, 100)
 # ax_true_false.set_xlim(0, 5)
 ax_true_false.set_yticks(
     [0.0, 20.0, 40.0, 60.0, 80.0, 100], ["0%", "20%", "40%", "60%", "80%", "100%"]
 )
-ax_true_false.set_xticks([0.5, 1.5, 2.5, 3.5, 4.5], ["1", "2", "4", "8", "13"])
+ax_true_false.set_xticks(np.linspace(1, 13, 13) - 0.5, [str(i) for i in range(1, 14)])
 ax_true_false.set_title(
     "Model Accuracy",
     loc="left",
