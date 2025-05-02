@@ -50,9 +50,9 @@ export default {
             caption1Responsive: "Tap the plot to see ...TBA",
         },
         AboutTheTeam: {
-            heading: "USGS researchers and data scientists collaborate",
-            paragraph1: "That's how science gets done. Here is a paragraph about the team. They're making it happen at USGS.",
-            caption: "A caption could go here",
+            heading: "Collaboration across the water community",
+            paragraph1: "An interdisciplinary team of USGS researchers and data scientists are working together to forecast drought at a national-scale. This is a collective effort by the <span class='group-label' data-group='ESPD'>Earth Systems Processes Division</span>, <span class='group-label' data-group='IIDD'>Integrated Information Dissemination Division</span>, <span class='group-label' data-group='IMPD'>Integrated Modeling and Prediction Division</span>, <span class='group-label' data-group='OSD'>Observing Systems Division</span>, <span class='group-label' data-group='OPP'>Office of Planning and Programming</span>, <span class='group-label' data-group='MD-DE-DC'>MD-DE-DC Water Science Center</span>, <span class='group-label' data-group='OR'>OR Water Science Center</span>, <span class='group-label' data-group='UT'>UT Water Science Center</span> and <span class='group-label' data-group='WY-MT'>WY-MT Water Science Center</span>.",
+            caption: " ",
         }
     }
 }

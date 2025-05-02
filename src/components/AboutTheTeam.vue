@@ -15,6 +15,7 @@
       <div class="svg-container">
         <svg
           ref="svg"
+          class="svg"
           :width="width"
           :height="height"
         />
@@ -30,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import * as d3 from 'd3';
 import VizSection from '@/components/VizSection.vue';
 
@@ -46,9 +47,9 @@ defineProps({
     }
 });
 
-const width = 800;
-const height = 600;
-const colorHighlight = '#FF9F00';
+let width = 0;
+let height = 0;
+let nodeRadius = 45;
 
 const svg = ref(null);
 
@@ -77,44 +78,84 @@ const nodes = ref([
     { id: 'Hayley', name: 'Hayley Corson-Dosch', group:  'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/HCorson-Dosch.png', url: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'}
 ]);
 
-const edges = ref([]);
-
-// this function is generating random linkages between people using connectivity %
-// 
-function generateEdges() {
-    nodes.value.forEach((source, i) => {
-        nodes.value.forEach((target, j) => {
-            if (i !== j) {
-                const isSameGroup = source.group === target.group;
-                const probability = isSameGroup ? 0.5 : 0.05;  // setting random levels of connectivity within : among group
-                if (Math.random() < probability) {
-                    edges.value.push({ source: source.id, target: target.id, length: isSameGroup ? 20 : 100 });
-                }
-            }
-        });
-    });
-}
-
+// for group visual fx
+const groupAuras = new Map();
+const groupColors = ref({});
 
 onMounted(() => {
-    generateEdges();
-    drawGraph();
+    resizeAndDraw();
+    window.addEventListener('resize', resizeAndDraw);
 });
 
+// adjust the cluster space based on svg and screen 
+function resizeAndDraw() {
+  if (!svg.value) return;
+
+  const bounds = svg.value.getBoundingClientRect();
+  width = bounds.width;
+  height = bounds.height;
+  nodeRadius = Math.min(width, height) * 0.07;
+  
+  d3.select(svg.value).selectAll('*').remove();
+  drawGraph();
+}
+
+// computed styles based on group colors
+const groupStyles = computed(() => {
+  return Object.entries(groupColors.value).map(([group, color]) => {
+    return `.group-label:contains('${group}') { background-color: ${color}; color: white; padding: 0.1em 0.4em; border-radius: 4px; margin: 0 0.2em; }`;
+  }).join('\n');
+});
+
+// inject dynamic style tag
+watch(groupColors, () => {
+  const style = document.getElementById('group-style') || document.createElement('style');
+  style.id = 'group-style';
+
+  style.innerHTML = Object.entries(groupColors.value).map(([group, color]) => {
+    return `.group-label[data-group='${group}'] { background-color: ${color}; }`;
+  }).join('\n');
+
+  document.head.appendChild(style);
+}, { immediate: true });
+
+
 function drawGraph() {
-    const nodeRadius = 30;
-    const edgeWidth = 2;
 
-    // groups color scale
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
+    // for group positioning
+    const groupNames = [...new Set(nodes.value.map(d => d.group))];
+    const groupCenters = new Map();
 
+    groupNames.forEach(group => {
+        const cx = width / 2 + (Math.random() - 0.5) * width * 0.5;
+        const cy = height / 2 + (Math.random() - 0.5) * height * 0.5;
+        groupCenters.set(group, { x: cx, y: cy });
+    });
+
+    function updateGroupColors() {
+        const colorMap = {};
+        groupAuras.forEach((color, group) => {
+            colorMap[group] = color;
+        });
+        groupColors.value = colorMap;
+    }
+
+    groupNames.forEach((group, i) => {
+        const t = (3+i) / (groupNames.length+6); // normalize to [0, 1]
+        const color = d3.interpolateTurbo(t); // or interpolateCool, Turbo, Plasma
+        groupAuras.set(group, color);
+    });
+
+
+    // force simulation to control positioning
     const simulation = d3.forceSimulation(nodes.value)
-        .force('link', d3.forceLink(edges.value).id(d => d.id).distance(d => d.length))
         .force('charge', d3.forceManyBody().strength(d => -200 - Math.random() * 100))
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(nodeRadius * 2))
-        .force('cluster', forceCluster(0.2));
+        .force('collision', d3.forceCollide().radius(nodeRadius*1.1))
+        // custom clustering force that pulls each node towards its' group center
+        .force('cluster', forceCluster(0.4));
 
+    // build the svg
     const svgElement = d3.select(svg.value);
 
     svgElement.append("defs").selectAll("clipPath")
@@ -124,25 +165,44 @@ function drawGraph() {
         .append("circle")
         .attr("r", nodeRadius);
 
-    const link = svgElement.append('g')
-        .attr('stroke', 'black')
-        .attr('stroke-opacity', 0.6)
-        .selectAll('line')
-        .data(edges.value)
-        .join('line')
-        .attr('stroke-width', edgeWidth);
+    // add circles to create rippling aura effect
+    const rippleGroup = svgElement.append('g')
+        .attr('class', 'ripples')
 
     const node = svgElement.append('g')
-        .selectAll('circle')
+        .selectAll('a')
         .data(nodes.value)
-        .join('circle')
+        .join('a')
+        .attr('xlink:href', d => d.url || null)
+        .attr('target', '_blank')
+        .append('circle')
         .attr('r', nodeRadius)
-        .attr('stroke', d => color(d.group))
+        .attr('stroke', d => groupAuras.get(d.group))
         .attr('stroke-width', 4)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
 
-    const patterns = svgElement.append('defs')
+    // svg defs
+    const defs = svgElement.append('defs');
+
+    defs.append('filter')
+        .attr('id', 'psychedelic-glow')
+        .attr('x', '-50%')
+        .attr('y', '-50%')
+        .attr('width', '200%')
+        .attr('height', '200%')
+        .html(`
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 20 -10" result="goo"/>
+            <feBlend in="SourceGraphic" in2="goo" />
+        `);
+
+    // define styles for images in bubbles
+    const patterns = defs.append('defs')
         .selectAll('pattern')
         .data(nodes.value)
         .enter()
@@ -151,12 +211,24 @@ function drawGraph() {
         .attr('height', 1)
         .attr('width', 1)
         .attr('patternContentUnits', 'objectBoundingBox')
-        .append('image')
+
+    // add profile images
+    patterns.append('image')
         .attr('href', d => d.img)
         .attr('height', 1)
         .attr('width', 1)
-        .attr('preserveAspectRatio', 'xMidYMid slice');
+        .style('opacity', 0.8)
+        .attr('preserveAspectRatio', 'xMidYMid slice')
+        .style('filter', 'grayscale(100%)'); // greyscale images
 
+    // fill images same color as group
+    patterns.append('rect')
+        .attr('width', 1)
+        .attr('height', 1)
+        .attr('fill', d => groupAuras.get(d.group))
+        .style('opacity', 0.1);
+
+    // name labels for mouseover
     const labels = svgElement.append('g')
         .selectAll('text')
         .data(nodes.value)
@@ -165,32 +237,43 @@ function drawGraph() {
         .attr('x', d => d.x)
         .attr('y', d => d.y - nodeRadius - 10)
         .attr('text-anchor', 'middle')
+        .attr("dominant-baseline", "central")
         .style('visibility', 'hidden')
-        .style('pointer-events', 'none');
+        .attr('pointer-events', 'none');
 
+    //mouseover effects
     node.on('mouseover', (event, d) => {
+
         d3.select(event.currentTarget)
-            .style('fill', 'orangered');
+            .style('fill', d => groupAuras.get(d.group))
+            .style('opacity', 0.8);
+
         labels.filter(ld => ld.id === d.id)
-            .style('visibility', 'visible');
-    })
+            .style('visibility', 'visible')
+            .style('fill', 'black')
+            .style('font-weight', '800')
+            .style('stroke', 'white')
+            .style('stroke-width', '0.1');
+
+        createRippleEffect(d)
+
+        })
         .on('mouseout', (event, d) => {
-        d3.select(event.currentTarget)
-            .style('fill', `url(#pattern-${d.id})`);
-        labels.filter(ld => ld.id === d.id)
-            .style('visibility', 'hidden');
-    })
+
+            d3.select(event.currentTarget)
+                .style('fill', `url(#pattern-${d.id})`)
+                .style('opacity', 1);
+
+            labels.filter(ld => ld.id === d.id)
+                .style('visibility', 'hidden');
+        })
         .on('click', (event, d) => {
-        window.open(d.url, '_blank');
-    });
+            window.open(d.url, '_blank');
+        });
 
+    // allow circles to move
     simulation.on('tick', () => {
-        link
-            .attr('x1', d => constrain(d.source.x, nodeRadius, width - nodeRadius))
-            .attr('y1', d => constrain(d.source.y, nodeRadius, height - nodeRadius))
-            .attr('x2', d => constrain(d.target.x, nodeRadius, width - nodeRadius))
-            .attr('y2', d => constrain(d.target.y, nodeRadius, height - nodeRadius));
-
+        
         node
             .attr('cx', d => {
                 d.x = constrain(d.x, nodeRadius, width - nodeRadius);
@@ -206,6 +289,7 @@ function drawGraph() {
             .attr('y', d => d.y);
     });
 
+    // allow dragging of circles
     function drag(simulation) {
         function dragstarted(event) {
             if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -229,39 +313,81 @@ function drawGraph() {
             .on('drag', dragged)
             .on('end', dragended);
     }
+
+    // but dont drag outside the container
     function constrain(value, min, max) {
-        return Math.max(min, Math.min(max, value));
+        return Math.max(min+10, Math.min(max-10, value));
     }
 
-    function forceCluster() {
-        const strength = 0.1;
+    function forceCluster(strength = 0.1) {
         return alpha => {
             nodes.value.forEach(d => {
-                const cluster = nodes.value.find(n => n.group === d.group);
-                if (cluster && cluster !== d) {
-                    const x = d.x - cluster.x;
-                    const y = d.y - cluster.y;
-                    const l = Math.sqrt(x * x + y * y);
-                    const r = nodeRadius * 2;
-                    if (l !== r) {
-                        const ratio = (l - r) / l * alpha * strength;
-                        d.vx -= x * ratio;
-                        d.vy -= y * ratio;
-                    }
-                }
+                // get the target center for the circle's group
+                const center = groupCenters.get(d.group);
+
+                // find the distance between the circle and the center
+                const dx = center.x - d.x;
+                const dy = center.y - d.y;
+
+                // adjust the force so the circle is pulled towards the group center
+                d.vx += dx * strength * alpha;
+                d.vy += dy * strength * alpha;
             });
         };
     }
+    function createRippleEffect(d) {
+        const rippleCount = 1;
+        const duration = 1000;
+        const rippleRadius = nodeRadius * 2;
+
+        for (let i = 0; i < rippleCount; i++) {
+            rippleGroup.append('circle')
+                .attr('cx', d.x)
+                .attr('cy', d.y)
+                .attr('r', 0)
+                .attr('fill', 'none')
+                .attr('stroke', groupAuras.get(d.group))
+                .attr('stroke-width', 9)
+                .attr('opacity', 0.8)
+                .attr('filter', 'url(#psychedelic-glow)')
+                .transition()
+                .delay((i-1) * 600)
+                .duration(duration)
+                .ease(d3.easeSinInOut)
+                .attr('r', rippleRadius)
+                .attr('opacity', 0)
+                .remove();
+        }
+    }
+
+    updateGroupColors();
+
 }
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .svg-container {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 60vh;
+}
+svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+.group-label {
+  color: black;
+  padding: 0.1em 0.4em;
+  border-radius: 8px;
+  margin: 0 0.2em;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 1.4;
 }
 </style>
