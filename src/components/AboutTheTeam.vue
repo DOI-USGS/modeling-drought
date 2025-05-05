@@ -81,6 +81,17 @@ const nodes = ref([
 // for group visual fx
 const groupAuras = new Map();
 const groupColors = ref({});
+const colors = {
+    IIDD: "#b2c9d4",
+    ESPD: "var(--less-faded-usgs-blue)",
+    "MD-DE-DC": "var(--dark-mustard)",
+    IMPD: "var(--grey-blue)",
+    "WY-MT": "var(--medium-brown)",
+    UT: "var(--tan)",
+    OSD: "#6b767b",
+    OR: "#caa41c",
+    OPP: "var(--dark-red)"
+}
 
 onMounted(() => {
     resizeAndDraw();
@@ -143,7 +154,7 @@ function drawGraph() {
     groupNames.forEach((group, i) => {
         const t = (3+i) / (groupNames.length+6); // normalize to [0, 1]
         const color = d3.interpolateTurbo(t); // or interpolateCool, Turbo, Plasma
-        groupAuras.set(group, color);
+        groupAuras.set(group, colors[group]);
     });
 
 
