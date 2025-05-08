@@ -9,7 +9,10 @@
     </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
-      <p v-html="text.paragraph2" />
+      <p 
+        class="extra-line-spacing" 
+        v-html="text.paragraph2" 
+      />
     </template>
     <template #figures>
       <div class="svg-container">
@@ -20,12 +23,6 @@
           :height="height"
         />
       </div>
-    </template>
-    <template #figureCaption>
-      <p v-html="text.caption" />
-    </template>
-    <template #belowExplanation>
-      <p v-html="text.paragraph3" />
     </template>
   </VizSection>
 </template>
@@ -82,15 +79,15 @@ const nodes = ref([
 const groupAuras = new Map();
 const groupColors = ref({});
 const colors = {
-    IIDD: "#b2c9d4",
+    IIDD: "var(--medium-blue)",
     ESPD: "var(--less-faded-usgs-blue)",
     "MD-DE-DC": "var(--dark-mustard)",
-    IMPD: "var(--grey-blue)",
-    "WY-MT": "var(--medium-brown)",
-    UT: "var(--tan)",
-    OSD: "#6b767b",
-    OR: "#caa41c",
-    OPP: "var(--dark-red)"
+    IMPD: "var(--brighter-grey-blue)",
+    "WY-MT": "var(--bright-mustard)",
+    UT: "var(--medium-brown)",
+    OSD: "var(--faded-usgs-blue)",
+    OR: "var(--tan)",
+    OPP: "var(--medium-grey)"
 }
 
 onMounted(() => {
@@ -152,8 +149,6 @@ function drawGraph() {
     }
 
     groupNames.forEach((group, i) => {
-        const t = (3+i) / (groupNames.length+6); // normalize to [0, 1]
-        const color = d3.interpolateTurbo(t); // or interpolateCool, Turbo, Plasma
         groupAuras.set(group, colors[group]);
     });
 
