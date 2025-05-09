@@ -85,7 +85,7 @@ const colors = {
     IMPD: "var(--brighter-grey-blue)",
     "WY-MT": "var(--bright-mustard)",
     UT: "var(--medium-brown)",
-    OSD: "var(--faded-usgs-blue)",
+    OSD: "var(--very-light-blue)",
     OR: "var(--tan)",
     OPP: "var(--medium-grey)"
 }
