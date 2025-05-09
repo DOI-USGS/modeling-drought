@@ -46,3 +46,15 @@ text {
 .extra-line-spacing {
   line-height: 1.8;
 }
+ul {
+  display: list-item;
+  padding-bottom: 1rem;
+  padding-left: 0.25rem;
+  margin-left: 40px;
+}
+ul:first-child {
+  padding-top: 1rem;
+}
+ul:last-child {
+  padding-bottom: 1rem;
+}

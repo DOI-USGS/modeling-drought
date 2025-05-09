@@ -5,7 +5,10 @@ export default {
     pageTitle: "Modeling <span class='emph'>streamflow</span> drought",
     sections: {
         A: {
-            title: "How uncertainty is quantified",
+            title: "How do we capture uncertainty?",
+            subtitle:"We train the model to give us the range of possible streamflow percentiles.",
+            paragraph1: "When we forecast streamflow, we want to know the uncertainty associated with each prediction.",
+            paragraph2: "To capture the uncertainty, we train the model to predict three things: <ul>The model’s best estimate of the streamflow percentile (this is the median prediction.</ul><ul>The upper bound for the streamflow percentile (this is the 95% quantile). The model is predicting that 95% of future observed streamflow levels will be lower than this percentile.</ul><ul>The lower bound for the streamflow percentile (this is the 5% quantile). The model is predicting that 5% of future observed streamflow levels will be higher than this percentile.</ul>"
         },
         B: {
             title: "How confidence changes with lead time",

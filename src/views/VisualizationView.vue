@@ -12,12 +12,19 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
           {{ text.sections.A.title }}
         </span>
       </h2>
+      <p
+        class="section-subtitle"
+      >
+        {{ text.sections.A.subtitle }}
+      </p>
+      <p v-html="text.sections.A.paragraph1" />
+      <p v-html="text.sections.A.paragraph2" />
     </div>
     <LossFunction
       :text="text.components.LossFunction"
@@ -29,7 +36,7 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
           {{ text.sections.B.title }}
@@ -46,7 +53,7 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
           {{ text.sections.C.title }}
@@ -57,7 +64,7 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
           {{ text.sections.D.title }}
@@ -71,7 +78,7 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
           {{ text.sections.references.title }}
@@ -85,7 +92,7 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
           {{ text.sections.authors.title }}
@@ -121,16 +128,21 @@
   font-family: sans-serif; /* This is fallback font for old browsers */
   font-family: var(--title-font);
 } 
-.subtitle {
+.section-title {
   font-family: sans-serif; /* This is fallback font for old browsers */
-  font-family: var(--subtitle-font);
+  font-family: var(--title-font);
   width: 100%;
   text-align:left; 
   border-bottom: 1px solid var(--color-lowlight); 
   overflow: inherit;
 }
-.subtitle span {
+.section-title span {
   position: relative;
   top: 1rem;
+}
+.section-subtitle {
+  color: var(--color-subtitle-text);
+  font-weight: 300;
+  margin-bottom: 3rem;
 }
 </style>
