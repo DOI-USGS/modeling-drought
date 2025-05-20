@@ -16,13 +16,10 @@ tf_d = pd.read_csv(
 )
 
 horizon_weeks = tf_d["horizon"]
-total = tf_d["true_pos"] + tf_d["false_pos"] + tf_d["false_neg"] + tf_d["true_neg"]
+total = tf_d["true_pos"] + tf_d["false_pos"]
 
 D_D_list = tf_d["true_pos"] / total * 100.0
 D_ND_list = tf_d["false_pos"] / total * 100.0 + D_D_list
-
-ND_D_list = tf_d["false_neg"] / total * 100.0 + D_ND_list
-ND_ND_list = tf_d["true_neg"] / total * 100.0 + ND_D_list
 
 
 # make figure
@@ -61,30 +58,6 @@ for i in range(0, len(tf_d)):
         # edgecolor=ratio_5,
         # linewidth=0.0,
     )
-    ax_true_false.fill_between(
-        [i + label_pad, i + 1 - label_pad],
-        [ND_D_list[i], ND_D_list[i]],
-        [D_ND_list[i], D_ND_list[i]],
-        facecolor=upper_color_limit_hex_half_alpha,
-        # hatch="\\",
-        # edgecolor=ratio_5,
-        # linewidth=0.0,
-    )
-    ax_true_false.fill_between(
-        [i + label_pad, i + 1 - label_pad],
-        [ND_ND_list[i], ND_ND_list[i]],
-        [ND_D_list[i], ND_D_list[i]],
-        facecolor=upper_color_limit_hex,
-        # edgecolor=ratio_7,
-    )
-
-    ax_true_false.plot(
-        [i + label_pad, i + 1 - label_pad],
-        [D_ND_list[i], D_ND_list[i]],
-        color=ratio_7,
-        linewidth=2.0,
-    )
-
 
 ax_true_false.set_ylim(0, 100)
 # ax_true_false.set_xlim(0, 5)
@@ -106,13 +79,13 @@ ax_true_false.set_axisbelow(True)
 ax_true_false.tick_params(direction="out")
 
 # make svg
-fig_true_false.savefig("Task2/out/fc_tf_sum_desktop.png", dpi=400, metadata=None)
-fig_true_false.savefig("Task2/out/fc_tf_sum_desktop.svg", dpi=150, metadata=None)
+fig_true_false.savefig("Task2/out/fc_tf_sum_yd_desktop.png", dpi=400, metadata=None)
+fig_true_false.savefig("Task2/out/fc_tf_sum_yd_desktop.svg", dpi=150, metadata=None)
 
 # remove metadata
 remove_metadata_and_fix(
-    "Task2/out/fc_tf_sum_desktop.svg",
-    "src/assets/svgs/fc_tf_sum_desktop.svg",
+    "Task2/out/fc_tf_sum_yd_desktop.svg",
+    "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
 )
 
 # to make the mobile version, we first adjust the figure size to a more horizontal aspect
@@ -122,10 +95,10 @@ fig_true_false.set_size_inches(
 )
 
 # make svg
-fig_true_false.savefig("Task2/out/fc_tf_sum_mobile.svg", metadata=None)
+fig_true_false.savefig("Task2/out/fc_tf_sum_yd_mobile.svg", metadata=None)
 
 # remove metadata
 remove_metadata_and_fix(
-    "Task2/out/fc_tf_sum_mobile.svg",
-    "src/assets/svgs/fc_tf_sum_mobile.svg",
+    "Task2/out/fc_tf_sum_yd_mobile.svg",
+    "src/assets/svgs/fc_tf_sum_yd_mobile.svg",
 )
