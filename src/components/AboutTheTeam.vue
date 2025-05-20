@@ -184,7 +184,7 @@ function drawGraph() {
         .append('circle')
         .attr('r', nodeRadius)
         .attr('stroke', d => groupAuras.get(d.group))
-        .attr('stroke-width', 4)
+        .attr('stroke-width', 6)
         .style('fill', d => `url(#pattern-${d.id})`)
         .call(drag(simulation));
 
