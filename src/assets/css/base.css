@@ -7,22 +7,18 @@
   --white-soft: #F0F0F0;
 
   --black-soft: #151515;
-  --dodger-blue: #1e90ff;
-  --medium-grey: #B5B5B5;
-  --medium-purple: #8F00DB;
-  --medium-blue: #4365A8;
-  --medium-orange: #E48951;
+  --medium-grey: #A3A3A3;
   --usgs-blue: #00264c;
   --faded-usgs-blue: #d8dee4;
-  --less-faded-usgs-blue: #65788a;
-  --usgs-green: #006F41;
-  --brick-red: #d62728;
-  --bright-orange: #fe7f0e;
-  --royal-blue: #1f77b3;
+  --very-light-blue: #dff0f7;  
+  --less-faded-usgs-blue: #849db4;
+  --medium-blue: #a3c6d6;
   --dark-mustard: #B78935;
-  --grey-blue: #406992;
+  --bright-mustard: #d5b43a;
+  --grey-blue: #4978A7;
+  --brighter-grey-blue: #6290bf;
   --tan: #DCD5A8;
-  --medium-brown: #A7693F;
+  --medium-brown: #b47449;
   --very-dark-red: #680000;
   --dark-red: #883e3a;
 
@@ -52,7 +48,7 @@
   --color-median: var(--usgs-blue);
   --color-quantile-95: var(--grey-blue);
   --color-quantile-5: var(--dark-mustard);
-  --inactive-grey: #949494; /* #CCCCCC;*/
+  --inactive-grey: #949494;
   --inactive-text-grey: #757575;
 }
 
