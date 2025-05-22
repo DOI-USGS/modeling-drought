@@ -21,7 +21,10 @@
     <!-- FIGURES -->
     <template #figures>
       <div id="fc-true-false-sum-grid-container">
-        <component :is="currentPlot" id="fc-true-false-sum-svg" />
+        <component
+          :is="currentPlot"
+          id="fc-true-false-sum-svg"
+        />
       </div>
     </template>
     <!-- FIGURE CAPTION -->
