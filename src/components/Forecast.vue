@@ -25,7 +25,16 @@
     </template>
     <template #figures>
       <div id="fc-grid-container">
-        <fcPlot
+        <fcPlotTablet
+          v-if="tabletView"
+          id="fc-svg"
+        />
+        <fcPlotMobile
+          v-else-if="mobileView"
+          id="fc-svg"
+        />
+        <fcPlotDesktop
+          v-else
           id="fc-svg"
         />
       </div>
@@ -46,7 +55,9 @@
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
-    import fcPlot from "@/assets/svgs/fc_example.svg";
+    import fcPlotDesktop from "@/assets/svgs/fc_example_desktop.svg";
+    import fcPlotTablet from "@/assets/svgs/fc_example_tablet.svg";
+    import fcPlotMobile from "@/assets/svgs/fc_example_mobile.svg";
 
     // global variables
     const mobileView = isMobile;

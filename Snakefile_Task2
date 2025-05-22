@@ -1,38 +1,24 @@
 rule all:
     input:
-        # "src/assets/svgs/fc_example.svg",
+        "src/assets/svgs/fc_example_desktop.svg",
         "src/assets/svgs/fc_summary_desktop.svg",
-        # "src/assets/svgs/fc_tf_13wk_desktop.svg",
         "src/assets/svgs/fc_tf_key_desktop.svg",
         "src/assets/svgs/fc_tf_sum_desktop.svg",
         "src/assets/svgs/fc_tf_sum_rw_desktop.svg",
         "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
         "src/assets/svgs/fc_tf_sum_nd_desktop.svg"
-        #"src/assets/svgs/forecast_cloud.svg"
 
 rule forecast:
     output:
-        "src/assets/svgs/fc_example.svg"
+        "src/assets/svgs/fc_example_desktop.svg"
     script:
         'Task2/src/Forecast.py'
-
-rule forecast_confidence:
-    output:
-        "src/assets/svgs/forecast_cloud.svg"
-    script:
-        'Task2/src/ForecastConfidence.py'
 
 rule summary:
     output:
         "src/assets/svgs/fc_summary_desktop.svg"
     script:
         'Task2/src/ForecastSummary.py'
-
-# rule truefalse:
-#     output:
-#         "src/assets/svgs/fc_tf_13wk_desktop.svg"
-#     script:
-#         'Task2/src/ForecastTrueFalse.py'
 
 rule truefalsekey:
     output:

@@ -17,6 +17,7 @@ target_plotwidth_in_mobile = target_plotwidth_px_mobile / matplotlib_error_corre
 target_plotwidth_in_tablet = target_plotwidth_px_tablet / matplotlib_error_correction
 target_plotwidth_in_desktop = target_plotwidth_px_desktop / matplotlib_error_correction
 aspect_single_plot = 1.333
+aspect_single_plot_long = 2.0
 aspect_double_plot_mobile = 0.8
 aspect_double_plot_tablet = 1.0
 aspect_double_plot_desktop = 3.0

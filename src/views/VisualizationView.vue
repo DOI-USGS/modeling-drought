@@ -36,14 +36,20 @@
         </span>
       </h2>
     </div>
-    <ForecastConfidence
-      :text="text.components.ForecastConfidence"
+    <Forecast
+      :text="text.components.Forecast"
     />
     <ForecastSummary
       :text="text.components.ForecastSummary"
     />
-    <ForecastTrueFalse
-      :text="text.components.ForecastTrueFalse"
+    <ForecastTrueFalseSankey
+      :text="text.components.ForecastTrueFalseSankey"
+    />
+    <ForecastTrueFalseSummary
+      :text="text.components.ForecastTrueFalseSummary"
+    />
+    <ForecastTrueFalseRightOrWrong
+      :text="text.components.ForecastTrueFalseRightOrWrong"
     />
     <div
       class="text-container"
@@ -111,9 +117,11 @@
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
   import PredictionInterval from '@/components/PredictionInterval.vue';
-  import ForecastConfidence from '@/components/ForecastConfidence.vue';
+  import Forecast from '@/components/Forecast.vue';
   import ForecastSummary from '@/components/ForecastSummary.vue';
-  import ForecastTrueFalse from '@/components/ForecastTrueFalse.vue';
+  import ForecastTrueFalseSankey from '@/components/ForecastTrueFalseSankey.vue';
+  import ForecastTrueFalseSummary from '@/components/ForecastTrueFalseSummary.vue';
+  import ForecastTrueFalseRightOrWrong from '@/components/ForecastTrueFalseRightOrWrong.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
   // global variables

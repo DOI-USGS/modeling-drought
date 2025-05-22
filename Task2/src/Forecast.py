@@ -71,10 +71,17 @@ for i, forecast_datum in enumerate(forecast_data):
     ]
 
 # make figure
-fig = plt.figure(1, figsize=(8, 4), gid="figure-" + basename_gid_forecast)
+fig = plt.figure(
+    1,
+    figsize=(
+        target_plotwidth_in_tablet,
+        target_plotwidth_in_tablet / aspect_double_plot_tablet * 0.5,
+    ),
+    gid="figure-" + basename_gid_forecast,
+)
 # add axes
 ax_forecast = fig.add_axes(
-    [0.1, 0.175, 0.85, 0.75], gid="axis-" + basename_gid_forecast
+    [0.125, 0.075, 0.825, 0.375 * 2.0], gid="axis-" + basename_gid_forecast
 )
 
 # print default value for the vue site
@@ -100,7 +107,7 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     ax_forecast.plot(
         x_forecast[: 1 + j],
         y_training[: 1 + j],
-        color="tab:red",
+        color=observation_color_hex,
         alpha=0.0,
         gid="observation_" + str(j),
     )
@@ -112,7 +119,7 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
         color="k",
         alpha=0.0,
         gid="forecast_hover_" + str(j),
-        linewidth=5.0,
+        linewidth=8.0,
         zorder=100,
     )
 
@@ -127,65 +134,20 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
         solid_capstyle="round",
     )
 
-    ### additional plotting that were ignoring for now
-    # predictions
-    # ax_forecast.plot(x_forecast[:1+j], y_forecast_lower[:1+j], color="tab:blue",alpha=0.0,gid='prediction_lower_'+str(j))
-    # ax_forecast.plot(x_forecast[:1+j], y_forecast_median[:1+j], color="k",alpha=0.0,gid='prediction_middl_'+str(j))
-    # ax_forecast.plot(x_forecast[:1+j], y_forecast_upper[:1+j], color="tab:orange",alpha=0.0,gid='prediction_upper_'+str(j))
-    # ax_forecast.fill_between(x_forecast[:1+j], y_forecast_lower[:1+j],y_forecast_upper[:1+j],color="tab:gray",alpha=0.0,edgecolor='none',gid='prediction_patch_'+str(j))
-
-    # #fill between upper and lower
-    # ax_forecast.plot(x_cloud , y_cloud_lower, color="tab:blue", linestyle="--",alpha=0.0,gid='forecast_lower_'+str(j))
-    # ax_forecast.plot(x_cloud , y_cloud_upper, color="tab:orange", linestyle="--",alpha=0.0,gid='forecast_upper_'+str(j))
-    # ax_forecast.fill_between(x_cloud,y_cloud_lower,y_cloud_upper,color="tab:gray",alpha=0.0,edgecolor='none',gid='forecast_patch_'+str(j))
-
-    # # #fill between prediction and observation
-    # ax_forecast.fill_between(x_forecast[:1+j], y_training[:1+j],y_forecast_median[:1+j],where=y_training[:1+j]>=y_forecast_median[:1+j],alpha=0.0,edgecolor='none',gid='overprediction_patch_'+str(j))
-    # ax_forecast.fill_between(x_forecast[:1+j], y_training[:1+j],y_forecast_median[:1+j],where=y_training[:1+j]<=y_forecast_median[:1+j],alpha=0.0,edgecolor='none',gid='underprediction_patch_'+str(j))
-
-
 ax_forecast.annotate(
     "Drag mouse over the\nplot rightwards to see\ndought forecasts.",
+    color=ratio_5,
     va="center",
     xy=(np.datetime64("2018-01-08"), 77),
     xytext=(np.datetime64("2017-07-08"), 77),
     arrowprops=dict(
-        facecolor="black", arrowstyle="fancy", gid="annotation_forecast_arrow"
+        facecolor=ratio_5,
+        edgecolor=ratio_5,
+        alpha=1.0,
+        arrowstyle="fancy",
+        gid="annotation_forecast_arrow",
     ),
     gid="annotation_forecast",
-    fontweight="bold",
-)
-# add textbox for lines. Need a fix, when alpha is zero, the box is not rendered in the svg. Bandaid is to make alpha very very small.
-bbox = selectable_text(
-    ax_forecast,
-    0.99,
-    1.02,
-    "Toggle Observations",
-    "w",
-    "tab:red",
-    "k",
-    "bottom",
-    "right",
-    "toggle-observations-forecast",
-)
-ax_forecast.annotate(
-    "Click button",
-    fontweight="bold",
-    va="bottom",
-    ha="right",
-    xy=(bbox.x0, 0.5 * (bbox.y0 + bbox.y1)),
-    xytext=(0.75, 1.02),
-    xycoords="axes fraction",
-    gid="annotation_buttons3",
-    arrowprops=dict(
-        facecolor="black",
-        shrinkB=5,
-        gid="annotation_buttons3_arrow1",
-        arrowstyle="->",
-        connectionstyle="arc3,rad=0.0",
-        alpha=0.8,
-    ),
-    zorder=10,
 )
 
 # forecast axis parameters
@@ -207,10 +169,20 @@ x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)
 x_ticks_labels = [i for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
-    [0, 20, 40, 60, 80, 100], ["0%", "20%", "40%", "60%", "80%", "100%"]
+    [0.0, 20.0, 40.0, 60.0, 80.0, 100],
+    [
+        "0ᵗʰ",
+        "20ᵗʰ",
+        "40ᵗʰ",
+        "60ᵗʰ",
+        "80ᵗʰ",
+        "100ᵗʰ",
+    ],
 )
-ax_forecast.set_xlabel("Date")
-ax_forecast.set_title("Streamflow Percentile", loc="left", weight="bold")
+ax_forecast.set_xlabel("Date", weight="semibold")
+ax_forecast.set_title(
+    "Streamflow percentile", loc="left", weight="extra bold", color="k"
+)
 ax_forecast.spines["top"].set_visible(False)
 ax_forecast.spines["right"].set_visible(False)
 ax_forecast.set_axisbelow(True)
@@ -219,7 +191,50 @@ ax_forecast.set_axisbelow(True)
 plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
 
 # make svg
-fig.savefig("Task2/out/fc_example.svg", metadata=None)
+fig.savefig("Task2/out/fc_example_tablet.svg", metadata=None)
 
 # remove metadata
-remove_metadata_and_fix("Task2/out/fc_example.svg", "src/assets/svgs/fc_example.svg")
+remove_metadata_and_fix(
+    "Task2/out/fc_example_tablet.svg", "src/assets/svgs/fc_example_tablet.svg"
+)
+
+# to make the desktop version, we first adjust the figure size to a more horizontal aspect
+fig.set_size_inches(
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_desktop / aspect_double_plot_desktop,
+)
+
+# we then set a new position for the loss function plot and make it more square
+ax_forecast.set_position(
+    [
+        (1.0 - 0.825 * 2.0 / 3.0) / 2.0,
+        0.075 * 2.0,
+        0.825 * 2.0 / 3.0,
+        0.375 * 2.0,
+    ]
+)
+
+# make svg
+fig.savefig("Task2/out/fc_example_desktop.svg", metadata=None)
+
+# remove metadata
+remove_metadata_and_fix(
+    "Task2/out/fc_example_desktop.svg", "src/assets/svgs/fc_example_desktop.svg"
+)
+
+# to make the mobile version, we first adjust the figure size to a more horizontal aspect
+fig.set_size_inches(
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_mobile / aspect_double_plot_mobile * 0.5,
+)
+
+# # we then set a new position for the loss function plot and make it more square
+ax_forecast.set_position([0.14, 0.1, 0.8, 0.333 * 2.0])
+
+# make svg
+fig.savefig("Task2/out/fc_example_mobile.svg", metadata=None)
+
+# remove metadata
+remove_metadata_and_fix(
+    "Task2/out/fc_example_mobile.svg", "src/assets/svgs/fc_example_mobile.svg"
+)
