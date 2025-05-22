@@ -15,18 +15,18 @@
     </template>
     <!-- FIGURES -->
     <template #figures>
-      <div id="fc-true-false-sum-grid-container">
+      <div id="fc-summary-grid-container">
         <fcsumPlotTablet
           v-if="tabletView"
-          id="fc-true-false-sum-svg"
+          id="fc-summary-svg"
         />
         <fcsumPlotMobile
           v-else-if="mobileView"
-          id="fc-true-false-sum-svg"
+          id="fc-summary-svg"
         />
         <fcsumPlotDesktop
           v-else
-          id="fc-true-false-sum-svg"
+          id="fc-summary-svg"
         />
       </div>
     </template>
