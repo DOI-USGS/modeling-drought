@@ -15,9 +15,18 @@
     </template>
     <!-- FIGURES -->
     <template #figures>
-      <div id="fc-summary-grid-container">
-        <fcsumPlot
-          id="fc-summary-svg"
+      <div id="fc-true-false-sum-grid-container">
+        <fcsumPlotTablet
+          v-if="tabletView"
+          id="fc-true-false-sum-svg"
+        />
+        <fcsumPlotMobile
+          v-else-if="mobileView"
+          id="fc-true-false-sum-svg"
+        />
+        <fcsumPlotDesktop
+          v-else
+          id="fc-true-false-sum-svg"
         />
       </div>
     </template>
@@ -45,7 +54,9 @@
     import { isMobile } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import fcsumPlot from "@/assets/svgs/fc_summary_desktop.svg";
+    import fcsumPlotDesktop from "@/assets/svgs/fc_summary_desktop.svg";
+    import fcsumPlotMobile from "@/assets/svgs/fc_summary_mobile.svg";
+    import fcsumPlotTablet from "@/assets/svgs/fc_summary_tablet.svg";
 
     // global variables
     const mobileView = isMobile;

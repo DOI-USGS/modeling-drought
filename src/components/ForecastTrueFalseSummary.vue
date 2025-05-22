@@ -21,15 +21,15 @@
     <!-- FIGURES -->
     <template #figures>
       <div id="fc-true-false-sum-grid-container">
-        <fcsumPlotTablet
+        <fcsumTFPlotTablet
           v-if="tabletView"
           id="fc-true-false-sum-svg"
         />
-        <fcsumPlotMobile
+        <fcsumTFPlotMobile
           v-else-if="mobileView"
           id="fc-true-false-sum-svg"
         />
-        <fcsumPlotDesktop
+        <fcsumTFPlotDesktop
           v-else
           id="fc-true-false-sum-svg"
         />
@@ -49,9 +49,9 @@
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup2 from '@/components/RadioGroup.vue'
-    import fcsumPlotDesktop from "@/assets/svgs/fc_tf_sum_desktop.svg";
-    import fcsumPlotTablet from "@/assets/svgs/fc_tf_sum_tablet.svg";
-    import fcsumPlotMobile from "@/assets/svgs/fc_tf_sum_mobile.svg";
+    import fcsumTFPlotDesktop from "@/assets/svgs/fc_tf_sum_desktop.svg";
+    import fcsumTFPlotTablet from "@/assets/svgs/fc_tf_sum_tablet.svg";
+    import fcsumTFPlotMobile from "@/assets/svgs/fc_tf_sum_mobile.svg";
 
     // global variables
     const mobileView = isMobile;

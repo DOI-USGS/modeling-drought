@@ -306,3 +306,18 @@ remove_metadata_and_fix(
     "Task2/out/fc_tf_key_mobile.svg",
     "src/assets/svgs/fc_tf_key_mobile.svg",
 )
+
+# to make the tablet version, we first adjust the figure size to a more horizontal aspect
+fig_true_false.set_size_inches(
+    target_plotwidth_in_tablet,
+    target_plotwidth_in_tablet / aspect_single_plot,
+)
+
+# make svg
+fig_true_false.savefig("Task2/out/fc_tf_key_tablet.svg", metadata=None)
+
+# remove metadata
+remove_metadata_and_fix(
+    "Task2/out/fc_tf_key_tablet.svg",
+    "src/assets/svgs/fc_tf_key_tablet.svg",
+)

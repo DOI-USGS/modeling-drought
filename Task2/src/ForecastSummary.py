@@ -234,3 +234,17 @@ fig_pred_interval.savefig("Task2/out/fc_summary_mobile.svg", metadata=None)
 remove_metadata_and_fix(
     "Task2/out/fc_summary_mobile.svg", "src/assets/svgs/fc_summary_mobile.svg"
 )
+
+# to make the tablet version, we first adjust the figure size to a more horizontal aspect
+fig_pred_interval.set_size_inches(
+    target_plotwidth_in_tablet,
+    target_plotwidth_in_tablet / aspect_single_plot,
+)
+
+# make svg
+fig_pred_interval.savefig("Task2/out/fc_summary_tablet.svg", metadata=None)
+
+# remove metadata
+remove_metadata_and_fix(
+    "Task2/out/fc_summary_tablet.svg", "src/assets/svgs/fc_summary_tablet.svg"
+)
