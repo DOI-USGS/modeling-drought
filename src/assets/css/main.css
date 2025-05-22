@@ -43,3 +43,6 @@ text {
 .toggle-container {
   margin-top: 1rem;
 }
+.extra-line-spacing {
+  line-height: 1.8;
+}
