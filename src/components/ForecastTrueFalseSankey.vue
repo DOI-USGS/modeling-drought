@@ -23,7 +23,9 @@
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption>
-      <p v-html="text.caption" />
+      <p v-if="tabletView" v-html="text.caption1Responsive" />
+      <p v-else-if="mobileView" v-html="text.caption1Responsive" />
+      <p v-else v-html="text.caption1Desktop" />
     </template>
   </VizSection>
 </template>
