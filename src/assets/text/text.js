@@ -37,7 +37,7 @@ export default {
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
         },
-        Forecast: {
+        ForecastExplore: {
             heading: "What do the forecasts look like?",
             paragraph1: "We generate weekly forecasts for 1 - 13 weeks in the future",
             caption1Desktop: "Hover your mouse over the plot to see how the model forecasts streamflow drought.",
@@ -52,13 +52,13 @@ export default {
         ForecastTrueFalseSankey: {
             heading: "How well does the model perform? Part 1",
             paragraph1: "More droughts get missed further into the future",
-            caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or now, and how that prediction is correct (true outcome).",
-            caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or now, and how that prediction is correct (true outcome).",
+            caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or not, and how that prediction is correct (a true outcome).",
+            caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or not, and how that prediction is correct (a true outcome).",
         },
         ForecastTrueFalseSummary: {
             heading: "How well does the model perform? Part 2",
             paragraph1: "For a given horizon...",
-            caption: "Depending on the forecast horizon, the proportions of true-positives, true-negatives, false-positives, and false-negatives changes. More false outcomes occurs as forecast horizon increases.",
+            caption: "Depending on the forecast horizon, the proportions of true positives, true negatives, false positives, and false negatives changes. More false outcomes occur as the forecast horizon lengthens.",
         },
         ForecastTrueFalseRightOrWrong: {
             heading: "How well does the model perform? Part 3",

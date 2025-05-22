@@ -160,7 +160,7 @@ L 0 3.5
      </g>
     </g>
     <g id="text_14">
-     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="209.79" y="292.2495" transform="rotate(-0 209.79 292.2495)">Prediction horizon in weeks</text>
+     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="209.79" y="292.2495" transform="rotate(-0 209.79 292.2495)">Forecast horizon in weeks</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">

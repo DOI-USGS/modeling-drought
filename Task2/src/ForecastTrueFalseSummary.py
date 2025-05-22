@@ -100,7 +100,7 @@ ax_true_false.set_title(
 )
 ax_true_false.spines["top"].set_visible(False)
 ax_true_false.spines["right"].set_visible(False)
-ax_true_false.set_xlabel("Prediction horizon in weeks", weight="semibold")
+ax_true_false.set_xlabel("Forecast horizon in weeks", weight="semibold")
 ax_true_false.grid(visible=True, axis="y")
 ax_true_false.set_axisbelow(True)
 ax_true_false.tick_params(direction="out")

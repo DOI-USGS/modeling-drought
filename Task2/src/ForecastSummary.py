@@ -208,7 +208,7 @@ ax_pred_interval.set_title(
 )
 ax_pred_interval.spines["top"].set_visible(False)
 ax_pred_interval.spines["right"].set_visible(False)
-ax_pred_interval.set_xlabel("Prediction Horizon in Weeks", weight="semibold")
+ax_pred_interval.set_xlabel("Forecast horizon in weeks", weight="semibold")
 ax_pred_interval.grid(visible=True, axis="y")
 ax_pred_interval.set_axisbelow(True)
 ax_pred_interval.tick_params(direction="out")
