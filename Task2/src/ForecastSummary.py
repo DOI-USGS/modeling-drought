@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
 import datetime
 from scipy import stats
 from scipy import interpolate
@@ -27,77 +28,116 @@ ax_pred_interval = fig_pred_interval.add_axes(
 
 ### Data Arrays
 # load drought data
-drought_data = pd.read_csv("Task_Data/UQ_summaries_for_JeffreyHayley_WDroughtDims.csv")
+drought_data = pd.read_csv(
+    "Task_Data/UQ_summaries_for_JeffreyHayley_WDroughtDims_interpolated.csv"
+)
 
 horizon_weeks = drought_data["horizon_weeks"].to_list()
 horizon_weeks.insert(0, 0.0)
-avg_width_top = (drought_data["ave_PI_width"] / 2.0).to_list()
-avg_width_top.insert(0, 0.0)
-avg_width_bottom = (drought_data["ave_PI_width"] / -2.0).to_list()
-avg_width_bottom.insert(0, 0.0)
+avg_width_top = (drought_data["ave_PI_width"] / 2.0 + 50.0).to_list()
+avg_width_top.insert(0, 50.0)
+avg_width_bottom = (drought_data["ave_PI_width"] / -2.0 + 50.0).to_list()
+avg_width_bottom.insert(0, 50.0)
 
-ax_pred_interval.fill_between(
+for i in range(1, len(horizon_weeks)):
+    ax_pred_interval.fill_between(
+        [horizon_weeks[i - 1], horizon_weeks[i]],
+        [avg_width_top[i - 1], avg_width_top[i]],
+        [avg_width_bottom[i - 1], avg_width_bottom[i]],
+        color=median_color_hex,
+        linewidth=0.0,
+        alpha=0.5 * (len(horizon_weeks) - i) / len(horizon_weeks),
+    )
+
+
+def line_outline(x, y, color, w_linewidth):
+    ax_pred_interval.plot(
+        x,
+        y,
+        color="w",
+        solid_capstyle="round",
+        linewidth=w_linewidth,
+        zorder=5,
+    )
+    ax_pred_interval.plot(
+        x,
+        y,
+        color=color,
+        solid_capstyle="round",
+        linewidth=w_linewidth * 0.4,
+        zorder=6,
+    )
+
+
+line_outline(
     horizon_weeks,
     avg_width_top,
-    avg_width_bottom,
-    color=median_color_hex,
-    linewidth=0.0,
-    alpha=0.25,
+    upper_color_limit_hex,
+    line_width_summary,
 )
 
-
-ax_pred_interval.plot(
-    horizon_weeks,
-    avg_width_top,
-    color=upper_color_limit_hex,
-)
-
-ax_pred_interval.plot(
+line_outline(
     horizon_weeks,
     avg_width_bottom,
-    color=lower_color_limit_hex,
+    lower_color_limit_hex,
+    line_width_summary,
 )
 
-ax_pred_interval.plot([0, 7 * 13], [0, 0], color=median_color_hex, alpha=0.75)
+line_outline(
+    [0, 7 * 13],
+    [50, 50],
+    median_color_hex,
+    line_width_summary,
+)
+
+ax_pred_interval.plot(
+    [-50, 0],
+    [50, 50],
+    color=observation_color_hex,
+    alpha=1.0,
+    linewidth=line_width_summary * 0.4,
+    solid_capstyle="round",
+    zorder=-2,
+)
 
 ax_pred_interval.text(
-    -20,
-    0.0,
-    "Issue date:\nstreamflow\npercentile\nknown",
-    ha="left",
-    va="center",
-    weight="semibold",
+    0,
+    52.0,
+    "Today",
+    ha="right",
+    va="bottom",
     gid="prediction-width-label-week-" + str(i),
 )
 
+prediction_bump = 2.0
+
 ax_pred_interval.text(
-    (13 + 8) * 0.5 * 7,
-    0.0,
+    (13) * 0.75 * 7,
+    50.0 + prediction_bump,
     "Median prediction",
     ha="center",
     va="bottom",
-    weight="semibold",
+    path_effects=[pe.withStroke(linewidth=2, foreground="w")],
 )
 
+
 ax_pred_interval.text(
-    (13 + 8) * 0.5 * 7,
-    avg_width_top[-2],
+    (13) * 0.75 * 7,
+    avg_width_top[-1] + prediction_bump,
     "Upper prediction",
     ha="center",
-    va="top",
-    weight="semibold",
+    va="bottom",
 )
 
 ax_pred_interval.text(
-    (13 + 8) * 0.5 * 7,
-    avg_width_bottom[-2],
+    (13) * 0.75 * 7,
+    avg_width_bottom[-1] - prediction_bump,
     "Lower prediction",
     ha="center",
-    va="bottom",
-    weight="semibold",
+    va="top",
 )
 
-ax_pred_interval.scatter(0.0, 0.0, s=100, color=ratio_7, marker="s")
+ax_pred_interval.scatter(0.0, 50.0, s=100, color=ratio_7, marker="s", zorder=10)
 for i in range(1, len(horizon_weeks)):
     week_label = str(int(horizon_weeks[i] / 7)) + " weeks"
     # remove "s" for 1 week
@@ -106,65 +146,63 @@ for i in range(1, len(horizon_weeks)):
 
     ax_pred_interval.text(
         horizon_weeks[i],
-        35,
+        95,
         week_label
-        + ":\n"
+        + " later\n"
         + r"+/-"
-        + str(round(avg_width_top[i] * 1.0, 1))
-        + " percentile",
+        + str(round(avg_width_top[i] * 0.5, 1))
+        + " pct",
         ha="center",
-        va="bottom",
-        weight="semibold",
+        va="center",
         gid="prediction-width-label-percent-" + str(i),
         alpha=0.0,
+        zorder=11,
     )
     ax_pred_interval.plot(
         [horizon_weeks[i], horizon_weeks[i]],
-        [-35, 35],
+        [avg_width_bottom[i], avg_width_top[i]],
         linestyle=":",
-        color=ratio_7,
+        solid_capstyle="round",
+        color=ratio_3,
     )
-    # ax_pred_interval.text(
-    #     horizon_weeks[i],
-    #     0.0,
-    #     week_label,
-    #     rotation=90,
-    #     ha="right",
-    #     va="center",
-    #     weight="semibold",
-    #     gid="prediction-width-label-week-" + str(i),
-    # )
 
     ax_pred_interval.plot(
         [horizon_weeks[i], horizon_weeks[i]],
         [avg_width_bottom[i], avg_width_top[i]],
         linestyle="-",
-        linewidth=2,
-        color=ratio_7,
+        linewidth=line_width_summary * 0.4,
+        color=ratio_5,
         gid="prediction-width-line-" + str(i),
         alpha=0.0,
+        solid_capstyle="round",
     )
 
     ax_pred_interval.plot(
-        [horizon_weeks[i], horizon_weeks[i]],
-        [-50, 50],
-        linewidth=40,
+        [
+            0.5 * (horizon_weeks[i] + horizon_weeks[i - 1]),
+            0.5 * (horizon_weeks[i] + horizon_weeks[i - 1]),
+        ],
+        [0, 100],
+        linewidth=35,
         color="none",
         alpha=0.0,
         gid="prediction-width-hover-" + str(i),
         zorder=100,
     )
 ax_pred_interval.set_xlim(-20, 100)
-ax_pred_interval.set_ylim(-50, 50)
-# ax_pred_interval.set_yticks([-40, -20, 0, 20, 40], ["-40%", "-20%", "0%", "20%", "40%"])
-# ax_pred_interval.set_yticks(
-#     [0, 20, 40, 60, 80, 100], ["0%", "20%", "40%", "60%", "80%", "100%"]
-# )
-# ax_pred_interval.set_xticks(
-#     [0, 7, 14, 28, 56, 91],
-#     [0, 1, 2, 4, 8, 13],
-# )
-plt.axis("off")
+ax_pred_interval.set_ylim(0, 100)
+ax_pred_interval.set_yticks(
+    [0.0, 20.0, 40.0, 60.0, 80.0, 100],
+    [
+        "0ᵗʰ",
+        "20ᵗʰ",
+        "40ᵗʰ",
+        "60ᵗʰ",
+        "80ᵗʰ",
+        "100ᵗʰ",
+    ],
+)
+ax_pred_interval.set_xticks(np.linspace(0, 13 * 7, 14), [str(i) for i in range(0, 14)])
 ax_pred_interval.set_title(
     "Streamflow Prediction Interval", loc="left", weight="extra bold", color="k"
 )

@@ -12,10 +12,6 @@ button_padding = 0.2
 obs_linestyle = "dotted"
 # forecast data for task 1
 forecast_data = feather.read_feather("Task_Data/ForJeffrey_7day_forecast.feather")
-# Shadows parameters for buttons
-shadow_color = (0.4, 0.4, 0.4)
-shadow_offset_x = 0.004
-shadow_offset_y = -0.005
 
 # asymmetric laplace distribution parameters: https://en.wikipedia.org/wiki/Asymmetric_Laplace_distribution
 loc = 0.0
@@ -50,10 +46,9 @@ missed_marker_size = 8.0
 ### Forecast
 basename_gid_forecast = "forecast"
 basename_gid_forecast_summary_1 = "forecast_summary_1"
-basename_gid_forecast_summary_2 = "forecast_summary_2"
 basename_gid_true_false = "forecast_truefalse"
 basename_gid_true_false_key = "forecast_truefalse_key"
-basename_gid_true_false_sumamry = "forecast_truefalse_summary"
+basename_gid_true_false_summary = "forecast_truefalse_summary"
 offset = [0, 1, 2, 4, 8, 13]
 dt = 7
 dense_dt = 1
@@ -66,3 +61,6 @@ forecast_files = [
     "ForJeffrey_56day_forecast.feather",
     "ForJeffrey_91day_forecast.feather",
 ]
+
+### Forecast Summary
+line_width_summary = 5.0

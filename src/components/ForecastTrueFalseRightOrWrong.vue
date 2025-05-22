@@ -12,18 +12,16 @@
     </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <RadioGroup2
+        v-model="selectedfcSumLayer"
+        :options="fcSumLayers"
+        :center-color="centerColorfcSum"
+      />
     </template>
     <!-- FIGURES -->
     <template #figures>
-      <div id="fc-true-false-grid-container">
-        <fckeyPlot
-          id="fc-true-false-svg"
-        />
-      </div>
       <div id="fc-true-false-sum-grid-container">
-        <fcsumPlot
-          id="fc-true-false-sum-svg"
-        />
+        <component :is="currentPlot" id="fc-true-false-sum-svg" />
       </div>
     </template>
     <!-- FIGURE CAPTION -->
@@ -34,11 +32,25 @@
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, reactive, ref, watch  } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
+    import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import fckeyPlot from "@/assets/svgs/fc_tf_key_desktop.svg";
-    import fcsumPlot from "@/assets/svgs/fc_tf_sum_desktop.svg";
+    import RadioGroup2 from '@/components/RadioGroup.vue'
+    import fcsumNDPlotDesktop from "@/assets/svgs/fc_tf_sum_nd_desktop.svg";
+    import fcsumRWPlotDesktop from "@/assets/svgs/fc_tf_sum_rw_desktop.svg";
+    import fcsumYDPlotDesktop from "@/assets/svgs/fc_tf_sum_yd_desktop.svg";
+    import fcsumNDPlotTablet from "@/assets/svgs/fc_tf_sum_nd_tablet.svg";
+    import fcsumRWPlotTablet from "@/assets/svgs/fc_tf_sum_rw_tablet.svg";
+    import fcsumYDPlotTablet from "@/assets/svgs/fc_tf_sum_yd_tablet.svg";
+    import fcsumNDPlotMobile from "@/assets/svgs/fc_tf_sum_nd_mobile.svg";
+    import fcsumRWPlotMobile from "@/assets/svgs/fc_tf_sum_rw_mobile.svg";
+    import fcsumYDPlotMobile from "@/assets/svgs/fc_tf_sum_yd_mobile.svg";
+
+    // global variables
+    const mobileView = isMobile;
+    const tabletView = isTablet;
 
     // define props
     defineProps({
@@ -50,12 +62,90 @@
         }
     })
 
+    // define reactive variables
+    const selectedfcSumLayer = ref('RW-all')
+    const fcSumLayers = reactive([
+        {
+            label: 'how often is the model right or wrong?',
+            value: 'RW-all',
+            color: '#929292'
+        },
+        {
+            label: 'how often is the model right of wrong when it does not predict drought?',
+            value: 'RW_noDrought',
+            color: '#406992'
+        },
+        {
+            label: 'how often is the model right of wrong when it predicts drought?',
+            value: 'RW-drought',
+            color: '#B78935'
+        }
+    ])
+
+    // define global variables
+    const centerColorfcSum = 'var(--color-background)'
+    const currentPlot = ref('');
+
+    // Watches selectedLayer for changes and updates figure layers
+    watch(selectedfcSumLayer, () => {
+        updateFigure()
+    })
+
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
         addInteractions();
+        // update figure based on radio button selection
+        updateFigure();
     });
-    
+
+    // Function to update the figure based on selected layer and device type
+    function updateFigure() {
+        if (tabletView) {
+            switch (selectedfcSumLayer.value) {
+                case 'RW_noDrought':
+                    currentPlot.value = fcsumNDPlotTablet; // Change to the appropriate component for RW_noDrought
+                    break;
+                case 'RW-all':
+                    currentPlot.value = fcsumRWPlotTablet; // Change to the appropriate component for RW-all
+                    break;
+                case 'RW-drought':
+                    currentPlot.value = fcsumYDPlotTablet; // Change to the appropriate component for RW-drought
+                    break;
+                default:
+                    currentPlot.value = fcsumRWPlotTablet; // Fallback
+            }
+        } else if (mobileView) {
+            switch (selectedfcSumLayer.value) {
+                case 'RW_noDrought':
+                    currentPlot.value = fcsumNDPlotMobile;
+                    break;
+                case 'RW-all':
+                    currentPlot.value = fcsumRWPlotMobile;
+                    break;
+                case 'RW-drought':
+                    currentPlot.value = fcsumYDPlotMobile;
+                    break;
+                default:
+                    currentPlot.value = fcsumRWPlotMobile; // Fallback
+            }
+        } else {
+            // For desktop view
+            switch (selectedfcSumLayer.value) {
+                case 'RW_noDrought':
+                    currentPlot.value = fcsumNDPlotDesktop;
+                    break;
+                case 'RW-all':
+                    currentPlot.value = fcsumRWPlotDesktop;
+                    break;
+                case 'RW-drought':
+                    currentPlot.value = fcsumYDPlotDesktop;
+                    break;
+                default:
+                    currentPlot.value = fcsumRWPlotDesktop; // Fallback
+            }
+        }
+    }
 
     // Draw the percent width line and label
     function draw_sankey(tf_id) {
@@ -137,20 +227,6 @@
 </script>
 
 <style scoped lang="scss">
-    #fc-true-false-grid-container {
-        display: grid;
-        width: 100%;
-        max-width: 800px;
-        margin: 3rem auto 4rem auto;
-        grid-template-areas:
-            "chart";
-    }
-    #fc-true-false-svg {
-        grid-area: chart;
-        place-self: center;
-        height: 100%;
-        width: 100%;
-    }
     #fc-true-false-sum-grid-container {
         display: grid;
         width: 100%;

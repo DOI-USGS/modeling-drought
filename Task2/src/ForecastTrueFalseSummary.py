@@ -27,16 +27,16 @@ ND_ND_list = tf_d["true_neg"] / total * 100.0 + ND_D_list
 
 # make figure
 fig_true_false = plt.figure(
-    i,
+    1,
     figsize=(
         target_single_plotwidth,
         target_single_plotwidth / aspect_single_plot,
     ),
-    gid="figure-" + basename_gid_true_false_sumamry,
+    gid="figure-" + basename_gid_true_false_summary,
 )
 # add axes for the forecast
 ax_true_false = fig_true_false.add_axes(
-    [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_true_false_sumamry
+    [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_true_false_summary
 )
 
 
@@ -93,7 +93,7 @@ ax_true_false.set_yticks(
 )
 ax_true_false.set_xticks(np.linspace(1, 13, 13) - 0.5, [str(i) for i in range(1, 14)])
 ax_true_false.set_title(
-    "Model accuracy",
+    "Model outcomes",
     loc="left",
     weight="extra bold",
     color="k",
@@ -128,4 +128,19 @@ fig_true_false.savefig("Task2/out/fc_tf_sum_mobile.svg", metadata=None)
 remove_metadata_and_fix(
     "Task2/out/fc_tf_sum_mobile.svg",
     "src/assets/svgs/fc_tf_sum_mobile.svg",
+)
+
+# to make the tablet version, we first adjust the figure size to a more horizontal aspect
+fig_true_false.set_size_inches(
+    target_plotwidth_in_tablet,
+    target_plotwidth_in_tablet / aspect_single_plot,
+)
+
+# make svg
+fig_true_false.savefig("Task2/out/fc_tf_sum_tablet.svg", metadata=None)
+
+# remove metadata
+remove_metadata_and_fix(
+    "Task2/out/fc_tf_sum_tablet.svg",
+    "src/assets/svgs/fc_tf_sum_tablet.svg",
 )
