@@ -1,4 +1,4 @@
-import Forecaste from "../../components/Forecast.vue";
+import Forecaste from "../../components/ForecastExplore.vue";
 import references from "./references";
 
 export default {
