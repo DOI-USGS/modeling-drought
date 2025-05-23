@@ -16,6 +16,19 @@
     <!-- FIGURES -->
     <template #figures>
       <div id="fc-summary-grid-container">
+        <svg width="0" height="0">
+          <filter id="outline">
+              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"></feMorphology>
+              
+              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
+              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+              
+              <feMerge>
+                    <feMergeNode in="OUTLINE" />
+                    <feMergeNode in="SourceGraphic" />
+              </feMerge>
+        </filter>
+        </svg>
         <fcsumPlotTablet
           v-if="tabletView"
           id="fc-summary-svg"
@@ -47,6 +60,7 @@
     </template>
   </VizSection>
 </template>
+
 
 <script setup>
     import { onMounted } from "vue";
@@ -109,9 +123,13 @@
         }
       }
 
+        
     function addInteractions() {
         // set viewbox for svg with confidence interval chart
         const fcsumSVG = d3.select("#fc-summary-svg")
+
+        d3.select("#prediction-interval-median-label").selectAll("text")
+            .attr("filter", "url(#outline)"); // Apply the glow filter;
         // Add interaction to confidence interval chart
         fcsumSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))

@@ -2,7 +2,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.patheffects as pe
 import datetime
 from scipy import stats
 from scipy import interpolate
@@ -100,14 +99,7 @@ ax_pred_interval.plot(
     zorder=-2,
 )
 
-ax_pred_interval.text(
-    0,
-    52.0,
-    "Today",
-    ha="right",
-    va="bottom",
-    gid="prediction-width-label-week-" + str(i),
-)
+ax_pred_interval.text(0, 52.0, "Today", ha="right", va="bottom", fontweight="semibold")
 
 prediction_bump = 2.0
 
@@ -117,7 +109,8 @@ ax_pred_interval.text(
     "Median prediction",
     ha="center",
     va="bottom",
-    path_effects=[pe.withStroke(linewidth=2, foreground="w")],
+    gid="prediction-interval-median-label",
+    fontweight="semibold",
 )
 
 
@@ -127,6 +120,7 @@ ax_pred_interval.text(
     "Upper prediction",
     ha="center",
     va="bottom",
+    fontweight="semibold",
 )
 
 ax_pred_interval.text(
@@ -135,6 +129,7 @@ ax_pred_interval.text(
     "Lower prediction",
     ha="center",
     va="top",
+    fontweight="semibold",
 )
 
 ax_pred_interval.scatter(0.0, 50.0, s=100, color=ratio_7, marker="s", zorder=10)
