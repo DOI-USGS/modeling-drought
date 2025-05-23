@@ -48,7 +48,6 @@
     import { isMobile } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import RadioGroup2 from '@/components/RadioGroup.vue'
     import fcsumTFPlotDesktop from "@/assets/svgs/fc_tf_sum_desktop.svg";
     import fcsumTFPlotTablet from "@/assets/svgs/fc_tf_sum_tablet.svg";
     import fcsumTFPlotMobile from "@/assets/svgs/fc_tf_sum_mobile.svg";

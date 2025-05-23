@@ -142,11 +142,7 @@ for i in range(1, len(horizon_weeks)):
     ax_pred_interval.text(
         horizon_weeks[i],
         95,
-        week_label
-        + " later\n"
-        + r"+/-"
-        + str(round(avg_width_top[i] * 0.5, 1))
-        + " pct",
+        week_label + " out\n" + r"+/-" + str(round(avg_width_top[i] * 0.5, 1)) + " pct",
         ha="center",
         va="center",
         gid="prediction-width-label-percent-" + str(i),
