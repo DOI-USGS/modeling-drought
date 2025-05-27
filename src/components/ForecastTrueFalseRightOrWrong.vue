@@ -12,7 +12,7 @@
     </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
-      <RadioGroup2
+      <RadioGroup
         v-model="selectedfcSumLayer"
         :options="fcSumLayers"
         :center-color="centerColorfcSum"
@@ -22,7 +22,7 @@
     <template #figures>
       <div id="fc-true-false-sum-grid-container">
         <component
-          :is="currentPlot"
+          :is="getCurrentSVG()"
           id="fc-true-false-sum-svg"
         />
       </div>
@@ -40,7 +40,7 @@
     import { isMobile } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import RadioGroup2 from '@/components/RadioGroup.vue'
+    import RadioGroup from '@/components/RadioGroup.vue'
     import fcsumNDPlotDesktop from "@/assets/svgs/fc_tf_sum_nd_desktop.svg";
     import fcsumRWPlotDesktop from "@/assets/svgs/fc_tf_sum_rw_desktop.svg";
     import fcsumYDPlotDesktop from "@/assets/svgs/fc_tf_sum_yd_desktop.svg";
@@ -87,68 +87,43 @@
 
     // define global variables
     const centerColorfcSum = 'var(--color-background)'
-    const currentPlot = ref('');
-
-    // Watches selectedLayer for changes and updates figure layers
-    watch(selectedfcSumLayer, () => {
-        updateFigure()
-    })
 
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
         addInteractions();
         // update figure based on radio button selection
-        updateFigure();
+        getCurrentSVG();
     });
 
-    // Function to update the figure based on selected layer and device type
-    function updateFigure() {
-        if (tabletView) {
-            switch (selectedfcSumLayer.value) {
-                case 'RW_noDrought':
-                    currentPlot.value = fcsumNDPlotTablet; // Change to the appropriate component for RW_noDrought
-                    break;
-                case 'RW-all':
-                    currentPlot.value = fcsumRWPlotTablet; // Change to the appropriate component for RW-all
-                    break;
-                case 'RW-drought':
-                    currentPlot.value = fcsumYDPlotTablet; // Change to the appropriate component for RW-drought
-                    break;
-                default:
-                    currentPlot.value = fcsumRWPlotTablet; // Fallback
-            }
-        } else if (mobileView) {
-            switch (selectedfcSumLayer.value) {
-                case 'RW_noDrought':
-                    currentPlot.value = fcsumNDPlotMobile;
-                    break;
-                case 'RW-all':
-                    currentPlot.value = fcsumRWPlotMobile;
-                    break;
-                case 'RW-drought':
-                    currentPlot.value = fcsumYDPlotMobile;
-                    break;
-                default:
-                    currentPlot.value = fcsumRWPlotMobile; // Fallback
-            }
-        } else {
-            // For desktop view
-            switch (selectedfcSumLayer.value) {
-                case 'RW_noDrought':
-                    currentPlot.value = fcsumNDPlotDesktop;
-                    break;
-                case 'RW-all':
-                    currentPlot.value = fcsumRWPlotDesktop;
-                    break;
-                case 'RW-drought':
-                    currentPlot.value = fcsumYDPlotDesktop;
-                    break;
-                default:
-                    currentPlot.value = fcsumRWPlotDesktop; // Fallback
-            }
+    function getCurrentSVG() {
+      const svgs = {
+        tablet: {
+          RW_noDrought: fcsumNDPlotTablet,
+          'RW-all': fcsumRWPlotTablet,
+          'RW-drought': fcsumYDPlotTablet
+        },
+        mobile: {
+          RW_noDrought: fcsumNDPlotMobile,
+          'RW-all': fcsumRWPlotMobile,
+          'RW-drought': fcsumYDPlotMobile
+        },
+        desktop: {
+          RW_noDrought: fcsumNDPlotDesktop,
+          'RW-all': fcsumRWPlotDesktop,
+          'RW-drought': fcsumYDPlotDesktop
         }
+      }
+
+      if (tabletView) {
+        return svgs.tablet[selectedfcSumLayer.value];
+      } else if (mobileView) {
+        return svgs.mobile[selectedfcSumLayer.value];
+      } else {
+        return svgs.desktop[selectedfcSumLayer.value];
+      }
     }
+
 
     // Draw the percent width line and label
     function draw_sankey(tf_id) {

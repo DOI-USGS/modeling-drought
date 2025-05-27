@@ -12,11 +12,6 @@
     </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
-      <RadioGroup2
-        v-model="selectedfcSumLayer"
-        :options="fcSumLayers"
-        :center-color="centerColorfcSum"
-      />
     </template>
     <!-- FIGURES -->
     <template #figures>
