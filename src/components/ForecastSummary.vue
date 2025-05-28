@@ -29,6 +29,19 @@
               </feMerge>
         </filter>
         </svg>
+        <svg width="0" height="0">
+          <filter id="outline-light">
+              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="1"></feMorphology>
+              
+              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
+              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+              
+              <feMerge>
+                    <feMergeNode in="OUTLINE" />
+                    <feMergeNode in="SourceGraphic" />
+              </feMerge>
+        </filter>
+        </svg>
         <fcsumPlotTablet
           v-if="tabletView"
           id="fc-summary-svg"
@@ -97,15 +110,25 @@
     function drew_prediction_width(pw_id) {
         d3.select("#prediction-width-line-" + pw_id).selectAll("path")
             .style("stroke-opacity", 1)
-        d3.select("#prediction-width-label-percent-" + pw_id).selectAll("text")
+        d3.select("#prediction-width-label-week-" + pw_id).selectAll("text")
             .style("opacity", 1);
+        d3.select("#prediction-width-label-lower-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 1)
+            .attr("filter", "url(#outline-light)"); // Apply the glow filter;
+        d3.select("#prediction-width-label-upper-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 1)
+            .attr("filter", "url(#outline-light)"); // Apply the glow filter;
     }
 
     // Draw the percent width line and label
     function remove_prediction_width(pw_id) {
         d3.select("#prediction-width-line-" + pw_id).selectAll("path")
             .style("stroke-opacity", 0)
-        d3.select("#prediction-width-label-percent-" + pw_id).selectAll("text")
+        d3.select("#prediction-width-label-week-" + pw_id).selectAll("text")
+            .style("opacity", 0);
+        d3.select("#prediction-width-label-lower-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 0);
+        d3.select("#prediction-width-label-upper-percentile-" + pw_id).selectAll("text")
             .style("opacity", 0);
     }
 

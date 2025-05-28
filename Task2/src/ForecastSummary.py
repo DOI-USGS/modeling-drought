@@ -28,15 +28,18 @@ ax_pred_interval = fig_pred_interval.add_axes(
 ### Data Arrays
 # load drought data
 drought_data = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_WDroughtDims_interpolated.csv"
+    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_20250527_interpolated.csv"
 )
 
-horizon_weeks = drought_data["horizon_weeks"].to_list()
+horizon_weeks = drought_data["horizon"].to_list()
 horizon_weeks.insert(0, 0.0)
-avg_width_top = (drought_data["ave_PI_width"] / 2.0 + 50.0).to_list()
-avg_width_top.insert(0, 50.0)
-avg_width_bottom = (drought_data["ave_PI_width"] / -2.0 + 50.0).to_list()
-avg_width_bottom.insert(0, 50.0)
+avg_median = (drought_data["overall_ave_q50"]).to_list()
+extrap_zero = 49.0733279613215
+avg_median.insert(0, extrap_zero)
+avg_width_top = (drought_data["overall_ave_q95"]).to_list()
+avg_width_top.insert(0, extrap_zero)
+avg_width_bottom = (drought_data["overall_ave_q05"]).to_list()
+avg_width_bottom.insert(0, extrap_zero)
 
 for i in range(1, len(horizon_weeks)):
     ax_pred_interval.fill_between(
@@ -83,15 +86,15 @@ line_outline(
 )
 
 line_outline(
-    [0, 7 * 13],
-    [50, 50],
+    horizon_weeks,
+    avg_median,
     median_color_hex,
     line_width_summary,
 )
 
 ax_pred_interval.plot(
     [-50, 0],
-    [50, 50],
+    [extrap_zero, extrap_zero],
     color=observation_color_hex,
     alpha=1.0,
     linewidth=line_width_summary * 0.4,
@@ -99,13 +102,21 @@ ax_pred_interval.plot(
     zorder=-2,
 )
 
-ax_pred_interval.text(0, 52.0, "Today", ha="right", va="bottom", fontweight="semibold")
 
 prediction_bump = 2.0
+week_bump = 2.0
 
 ax_pred_interval.text(
+    0,
+    extrap_zero + prediction_bump,
+    "Today",
+    ha="right",
+    va="bottom",
+    fontweight="semibold",
+)
+ax_pred_interval.text(
     (13) * 0.75 * 7,
-    50.0 + prediction_bump,
+    avg_median[-1] + prediction_bump,
     "Median prediction",
     ha="center",
     va="bottom",
@@ -132,7 +143,7 @@ ax_pred_interval.text(
     fontweight="semibold",
 )
 
-ax_pred_interval.scatter(0.0, 50.0, s=100, color=ratio_7, marker="s", zorder=10)
+ax_pred_interval.scatter(0.0, extrap_zero, s=100, color=ratio_7, marker="s", zorder=10)
 for i in range(1, len(horizon_weeks)):
     week_label = str(int(horizon_weeks[i] / 7)) + " weeks"
     # remove "s" for 1 week
@@ -141,14 +152,38 @@ for i in range(1, len(horizon_weeks)):
 
     ax_pred_interval.text(
         horizon_weeks[i],
-        95,
-        week_label + " out\n" + r"+/-" + str(round(avg_width_top[i] * 0.5, 1)) + " pct",
+        100 - prediction_bump,
+        week_label + " out",
         ha="center",
-        va="center",
-        gid="prediction-width-label-percent-" + str(i),
+        va="top",
+        gid="prediction-width-label-week-" + str(i),
         alpha=0.0,
         zorder=11,
+        fontweight="normal",
     )
+    ax_pred_interval.text(
+        horizon_weeks[i] + week_bump,
+        avg_width_top[i] - prediction_bump,
+        "+ " + str(round(avg_width_top[i] - avg_median[i], 1)) + " pct",
+        ha="left",
+        va="top",
+        gid="prediction-width-label-upper-percentile-" + str(i),
+        alpha=0.0,
+        zorder=101,
+        fontweight="normal",
+    )
+    ax_pred_interval.text(
+        horizon_weeks[i] + week_bump,
+        avg_width_bottom[i] + prediction_bump,
+        "- " + str(round(avg_median[i] - avg_width_bottom[i], 1)) + " pct",
+        ha="left",
+        va="bottom",
+        gid="prediction-width-label-lower-percentile-" + str(i),
+        alpha=0.0,
+        zorder=101,
+        fontweight="normal",
+    )
+
     ax_pred_interval.plot(
         [horizon_weeks[i], horizon_weeks[i]],
         [avg_width_bottom[i], avg_width_top[i]],
