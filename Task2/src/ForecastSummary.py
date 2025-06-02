@@ -146,6 +146,20 @@ ax_pred_interval.text(
     fontweight="semibold",
 )
 
+
+def ordinal(number):
+    rounded = int(round(number, 0))
+    ones = rounded % 10
+    if ones == 1:
+        return str(rounded) + "ˢᵗ"
+    elif ones == 2:
+        return str(rounded) + "ⁿᵈ"
+    elif ones == 3:
+        return str(rounded) + "ʳᵈ"
+    else:
+        return str(rounded) + "ᵗʰ"
+
+
 ax_pred_interval.scatter(0.0, median_obs, s=100, color=ratio_7, marker="s", zorder=10)
 for i in range(1, len(horizon_weeks)):
     week_label = str(int(horizon_weeks[i] / 7)) + " weeks"
@@ -167,7 +181,7 @@ for i in range(1, len(horizon_weeks)):
     ax_pred_interval.text(
         horizon_weeks[i] + week_bump,
         avg_width_top[i] - prediction_bump,
-        "+ " + str(round(avg_width_top[i] - avg_median[i], 1)) + " pct",
+        ordinal(avg_width_top[i]) + " pct",
         ha="left",
         va="top",
         gid="prediction-width-label-upper-percentile-" + str(i),
@@ -178,7 +192,7 @@ for i in range(1, len(horizon_weeks)):
     ax_pred_interval.text(
         horizon_weeks[i] + week_bump,
         avg_width_bottom[i] + prediction_bump,
-        "- " + str(round(avg_median[i] - avg_width_bottom[i], 1)) + " pct",
+        ordinal(avg_width_bottom[i]) + " pct",
         ha="left",
         va="bottom",
         gid="prediction-width-label-lower-percentile-" + str(i),
