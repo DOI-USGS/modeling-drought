@@ -5,19 +5,80 @@ export default {
     pageTitle: "Modeling <span class='emph'>streamflow</span> drought",
     sections: {
         A: {
+            title: "What is streamflow drought?",
+            subtitle:"Streamflow droughts occur when streamflow levels become unusually low",
+            paragraph1: "<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>Streamflow drought</a> occurs in the wake of meteorological and agricultural drought, when streamflow levels become unusually low. Reduced streamflow has significant impact on plants, animals, and humans.",
+            accordionData: [
+                {
+                    heading: "Defining 'unusually low' streamflow using percentiles",
+                    content: [
+                        {
+                            type: "text",
+                            content: "For any stream or river, defining ‘unusually low’ streamflow means understanding typical conditions throughout the year. For <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>stream gages</a> with at least 40 years of data, we have a good understanding of what streamflow levels are typically observed at that site. "
+                        },
+                        {
+                            type: "text",
+                            content: "To categorize streamflow levels for each day of the year, we can use units of percentiles. If streamflow at a site on February 3<sup>rd</sup> is lower than 100 cubic feet per second (cfs) 50% of the time, then that streamflow level of 100 cfs is the 50<sup>th</sup> percentile, or median streamflow, at that site on February 3<sup>rd</sup>.  In contrast, a 20<sup>th</sup> percentile streamflow for that site on February 3<sup>rd</sup> is the level of streamflow that the site falls below on February 3<sup>rd</sup> in 20% of years. Another way to say it is that on February 3<sup>rd</sup>, streamflow at that site is less than that 20<sup>th</sup> percentile level 20% of the time."
+                        },
+                        {
+                            type: "image",
+                            content: "percentiles_explainer.png"
+                        },
+                        {
+                            type: "text",
+                            content: "For a given site, we define the 20<sup>th</sup> percentile streamflow on each day of the year as the threshold for drought for that day — any flow below this level is considered unusually low and is classified as a streamflow drought. "
+                        }
+                    ],
+                    activeOnLoad: false
+                },
+                {
+                    heading: "Classifying streamflow drought using percentiles",
+                    content: [
+                        {
+                            type: "text",
+                            content: "In addition to defining 20<sup>th</sup> percentile streamflow as the threshold for streamflow drought, we can use percentiles to further classify the category of drought: <ul><20<sup>th</sup> percentile = moderate drought</ul><ul>< 10<sup>th</sup> percentile = severe drought</ul><ul>< 5<sup>th</sup> percentile = extreme drought</ul>"
+                        }
+                    ],
+                    activeOnLoad: false
+                },
+                {
+                    heading: "How are 'low flows' different from 'streamflow drought'",
+                    content: [
+                        {
+                            type: "text",
+                            content: "It’s important to note the difference between ‘low streamflow’ and ‘streamflow drought.’ Low flows occur seasonally in many streams and are in line with typical conditions. In contrast, streamflow drought results when flows are unusually low compared to typical conditions. 'While droughts may include periods of low flows, a recurring seasonal low flow event is not necessarily a drought' (WMO, 2008). "
+                        }
+                    ],
+                    activeOnLoad: true
+                }
+            ]
+        },
+        B: {
+            title: "",
+            subtitle:""
+        },
+        C: {
+            title: "",
+            subtitle:""
+        },
+        D: {
+            title: "",
+            subtitle:""
+        },
+        E: {
             title: "How do we capture uncertainty?",
             subtitle:"We train the model to give us the range of possible streamflow percentiles.",
             paragraph1: "When we forecast streamflow, we want to know the uncertainty associated with each prediction.",
             paragraph2: "To capture the uncertainty, we train the model to predict three things: <ul>The model’s best estimate of the streamflow percentile (this is the median prediction.</ul><ul>The upper bound for the streamflow percentile (this is the 95% quantile). The model is predicting that 95% of future observed streamflow levels will be lower than this percentile.</ul><ul>The lower bound for the streamflow percentile (this is the 5% quantile). The model is predicting that 5% of future observed streamflow levels will be higher than this percentile.</ul>"
         },
-        B: {
+        F: {
             title: "How confidence changes with lead time",
         },
-        C: {
-            title: "Event-driven metrics for model evaluation",
+        G: {
+            title: "What comes next?",
         },
-        D: {
-            title: "About the data-driven drought team",
+        H: {
+            title: "Who is contributing to this project?",
         },
         references: {
             title: "References"

@@ -25,6 +25,18 @@
       </p>
       <p v-html="text.sections.A.paragraph1" />
       <p v-html="text.sections.A.paragraph2" />
+      <CollapsibleAccordion 
+        v-for="item, index in text.sections.A.accordionData"
+        :key="index"
+        :heading="item.heading"
+        :content="item.content"
+        :active-on-load="item.activeOnLoad"
+        left-border-color="var(--usgs-blue_3_1)"
+        button-active-background-color="var(--extremely-faded-usgs-blue)"
+        button-inactive-background-color="var(--color-background)"
+        button-font-weight="300"
+        button-font-color="var(--color-title-text)"
+      />
     </div>
     <LossFunction
       :text="text.components.LossFunction"
@@ -111,6 +123,7 @@
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
   import authors from "@/assets/text/authors";
+  import CollapsibleAccordion from "@/components/CollapsibleAccordion.vue";
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
@@ -121,6 +134,7 @@
 
   // global variables
   // const mobileView = isMobile;
+
 </script>
 
 <style scoped>
