@@ -102,21 +102,26 @@
     function mouseover(event) {
       if (event.currentTarget.id.startsWith("tf-bar-")){
             let tf_id = event.currentTarget.id.slice(7);
+            // plot sankey
             draw_sankey(tf_id);
+            // plot parent sankey
             if (tf_id.length > 2){
               draw_sankey(tf_id.slice(0,-3));
             }
         }
       else if (event.currentTarget.id.startsWith("tf-label-")){
             let tf_id = event.currentTarget.id.slice(9);
+            // plot sankey
             draw_sankey(tf_id);
+            // plot parent sankey
             if (tf_id.length > 2){
               draw_sankey(tf_id.slice(0,-3));
             }
         }
       else if (event.currentTarget.id.startsWith("tf-swoop-")){
-            let tf_id = event.currentTarget.id.slice(9);
+            // plot sankey
             draw_sankey(tf_id);
+            // plot parent sankey
             if (tf_id.length > 2){
               draw_sankey(tf_id.slice(0,-3));
             }
@@ -126,31 +131,54 @@
     function mouseout(event) {
       if (event.currentTarget.id.startsWith("tf-bar-")){
             let tf_id = event.currentTarget.id.slice(7);
+            // remove sankey
             remove_sankey(tf_id);
+            // remove parent sankey
             if (tf_id.length > 2){
               remove_sankey(tf_id.slice(0,-3));
             }
         }
       else if (event.currentTarget.id.startsWith("tf-label-")){
             let tf_id = event.currentTarget.id.slice(9);
+            // remove sankey
             remove_sankey(tf_id);
+            // remove parent sankey
             if (tf_id.length > 2){
               remove_sankey(tf_id.slice(0,-3));
             }
         }
       else if (event.currentTarget.id.startsWith("tf-swoop-")){
             let tf_id = event.currentTarget.id.slice(9);
+            // remove sankey
             remove_sankey(tf_id);
+            // remove parent sankey
             if (tf_id.length > 2){
               remove_sankey(tf_id.slice(0,-3));
             }
         }
       }
 
+
+    function mouseleave(default_swoop) {
+        draw_sankey(default_swoop);
+    }
+
+    function mouseenter(default_swoop) {
+        remove_sankey(default_swoop);
+    }
+
     function addInteractions() {
         // set viewbox for svg with confidence interval chart
         const fckeySVG = d3.select("#fc-true-false-svg")
+
+        // plot parameters
+        const default_swoop = "ND"
+
+        draw_sankey(default_swoop);
         // Add interaction to confidence interval chart
+        fckeySVG.select("#figure-forecast_truefalse_key")
+            .on("mouseleave", () => mouseleave(default_swoop))
+            .on("mouseenter", () => mouseenter(default_swoop));
         fckeySVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
