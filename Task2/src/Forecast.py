@@ -135,7 +135,7 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     )
 
 ax_forecast.annotate(
-    "Drag mouse over the\nplot rightwards to see\ndought forecasts.",
+    "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
     color=ratio_5,
     va="center",
     xy=(np.datetime64("2018-01-08"), 77),
@@ -143,11 +143,29 @@ ax_forecast.annotate(
     arrowprops=dict(
         facecolor=ratio_5,
         edgecolor=ratio_5,
-        alpha=1.0,
+        alpha=0.00001,
         arrowstyle="fancy",
         gid="annotation_forecast_arrow",
     ),
     gid="annotation_forecast",
+    alpha=0.0,
+)
+
+ax_forecast.annotate(
+    "Tap on the plot to\nsee drought forecasts",
+    color=ratio_5,
+    va="center",
+    xy=(np.datetime64("2018-07-28"), 80),
+    xytext=(np.datetime64("2017-07-08"), 80),
+    arrowprops=dict(
+        facecolor=ratio_5,
+        edgecolor=ratio_5,
+        alpha=0.0001,
+        arrowstyle="fancy",
+        gid="annotation_forecast_arrow_reactive",
+    ),
+    gid="annotation_forecast_reactive",
+    alpha=0.0,
 )
 
 # forecast axis parameters
