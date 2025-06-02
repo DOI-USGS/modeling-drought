@@ -54,6 +54,7 @@ for i in range(1, len(horizon_weeks)):
     )
 
 
+# this function adds a line and a second background line giving the appearance of white outline
 def line_outline(x, y, color, w_linewidth):
     ax_pred_interval.plot(
         x,

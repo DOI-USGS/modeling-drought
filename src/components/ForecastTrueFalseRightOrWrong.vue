@@ -151,7 +151,6 @@
             draw_sankey(tf_id);
             if (tf_id.length > 2){
               draw_sankey(tf_id.slice(0,-3));
-              console.log(tf_id)
             }
         }
       else if (event.currentTarget.id.startsWith("tf-label-")){

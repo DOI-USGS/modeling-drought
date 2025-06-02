@@ -107,7 +107,7 @@
     
 
     // Draw the percent width line and label
-    function drew_prediction_width(pw_id) {
+    function draw_prediction_width(pw_id) {
         d3.select("#prediction-width-line-" + pw_id).selectAll("path")
             .style("stroke-opacity", 1)
         d3.select("#prediction-width-label-week-" + pw_id).selectAll("text")
@@ -135,7 +135,7 @@
     function mouseover(event) {
       if (event.currentTarget.id.startsWith("prediction-width-hover")){
             let pw_id = event.currentTarget.id.slice(23);
-            drew_prediction_width(pw_id);
+            draw_prediction_width(pw_id);
         }
       }
 
