@@ -34,12 +34,14 @@ drought_data = pd.read_csv(
 horizon_weeks = drought_data["horizon"].to_list()
 horizon_weeks.insert(0, 0.0)
 avg_median = (drought_data["overall_ave_q50"]).to_list()
-extrap_zero = 49.0733279613215
-avg_median.insert(0, extrap_zero)
+median_obs = (
+    49.0733279613215  # this is the median observed prediction for the entire data set
+)
+avg_median.insert(0, median_obs)
 avg_width_top = (drought_data["overall_ave_q95"]).to_list()
-avg_width_top.insert(0, extrap_zero)
+avg_width_top.insert(0, median_obs)
 avg_width_bottom = (drought_data["overall_ave_q05"]).to_list()
-avg_width_bottom.insert(0, extrap_zero)
+avg_width_bottom.insert(0, median_obs)
 
 for i in range(1, len(horizon_weeks)):
     ax_pred_interval.fill_between(
@@ -94,7 +96,7 @@ line_outline(
 
 ax_pred_interval.plot(
     [-50, 0],
-    [extrap_zero, extrap_zero],
+    [median_obs, median_obs],
     color=observation_color_hex,
     alpha=1.0,
     linewidth=line_width_summary * 0.4,
@@ -108,7 +110,7 @@ week_bump = 2.0
 
 ax_pred_interval.text(
     0,
-    extrap_zero + prediction_bump,
+    median_obs + prediction_bump,
     "Today",
     ha="right",
     va="bottom",
@@ -143,7 +145,7 @@ ax_pred_interval.text(
     fontweight="semibold",
 )
 
-ax_pred_interval.scatter(0.0, extrap_zero, s=100, color=ratio_7, marker="s", zorder=10)
+ax_pred_interval.scatter(0.0, median_obs, s=100, color=ratio_7, marker="s", zorder=10)
 for i in range(1, len(horizon_weeks)):
     week_label = str(int(horizon_weeks[i] / 7)) + " weeks"
     # remove "s" for 1 week
