@@ -34,11 +34,20 @@
         </span>
       </h2>
     </div>
-    <ForecastConfidence
-      :text="text.components.ForecastConfidence"
+    <ForecastExplore
+      :text="text.components.ForecastExplore"
     />
     <ForecastSummary
       :text="text.components.ForecastSummary"
+    />
+    <ForecastTrueFalseSankey
+      :text="text.components.ForecastTrueFalseSankey"
+    />
+    <ForecastTrueFalseSummary
+      :text="text.components.ForecastTrueFalseSummary"
+    />
+    <ForecastTrueFalseRightOrWrong
+      :text="text.components.ForecastTrueFalseRightOrWrong"
     />
     <div
       class="text-container"
@@ -106,8 +115,11 @@
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
   import PredictionInterval from '@/components/PredictionInterval.vue';
-  import ForecastConfidence from '@/components/ForecastConfidence.vue';
+  import ForecastExplore from '@/components/ForecastExplore.vue';
   import ForecastSummary from '@/components/ForecastSummary.vue';
+  import ForecastTrueFalseSankey from '@/components/ForecastTrueFalseSankey.vue';
+  import ForecastTrueFalseSummary from '@/components/ForecastTrueFalseSummary.vue';
+  import ForecastTrueFalseRightOrWrong from '@/components/ForecastTrueFalseRightOrWrong.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
   import WhatIsStreamflowDrought from "@/components/WhatIsStreamflowDrought.vue";
   import HowModelStreamflowDrought from "@/components/HowModelStreamflowDrought.vue";

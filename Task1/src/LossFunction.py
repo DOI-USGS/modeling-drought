@@ -173,7 +173,7 @@ ax_LF.set_xlim(-1, 1)
 ax_LF.set_xticks(x_LF, ["Lower", "Median", "Upper"])
 ax_LF.set_yticks([0, 0.5, 1.0], ["Less\nPenalty\n", "", "More\nPenalty"])
 ax_LF.set_xlabel("Estimate", weight="semibold")
-ax_LF.set_title("Loss Function", loc="left", weight="extra bold", color="k")
+ax_LF.set_title("Loss function", loc="left", weight="extra bold", color="k")
 ax_LF.spines["top"].set_visible(False)
 ax_LF.spines["right"].set_visible(False)
 ### Forecast Plot
@@ -253,12 +253,19 @@ x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)
 x_ticks_labels = [i for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
-    [0, 20, 40, 60, 80, 100],
-    ["0%", "20%", "40%", "60%", "80%", "100%"],
+    [0.0, 20.0, 40.0, 60.0, 80.0, 100],
+    [
+        "0ᵗʰ",
+        "20ᵗʰ",
+        "40ᵗʰ",
+        "60ᵗʰ",
+        "80ᵗʰ",
+        "100ᵗʰ",
+    ],
 )
 ax_forecast.set_xlabel("Date", weight="semibold")
 ax_forecast.set_title(
-    "Streamflow Percentile", loc="left", weight="extra bold", color="k"
+    "Streamflow percentile", loc="left", weight="extra bold", color="k"
 )
 ax_forecast.spines["top"].set_visible(False)
 ax_forecast.spines["right"].set_visible(False)
