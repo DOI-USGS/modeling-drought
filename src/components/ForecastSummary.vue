@@ -15,14 +15,44 @@
     </template>
     <!-- FIGURES -->
     <template #figures>
-      <div id="fc-grid-container">
-        <fcPlot
-          id="fc-svg"
+      <div id="fc-summary-grid-container">
+        <svg width="0" height="0">
+          <filter id="outline">
+              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"></feMorphology>
+              
+              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
+              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+              
+              <feMerge>
+                    <feMergeNode in="OUTLINE" />
+                    <feMergeNode in="SourceGraphic" />
+              </feMerge>
+        </filter>
+        </svg>
+        <svg width="0" height="0">
+          <filter id="outline-light">
+              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="1"></feMorphology>
+              
+              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
+              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+              
+              <feMerge>
+                    <feMergeNode in="OUTLINE" />
+                    <feMergeNode in="SourceGraphic" />
+              </feMerge>
+        </filter>
+        </svg>
+        <fcsumPlotTablet
+          v-if="tabletView"
+          id="fc-summary-svg"
         />
-      </div>
-      <div id="fcwd-grid-container">
-        <fcwdPlot
-          id="fcwd-svg"
+        <fcsumPlotMobile
+          v-else-if="mobileView"
+          id="fc-summary-svg"
+        />
+        <fcsumPlotDesktop
+          v-else
+          id="fc-summary-svg"
         />
       </div>
     </template>
@@ -44,14 +74,16 @@
   </VizSection>
 </template>
 
+
 <script setup>
     import { onMounted } from "vue";
     import * as d3 from 'd3';
     import { isMobile } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import fcPlot from "@/assets/svgs/fc_summary.svg";
-    import fcwdPlot from "@/assets/svgs/fc_wd_summary.svg";
+    import fcsumPlotDesktop from "@/assets/svgs/fc_summary_desktop.svg";
+    import fcsumPlotMobile from "@/assets/svgs/fc_summary_mobile.svg";
+    import fcsumPlotTablet from "@/assets/svgs/fc_summary_tablet.svg";
 
     // global variables
     const mobileView = isMobile;
@@ -73,49 +105,63 @@
         addInteractions();
     });
     
+
+    // Draw the percent width line and label
+    function draw_prediction_width(pw_id) {
+        d3.select("#prediction-width-line-" + pw_id).selectAll("path")
+            .style("stroke-opacity", 1)
+        d3.select("#prediction-width-label-week-" + pw_id).selectAll("text")
+            .style("opacity", 1);
+        d3.select("#prediction-width-label-lower-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 1)
+            .attr("filter", "url(#outline-light)"); // Apply the glow filter;
+        d3.select("#prediction-width-label-upper-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 1)
+            .attr("filter", "url(#outline-light)"); // Apply the glow filter;
+    }
+
+    // Draw the percent width line and label
+    function remove_prediction_width(pw_id) {
+        d3.select("#prediction-width-line-" + pw_id).selectAll("path")
+            .style("stroke-opacity", 0)
+        d3.select("#prediction-width-label-week-" + pw_id).selectAll("text")
+            .style("opacity", 0);
+        d3.select("#prediction-width-label-lower-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 0);
+        d3.select("#prediction-width-label-upper-percentile-" + pw_id).selectAll("text")
+            .style("opacity", 0);
+    }
+
     function mouseover(event) {
-        if (event.currentTarget.id.startsWith("drought-forecast-summary")){
-            d3.select("#drought-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.5);
-            d3.select("#drought-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.75);
-        }
-        if (event.currentTarget.id.startsWith("wet-forecast-summary")){
-            d3.select("#wet-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.5);
-            d3.select("#wet-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.75);
+      if (event.currentTarget.id.startsWith("prediction-width-hover")){
+            let pw_id = event.currentTarget.id.slice(23);
+            draw_prediction_width(pw_id);
         }
       }
 
     function mouseout(event) {
-        if (event.currentTarget.id.startsWith("drought-forecast-summary")){
-            d3.select("#drought-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.15);
-            d3.select("#drought-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.15);
-        }
-        if (event.currentTarget.id.startsWith("wet-forecast-summary")){
-            d3.select("#wet-forecast-summary-patch").selectAll("path")
-                .style("fill-opacity", 0.15);
-            d3.select("#wet-forecast-summary-line").selectAll("path")
-                .style("stroke-opacity", 0.15);
+      if (event.currentTarget.id.startsWith("prediction-width-hover")){
+            let pw_id = event.currentTarget.id.slice(23);
+            remove_prediction_width(pw_id);
         }
       }
 
+        
     function addInteractions() {
         // set viewbox for svg with confidence interval chart
-        const fcwdSVG = d3.select("#fcwd-svg")
+        const fcsumSVG = d3.select("#fc-summary-svg")
 
+        d3.select("#prediction-interval-median-label").selectAll("text")
+            .attr("filter", "url(#outline)"); // Apply the glow filter;
         // Add interaction to confidence interval chart
-        fcwdSVG.selectAll("g")
+        fcsumSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
     }
 </script>
 
 <style scoped lang="scss">
-    #fc-grid-container {
+    #fc-summary-grid-container {
         display: grid;
         width: 100%;
         max-width: 800px;
@@ -123,21 +169,7 @@
         grid-template-areas:
             "chart";
     }
-    #fc-svg {
-        grid-area: chart;
-        place-self: center;
-        height: 100%;
-        width: 100%;
-    }
-    #fcwd-grid-container {
-        display: grid;
-        width: 100%;
-        max-width: 800px;
-        margin: 3rem auto 4rem auto;
-        grid-template-areas:
-            "chart";
-    }
-    #fcwd-svg {
+    #fc-summary-svg {
         grid-area: chart;
         place-self: center;
         height: 100%;

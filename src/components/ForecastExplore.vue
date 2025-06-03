@@ -25,7 +25,16 @@
     </template>
     <template #figures>
       <div id="fc-grid-container">
-        <fcPlot
+        <fcPlotTablet
+          v-if="tabletView"
+          id="fc-svg"
+        />
+        <fcPlotMobile
+          v-else-if="mobileView"
+          id="fc-svg"
+        />
+        <fcPlotDesktop
+          v-else
           id="fc-svg"
         />
       </div>
@@ -55,7 +64,9 @@
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
-    import fcPlot from "@/assets/svgs/fc_example.svg";
+    import fcPlotDesktop from "@/assets/svgs/fc_example_desktop.svg";
+    import fcPlotTablet from "@/assets/svgs/fc_example_tablet.svg";
+    import fcPlotMobile from "@/assets/svgs/fc_example_mobile.svg";
 
     // global variables
     const mobileView = isMobile;
@@ -154,10 +165,18 @@
     }
 
     function annotation(opacity){
+
+      if (mobileView == true || tabletView == true){
+        d3.select("#annotation_forecast_reactive").selectAll("text")
+            .style("opacity", opacity);
+        d3.select("#annotation_forecast_arrow_reactive").selectAll("path")
+            .style("opacity", opacity);
+      }else{
         d3.select("#annotation_forecast").selectAll("text")
             .style("opacity", opacity);
         d3.select("#annotation_forecast_arrow").selectAll("path")
             .style("opacity", opacity);
+      }
     }
 
     function mouseleave(default_line,lookback) {
@@ -182,6 +201,9 @@
         const lookback = 13
         var default_line = "13055"
         draw_line(default_line,lookback)
+
+        // draw annotations
+        annotation(1.0)
 
         // Add interaction to loss function chart
         fcSVG.select("#axis-forecast")

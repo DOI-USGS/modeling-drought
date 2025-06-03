@@ -17,6 +17,7 @@ target_plotwidth_in_mobile = target_plotwidth_px_mobile / matplotlib_error_corre
 target_plotwidth_in_tablet = target_plotwidth_px_tablet / matplotlib_error_correction
 target_plotwidth_in_desktop = target_plotwidth_px_desktop / matplotlib_error_correction
 aspect_single_plot = 1.333
+aspect_single_plot_long = 2.0
 aspect_double_plot_mobile = 0.8
 aspect_double_plot_tablet = 1.0
 aspect_double_plot_desktop = 3.0
@@ -57,8 +58,10 @@ def hex_to_rgb(hex_color):
     return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
 
 
+lower_color_limit_hex_half_alpha = "#DBC49A"
 lower_color_limit_hex = "#B78935"
 upper_color_limit_hex = "#406992"
+upper_color_limit_hex_half_alpha = "#9FB4C8"
 observation_color_hex = "#883e3a"
 median_color_hex = "#00264c"
 

@@ -207,7 +207,7 @@ ax_LF.get_yaxis().set_ticks(
     weight="light",
 )
 ax_LF.set_xlabel("Estimate", weight="semibold")
-ax_LF.set_title("Loss Function", loc="left", color="k", weight="extra bold")
+ax_LF.set_title("Loss function", loc="left", color="k", weight="extra bold")
 ax_LF.spines["top"].set_visible(False)
 ax_LF.spines["right"].set_visible(False)
 ax_LF.spines["bottom"].set_color(ratio_3)
@@ -264,13 +264,19 @@ x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)
 x_ticks_labels = [i for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
-    [0, 20, 40, 60, 80, 100],
-    ["0%", "20%", "40%", "60%", "80%", "100%"],
-    weight="light",
+    [0.0, 20.0, 40.0, 60.0, 80.0, 100],
+    [
+        "0ᵗʰ",
+        "20ᵗʰ",
+        "40ᵗʰ",
+        "60ᵗʰ",
+        "80ᵗʰ",
+        "100ᵗʰ",
+    ],
 )
 ax_forecast.set_xlabel("Date", weight="semibold")
 ax_forecast.set_title(
-    "Streamflow Percentile",
+    "Streamflow percentile",
     loc="left",
     color="k",
     weight="extra bold",
