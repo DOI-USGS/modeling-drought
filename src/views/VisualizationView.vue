@@ -37,9 +37,6 @@
         </span>
       </h2>
     </div>
-    <ForecastExplore
-      :text="text.components.ForecastExplore"
-    />
     <ForecastSummary
       :text="text.components.ForecastSummary"
     />
@@ -118,7 +115,6 @@
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import LossFunction from '@/components/LossFunction.vue';
   import PredictionInterval from '@/components/PredictionInterval.vue';
-  import ForecastExplore from '@/components/ForecastExplore.vue';
   import ForecastSummary from '@/components/ForecastSummary.vue';
   import ForecastTrueFalseSankey from '@/components/ForecastTrueFalseSankey.vue';
   import ForecastTrueFalseSummary from '@/components/ForecastTrueFalseSummary.vue';
