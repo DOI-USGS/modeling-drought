@@ -14,6 +14,9 @@
     <HowModelStreamflowDrought 
       :text="text.sections.HowModelStreamflowDrought"
     />
+    <WhatDoForecastsLookLike 
+      :text="text.sections.WhatDoForecastsLookLike"
+    />
     <LossFunction
       :text="text.components.LossFunction"
     />
@@ -108,6 +111,7 @@
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
   import WhatIsStreamflowDrought from "@/components/WhatIsStreamflowDrought.vue";
   import HowModelStreamflowDrought from "@/components/HowModelStreamflowDrought.vue";
+  import WhatDoForecastsLookLike from "@/components/WhatDoForecastsLookLike.vue";
 
   // global variables
   // const mobileView = isMobile;

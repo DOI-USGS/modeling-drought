@@ -65,6 +65,10 @@ export default {
             paragraph2: "Using cloud computing resources, the model is trained to “learn” the relationship between the input and output data.  With access to a broad training dataset with detailed information for so many watersheds, the model learns that the same weather can lead to different relative streamflow conditions (streamflow percentiles) at different sites.",
             paragraph3: "We use the final CONUS-wide model to predict streamflow percentiles for all future locations and dates. We convert the predicted percentiles to forecasts of streamflow drought by classifying the predicted percentile for each site based on the established drought thresholds (e.g., if the model predicts a 13th-percentile streamflow for a site, the model is predicting a moderate streamflow drought for that site)."
         },
+        WhatDoForecastsLookLike: {
+            title: "What do the forecasts look like?",
+            subtitle: "We generate weekly forecasts for 1-13 weeks in the future"
+        },
         C: {
             title: "",
             subtitle:""
