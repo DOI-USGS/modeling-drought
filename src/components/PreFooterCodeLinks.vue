@@ -4,8 +4,8 @@
       :href="gitHubRepositoryLink"
       target="_blank"
       aria-label="github link"
-    >See the code behind this visualization
-      <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }" />
+    >
+      See the code behind this visualization <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }" />
     </a>
   </div>
 </template>
@@ -28,6 +28,10 @@
       margin-left: 10px;
       text-decoration: none;
       font-weight: 300;
+    }
+    svg {
+      width: 20px;
+      vertical-align: -0.4rem;
     }
   }
 

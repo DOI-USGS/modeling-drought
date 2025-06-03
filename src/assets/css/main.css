@@ -1,6 +1,6 @@
 @import './base.css';
-@import './common.css'; /* USGS Viz ID Stylesheet */
-@import './custom.css'; /* USGS Viz ID Stylesheet */
+@import './common.css'; /*USGS Viz ID Stylesheet*/
+@import './custom.css'; /*USGS Viz ID Stylesheet*/
 
 /* whole page except header fit within viewport - no scrolling */
 #app {
@@ -45,6 +45,27 @@ text {
 }
 .extra-line-spacing {
   line-height: 1.8;
+}
+.title {
+  font-family: sans-serif; /* This is fallback font for old browsers */
+  font-family: var(--title-font);
+} 
+.section-title {
+  font-family: sans-serif; /* This is fallback font for old browsers */
+  font-family: var(--title-font);
+  width: 100%;
+  text-align:left; 
+  border-bottom: 1px solid var(--color-lowlight); 
+  overflow: inherit;
+}
+.section-title span {
+  position: relative;
+  top: 1rem;
+}
+.section-subtitle {
+  color: var(--color-subtitle-text);
+  font-weight: 300;
+  margin-bottom: 3rem;
 }
 ul {
   display: list-item;

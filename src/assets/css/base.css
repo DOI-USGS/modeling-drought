@@ -7,6 +7,7 @@
   --white-soft: #F0F0F0;
 
   --black-soft: #151515;
+  --light-grey: #B5B5B5;
   --medium-grey: #A3A3A3;
   --medium-light-grey: #e8e8e8;
   --grey_7_1: #595959;
@@ -42,7 +43,7 @@
   --color-subtitle-text: var(--grey_7_1);
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
-  --color-code-links-background: var(--medium-grey);
+  --color-code-links-background: var(--light-grey);
   --color-link: var(--grey-blue);
   --color-bar-focal: var(--medium-blue);
   --color-bar-default: var(--medium-grey);
