@@ -247,7 +247,7 @@ ax_pred_interval.set_yticks(
 )
 ax_pred_interval.set_xticks(np.linspace(0, 13 * 7, 14), [str(i) for i in range(0, 14)])
 ax_pred_interval.set_title(
-    "Streamflow Prediction Interval", loc="left", weight="extra bold", color="k"
+    "Streamflow prediction interval", loc="left", weight="extra bold", color="k"
 )
 ax_pred_interval.spines["top"].set_visible(False)
 ax_pred_interval.spines["right"].set_visible(False)
