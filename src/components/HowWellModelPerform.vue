@@ -15,18 +15,10 @@
         v-html="text.subtitle"
       />
     </div>
-    <ForecastTimeseries
-      :text="text.forecastTimeseries"
-    />
-    <ForecastExplore
-      :text="text.forecastExplore"
-    />
   </section>
 </template>
 
 <script setup>
-  import ForecastTimeseries from '@/components/ForecastTimeseries.vue';
-  import ForecastExplore from '@/components/ForecastExplore.vue';
 
   // define props
   defineProps({
@@ -35,7 +27,6 @@
       default: () => ({})
     }
   })
-
 </script>
 
 <style>

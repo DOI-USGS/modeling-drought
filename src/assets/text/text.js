@@ -63,7 +63,19 @@ export default {
         },
         WhatDoForecastsLookLike: {
             title: "What do the forecasts look like?",
-            subtitle: "We generate weekly forecasts for 1-13 weeks in the future"
+            subtitle: "We generate weekly forecasts for 1-13 weeks in the future",
+            forecastTimeseries: {
+                paragraph1: "Every week, we ask the model to generate weekly forecasts for 1-13 weeks out. The model produces a prediction (its best estimate of the streamflow percentile for each week) along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece later!",
+            },
+            forecastExplore: {
+                paragraph1: "We regenerate the forecast weekly – explore the figure below to see how the forecast updates over time, and how it compares to observations.",
+                caption1Desktop: "Hover your mouse over the plot to see how the model forecasts streamflow drought.",
+                caption1Responsive: "Tap on the plot to see how the model forecasts streamflow drought.",
+            }
+        },
+        HowWellModelPerform: {
+            title: "How well does the model perform?",
+            subtitle: "More droughts get missed further into the future",
         },
         C: {
             title: "",
