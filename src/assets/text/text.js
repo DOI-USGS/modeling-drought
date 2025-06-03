@@ -1,10 +1,11 @@
 import ForecastConfidence from "../../components/ForecastConfidence.vue";
+import WhatIsStreamflowDrought from "../../components/WhatIsStreamflowDrought.vue";
 import references from "./references";
 
 export default {
     pageTitle: "Modeling <span class='emph'>streamflow</span> drought",
     sections: {
-        A: {
+        WhatIsStreamflowDrought: {
             title: "What is streamflow drought?",
             subtitle:"Streamflow droughts occur when streamflow levels become unusually low",
             paragraph1: "<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>Streamflow drought</a> occurs in the wake of meteorological and agricultural drought, when streamflow levels become unusually low. Reduced streamflow has significant impact on plants, animals, and humans.",
@@ -57,9 +58,12 @@ export default {
                 }
             ]
         },
-        B: {
-            title: "",
-            subtitle:""
+        HowModelStreamflowDrought: {
+            title: "How do we model streamflow drought?",
+            subtitle:"We train a model to accurately predict <i>low</i> streamflow percentiles",
+            paragraph1: "To forecast streamflow drought across the contiguous United States (CONUS), we use a type of machine learning model called a Long Short-Term Memory (LSTM) network to predict streamflow percentiles.  To predict streamflow percentiles, we train the model with input data and output data for all for of CONUS for a specific historical time period: <span><ul>Input data: Static watershed characteristics (e.g., watershed area, land cover, topography, soil types), antecedent precipitation, temperature, snow water equivalent, soil moisture, weather and streamflow, and weather forecasts</ul><ul>Output data: Observed streamflow percentiles. Because streamflow droughts occur when streamflow is unusually low, we specifically train the model to predict low streamflow percentiles by restricting the training dataset to observed streamflow levels that fall below the 30th percentile</ul></span>",
+            paragraph2: "Using cloud computing resources, the model is trained to “learn” the relationship between the input and output data.  With access to a broad training dataset with detailed information for so many watersheds, the model learns that the same weather can lead to different relative streamflow conditions (streamflow percentiles) at different sites.",
+            paragraph3: "We use the final CONUS-wide model to predict streamflow percentiles for all future locations and dates. We convert the predicted percentiles to forecasts of streamflow drought by classifying the predicted percentile for each site based on the established drought thresholds (e.g., if the model predicts a 13th-percentile streamflow for a site, the model is predicting a moderate streamflow drought for that site)."
         },
         C: {
             title: "",

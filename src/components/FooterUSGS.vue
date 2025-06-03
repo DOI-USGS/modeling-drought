@@ -184,6 +184,19 @@ footer p, text, li {
   color:#fff;
 	font-size: 24px;
 }
+/* supercede ul css in main.css */
+ul {
+  display: block;
+  padding-bottom: 0rem;
+  padding-left: 0rem;
+  margin-left: 0px;
+}
+ul:first-child {
+  padding-top: 0rem;
+}
+ul:last-child {
+  padding-bottom: 0rem;
+}
 /* custom edit to get margins to match example */
 ul {
   margin-top: 15px;
