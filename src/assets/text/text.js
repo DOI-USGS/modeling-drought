@@ -10,7 +10,7 @@ export default {
             paragraph1: "<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>Streamflow drought</a> occurs in the wake of meteorological and agricultural drought, when streamflow levels become unusually low. Reduced streamflow has significant impact on plants, animals, and humans.",
             accordionData: [
                 {
-                    heading: "Defining 'unusually low' streamflow using percentiles",
+                    heading: "Defining ‘unusually low’ streamflow using percentiles",
                     content: [
                         {
                             type: "text",
@@ -36,20 +36,24 @@ export default {
                     content: [
                         {
                             type: "text",
-                            content: "In addition to defining 20<sup>th</sup> percentile streamflow as the threshold for streamflow drought, we can use percentiles to further classify the category of drought: <ul><20<sup>th</sup> percentile = moderate drought</ul><ul>< 10<sup>th</sup> percentile = severe drought</ul><ul>< 5<sup>th</sup> percentile = extreme drought</ul>"
+                            content: "In addition to defining 20<sup>th</sup> percentile streamflow as the threshold for streamflow drought, we can use percentiles to further classify the category of drought: <span><ul><20<sup>th</sup> percentile = moderate drought</ul><ul>< 10<sup>th</sup> percentile = severe drought</ul><ul>< 5<sup>th</sup> percentile = extreme drought</ul></span>"
                         }
                     ],
                     activeOnLoad: false
                 },
                 {
-                    heading: "How are 'low flows' different from 'streamflow drought'",
+                    heading: "How are ‘low flows’ different from ‘streamflow drought’?",
                     content: [
                         {
                             type: "text",
-                            content: "It’s important to note the difference between ‘low streamflow’ and ‘streamflow drought.’ Low flows occur seasonally in many streams and are in line with typical conditions. In contrast, streamflow drought results when flows are unusually low compared to typical conditions. 'While droughts may include periods of low flows, a recurring seasonal low flow event is not necessarily a drought' (WMO, 2008). "
+                            content: "It’s important to note the difference between ‘low streamflow’ and ‘streamflow drought.’ Low flows occur seasonally in many streams and are in line with typical conditions. In contrast, streamflow drought results when flows are unusually low compared to typical conditions."
+                        },
+                        {
+                            type: "quote",
+                            content: '"While droughts may include periods of low flows, a recurring seasonal low flow event is not necessarily a drought."—WMO, 2008'
                         }
                     ],
-                    activeOnLoad: true
+                    activeOnLoad: false
                 }
             ]
         },

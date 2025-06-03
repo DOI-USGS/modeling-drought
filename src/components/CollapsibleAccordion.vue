@@ -29,6 +29,11 @@
           v-if="item.type=='text'"
           v-html="item.content"
         />
+        <p
+          v-if="item.type=='quote'"
+          class="quote"
+          v-html="item.content"
+        />
         <div
           v-if="item.type=='image'"
           class="accordion-image-container"
@@ -102,20 +107,23 @@
 </script>
 
 <style scoped lang="scss">
+$margin: 10px;
+$padding: 10px;
+$left-border-width: 5px;
 .accordion-container {
-  border-left: 5px solid;  
+  border-left: $left-border-width solid;  
   border-right: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
   border-radius: .25rem;
   overflow-wrap: break-word;
-  margin: 10px -12.5px 10px -12.5px;
+  margin: $margin calc(($margin + $left-border-width/2)*-1) $margin calc(($margin + $left-border-width/2)*-1);
   overflow: hidden;
 }
 .accordion {
   cursor: pointer;
-  padding: 5px;
-  padding-left: 10px;
+  padding: calc($padding / 2);
+  padding-left: $padding;
   width: 100%;
   border: none;
   text-align: left;
@@ -165,13 +173,13 @@
   display: block; 
 }
 .panel p {
-  margin: 10px 0 10px 0;
-  padding: 10px;
+  margin: $margin 0 $margin 0;
+  padding: $padding;
 }
 .symbol {
   font-size: 3rem;
   font-weight: bold;
-  padding-right: 5px;
+  padding-right: calc($padding / 2);
 }
 .accordion-image-container {
   text-align: center;
@@ -179,5 +187,22 @@
 .accordion-image {
   padding: 10px;
   max-width: 80%;
+}
+.quote {
+  font-style: italic;
+  padding-left: calc($padding * 2) !important;
+  opacity: 0.7;
+}
+ul {
+  display: list-item;
+  padding-bottom: 1rem;
+  padding-left: 0.25rem;
+  margin-left: 40px;
+}
+ul:first-child {
+  padding-top: 1rem;
+}
+ul:last-child {
+  padding-bottom: 1rem;
 }
 </style>
