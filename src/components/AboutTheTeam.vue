@@ -17,6 +17,7 @@
     <template #figures>
       <div class="svg-container">
         <svg
+          id="force-svg"
           ref="svg"
           class="svg"
           :width="width"
@@ -376,7 +377,7 @@ function drawGraph() {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .svg-container {
     display: flex;
     position: relative;
@@ -385,7 +386,7 @@ function drawGraph() {
     width: 100%;
     height: 60vh;
 }
-svg {
+#force-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
