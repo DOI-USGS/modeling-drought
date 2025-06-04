@@ -41,6 +41,7 @@
           <img
             :src="getImageURL(item.content)"
             class="accordion-image"
+            :class="{ mobile: mobileView}"
           >
         </div>
       </div>
@@ -50,6 +51,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { isMobile } from 'mobile-device-detect';
 
   const props = defineProps({
     activeOnLoad: Boolean, // should accordion be open on load
@@ -95,6 +97,8 @@
     }
   })
 
+  // global variables
+  const mobileView = isMobile;
   const active = ref(props.activeOnLoad);
 
   function accordionClick() {
@@ -190,7 +194,11 @@ $left-border-width: 5px;
 }
 .accordion-image {
   padding: 10px;
-  max-width: 95%;
+  max-width: 85%;
+}
+.accordion-image.mobile {
+  padding: 10px;
+  max-width: 100%;
 }
 .quote {
   font-style: italic;
