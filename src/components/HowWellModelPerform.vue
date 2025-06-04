@@ -42,24 +42,24 @@
 </script>
 
 <style>
-  .right {
+  .group-label.right {
     background-color: var(--grey_7_1);
     color: white;
   }
-  .wrong {
+  .group-label.wrong {
     background-color: var(--grey_3_1);
   }
-  .true-neg {
+  .group-label.true-neg {
     background-color: var(--color-true-negative);
     color: white;
   }
-  .false-neg {
+  .group-label.false-neg {
     background-color: var(--color-false-negative);
   }
-  .true-pos {
+  .group-label.true-pos {
     background-color: var(--color-true-positive);
   }
-  .false-pos {
+  .group-label.false-pos {
     background-color: var(--color-false-positive);
   }
 </style>
