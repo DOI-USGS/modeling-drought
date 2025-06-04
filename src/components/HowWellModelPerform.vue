@@ -42,4 +42,24 @@
 </script>
 
 <style>
+  .right {
+    background-color: var(--grey_7_1);
+    color: white;
+  }
+  .wrong {
+    background-color: var(--grey_3_1);
+  }
+  .true-neg {
+    background-color: var(--color-true-negative);
+    color: white;
+  }
+  .false-neg {
+    background-color: var(--color-false-negative);
+  }
+  .true-pos {
+    background-color: var(--color-true-positive);
+  }
+  .false-pos {
+    background-color: var(--color-false-positive);
+  }
 </style>

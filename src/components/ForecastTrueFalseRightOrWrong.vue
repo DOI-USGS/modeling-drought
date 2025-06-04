@@ -71,7 +71,7 @@
         {
             label: props.text.questionAll,
             value: 'RW-all',
-            color: 'var(--medium-dark-grey)'
+            color: 'var(--grey_3_1)'
         },
         {
             label: props.text.questionNoDrought,

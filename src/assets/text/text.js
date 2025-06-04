@@ -76,7 +76,7 @@ export default {
         title: "How well does the model perform?",
         subtitle: "More droughts get missed further into the future",
         forecastTrueFalseSankey: {
-            paragraph1: "In order to evaluate how well the model performs, we can lump the predictions into four bins: <span><ul>True negatives: the model did not predict drought, and no drought occurred</ul><ul>False negatives: the model did not predict drought, but a drought occurred </ul><ul>True positives: the model predicted drought, and a drought occurred</ul><ul>False positives: the model predicted drought, but no drought occurred</ul></span>",
+            paragraph1: "In order to evaluate how well the model performs, we can lump the predictions into four bins: <span><ul><span class='group-label true-neg'>True negatives</span>: the model did not predict drought, and no drought occurred</ul><ul><span class='group-label false-neg'>False negatives</span>: the model did not predict drought, but a drought occurred </ul><ul><span class='group-label true-pos'>True positives</span>: the model predicted drought, and a drought occurred</ul><ul><span class='group-label false-pos'>False positives</span>: the model predicted drought, but no drought occurred</ul></span>",
             paragraph2: "If we categorize all predictions that were generated for 1 week in the future, we see this:",
             caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a ‘true’ outcome).",
             caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a ‘true’ outcome).",
@@ -84,13 +84,13 @@ export default {
         },
         forecastTrueFalseSummary: {
             paragraph1: "As we generate forecasts for weeks that are further out, accuracy decreases:",
-            caption: "Depending on the forecast horizon, the proportion of true positives, true negatives, false positives, and false negatives changes. More ‘false’ outcomes occur as the forecast horizon lengthens."
+            caption: "Depending on the forecast horizon, the proportion of <span class='group-label true-neg'>true negatives</span>, <span class='group-label false-neg'>false negatives</span>, <span class='group-label false-pos'>false positives</span>, and <span class='group-label true-pos'>true positives</span> changes. More ‘false’ outcomes occur as the forecast horizon lengthens."
         },
         forecastTrueFalseRightOrWrong: {
             paragraph1: "Depending on what we’re interested in, we can look at just a subset of the results:",
-            questionAll: "How often is the model right or wrong?",
-            questionNoDrought: "If the model does not predict drought, how often is it right or wrong?",
-            questionDrought: "If the model predicts drought, how often is it right or wrong?",
+            questionAll: "How often is the model <span class='group-label right'>right</span> or <span class='group-label wrong'>wrong</span>?",
+            questionNoDrought: "If the model does not predict drought, how often is it <span class='group-label true-neg'>right</span> or <span class='group-label false-neg'>wrong</span>?",
+            questionDrought: "If the model predicts drought, how often is it <span class='group-label true-pos'>right</span> or <span class='group-label false-pos'>wrong?</span>?",
             caption: "Use the radio buttons to see how the overall model performance and how right or wrong the model is depending on whether it predicts drought or not. The model’s prediction ability is better with shorter forecast horizons."
         }
     },

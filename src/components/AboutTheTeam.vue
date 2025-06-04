@@ -387,13 +387,4 @@ svg {
   overflow: visible;
   display: block;
 }
-.group-label {
-  color: black;
-  padding: 0.1em 0.4em;
-  border-radius: 8px;
-  margin: 0 0.2em;
-  display: inline-block;
-  font-weight: 500;
-  line-height: 1.4;
-}
 </style>

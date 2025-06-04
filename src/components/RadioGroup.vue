@@ -35,9 +35,8 @@
       <span
         class="radio-text"
         :class="{ ractive: modelValue === option.value }"
-      >
-        {{ option.label }}
-      </span>
+        v-html="option.label"
+      />
     </label>
   </div>
 </template>
