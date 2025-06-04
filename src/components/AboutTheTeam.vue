@@ -29,6 +29,7 @@
 
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
+import { isMobile } from 'mobile-device-detect';
 import * as d3 from 'd3';
 import VizSection from '@/components/VizSection.vue';
 
@@ -44,6 +45,8 @@ defineProps({
     }
 });
 
+// global variables
+const mobileView = isMobile;
 let width = 0;
 let height = 0;
 let nodeRadius = 45;
@@ -101,8 +104,9 @@ function resizeAndDraw() {
 
   const bounds = svg.value.getBoundingClientRect();
   width = bounds.width;
-  height = bounds.height;
-  nodeRadius = Math.min(width, height) * 0.07;
+  height = bounds.height;  
+  nodeRadius = window.innerHeight < 600 ? Math.min(width, height) * 0.13 : Math.min(width, height) * 0.08;
+  nodeRadius = mobileView ? Math.min(width, height) * 0.1 : nodeRadius;
   
   d3.select(svg.value).selectAll('*').remove();
   drawGraph();
