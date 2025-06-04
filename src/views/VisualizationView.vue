@@ -9,25 +9,28 @@
       />
     </div>
     <WhatIsStreamflowDrought 
-      :text="text.sections.WhatIsStreamflowDrought"
+      :text="text.WhatIsStreamflowDrought"
     />
     <HowModelStreamflowDrought 
-      :text="text.sections.HowModelStreamflowDrought"
+      :text="text.HowModelStreamflowDrought"
     />
     <WhatDoForecastsLookLike 
-      :text="text.sections.WhatDoForecastsLookLike"
+      :text="text.WhatDoForecastsLookLike"
     />
     <HowWellModelPerform 
-      :text="text.sections.HowWellModelPerform"
+      :text="text.HowWellModelPerform"
     />
     <HowCaptureUncertainty 
-      :text="text.sections.HowCaptureUncertainty"
+      :text="text.HowCaptureUncertainty"
     />
-    <ForecastSummary
-      :text="text.components.ForecastSummary"
+    <HowUncertaintyChange 
+      :text="text.HowUncertaintyChange"
     />
-    <AboutTheTeam
-      :text="text.components.AboutTheTeam"
+    <WhatsNext 
+      :text="text.WhatsNext"
+    />
+    <WhoContributing 
+      :text="text.WhoContributing"
     />
     <div
       class="text-container"
@@ -36,7 +39,7 @@
         class="section-title"
       >
         <span>
-          {{ text.sections.references.title }}
+          {{ text.References.title }}
         </span>
       </h2>
     </div>
@@ -50,7 +53,7 @@
         class="section-title"
       >
         <span>
-          {{ text.sections.authors.title }}
+          {{ text.Authors.title }}
         </span>
       </h2>
     </div>
@@ -66,15 +69,16 @@
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
   import authors from "@/assets/text/authors";
-  import ReferencesSection from '@/components/ReferencesSection.vue';
-  import AuthorshipSection from '@/components/AuthorshipSection.vue';
-  import ForecastSummary from '@/components/ForecastSummary.vue';
-  import AboutTheTeam from '@/components/AboutTheTeam.vue';
   import WhatIsStreamflowDrought from "@/components/WhatIsStreamflowDrought.vue";
   import HowModelStreamflowDrought from "@/components/HowModelStreamflowDrought.vue";
   import WhatDoForecastsLookLike from "@/components/WhatDoForecastsLookLike.vue";
   import HowWellModelPerform from "@/components/HowWellModelPerform.vue"
   import HowCaptureUncertainty from "@/components/HowCaptureUncertainty.vue"
+  import HowUncertaintyChange from "@/components/HowUncertaintyChange.vue"
+  import WhatsNext from "@/components/WhatsNext.vue";
+  import WhoContributing from "@/components/WhoContributing.vue";
+  import ReferencesSection from '@/components/ReferencesSection.vue';
+  import AuthorshipSection from '@/components/AuthorshipSection.vue';
 
   // global variables
   // const mobileView = isMobile;

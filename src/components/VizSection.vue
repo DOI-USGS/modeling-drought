@@ -94,7 +94,7 @@
     display: flex;
     justify-content: center;
     font-style: italic;
-    margin-bottom: calc($spacing * 2);
+    margin-bottom: $spacing;
     color: var(--inactive-text-grey);
   }
 

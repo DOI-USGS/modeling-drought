@@ -186,7 +186,7 @@ $left-border-width: 5px;
 }
 .accordion-image {
   padding: 10px;
-  max-width: 80%;
+  max-width: 95%;
 }
 .quote {
   font-style: italic;

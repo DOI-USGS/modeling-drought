@@ -21,6 +21,10 @@
         v-if="titleLevel === '3'"
         v-html="authors.title"
       />
+      <span
+        v-else
+        v-html="authors.title"
+      />
     </template>
     <template #aboveExplanation>
       <p v-html="formatAuthorText(authors)" />
@@ -35,7 +39,7 @@
   defineProps({
     titleLevel: {
       type: String,
-      default: "2"
+      default: ""
     },
     authors: {
       type: Object,
@@ -77,4 +81,7 @@
 </script>
 
 <style>
+  #authors {
+    margin-bottom: 10rem;
+  }
 </style>

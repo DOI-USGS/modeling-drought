@@ -4,12 +4,6 @@
     :figures="true"
     :fig-caption="true"
   >
-    <!-- HEADING -->
-    <template #heading>
-      <h3>
-        {{ text.heading }}
-      </h3>
-    </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
     </template>
@@ -60,16 +54,19 @@
     <template #figureCaption>
       <p
         v-if="tabletView"
-        v-html="text.caption1Responsive"
+        v-html="text.captionResponsive"
       />
       <p
         v-else-if="mobileView"
-        v-html="text.caption1Responsive"
+        v-html="text.captionResponsive"
       />
       <p
         v-else
-        v-html="text.caption1Desktop"
+        v-html="text.captionDesktop"
       />
+    </template>
+    <template #belowExplanation>
+      <p v-html="text.paragraph2" />
     </template>
   </VizSection>
 </template>
@@ -165,7 +162,7 @@
         display: grid;
         width: 100%;
         max-width: 800px;
-        margin: 3rem auto 4rem auto;
+        margin: 1rem auto 0rem auto;
         grid-template-areas:
             "chart";
     }

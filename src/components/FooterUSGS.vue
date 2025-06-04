@@ -180,9 +180,23 @@
 footer p, text, li {
   padding: 0;
 }
+footer a {
+  font-weight: 400;
+}
 .fa {
   color:#fff;
 	font-size: 24px;
+}
+/* custom edit to get margins to match example */
+ul {
+  margin-top: 15px;
+}
+ul.social {
+  margin-bottom: 1rem;
+}
+/* Moved from common.js so that it doesn't affect USWDS banner css */
+footer, header, main, nav, div {
+  display: block;
 }
 /* supercede ul css in main.css */
 ul {
@@ -196,16 +210,5 @@ ul:first-child {
 }
 ul:last-child {
   padding-bottom: 0rem;
-}
-/* custom edit to get margins to match example */
-ul {
-  margin-top: 15px;
-}
-ul.social {
-  margin-bottom: 1rem;
-}
-/* Moved from common.js so that it doesn't affect USWDS banner css */
-footer, header, main, nav, div {
-  display: block;
 }
 </style>
