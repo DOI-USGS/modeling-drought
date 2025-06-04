@@ -49,7 +49,7 @@
 <script setup>
     import { onMounted, reactive, ref, watch } from "vue";
     import * as d3 from 'd3';
-    import { isMobile } from 'mobile-device-detect';
+    import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup from '@/components/RadioGroup.vue'
@@ -58,7 +58,7 @@
     import piPlotMobile from "@/assets/svgs/pi_example_mobile.svg";
 
     // global variables
-    const mobileView = isMobile;
+    const mobileView = isMobileOnly;
     const tabletView = isTablet;
 
     // define props
@@ -134,12 +134,12 @@
         d3.select("#PI-PATCH-" + targetID).selectAll("path")
             .style("fill-opacity", targetOpacity * 0.5)
             .style("stroke-opacity", targetOpacity);
+        d3.select("#LF-LOWER-" + targetID).selectAll("path")
+            .style("stroke-opacity", targetOpacity);
         if (targetID != "MEDIAN"){
             d3.select("#PI-PATCH-LOWER-" + targetID).selectAll("path")
                 .style("stroke-opacity", targetOpacity);
             d3.select("#PI-PATCH-UPPER-" + targetID).selectAll("path")
-                .style("stroke-opacity", targetOpacity);
-            d3.select("#LF-LOWER-" + targetID).selectAll("path")
                 .style("stroke-opacity", targetOpacity);
             d3.select("#LF-UPPER-" + targetID).selectAll("path")
                 .style("stroke-opacity", targetOpacity);

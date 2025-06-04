@@ -81,7 +81,7 @@ fig = plt.figure(
 )
 # add axes
 ax_forecast = fig.add_axes(
-    [0.125, 0.075, 0.825, 0.375 * 2.0], gid="axis-" + basename_gid_forecast
+    [0.125, 0.125, 0.825, 0.375 * 2.0], gid="axis-" + basename_gid_forecast
 )
 
 # print default value for the vue site
@@ -113,13 +113,19 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     )
 
     # hover_line
+    target_linewidth = (
+        0.825
+        * target_plotwidth_in_desktop
+        * 72
+        / ((upper_bound - lower_bound) / int(dt / dense_dt))
+    )
     ax_forecast.plot(
         [x_forecast[j], x_forecast[j]],
         [0, 100],
         color="k",
         alpha=0.0,
         gid="forecast_hover_" + str(j),
-        linewidth=8.0,
+        linewidth=target_linewidth,
         zorder=100,
     )
 
@@ -138,8 +144,8 @@ ax_forecast.annotate(
     "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
     color=ratio_5,
     va="center",
-    xy=(np.datetime64("2018-01-08"), 77),
-    xytext=(np.datetime64("2017-07-08"), 77),
+    xy=(np.datetime64("2017-11-28"), 90),
+    xytext=(np.datetime64("2017-07-08"), 90),
     arrowprops=dict(
         facecolor=ratio_5,
         edgecolor=ratio_5,
@@ -162,9 +168,26 @@ ax_forecast.annotate(
         edgecolor=ratio_5,
         alpha=0.0001,
         arrowstyle="fancy",
-        gid="annotation_forecast_arrow_reactive",
+        gid="annotation_forecast_arrow_mobile",
     ),
-    gid="annotation_forecast_reactive",
+    gid="annotation_forecast_mobile",
+    alpha=0.0,
+)
+
+ax_forecast.annotate(
+    "Tap on the plot to\nsee drought forecasts",
+    color=ratio_5,
+    va="center",
+    xy=(np.datetime64("2018-02-28"), 90),
+    xytext=(np.datetime64("2017-07-08"), 90),
+    arrowprops=dict(
+        facecolor=ratio_5,
+        edgecolor=ratio_5,
+        alpha=0.00001,
+        arrowstyle="fancy",
+        gid="annotation_forecast_arrow_tablet",
+    ),
+    gid="annotation_forecast_tablet",
     alpha=0.0,
 )
 
@@ -219,15 +242,15 @@ remove_metadata_and_fix(
 # to make the desktop version, we first adjust the figure size to a more horizontal aspect
 fig.set_size_inches(
     target_plotwidth_in_desktop,
-    target_plotwidth_in_desktop / aspect_double_plot_desktop,
+    target_plotwidth_in_desktop / (aspect_double_plot_desktop * 2.0 / 3.0),
 )
 
 # we then set a new position for the loss function plot and make it more square
 ax_forecast.set_position(
     [
-        (1.0 - 0.825 * 2.0 / 3.0) / 2.0,
+        (1.0 - 0.825) / 2.0,
         0.075 * 2.0,
-        0.825 * 2.0 / 3.0,
+        0.825,
         0.375 * 2.0,
     ]
 )
@@ -247,7 +270,7 @@ fig.set_size_inches(
 )
 
 # # we then set a new position for the loss function plot and make it more square
-ax_forecast.set_position([0.14, 0.1, 0.8, 0.333 * 2.0])
+ax_forecast.set_position([0.14, 0.175, 0.8, 0.333 * 2.0])
 
 # make svg
 fig.savefig("Task2/out/fc_example_mobile.svg", metadata=None)

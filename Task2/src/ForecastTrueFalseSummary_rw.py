@@ -69,14 +69,14 @@ ax_true_false.set_yticks(
 )
 ax_true_false.set_xticks(np.linspace(1, 13, 13) - 0.5, [str(i) for i in range(1, 14)])
 ax_true_false.set_title(
-    "Model outcomes",
+    "All model outcomes",
     loc="left",
     weight="extra bold",
     color="k",
 )
 ax_true_false.spines["top"].set_visible(False)
 ax_true_false.spines["right"].set_visible(False)
-ax_true_false.set_xlabel("Prediction horizon in weeks", weight="semibold")
+ax_true_false.set_xlabel("Forecast horizon in weeks", weight="semibold")
 ax_true_false.grid(visible=True, axis="y")
 ax_true_false.set_axisbelow(True)
 ax_true_false.tick_params(direction="out")

@@ -49,7 +49,7 @@
 <script setup>
     import { onMounted } from "vue";
     import * as d3 from 'd3';
-    import { isMobile } from 'mobile-device-detect';
+    import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import fckeyPlotDesktop from "@/assets/svgs/fc_tf_key_desktop.svg";
@@ -57,7 +57,7 @@
     import fckeyPlotMobile from "@/assets/svgs/fc_tf_key_mobile.svg";
 
     // global variables
-    const mobileView = isMobile;
+    const mobileView = isMobileOnly;
     const tabletView = isTablet;
 
     // define props
