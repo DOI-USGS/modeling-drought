@@ -17,6 +17,7 @@
       <p v-html="text.paragraph1" />
       <p v-html="text.paragraph2" />
       <p v-html="text.paragraph3" />
+      <p v-html="text.paragraph4" />
     </div>
   </section>
 </template>

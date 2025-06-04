@@ -6,6 +6,7 @@
   >
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
     </template>
     <template #figures>
       <div
