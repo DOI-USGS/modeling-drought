@@ -188,7 +188,7 @@
         display: grid;
         width: 100%;
         max-width: 800px;
-        margin: 3rem auto 4rem auto;
+        margin: 2rem auto 1.5rem auto;
         grid-template-areas:
             "chart";
     }

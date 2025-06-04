@@ -20,57 +20,12 @@
     <HowWellModelPerform 
       :text="text.sections.HowWellModelPerform"
     />
-    <LossFunction
-      :text="text.components.LossFunction"
+    <HowCaptureUncertainty 
+      :text="text.sections.HowCaptureUncertainty"
     />
-    <PredictionInterval
-      :text="text.components.PredictionInterval"
-    />
-    <div
-      class="text-container"
-    >
-      <h2
-        class="section-title"
-      >
-        <span>
-          {{ text.sections.C.title }}
-        </span>
-      </h2>
-    </div>
     <ForecastSummary
       :text="text.components.ForecastSummary"
     />
-    <ForecastTrueFalseSankey
-      :text="text.components.ForecastTrueFalseSankey"
-    />
-    <ForecastTrueFalseSummary
-      :text="text.components.ForecastTrueFalseSummary"
-    />
-    <ForecastTrueFalseRightOrWrong
-      :text="text.components.ForecastTrueFalseRightOrWrong"
-    />
-    <div
-      class="text-container"
-    >
-      <h2
-        class="section-title"
-      >
-        <span>
-          {{ text.sections.C.title }}
-        </span>
-      </h2>
-    </div>
-    <div
-      class="text-container"
-    >
-      <h2
-        class="section-title"
-      >
-        <span>
-          {{ text.sections.D.title }}
-        </span>
-      </h2>
-    </div>
     <AboutTheTeam
       :text="text.components.AboutTheTeam"
     />
@@ -113,17 +68,13 @@
   import authors from "@/assets/text/authors";
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
-  import LossFunction from '@/components/LossFunction.vue';
-  import PredictionInterval from '@/components/PredictionInterval.vue';
   import ForecastSummary from '@/components/ForecastSummary.vue';
-  import ForecastTrueFalseSankey from '@/components/ForecastTrueFalseSankey.vue';
-  import ForecastTrueFalseSummary from '@/components/ForecastTrueFalseSummary.vue';
-  import ForecastTrueFalseRightOrWrong from '@/components/ForecastTrueFalseRightOrWrong.vue';
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
   import WhatIsStreamflowDrought from "@/components/WhatIsStreamflowDrought.vue";
   import HowModelStreamflowDrought from "@/components/HowModelStreamflowDrought.vue";
   import WhatDoForecastsLookLike from "@/components/WhatDoForecastsLookLike.vue";
   import HowWellModelPerform from "@/components/HowWellModelPerform.vue"
+  import HowCaptureUncertainty from "@/components/HowCaptureUncertainty.vue"
 
   // global variables
   // const mobileView = isMobile;

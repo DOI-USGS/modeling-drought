@@ -213,7 +213,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
-        margin: 3rem auto 4rem auto;
+        margin: 2rem auto 2rem auto;
         grid-template-areas:
             "chart";
     }

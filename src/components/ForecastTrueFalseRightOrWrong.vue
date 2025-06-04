@@ -56,7 +56,7 @@
     const tabletView = isTablet;
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -69,19 +69,19 @@
     const selectedfcSumLayer = ref('RW-all')
     const fcSumLayers = reactive([
         {
-            label: 'how often is the model right or wrong?',
+            label: props.text.questionAll,
             value: 'RW-all',
-            color: '#929292'
+            color: 'var(--medium-dark-grey)'
         },
         {
-            label: 'how often is the model right of wrong when it does not predict drought?',
+            label: props.text.questionNoDrought,
             value: 'RW_noDrought',
-            color: '#406992'
+            color: 'var(--color-true-negative)'
         },
         {
-            label: 'how often is the model right of wrong when it predicts drought?',
+            label: props.text.questionDrought,
             value: 'RW-drought',
-            color: '#B78935'
+            color: 'var(--color-true-positive)'
         }
     ])
 
@@ -208,7 +208,7 @@
         display: grid;
         width: 100%;
         max-width: 800px;
-        margin: 3rem auto 4rem auto;
+        margin: 1rem auto 0rem auto;
         grid-template-areas:
             "chart";
     }

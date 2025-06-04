@@ -79,40 +79,46 @@ export default {
             forecastTrueFalseSankey: {
                 paragraph1: "In order to evaluate how well the model performs, we can lump the predictions into four bins: <span><ul>True negatives: the model did not predict drought, and no drought occurred</ul><ul>False negatives: the model did not predict drought, but a drought occurred </ul><ul>True positives: the model predicted drought, and a drought occurred</ul><ul>False positives: the model predicted drought, but no drought occurred</ul></span>",
                 paragraph2: "If we categorize all predictions that were generated for 1 week in the future, we see this:",
-                caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a 'true' outcome).",
-                caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a 'true' outcome).",
+                caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a ‘true’ outcome).",
+                caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a ‘true’ outcome).",
                 paragraph3: "Overall, the model does a good job of correctly predicting when streamflow drought will and will not occur 1 week in the future."
             },
-            ForecastTrueFalseSummary: {
-                paragraph1: "As we predict further ahead, accuracy decreases:",
-                caption: "Depending on the forecast horizon, the proportions of true positives, true negatives, false positives, and false negatives changes. More false outcomes occur as the forecast horizon lengthens."
+            forecastTrueFalseSummary: {
+                paragraph1: "As we generate forecasts for weeks that are further out, accuracy decreases:",
+                caption: "Depending on the forecast horizon, the proportion of true positives, true negatives, false positives, and false negatives changes. More ‘false’ outcomes occur as the forecast horizon lengthens."
             },
-            ForecastTrueFalseRightOrWrong: {
-                paragraph1: "Depending on what we’re interested in, we can look at just a subset of the results:"
+            forecastTrueFalseRightOrWrong: {
+                paragraph1: "Depending on what we’re interested in, we can look at just a subset of the results:",
+                questionAll: "How often is the model right or wrong?",
+                questionNoDrought: "If the model does not predict drought, how often is it right or wrong?",
+                questionDrought: "If the model predicts drought, how often is it right or wrong?",
+                caption: "Use the radio buttons to see how the overall model performance and how right or wrong the model is depending on whether it predicts drought or not. The model's prediction ability is better with shorter forecast horizons."
             }
         },
-        C: {
-            title: "",
-            subtitle:""
-        },
-        D: {
-            title: "",
-            subtitle:""
-        },
-        E: {
+        HowCaptureUncertainty: {
             title: "How do we capture uncertainty?",
-            subtitle:"We train the model to give us the range of possible streamflow percentiles.",
-            paragraph1: "When we forecast streamflow, we want to know the uncertainty associated with each prediction.",
-            paragraph2: "To capture the uncertainty, we train the model to predict three things: <ul>The model’s best estimate of the streamflow percentile (this is the median prediction.</ul><ul>The upper bound for the streamflow percentile (this is the 95% quantile). The model is predicting that 95% of future observed streamflow levels will be lower than this percentile.</ul><ul>The lower bound for the streamflow percentile (this is the 5% quantile). The model is predicting that 5% of future observed streamflow levels will be higher than this percentile.</ul>"
-        },
-        F: {
-            title: "How confidence changes with lead time",
-        },
-        G: {
-            title: "What comes next?",
-        },
-        H: {
-            title: "Who is contributing to this project?",
+            subtitle:"We train the model to give us a range of possible values",
+            paragraph1: "When we forecast streamflow percentiles, we want to know the uncertainty associated with each prediction. To capture the uncertainty, we train the model to predict three things:<span><ul>The model’s best estimate of the streamflow percentile for each forecast date—this is the median prediction</ul><ul>The upper bound for the streamflow percentile—this is the 95% quantile. The model is predicting that 95% of future observed streamflow levels on the forecast date will be lower than this percentile </ul><ul>The lower bound for the streamflow percentile—this is the 5% quantile. The model is predicting that 95% of future observed streamflow levels on the forecast date will be higher than this percentile</ul></span>",
+            paragraph2: "Essentially, we want the model to consider everything that could happen, given the current inputs, and give us the range of possible streamflow percentiles, excluding the 10% least likely scenarios.",
+            paragraph3: "We set up the model to generate these three predicted values by using what are called loss functions.",
+            lossFunction: {
+                heading: "Using loss functions",
+                paragraph1: "When we train the machine learning model, we incentivize it to find the best solution by penalizing it when it predicts incorrectly. In general, the more inaccurate the prediction, the higher the penalty. But some of the incorrect predictions may be higher than the actual value (overestimates), while some may be lower than the actual value (underestimates). Depending on what we are asking the model to predict, we want to penalize it differently for over- and under- estimations.",
+                paragraph2: "To set the model up to generate the median prediction, we use a loss function that penalizes the model equally for under- and over- estimations. When plotted, this loss function has identical left and right slopes, so we call this a symmetric loss function. Incorrect predictions are penalized more the further they are from the actual value, regardless of whether they are over- or under- estimations.",
+                paragraph3: "To set the model up to generate the upper bound prediction, we use a loss function that penalizes the model more steeply for under- estimating the actual value than for over-estimating it. When plotted, this loss function has a steeper left slope than right slope, so we call this an asymmetric loss function.",
+                paragraph4: "To set the model up to generate the lower bound prediction, we do the opposite, using a loss function that penalizes the model more steeply for over-estimating the actual value. When plotted, this loss function is also asymmetric, with a steeper right slope than left slope.",
+                paragraph5: "Explore the plot below to see how the asymmetry of the loss function influences model predictions:",
+                captionDesktop: "Hover your mouse in the gray region to see the relationship between the loss function (left) and the stream flow percentile prediction (right).",
+                captionResponsive: "Tap in the gray region to see the relationship between the loss function (left) and the stream flow percentile prediction (right).",
+                paragraph6: "What do you see? When the left slope in the loss function is steeper than the right slope, the model favors high predictions, as we would expect. And the other way around, the model favors low predictions. This approach allows the model to bracket the range of its predictions, capturing the uncertainty."
+            },
+            predictionInterval: {
+                heading: "The prediction interval",
+                paragraph1: "The upper and lower bounds that the model predicts define what we call the prediction interval. In this case, the model is predicting a 90% prediction interval. The percentage of the prediction interval tells us the approximate percentage of actual observations the model expects to be within the interval.",
+                paragraph2: "You can see that the model does a good job of capturing the expected percent of observations if we specify different prediction intervals:",
+                caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
+                paragraph3: "Notice that the steeper the asymmetric loss functions, the wider the resulting prediction interval."
+            }
         },
         references: {
             title: "References"
@@ -135,33 +141,11 @@ export default {
             paragraph1: "By setting more asymmetric loss functions, we can widen the prediction envelope, which we call a confidence interval. The percentage of the confidence interval tells us what percentage of the observations we expect to be within the interval.",
             caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
         },
-        ForecastExplore: {
-            heading: "What do the forecasts look like?",
-            paragraph1: "We generate weekly forecasts for 1 - 13 weeks in the future",
-            caption1Desktop: "Hover your mouse over the plot to see how the model forecasts streamflow drought.",
-            caption1Responsive: "Tap on the plot to see how the model forecasts streamflow drought.",
-        },
         ForecastSummary: {
             heading: "How does uncertainty change with forecast horizon?",
             paragraph1: "A paragraph.",
             caption1Desktop: "Hover your mouse over the plot to explore how the model's uncertainty changes with forecast horizon.",
             caption1Responsive: "Tap the plot to explore how the model's uncertainty changes with forecast horizon.",
-        },
-        ForecastTrueFalseSankey: {
-            heading: "How well does the model perform? Part 1",
-            paragraph1: "More droughts get missed further into the future",
-            caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or not, and how that prediction is correct (a true outcome).",
-            caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or not, and how that prediction is correct (a true outcome).",
-        },
-        ForecastTrueFalseSummary: {
-            heading: "How well does the model perform? Part 2",
-            paragraph1: "For a given horizon...",
-            caption: "Depending on the forecast horizon, the proportions of true positives, true negatives, false positives, and false negatives changes. More false outcomes occur as the forecast horizon lengthens.",
-        },
-        ForecastTrueFalseRightOrWrong: {
-            heading: "How well does the model perform? Part 3",
-            paragraph1: "For a given horizon...",
-            caption: "Use the radio buttons to see how the overall model performance and how right or wrong the model is depending on whether it predicts drought or not. The model's prediction ability is better with shorter forecast horizons.",
         },
         AboutTheTeam: {
             heading: "Collaboration across the water community",
