@@ -78,7 +78,7 @@
 <script setup>
     import { onMounted } from "vue";
     import * as d3 from 'd3';
-    import { isMobile } from 'mobile-device-detect';
+    import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import fcsumPlotDesktop from "@/assets/svgs/fc_summary_desktop.svg";
@@ -86,7 +86,7 @@
     import fcsumPlotTablet from "@/assets/svgs/fc_summary_tablet.svg";
 
     // global variables
-    const mobileView = isMobile;
+    const mobileView = isMobileOnly;
     const tabletView = isTablet;
 
     // define props

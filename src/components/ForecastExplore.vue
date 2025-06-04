@@ -60,7 +60,7 @@
 <script setup>
     import { onMounted, reactive, watch } from "vue";
     import * as d3 from 'd3';
-    import { isMobile } from 'mobile-device-detect';
+    import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from "@/components/ToggleSwitch.vue"
@@ -69,7 +69,7 @@
     import fcPlotMobile from "@/assets/svgs/fc_example_mobile.svg";
 
     // global variables
-    const mobileView = isMobile;
+    const mobileView = isMobileOnly;
     const tabletView = isTablet;
 
     // define props
@@ -165,11 +165,15 @@
     }
 
     function annotation(opacity){
-
-      if (mobileView == true || tabletView == true){
-        d3.select("#annotation_forecast_reactive").selectAll("text")
+      if (mobileView == true){
+        d3.select("#annotation_forecast_mobile").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow_reactive").selectAll("path")
+        d3.select("#annotation_forecast_arrow_mobile").selectAll("path")
+            .style("opacity", opacity);
+      }else if (tabletView == true){
+        d3.select("#annotation_forecast_tablet").selectAll("text")
+            .style("opacity", opacity);
+        d3.select("#annotation_forecast_arrow_tablet").selectAll("path")
             .style("opacity", opacity);
       }else{
         d3.select("#annotation_forecast").selectAll("text")
