@@ -108,7 +108,7 @@
 </template>
 
 <script setup>
-  // import { isMobile } from 'mobile-device-detect';
+  // import { isMobileOnly } from 'mobile-device-detect';
 
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
@@ -125,7 +125,7 @@
   import AboutTheTeam from '@/components/AboutTheTeam.vue';
 
   // global variables
-  // const mobileView = isMobile;
+  // const mobileView = isMobileOnly;
 </script>
 
 <style scoped>

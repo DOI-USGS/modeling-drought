@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-  import { isMobile } from 'mobile-device-detect';
+  import { isMobileOnly } from 'mobile-device-detect';
 
   // define props
   defineProps({
@@ -68,7 +68,7 @@
   })
 
   // global variables
-  const mobileView = isMobile;
+  const mobileView = isMobileOnly;
 </script>
 
 <style lang="scss">

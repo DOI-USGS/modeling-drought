@@ -40,7 +40,7 @@
 <script setup>
     import { onMounted, reactive, ref, watch  } from "vue";
     import * as d3 from 'd3';
-    import { isMobile } from 'mobile-device-detect';
+    import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import fcsumTFPlotDesktop from "@/assets/svgs/fc_tf_sum_desktop.svg";
@@ -48,7 +48,7 @@
     import fcsumTFPlotMobile from "@/assets/svgs/fc_tf_sum_mobile.svg";
 
     // global variables
-    const mobileView = isMobile;
+    const mobileView = isMobileOnly;
     const tabletView = isTablet;
 
     // define props
