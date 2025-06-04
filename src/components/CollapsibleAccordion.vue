@@ -128,7 +128,7 @@ $left-border-width: 5px;
   border: none;
   text-align: left;
   outline: none;
-  transition: 0.4s;
+  // transition: 0.4s;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -160,6 +160,10 @@ $left-border-width: 5px;
 // .active, .accordion:hover {
 //   color: var(--color-title-text);
 // }
+.accordion:focus-visible {
+  border: 2px solid;
+  border-radius: 0 .25rem .25rem 0;
+}
 .accordion:hover {
   background-color: var(--medium-light-grey) !important;
 }
