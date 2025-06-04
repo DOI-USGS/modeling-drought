@@ -67,7 +67,7 @@ ax_true_false.set_yticks(
 )
 ax_true_false.set_xticks(np.linspace(1, 13, 13) - 0.5, [str(i) for i in range(1, 14)])
 ax_true_false.set_title(
-    "When drought not predicted",
+    "When drought is not predicted",
     loc="left",
     weight="extra bold",
     color="k",
