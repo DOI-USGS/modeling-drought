@@ -130,12 +130,12 @@
         d3.select("#PI-PATCH-" + targetID).selectAll("path")
             .style("fill-opacity", targetOpacity * 0.5)
             .style("stroke-opacity", targetOpacity);
+        d3.select("#LF-LOWER-" + targetID).selectAll("path")
+            .style("stroke-opacity", targetOpacity);
         if (targetID != "MEDIAN"){
             d3.select("#PI-PATCH-LOWER-" + targetID).selectAll("path")
                 .style("stroke-opacity", targetOpacity);
             d3.select("#PI-PATCH-UPPER-" + targetID).selectAll("path")
-                .style("stroke-opacity", targetOpacity);
-            d3.select("#LF-LOWER-" + targetID).selectAll("path")
                 .style("stroke-opacity", targetOpacity);
             d3.select("#LF-UPPER-" + targetID).selectAll("path")
                 .style("stroke-opacity", targetOpacity);

@@ -81,7 +81,7 @@ fig = plt.figure(
 )
 # add axes
 ax_forecast = fig.add_axes(
-    [0.125, 0.075, 0.825, 0.375 * 2.0], gid="axis-" + basename_gid_forecast
+    [0.125, 0.125, 0.825, 0.375 * 2.0], gid="axis-" + basename_gid_forecast
 )
 
 # print default value for the vue site
@@ -247,7 +247,7 @@ fig.set_size_inches(
 )
 
 # # we then set a new position for the loss function plot and make it more square
-ax_forecast.set_position([0.14, 0.1, 0.8, 0.333 * 2.0])
+ax_forecast.set_position([0.14, 0.175, 0.8, 0.333 * 2.0])
 
 # make svg
 fig.savefig("Task2/out/fc_example_mobile.svg", metadata=None)
