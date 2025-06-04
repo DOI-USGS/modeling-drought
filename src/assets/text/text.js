@@ -76,6 +76,20 @@ export default {
         HowWellModelPerform: {
             title: "How well does the model perform?",
             subtitle: "More droughts get missed further into the future",
+            forecastTrueFalseSankey: {
+                paragraph1: "In order to evaluate how well the model performs, we can lump the predictions into four bins: <span><ul>True negatives: the model did not predict drought, and no drought occurred</ul><ul>False negatives: the model did not predict drought, but a drought occurred </ul><ul>True positives: the model predicted drought, and a drought occurred</ul><ul>False positives: the model predicted drought, but no drought occurred</ul></span>",
+                paragraph2: "If we categorize all predictions that were generated for 1 week in the future, we see this:",
+                caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a 'true' outcome).",
+                caption1Responsive: "Tap the Sankey plot to see how often the model predicts drought or not, and how often that prediction is correct (a 'true' outcome).",
+                paragraph3: "Overall, the model does a good job of correctly predicting when streamflow drought will and will not occur 1 week in the future."
+            },
+            ForecastTrueFalseSummary: {
+                paragraph1: "As we predict further ahead, accuracy decreases:",
+                caption: "Depending on the forecast horizon, the proportions of true positives, true negatives, false positives, and false negatives changes. More false outcomes occur as the forecast horizon lengthens."
+            },
+            ForecastTrueFalseRightOrWrong: {
+                paragraph1: "Depending on what we’re interested in, we can look at just a subset of the results:"
+            }
         },
         C: {
             title: "",

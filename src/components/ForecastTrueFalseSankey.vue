@@ -4,14 +4,9 @@
     :figures="true"
     :fig-caption="true"
   >
-    <!-- HEADING -->
-    <template #heading>
-      <h3>
-        {{ text.heading }}
-      </h3>
-    </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
     </template>
     <!-- FIGURES -->
     <template #figures>
@@ -45,11 +40,14 @@
         v-html="text.caption1Desktop"
       />
     </template>
+    <template #belowExplanation>
+      <p v-html="text.paragraph3" />
+    </template>
   </VizSection>
 </template>
 
 <script setup>
-    import { onMounted, reactive, ref, watch  } from "vue";
+    import { onMounted } from "vue";
     import * as d3 from 'd3';
     import { isMobile } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';

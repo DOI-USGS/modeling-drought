@@ -4,12 +4,6 @@
     :figures="true"
     :fig-caption="true"
   >
-    <!-- HEADING -->
-    <template #heading>
-      <h3>
-        {{ text.heading }}
-      </h3>
-    </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
     </template>
