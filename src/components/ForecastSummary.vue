@@ -10,31 +10,65 @@
     <!-- FIGURES -->
     <template #figures>
       <div id="fc-summary-grid-container">
-        <svg width="0" height="0">
+        <svg
+          width="0"
+          height="0"
+        >
           <filter id="outline">
-              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"></feMorphology>
+            <feMorphology
+              in="SourceAlpha"
+              result="DILATED"
+              operator="dilate"
+              radius="2"
+            />
               
-              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
-              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+            <feFlood
+              flood-color="#FFFFFF"
+              flood-opacity="1"
+              result="PINK"
+            />
+            <feComposite
+              in="PINK"
+              in2="DILATED"
+              operator="in"
+              result="OUTLINE"
+            />
               
-              <feMerge>
-                    <feMergeNode in="OUTLINE" />
-                    <feMergeNode in="SourceGraphic" />
-              </feMerge>
-        </filter>
+            <feMerge>
+              <feMergeNode in="OUTLINE" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </svg>
-        <svg width="0" height="0">
+        <svg
+          width="0"
+          height="0"
+        >
           <filter id="outline-light">
-              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="1"></feMorphology>
+            <feMorphology
+              in="SourceAlpha"
+              result="DILATED"
+              operator="dilate"
+              radius="1"
+            />
               
-              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
-              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+            <feFlood
+              flood-color="#FFFFFF"
+              flood-opacity="1"
+              result="PINK"
+            />
+            <feComposite
+              in="PINK"
+              in2="DILATED"
+              operator="in"
+              result="OUTLINE"
+            />
               
-              <feMerge>
-                    <feMergeNode in="OUTLINE" />
-                    <feMergeNode in="SourceGraphic" />
-              </feMerge>
-        </filter>
+            <feMerge>
+              <feMergeNode in="OUTLINE" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </svg>
         <fcsumPlotTablet
           v-if="tabletView"

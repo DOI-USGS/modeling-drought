@@ -14,9 +14,9 @@
         class="section-subtitle"
         v-html="text.subtitle"
       />
-      <h3 v-html="text.headingA"/>
+      <h3 v-html="text.headingA" />
       <p v-html="text.paragraphA1" />
-      <h3 v-html="text.headingB"/>
+      <h3 v-html="text.headingB" />
       <p v-html="text.paragraphB1" />
       <div
         class="explainer-image-container"
@@ -30,7 +30,7 @@
           class="explainer-image"
         >
       </div>
-      <h3 v-html="text.headingC"/>
+      <h3 v-html="text.headingC" />
       <p v-html="text.paragraphC1" />
     </div>
   </section>
