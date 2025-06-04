@@ -64,8 +64,6 @@
 </template>
 
 <script setup>
-  // import { isMobile } from 'mobile-device-detect';
-
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
   import authors from "@/assets/text/authors";
@@ -79,10 +77,6 @@
   import WhoContributing from "@/components/WhoContributing.vue";
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
-
-  // global variables
-  // const mobileView = isMobile;
-
 </script>
 
 <style scoped>
