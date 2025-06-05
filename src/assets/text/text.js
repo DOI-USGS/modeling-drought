@@ -66,7 +66,7 @@ export default {
         subtitle: "We generate weekly forecasts for 1-13 weeks in the future",
         forecastTimeseries: {
             paragraph1: "Every week, we ask the model to generate weekly forecasts for 1-13 weeks out. The model produces a prediction (its best estimate of the streamflow percentile for each week) along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece later!",
-            paragraph2: "The forecasts are shared publicly on the <a href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>streamflow drought forecasts interactive map</a>. Users can explore a map of current and forecast conditions across CONUS, and can also view detailed forecasts for individual sites:",
+            paragraph2: "The forecasts are shared publicly on the <a href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>streamflow drought forecasts interactive map</a>. Users can explore a map of current and forecast conditions across CONUS, and can also view detailed forecasts for individual sites. Note that for the forecast timeseries shown here, the site-specific predicted streamflow percentiles have been converted to streamflow, in units of cubic feet per second:",
             figure: "timeseries.png",
             caption: "An example timeseries plot shared out through the <a href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>streamflow drought forecasts interactive map</a>"
         },
