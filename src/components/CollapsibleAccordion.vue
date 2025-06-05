@@ -15,7 +15,30 @@
       />
       <span 
         class="accordion-button-text symbol"
-      />
+        :class="{ active: active }"
+      >
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <line 
+            class="symbol-line"
+            x1="10"
+            y1="1"
+            x2="10"
+            y2="19"
+            :stroke="buttonFontColor"
+          />
+          <line
+            class="symbol-line"
+            x1="19"
+            y1="10"
+            x2="1"
+            y2="10"
+            :stroke="buttonFontColor"
+          />
+        </svg>  
+      </span>
     </button>
     <div 
       class="panel" 
@@ -132,38 +155,12 @@ $left-border-width: 5px;
   border: none;
   text-align: left;
   outline: none;
-  // transition: 0.4s;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   border-radius: 0 .25rem .25rem 0;
 }
-.accordion::before{
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border: 2px solid transparent;
-  z-index: -1;
-  transition: border-color 0.3s;
-}
-.accordion span::before {
-  content: "\1F7A1";
-}
-.accordion.active span::before {
-  display: block;
-  content: "\1F7A1";
-  transform: rotate(45deg);
-}
-/* .accordion:hover::before, .accordion.active::before {
-  border-color: var(--usgs-blue);
-} */
-// .active, .accordion:hover {
-//   color: var(--color-title-text);
-// }
 .accordion:focus-visible {
   border: 2px solid;
   border-radius: 0 .25rem .25rem 0;
@@ -174,6 +171,22 @@ $left-border-width: 5px;
 .accordion-button-text {
   padding: 0;
 }
+.symbol {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding-right: calc($padding / 2);
+}
+.symbol svg {
+  width: 25px;
+  height: 25px;
+}
+.symbol.active svg {
+  transform: rotate(45deg);
+}
+.symbol-line {
+  stroke-width: 0.8px;
+}
 .panel {
   display: none; 
 }
@@ -183,11 +196,6 @@ $left-border-width: 5px;
 .panel p {
   margin: $margin 0 $margin 0;
   padding: $padding;
-}
-.symbol {
-  font-size: 3rem;
-  font-weight: bold;
-  padding-right: calc($padding / 2);
 }
 .accordion-image-container {
   text-align: center;
