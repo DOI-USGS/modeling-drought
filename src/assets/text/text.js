@@ -94,7 +94,7 @@ export default {
             paragraph1: "Depending on what we’re interested in, we can look at just a subset of the results:",
             questionAll: "How often is the model <span class='group-label right'>right</span> or <span class='group-label wrong'>wrong</span>?",
             questionNoDrought: "If the model does not predict drought, how often is it <span class='group-label true-neg'>right</span> or <span class='group-label false-neg'>wrong</span>?",
-            questionDrought: "If the model predicts drought, how often is it <span class='group-label true-pos'>right</span> or <span class='group-label false-pos'>wrong?</span>?",
+            questionDrought: "If the model predicts drought, how often is it <span class='group-label true-pos'>right</span> or <span class='group-label false-pos'>wrong</span>?",
             caption: "Use the radio buttons to see how the overall model performance and how right or wrong the model is depending on whether it predicts drought or not. The model’s prediction ability is better with shorter forecast horizons."
         }
     },
