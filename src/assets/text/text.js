@@ -65,7 +65,7 @@ export default {
         title: "What do the forecasts look like?",
         subtitle: "We generate weekly forecasts for 1-13 weeks in the future",
         forecastTimeseries: {
-            paragraph1: "Every week, we ask the model to generate weekly forecasts for 1-13 weeks out. The model produces a prediction (its best estimate of the streamflow percentile for each week) along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece later!",
+            paragraph1: "Every week, we ask the model to generate weekly forecasts for 1-13 weeks out. For each forecast horizon (e.g., 4 weeks out), the model produces a prediction (its best estimate of the streamflow percentile for each week) along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece later!",
             figure: "example_forecast.png",
             caption: "On each issue date, we generate forecasts for the next 13 weeks.",
             accordionData: [
