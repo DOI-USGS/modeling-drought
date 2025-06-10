@@ -134,7 +134,7 @@ export default {
             heading: "The prediction interval",
             paragraph1: "The upper and lower bounds that the model predicts define what we call the prediction interval. In this case, the model is predicting a 90% prediction interval. The percentage of the prediction interval tells us the approximate percentage of actual observations the model expects to be within the interval.",
             paragraph2: "You can see that the model does a good job of capturing the expected percent of observations if we specify different prediction intervals:",
-            caption: "Use the radio buttons to explore the loss functions (left) and corresponding confidence intervals (right).",
+            caption: "Use the radio buttons to explore the loss functions (left) and corresponding prediction intervals (right).",
             paragraph3: "Notice that the steeper the asymmetric loss functions, the wider the resulting prediction interval."
         }
     },
