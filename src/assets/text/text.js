@@ -126,8 +126,8 @@ export default {
             paragraph3: "To set the model up to generate the upper bound prediction, we use a loss function that penalizes the model more steeply for under- estimating the actual value than for over-estimating it. When plotted, this loss function has a steeper left slope than right slope, so we call this an asymmetric loss function.",
             paragraph4: "To set the model up to generate the lower bound prediction, we do the opposite, using a loss function that penalizes the model more steeply for over-estimating the actual value. When plotted, this loss function is also asymmetric, with a steeper right slope than left slope.",
             paragraph5: "Explore the plot below to see how the asymmetry of the loss function influences model predictions:",
-            captionDesktop: "Hover your mouse in the gray region to see the relationship between the loss function (left) and the stream flow percentile prediction (right).",
-            captionResponsive: "Tap in the gray region to see the relationship between the loss function (left) and the stream flow percentile prediction (right).",
+            captionDesktop: "Hover your mouse in the gray region to see the relationship between the loss function (left) and the streamflow percentile prediction (right).",
+            captionResponsive: "Tap in the gray region to see the relationship between the loss function (left) and the streamflow percentile prediction (right).",
             paragraph6: "What do you see? When the left slope in the loss function is steeper than the right slope, the model favors high predictions, as we would expect. And the other way around, the model favors low predictions. This approach allows the model to bracket the range of its predictions, capturing the uncertainty."
         },
         predictionInterval: {
