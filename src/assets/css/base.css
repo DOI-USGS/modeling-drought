@@ -7,15 +7,23 @@
   --white-soft: #F0F0F0;
 
   --black-soft: #151515;
+  --light-grey: #B5B5B5;
   --medium-grey: #A3A3A3;
+  --medium-light-grey: #e8e8e8;
+  --grey_3_1: #949494;
+  --grey_7_1: #595959;
   --usgs-blue: #00264c;
+  --extremely-faded-usgs-blue: #F5F7FA;
   --faded-usgs-blue: #d8dee4;
   --very-light-blue: #dff0f7;  
   --less-faded-usgs-blue: #849db4;
+  --usgs-blue_3_1: #7D97B0;
   --medium-blue: #a3c6d6;
   --dark-mustard: #B78935;
   --bright-mustard: #d5b43a;
+  --light-mustard: #DBC49A;
   --grey-blue: #4978A7;
+  --light-grey-blue: #9FB4C8;
   --brighter-grey-blue: #6290bf;
   --tan: #DCD5A8;
   --medium-brown: #b47449;
@@ -34,10 +42,11 @@
   --color-lowlight: var(--faded-usgs-blue);
   --color-text: var(--black-soft);
   --color-title-text: var(--usgs-blue);
-  --color-subtitle-text: var(--usgs-blue);
+  --color-section-title-text: var(--usgs-blue);
+  --color-subtitle-text: var(--grey_7_1);
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
-  --color-code-links-background: var(--medium-grey);
+  --color-code-links-background: var(--light-grey);
   --color-link: var(--grey-blue);
   --color-bar-focal: var(--medium-blue);
   --color-bar-default: var(--medium-grey);
@@ -50,6 +59,10 @@
   --color-quantile-5: var(--dark-mustard);
   --inactive-grey: #949494;
   --inactive-text-grey: #757575;
+  --color-true-negative: var(--grey-blue);
+  --color-false-negative: var(--light-grey-blue);
+  --color-true-positive: var(--dark-mustard);
+  --color-false-positive: var(--light-mustard)
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -79,6 +92,7 @@ body {
   font-family: sans-serif; /* This is fallback font for old browsers */
   font-family: var(--default-font);
   font-size: 2rem;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -111,5 +125,5 @@ h3 {
   padding: 0 0 1.5rem 0;
 }
 p, text, li {
-  padding: 0 0 1rem 0;
+  padding: 0 0 2rem 0;
 }

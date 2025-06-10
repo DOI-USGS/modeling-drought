@@ -180,6 +180,9 @@
 footer p, text, li {
   padding: 0;
 }
+footer a {
+  font-weight: 400;
+}
 .fa {
   color:#fff;
 	font-size: 24px;
@@ -194,5 +197,18 @@ ul.social {
 /* Moved from common.js so that it doesn't affect USWDS banner css */
 footer, header, main, nav, div {
   display: block;
+}
+/* supercede ul css in main.css */
+ul {
+  display: block;
+  padding-bottom: 0rem;
+  padding-left: 0rem;
+  margin-left: 0px;
+}
+ul:first-child {
+  padding-top: 0rem;
+}
+ul:last-child {
+  padding-bottom: 0rem;
 }
 </style>

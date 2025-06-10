@@ -53,5 +53,18 @@ export default {
       data_release: false,
       doi: "https://doi.org/10.1029/2006WR005653"
     },
+    {
+      reference: "Reference 5.",
+      num: "5",
+      authors: "World Meteorological Organization (WMO)",
+      year: "2008",
+      title: "Manual on low-flow estimation and prediction",
+      link: "https://library.wmo.int/idurl/4/32176",
+      journal: true,
+      journal_name: "Operational hydrology report (OHR) No. 50",
+      journal_issue: "WMO-No. 1029",
+      data_release: false,
+      doi: ""
+    }
   ]
 };

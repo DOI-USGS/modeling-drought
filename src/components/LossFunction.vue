@@ -14,6 +14,9 @@
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
       <p v-html="text.paragraph2" />
+      <p v-html="text.paragraph3" />
+      <p v-html="text.paragraph4" />
+      <p v-html="text.paragraph5" />
       <div class="toggle-container">
         <ToggleSwitch 
           v-for="layer, index in layers"
@@ -44,20 +47,19 @@
     <template #figureCaption>
       <p
         v-if="tabletView"
-        v-html="text.caption1Responsive"
+        v-html="text.captionResponsive"
       />
       <p
         v-else-if="mobileView"
-        v-html="text.caption1Responsive"
+        v-html="text.captionResponsive"
       />
       <p
         v-else
-        v-html="text.caption1Desktop"
+        v-html="text.captionDesktop"
       />
     </template>
-    <!-- EXPLANATION -->
     <template #belowExplanation>
-      <p v-html="text.paragraph3" />
+      <p v-html="text.paragraph6" />
     </template>
   </VizSection>
 </template>
@@ -235,7 +237,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
-        margin: 3rem auto 4rem auto;
+        margin: 3rem auto 2rem auto;
         grid-template-areas:
             "chart";
     }

@@ -20,24 +20,27 @@
         @change="$emit('update:modelValue', option.value)"
       >
       <span
-        class="radio-button"
-        :style="{
-          borderColor: modelValue === option.value ? option.color || activeColor : inactiveColor,
-          backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
-        }"
-      />
-      <span
-        class="radio-check"
-        :style="{
-          backgroundColor: modelValue === option.value ? centerColor : 'transparent'
-        }"
-      />
+        class="radio-button-container"
+      >
+        <span
+          class="radio-button"
+          :style="{
+            borderColor: modelValue === option.value ? option.color || activeColor : inactiveColor,
+            backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
+          }"
+        />
+        <span
+          class="radio-check"
+          :style="{
+            backgroundColor: modelValue === option.value ? centerColor : 'transparent'
+          }"
+        />
+      </span>
       <span
         class="radio-text"
         :class="{ ractive: modelValue === option.value }"
-      >
-        {{ option.label }}
-      </span>
+        v-html="option.label"
+      />
     </label>
   </div>
 </template>
@@ -84,7 +87,7 @@ defineEmits(['update:modelValue']);
 
 .radio-label {
   display: flex;
-  width: max-content;
+  /* width: max-content; */
   align-items: center;
   gap: 6px;
   cursor: pointer;
@@ -102,6 +105,10 @@ defineEmits(['update:modelValue']);
   display: none;
 }
 
+.radio-button-container {
+  display: flex;
+}
+
 .radio-button {
   width: 16px;
   height: 16px;
@@ -116,7 +123,7 @@ defineEmits(['update:modelValue']);
 
 .radio-check {
   position: absolute;
-  transform: translate(4px,0);
+  transform: translate(4px,4px);
   width: 8px;
   height: 8px;
   border-radius: 50%;

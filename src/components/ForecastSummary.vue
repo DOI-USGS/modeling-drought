@@ -4,43 +4,71 @@
     :figures="true"
     :fig-caption="true"
   >
-    <!-- HEADING -->
-    <template #heading>
-      <h3>
-        {{ text.heading }}
-      </h3>
-    </template>
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
     </template>
     <!-- FIGURES -->
     <template #figures>
       <div id="fc-summary-grid-container">
-        <svg width="0" height="0">
+        <svg
+          width="0"
+          height="0"
+        >
           <filter id="outline">
-              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"></feMorphology>
+            <feMorphology
+              in="SourceAlpha"
+              result="DILATED"
+              operator="dilate"
+              radius="2"
+            />
               
-              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
-              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+            <feFlood
+              flood-color="#FFFFFF"
+              flood-opacity="1"
+              result="PINK"
+            />
+            <feComposite
+              in="PINK"
+              in2="DILATED"
+              operator="in"
+              result="OUTLINE"
+            />
               
-              <feMerge>
-                    <feMergeNode in="OUTLINE" />
-                    <feMergeNode in="SourceGraphic" />
-              </feMerge>
-        </filter>
+            <feMerge>
+              <feMergeNode in="OUTLINE" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </svg>
-        <svg width="0" height="0">
+        <svg
+          width="0"
+          height="0"
+        >
           <filter id="outline-light">
-              <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="1"></feMorphology>
+            <feMorphology
+              in="SourceAlpha"
+              result="DILATED"
+              operator="dilate"
+              radius="1"
+            />
               
-              <feFlood flood-color="#FFFFFF" flood-opacity="1" result="PINK"></feFlood>
-              <feComposite in="PINK" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+            <feFlood
+              flood-color="#FFFFFF"
+              flood-opacity="1"
+              result="PINK"
+            />
+            <feComposite
+              in="PINK"
+              in2="DILATED"
+              operator="in"
+              result="OUTLINE"
+            />
               
-              <feMerge>
-                    <feMergeNode in="OUTLINE" />
-                    <feMergeNode in="SourceGraphic" />
-              </feMerge>
-        </filter>
+            <feMerge>
+              <feMergeNode in="OUTLINE" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </svg>
         <fcsumPlotTablet
           v-if="tabletView"
@@ -60,16 +88,19 @@
     <template #figureCaption>
       <p
         v-if="tabletView"
-        v-html="text.caption1Responsive"
+        v-html="text.captionResponsive"
       />
       <p
         v-else-if="mobileView"
-        v-html="text.caption1Responsive"
+        v-html="text.captionResponsive"
       />
       <p
         v-else
-        v-html="text.caption1Desktop"
+        v-html="text.captionDesktop"
       />
+    </template>
+    <template #belowExplanation>
+      <p v-html="text.paragraph2" />
     </template>
   </VizSection>
 </template>
@@ -165,7 +196,7 @@
         display: grid;
         width: 100%;
         max-width: 800px;
-        margin: 3rem auto 4rem auto;
+        margin: 1rem auto 0rem auto;
         grid-template-areas:
             "chart";
     }

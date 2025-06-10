@@ -13,6 +13,7 @@
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
       <RadioGroup
         v-model="selectedLayer"
         :options="layers"
@@ -38,6 +39,9 @@
     <!-- FIGURE CAPTION -->
     <template #figureCaption>
       <p v-html="text.caption" />
+    </template>
+    <template #belowExplanation>
+      <p v-html="text.paragraph3" />
     </template>
   </VizSection>
 </template>
@@ -158,7 +162,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
-        margin: 3rem auto 4rem auto;
+        margin: 2rem auto 2rem auto;
         grid-template-areas:
             "chart";
     }

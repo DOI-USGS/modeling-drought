@@ -21,6 +21,10 @@
         v-if="titleLevel === '3'"
         v-html="references.title"
       />
+      <span
+        v-else
+        v-html="references.title"
+      />
     </template>
     <template #aboveExplanation>
       <div>
@@ -63,7 +67,7 @@
   defineProps({
     titleLevel: {
       type: String,
-      default: "2"
+      default: ""
     },
     references: {
       type: Object,

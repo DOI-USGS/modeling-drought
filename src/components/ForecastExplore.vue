@@ -1,16 +1,9 @@
 <template>
   <VizSection
-    id="forecast"
+    id="forecast-explore"
     :figures="true"
     :fig-caption="true"
   >
-    <!-- HEADING -->
-    <template #heading>
-      <h3>
-        {{ text.heading }}
-      </h3>
-    </template>
-    <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
       <div class="toggle-container">
@@ -224,7 +217,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
-        margin: 3rem auto 4rem auto;
+        margin: 2rem auto 2rem auto;
         grid-template-areas:
             "chart";
     }

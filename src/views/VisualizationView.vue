@@ -8,82 +8,38 @@
         v-html="text.pageTitle" 
       />
     </div>
-    <div
-      class="text-container"
-    >
-      <h2
-        class="subtitle"
-      >
-        <span>
-          {{ text.sections.A.title }}
-        </span>
-      </h2>
-    </div>
-    <LossFunction
-      :text="text.components.LossFunction"
+    <WhatIsStreamflowDrought 
+      :text="text.WhatIsStreamflowDrought"
     />
-    <PredictionInterval
-      :text="text.components.PredictionInterval"
+    <HowModelStreamflowDrought 
+      :text="text.HowModelStreamflowDrought"
     />
-    <div
-      class="text-container"
-    >
-      <h2
-        class="subtitle"
-      >
-        <span>
-          {{ text.sections.B.title }}
-        </span>
-      </h2>
-    </div>
-    <ForecastExplore
-      :text="text.components.Forecast"
+    <WhatDoForecastsLookLike 
+      :text="text.WhatDoForecastsLookLike"
     />
-    <ForecastSummary
-      :text="text.components.ForecastSummary"
+    <HowWellModelPerform 
+      :text="text.HowWellModelPerform"
     />
-    <ForecastTrueFalseSankey
-      :text="text.components.ForecastTrueFalseSankey"
+    <HowCaptureUncertainty 
+      :text="text.HowCaptureUncertainty"
     />
-    <ForecastTrueFalseSummary
-      :text="text.components.ForecastTrueFalseSummary"
+    <HowUncertaintyChange 
+      :text="text.HowUncertaintyChange"
     />
-    <ForecastTrueFalseRightOrWrong
-      :text="text.components.ForecastTrueFalseRightOrWrong"
+    <WhatsNext 
+      :text="text.WhatsNext"
+    />
+    <WhoContributing 
+      :text="text.WhoContributing"
     />
     <div
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
-          {{ text.sections.C.title }}
-        </span>
-      </h2>
-    </div>
-    <div
-      class="text-container"
-    >
-      <h2
-        class="subtitle"
-      >
-        <span>
-          {{ text.sections.D.title }}
-        </span>
-      </h2>
-    </div>
-    <AboutTheTeam
-      :text="text.components.AboutTheTeam"
-    />
-    <div
-      class="text-container"
-    >
-      <h2
-        class="subtitle"
-      >
-        <span>
-          {{ text.sections.references.title }}
+          {{ text.References.title }}
         </span>
       </h2>
     </div>
@@ -94,10 +50,10 @@
       class="text-container"
     >
       <h2
-        class="subtitle"
+        class="section-title"
       >
         <span>
-          {{ text.sections.authors.title }}
+          {{ text.Authors.title }}
         </span>
       </h2>
     </div>
@@ -108,41 +64,20 @@
 </template>
 
 <script setup>
-  // import { isMobileOnly } from 'mobile-device-detect';
-
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
   import authors from "@/assets/text/authors";
+  import WhatIsStreamflowDrought from "@/components/WhatIsStreamflowDrought.vue";
+  import HowModelStreamflowDrought from "@/components/HowModelStreamflowDrought.vue";
+  import WhatDoForecastsLookLike from "@/components/WhatDoForecastsLookLike.vue";
+  import HowWellModelPerform from "@/components/HowWellModelPerform.vue"
+  import HowCaptureUncertainty from "@/components/HowCaptureUncertainty.vue"
+  import HowUncertaintyChange from "@/components/HowUncertaintyChange.vue"
+  import WhatsNext from "@/components/WhatsNext.vue";
+  import WhoContributing from "@/components/WhoContributing.vue";
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
-  import LossFunction from '@/components/LossFunction.vue';
-  import PredictionInterval from '@/components/PredictionInterval.vue';
-  import ForecastExplore from '@/components/ForecastExplore.vue';
-  import ForecastSummary from '@/components/ForecastSummary.vue';
-  import ForecastTrueFalseSankey from '@/components/ForecastTrueFalseSankey.vue';
-  import ForecastTrueFalseSummary from '@/components/ForecastTrueFalseSummary.vue';
-  import ForecastTrueFalseRightOrWrong from '@/components/ForecastTrueFalseRightOrWrong.vue';
-  import AboutTheTeam from '@/components/AboutTheTeam.vue';
-
-  // global variables
-  // const mobileView = isMobileOnly;
 </script>
 
 <style scoped>
-.title {
-  font-family: sans-serif; /* This is fallback font for old browsers */
-  font-family: var(--title-font);
-} 
-.subtitle {
-  font-family: sans-serif; /* This is fallback font for old browsers */
-  font-family: var(--subtitle-font);
-  width: 100%;
-  text-align:left; 
-  border-bottom: 1px solid var(--color-lowlight); 
-  overflow: inherit;
-}
-.subtitle span {
-  position: relative;
-  top: 1rem;
-}
 </style>
