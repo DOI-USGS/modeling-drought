@@ -22,11 +22,7 @@
         class="explainer-image-container"
       >
         <img
-          :src="getImageURL(text.figureB1path)"
-          class="explainer-image"
-        >
-        <img
-          :src="getImageURL(text.figureB2path)"
+          :src="getImageURL(text.figureBpath)"
           class="explainer-image"
         >
       </div>

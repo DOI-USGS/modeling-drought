@@ -154,9 +154,8 @@ export default {
         headingA: "Improvements to the model",
         paragraphA1: "In order to forecast streamflow drought, we have trained a model to predict when conditions will deviate from normal—when streamflow levels will become “unusually low”. This is much tricker than predicting typical streamflow, as the model cannot rely on historical conditions or seasonal patterns. To make the model more accurate, we hope to incorporate additional inputs, including baseflow forecasts, better groundwater and soil water storage data, and a greater number of weather forecasts that are specialized for different forecast horizons.",
         headingB: "More ways to evaluate model performance",
-        paragraphB1: "As the model continues to run, we will have a larger pool of predictions that we can use to evaluate model performance. In addition to determining the ability to accurately predict if streamflow drought will or will not occur, we will also assess if the model can accurately predict drought events. We want to know if the model accurately predicts when a drought will start (drought onset), how long it will last (drought duration), when it will end (drought termination), and how low the streamflow percentile will become (drought intensity). This is valuable information for water managers and communities that are preparing for drought conditions.",
-        figureB1path: "drought_explainer.png",
-        figureB2path: "severity_explainer.png",
+        paragraphB1: "As the model continues to run, we will have a larger pool of predictions that we can use to evaluate model performance. In addition to determining the ability to accurately predict if streamflow drought will or will not occur, we will also assess if the model can accurately predict drought <i>events</i>. We want to know if the model accurately predicts when a drought will start (drought onset), how long it will last (drought duration), when it will end (drought termination), and how low the streamflow percentile will become (drought intensity). This is valuable information for water managers and communities that are preparing for drought conditions.",
+        figureBpath: "drought_event_explainer.png",
         headingC: "Forecasts for more places",
         paragraphC1: "We are also expanding the model to generate forecasts for ungaged basins across CONUS."
     },
