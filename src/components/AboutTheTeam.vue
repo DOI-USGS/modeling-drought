@@ -76,7 +76,8 @@ const nodes = ref([
     { id: 'Michael', name: 'Michael Wieczorek', group: 'MD-DE-DC', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/MD_wieczorek.gif?itok=pzpIHaUG', url: 'https://www.usgs.gov/staff-profiles/michael-e-wieczorek' },
     { id: 'Kendall', name: 'Kendall Wnuk', group: 'MD-DE-DC', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/Wnuk_Profile_Pic.jpg', url: 'https://www.usgs.gov/staff-profiles/kendall-wnuk' },
     { id: 'Jake', name: 'Jacob Zwart', group:  'IIDD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/zwart-jacob.jpg?h=3d1375cf&itok=BCrm0TBr', url: 'https://www.usgs.gov/staff-profiles/jacob-zwart' },
-    { id: 'Hayley', name: 'Hayley Corson-Dosch', group:  'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/HCorson-Dosch.png', url: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'}
+    { id: 'Hayley', name: 'Hayley Corson-Dosch', group:  'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/HCorson-Dosch.png', url: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'},
+    { id: 'Daren', name: 'Daren Carlisle', group:  'KS', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/DarenCarlisleprofile_0.jpg?itok=mkjFuyeF', url: 'https://www.usgs.gov/staff-profiles/daren-m-carlisle'}
 ]);
 
 // for group visual fx
@@ -91,7 +92,8 @@ const colors = {
     UT: "var(--medium-brown)",
     OSD: "var(--very-light-blue)",
     OR: "var(--tan)",
-    OPP: "var(--medium-grey)"
+    OPP: "var(--medium-grey)",
+    KS: "var(--dark-tan)"
 }
 
 onMounted(() => {
