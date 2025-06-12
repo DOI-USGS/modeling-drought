@@ -66,6 +66,7 @@ text {
   color: var(--color-subtitle-text);
   font-weight: 300;
   margin-bottom: 3rem;
+  line-height: 1.2;
 }
 .group-label {
   color: black;
