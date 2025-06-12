@@ -66,5 +66,8 @@
 .timeseries-image {
   padding: 10px;
   max-width: 70rem;
+  @media only screen and (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 </style>

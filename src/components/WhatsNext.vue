@@ -54,6 +54,9 @@
 .explainer-image {
   padding: 10px;
   max-width: 85%;
+  @media only screen and (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 </style>
 <style lang="scss">

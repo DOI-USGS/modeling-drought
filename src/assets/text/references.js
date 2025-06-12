@@ -46,11 +46,11 @@ export default {
       authors: "U.S. Drought Monitor",
       year: "2025",
       title: "Drought Classification",
-      link: "https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx",
       journal: false,
-      journal_name: "Water Resources Research",
-      journal_issue: " 43",
+      journal_name: "",
+      journal_issue: "",
       data_release: false,
+      link: "https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx",
       doi: null
     },
     {
