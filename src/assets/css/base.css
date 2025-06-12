@@ -88,7 +88,7 @@ body {
   transition:
     color 0.5s,
     background-color 0.5s;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: sans-serif; /* This is fallback font for old browsers */
   font-family: var(--default-font);
   font-size: 2rem;
@@ -124,6 +124,15 @@ h3 {
   color: var(--color-title-text);
   padding: 0 0 1.5rem 0;
 }
-p, text, li {
+p, text {
   padding: 0 0 2rem 0;
+}
+li {
+  padding-bottom: 1rem;
+}
+li:first-of-type {
+  padding-top: 1rem;
+}
+li:last-of-type {
+  padding-bottom: 1rem;
 }

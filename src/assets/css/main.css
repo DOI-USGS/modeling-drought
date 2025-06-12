@@ -76,15 +76,30 @@ text {
   font-weight: 500;
   line-height: 1.4;
 }
-ul {
-  display: list-item;
-  padding-bottom: 1rem;
-  padding-left: 0.25rem;
-  margin-left: 40px;
+.tooltip-span {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 1px dotted rgba(54, 54, 54, 0.8);
+  font-weight: 700;
+  z-index: 10;
 }
-ul:first-child {
-  padding-top: 1rem;
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.9rem 0.65rem;
+  position: absolute;
+  z-index: 1;
+  margin-left: -170px;
+  margin-top: 2.3rem;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-ul:last-child {
-  padding-bottom: 1rem;
+.tooltip-group:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
