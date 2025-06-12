@@ -58,6 +58,6 @@
 </style>
 <style lang="scss">
 #baseflow-tooltip {
-  margin-left: -140px;
+  margin-left: -330px;
 }
 </style>
