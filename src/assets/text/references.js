@@ -43,6 +43,19 @@ export default {
     {
       reference: "Reference 4.",
       num: "4",
+      authors: "U.S. Drought Monitor",
+      year: "2025",
+      title: "Drought Classification",
+      link: "https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx",
+      journal: false,
+      journal_name: "Water Resources Research",
+      journal_issue: " 43",
+      data_release: false,
+      doi: null
+    },
+    {
+      reference: "Reference 5.",
+      num: "5",
       authors: "Viviroli, D., Dürr, H. H., Messerli, B., Meybeck, M. & Weingartner, R.",
       year: "2007",
       title: "Mountains of the world, water towers for humanity: Typology, mapping, and global significance",
@@ -54,8 +67,8 @@ export default {
       doi: "https://doi.org/10.1029/2006WR005653"
     },
     {
-      reference: "Reference 5.",
-      num: "5",
+      reference: "Reference 6.",
+      num: "6",
       authors: "World Meteorological Organization (WMO)",
       year: "2008",
       title: "Manual on low-flow estimation and prediction",

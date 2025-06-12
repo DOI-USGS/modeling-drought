@@ -33,5 +33,8 @@
   })
 </script>
 
-<style>
+<style lang="scss">
+#characteristics-tooltip {
+  margin-left: -240px;
+}
 </style>
