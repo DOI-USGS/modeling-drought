@@ -57,6 +57,7 @@ text {
   text-align:left; 
   border-bottom: 1px solid var(--color-lowlight); 
   overflow: inherit;
+  line-height: 1.2;
 }
 .section-title span {
   position: relative;
