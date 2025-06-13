@@ -127,7 +127,7 @@ export default {
             caption: "Depending on the forecast horizon, the proportion of <span class='group-label true-neg'>true negatives</span>, <span class='group-label false-neg'>false negatives</span>, <span class='group-label false-pos'>false positives</span>, and <span class='group-label true-pos'>true positives</span> changes. More ‘false’ outcomes occur as the forecast horizon lengthens."
         },
         forecastTrueFalseRightOrWrong: {
-            paragraph1: "Depending on what we’re interested in, we can look at just a subset of the results:",
+            paragraph1: "Depending on what we’re interested in, we can look at different subsets of the results, where ‘right’ = ‘true’ outcomes, and ‘wrong’ = ‘false’ outcomes:",
             questionAll: "How often is the model <span class='group-label right'>right</span> or <span class='group-label wrong'>wrong</span>?",
             questionNoDrought: "If the model does not predict drought, how often is it <span class='group-label true-neg'>right</span> or <span class='group-label false-neg'>wrong</span>?",
             questionDrought: "If the model predicts drought, how often is it <span class='group-label true-pos'>right</span> or <span class='group-label false-pos'>wrong</span>?",
