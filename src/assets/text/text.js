@@ -179,7 +179,7 @@ export default {
         figureBpath: "drought_event_explainer.png",
         headingC: "Forecasts for more places",
         paragraphC1: "We are also expanding the model to generate forecasts for ungaged basins across CONUS.",
-        paragraphC2: "Many regions <a href='https://www.usgs.gov/media/images/how-far-away-your-closest-streamgage' target='_blank'>lack sufficient streamflow monitoring stations</a>, making it challenging to manage water resources effectively. In many ungaged areas, there is limited historical data available for streamflow analysis. By applying our models to ungaged areas, we hope to better provide valuable information on water availability at managemen-relevant scales."
+        paragraphC2: "Many regions <a href='https://www.usgs.gov/media/images/how-far-away-your-closest-streamgage' target='_blank'>lack sufficient streamflow monitoring stations</a>, making it challenging to manage water resources effectively. In many ungaged areas, there is limited historical data available for streamflow analysis. By applying our models to ungaged areas, we hope to better provide valuable information on water availability at management-relevant scales."
     },
     WhoContributing: {
         title: "Who is contributing to this project?",
