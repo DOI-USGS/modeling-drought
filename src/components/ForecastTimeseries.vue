@@ -57,20 +57,6 @@
 </script>
 
 <style scoped lang="scss">
-.timeseries-image-container {
-  text-align: center;
-  margin-top: 2rem;
-}
-.timeseries-image {
-  padding: 10px;
-  max-width: 70rem;
-  @media only screen and (max-width: 600px) {
-    max-width: 100%;
-  }
-}
-</style>
-
-<style scoped lang="scss">
     #fc-diagram-grid-container {
         display: grid;
         width: 100%;
