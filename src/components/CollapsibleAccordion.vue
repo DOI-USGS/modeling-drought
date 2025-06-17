@@ -202,7 +202,7 @@ $left-border-width: 5px;
 }
 .accordion-image {
   padding: 10px;
-  max-width: 85%;
+  max-width: 95%;
 }
 .accordion-image.mobile {
   padding: 10px;

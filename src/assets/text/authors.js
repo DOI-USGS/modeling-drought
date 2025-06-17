@@ -26,6 +26,10 @@ export default {
     {
       name: 'Jeremy Diaz',
       link: ''
+    },
+    {
+      name: 'Althea Archer',
+      link: 'https://www.usgs.gov/staff-profiles/althea-archer'
     }
   ],
   lastAuthor: [

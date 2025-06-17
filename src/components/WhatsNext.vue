@@ -22,16 +22,13 @@
         class="explainer-image-container"
       >
         <img
-          :src="getImageURL(text.figureB1path)"
-          class="explainer-image"
-        >
-        <img
-          :src="getImageURL(text.figureB2path)"
+          :src="getImageURL(text.figureBpath)"
           class="explainer-image"
         >
       </div>
       <h3 v-html="text.headingC" />
       <p v-html="text.paragraphC1" />
+      <p v-html="text.paragraphC2" />
     </div>
   </section>
 </template>
@@ -57,5 +54,13 @@
 .explainer-image {
   padding: 10px;
   max-width: 85%;
+  @media only screen and (max-width: 600px) {
+    max-width: 100%;
+  }
+}
+</style>
+<style lang="scss">
+#baseflow-tooltip {
+  margin-left: -330px;
 }
 </style>
