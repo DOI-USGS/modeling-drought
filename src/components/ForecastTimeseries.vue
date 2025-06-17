@@ -8,13 +8,10 @@
       <p v-html="text.paragraph1" />
     </template>
     <template #figures>
-      <div
-        class="timeseries-image-container"
-      >
-        <img
-          :src="getImageURL(text.figure)"
-          class="timeseries-image"
-        >
+      <div id="fc-diagram-grid-container">
+        <fcDiagramPlot
+          id="fc-diagram-svg"
+        />
       </div>
     </template>
     <!-- FIGURE CAPTION -->
@@ -41,6 +38,7 @@
 <script setup>
   import VizSection from '@/components/VizSection.vue';
   import CollapsibleAccordion from '@/components/CollapsibleAccordion.vue';
+  import fcDiagramPlot from "@/assets/svgs/fc_diagram.svg";
 
 
   // define props
@@ -70,4 +68,21 @@
     max-width: 100%;
   }
 }
+</style>
+
+<style scoped lang="scss">
+    #fc-diagram-grid-container {
+        display: grid;
+        width: 100%;
+        max-width: 400px;
+        margin: 2rem auto 2rem auto;
+        grid-template-areas:
+            "chart";
+    }
+    #fc-diagram-svg {
+        grid-area: chart;
+        place-self: center;
+        height: 100%;
+        width: 100%;
+    }
 </style>

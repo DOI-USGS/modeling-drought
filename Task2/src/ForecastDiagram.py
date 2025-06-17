@@ -105,4 +105,4 @@ fig.savefig("Task2/out/fc_diagram.png", dpi=150)
 fig.savefig("Task2/out/fc_diagram.svg", metadata=None)
 
 # remove metadata
-remove_metadata_and_fix("Task2/out/fc_diagram.svg", "src/assets/images/fc_diagram.svg")
+remove_metadata_and_fix("Task2/out/fc_diagram.svg", "src/assets/svgs/fc_diagram.svg")
