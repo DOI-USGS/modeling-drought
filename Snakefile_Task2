@@ -1,12 +1,19 @@
 rule all:
     input:
+        "src/assets/svgs/fc_diagram.svg",
         "src/assets/svgs/fc_example_desktop.svg",
         "src/assets/svgs/fc_summary_desktop.svg",
         "src/assets/svgs/fc_tf_key_desktop.svg",
         "src/assets/svgs/fc_tf_sum_desktop.svg",
         "src/assets/svgs/fc_tf_sum_rw_desktop.svg",
         "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
-        "src/assets/svgs/fc_tf_sum_nd_desktop.svg"
+        "src/assets/svgs/fc_tf_sum_nd_desktop.svg",
+
+rule forecast_diagram:
+    output:
+        "src/assets/svgs/fc_diagram.svg"
+    script:
+        'Task2/src/ForecastDiagram.py'
 
 rule forecast:
     output:
