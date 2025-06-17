@@ -17,6 +17,11 @@
     <!-- USDWS-init js -->
     <script type="module" src="/node_modules/@uswds/uswds/dist/js/uswds-init.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- preload Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap">
     <!-- On beta, add robots tag to stop indexing. An empty string for VITE_APP_TIER means the 'prod' version of the application -->
     <% if(VITE_APP_TIER !== ''){ %>
       <meta name="robots" content="noindex,nofollow">
