@@ -22,7 +22,7 @@ export default {
                     },
                     {
                         type: "text",
-                        content: "We can them lump all of these values into percentile bins, based on how often they occur. For example, take an observed streamflow level of 4,800 cubic feet per second (cfs). If streamflow at the site is below 4,800 cfs on March 1<sup>st</sup> in 20% of recorded years, then 4,800 cfs is the 20<sup>th</sup> percentile streamflow for that site on that date. Another way to say it is that on March 1<sup>st</sup>, streamflow at that site is less than 4,800 cfs 20% of the time.  The USGS categorizes streamflow percentiles in the 10 – 25 percentile range as ‘below normal.’ "
+                        content: "We can then lump all of these values into percentile bins, based on how often they occur. For example, take an observed streamflow level of 4,800 cubic feet per second (cfs). If streamflow at the site is below 4,800 cfs on March 1<sup>st</sup> in 20% of recorded years, then 4,800 cfs is the 20<sup>th</sup> percentile streamflow for that site on that date. Another way to say it is that on March 1<sup>st</sup>, streamflow at that site is less than 4,800 cfs 20% of the time.  The USGS categorizes streamflow percentiles in the 10 – 25 percentile range as ‘below normal.’ "
                     },
                     {
                         type: "image",
