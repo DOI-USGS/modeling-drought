@@ -6,6 +6,7 @@ import matplotlib.font_manager as font_manager
 # Set default font size
 target_fontsize_px = 16  # in px
 target_fontsize_px_title = 20  # in px
+
 # These are the target widths on the website.
 target_single_plotwidth_px = 700
 target_plotwidth_px_mobile = 400
@@ -28,9 +29,10 @@ ratio_5 = "#6E6E6E"
 ratio_3 = "#949494"
 ratio_1_5 = "#D1D1D1"
 
-# adjust
+# adjust the weight for light font weights
 font_manager.weight_dict.update({"light": 300})
 
+# set defaults in matplotlib
 mpl.rcParams["font.family"] = "sans-serif"
 mpl.rcParams["font.sans-serif"] = "Source Sans 3"  # prop.get_name()
 mpl.rcParams["font.weight"] = "light"
@@ -58,6 +60,7 @@ def hex_to_rgb(hex_color):
     return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
 
 
+# define color pallette in website
 lower_color_limit_hex_half_alpha = "#DBC49A"
 lower_color_limit_hex = "#B78935"
 upper_color_limit_hex = "#406992"
@@ -65,10 +68,12 @@ upper_color_limit_hex_half_alpha = "#9FB4C8"
 observation_color_hex = "#883e3a"
 median_color_hex = "#00264c"
 
+# convert hex to rgb 8-bit
 lower_color_limit = hex_to_rgb(lower_color_limit_hex)
 upper_color_limit = hex_to_rgb(upper_color_limit_hex)
 median_color = hex_to_rgb(median_color_hex)
 
+# get color gradient from color pallette
 vals = np.ones((256, 4))
 for i in range(0, 3):
     vals[:128, i] = np.linspace(lower_color_limit[i] / 256, median_color[i] / 256, 128)

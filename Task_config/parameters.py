@@ -1,6 +1,7 @@
 ### Import Libraries
 import numpy as np
 from scipy import stats
+import pandas as pd
 import pyarrow.feather as feather
 
 ### Shared
@@ -53,6 +54,7 @@ offset = [0, 1, 2, 4, 8, 13]
 dt = 7
 dense_dt = 1
 
+# forecast files
 forecast_files = [
     "ForJeffrey_0day_forecast.feather",
     "ForJeffrey_7day_forecast.feather",
@@ -64,3 +66,11 @@ forecast_files = [
 
 ### Forecast Summary
 line_width_summary = 5.0
+drought_data = pd.read_csv(
+    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_20250527_interpolated.csv"
+)
+
+### TrueFalse Summary
+tf_d = pd.read_csv(
+    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_interpolated.csv"
+)

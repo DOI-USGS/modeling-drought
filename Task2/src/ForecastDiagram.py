@@ -32,13 +32,14 @@ fig = plt.figure(
     ),
     gid="figure-forecast-diagram",
 )
+
 # add axes
 ax_forecast = fig.add_axes(
     [0.05, 0.15, 0.9, 0.75],
     gid="axis-forecast-diagram" + basename_gid_forecast,
 )
 
-# forecast axis parameters
+# add line
 ax_forecast.plot(
     x,
     y,
@@ -47,6 +48,7 @@ ax_forecast.plot(
     linewidth=2.0,
     zorder=1,
 )
+# add white dots
 ax_forecast.scatter(
     0.0,
     y_issue_date,
@@ -56,6 +58,7 @@ ax_forecast.scatter(
     facecolor="w",
     zorder=2,
 )
+# add blue dots
 ax_forecast.scatter(
     x[1:],
     y[1:],
@@ -65,6 +68,7 @@ ax_forecast.scatter(
     facecolor=median_color_hex,
     zorder=2,
 )
+# add issue date text
 ax_forecast.text(
     0.0,
     y_issue_date + 2.0,
@@ -75,7 +79,7 @@ ax_forecast.text(
     va="bottom",
 )
 
-
+# set up axes
 ax_forecast.tick_params(direction="out")
 ax_forecast.set_xlim(-1.0, 14.0)
 ax_forecast.set_xticks(

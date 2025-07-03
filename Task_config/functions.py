@@ -51,49 +51,7 @@ def remove_metadata_and_fix(infile, outfile):
         output_file.write(modified_content)
 
 
-def selectable_text(ax, x, y, label, fontcolor, facecolor, edgecolor, va, ha, gid):
-    text = ax.text(
-        x,
-        y,
-        label,
-        color=fontcolor,
-        va=va,
-        ha=ha,
-        gid=gid,
-        transform=ax.transAxes,
-        bbox=dict(
-            facecolor=facecolor,
-            boxstyle="round",
-            alpha=1,
-            edgecolor=edgecolor,
-            pad=button_padding,
-            linewidth=0.75,
-        ),
-        zorder=1,
-    )
-
-    ax.text(
-        x + shadow_offset_x,
-        y + shadow_offset_y,
-        label,
-        color=shadow_color,
-        va=va,
-        ha=ha,
-        gid="shadow-" + gid,
-        transform=ax.transAxes,
-        bbox=dict(
-            facecolor=shadow_color,
-            boxstyle="round",
-            alpha=1,
-            edgecolor=shadow_color,
-            pad=button_padding,
-            linewidth=0.75,
-        ),
-        zorder=0,
-    )
-    return text.get_window_extent().transformed(ax.transData.inverted())
-
-
+# create text in the svg that's meant to become opaque when something happens
 def popup_text(ax, x, y, label, fontcolor, facecolor, edgecolor, va, ha, gid):
     ax.text(
         x,

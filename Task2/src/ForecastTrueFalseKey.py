@@ -56,7 +56,8 @@ ax_true_false = fig_true_false.add_axes(
 )
 
 
-# row 0
+# Section 1 - one bar: all results and two swoops: for drought or no drought
+# bar
 ax_true_false.fill_between(
     [row0 - width * 0.5, row0 + width * 0.5],
     [ND, ND],
@@ -64,6 +65,11 @@ ax_true_false.fill_between(
     color="#00264c",
     linewidth=0.0,
 )
+# label
+sankey_label(
+    ax_true_false, row0, 0.0, (ND - D), "All model\npredictions", "right", -width
+)
+# swoops
 sankey_swoop(
     ax_true_false,
     row0,
@@ -89,11 +95,9 @@ sankey_swoop(
     gid="tf-swoop-YD",
 )
 
-sankey_label(
-    ax_true_false, row0, 0.0, (ND - D), "All model\npredictions", "right", -width
-)
 
-# row 1
+# Section 2 - two bars: for drought or no drought and four swoops: for true/false positive/negative
+# bars
 sankey_bar(
     ax_true_false,
     row1,
@@ -114,7 +118,7 @@ sankey_bar(
     bar_alpha,
     gid="tf-bar-YD",
 )
-
+# labels
 sankey_label(
     ax_true_false,
     row1,
@@ -136,93 +140,6 @@ sankey_label(
     -width,
     label_alpha,
     gid="tf-label-ND",
-)
-
-# row 2
-sankey_bar(
-    ax_true_false,
-    row2,
-    -2.0 * pad - D_ND,
-    D_D,
-    width,
-    lower_color_limit_hex,
-    bar_alpha,
-    gid="tf-bar-YD-YD",
-)
-sankey_bar(
-    ax_true_false,
-    row2,
-    -1.0 * pad,
-    D_ND,
-    width,
-    lower_color_limit_hex_half_alpha,
-    bar_alpha,
-    gid="tf-bar-YD-ND",
-)
-sankey_bar(
-    ax_true_false,
-    row2,
-    1.0 * pad,
-    ND_D,
-    width,
-    upper_color_limit_hex_half_alpha,
-    bar_alpha,
-    gid="tf-bar-ND-YD",
-)
-sankey_bar(
-    ax_true_false,
-    row2,
-    2.0 * pad + ND_D,
-    ND_ND,
-    width,
-    upper_color_limit_hex,
-    bar_alpha,
-    gid="tf-bar-ND-ND",
-)
-
-sankey_label(
-    ax_true_false,
-    row2,
-    -2.0 * pad - D_ND,
-    -D_D,
-    "Model detected\nthe drought\n(true positive)\n" + str(round(D_D, 1)) + "%",
-    "right",
-    -width,
-    label_alpha,
-    gid="tf-label-YD-YD",
-)
-sankey_label(
-    ax_true_false,
-    row2,
-    -1.0 * pad,
-    -D_ND,
-    "Model wrongly\npredicted drought\n(false positive)\n" + str(round(D_ND, 1)) + "%",
-    "right",
-    -width,
-    label_alpha,
-    gid="tf-label-YD-ND",
-)
-sankey_label(
-    ax_true_false,
-    row2,
-    1.0 * pad,
-    ND_D,
-    "Model missed\nthe drought\n(false negative)\n" + str(round(ND_D, 1)) + "%",
-    "right",
-    -width,
-    label_alpha,
-    gid="tf-label-ND-YD",
-)
-sankey_label(
-    ax_true_false,
-    row2,
-    2.0 * pad + ND_D,
-    ND_ND,
-    "No drought\noccurred\n(true negative)\n" + str(round(ND_ND, 1)) + "%",
-    "right",
-    -width,
-    label_alpha,
-    gid="tf-label-ND-ND",
 )
 
 # swoops
@@ -277,6 +194,95 @@ sankey_swoop(
     gid="tf-swoop-ND-ND",
 )
 
+# Section 3 - four bars: for true/false positive/negative
+# bars
+sankey_bar(
+    ax_true_false,
+    row2,
+    -2.0 * pad - D_ND,
+    D_D,
+    width,
+    lower_color_limit_hex,
+    bar_alpha,
+    gid="tf-bar-YD-YD",
+)
+sankey_bar(
+    ax_true_false,
+    row2,
+    -1.0 * pad,
+    D_ND,
+    width,
+    lower_color_limit_hex_half_alpha,
+    bar_alpha,
+    gid="tf-bar-YD-ND",
+)
+sankey_bar(
+    ax_true_false,
+    row2,
+    1.0 * pad,
+    ND_D,
+    width,
+    upper_color_limit_hex_half_alpha,
+    bar_alpha,
+    gid="tf-bar-ND-YD",
+)
+sankey_bar(
+    ax_true_false,
+    row2,
+    2.0 * pad + ND_D,
+    ND_ND,
+    width,
+    upper_color_limit_hex,
+    bar_alpha,
+    gid="tf-bar-ND-ND",
+)
+# labels
+sankey_label(
+    ax_true_false,
+    row2,
+    -2.0 * pad - D_ND,
+    -D_D,
+    "Model detected\nthe drought\n(true positive)\n" + str(round(D_D, 1)) + "%",
+    "right",
+    -width,
+    label_alpha,
+    gid="tf-label-YD-YD",
+)
+sankey_label(
+    ax_true_false,
+    row2,
+    -1.0 * pad,
+    -D_ND,
+    "Model wrongly\npredicted drought\n(false positive)\n" + str(round(D_ND, 1)) + "%",
+    "right",
+    -width,
+    label_alpha,
+    gid="tf-label-YD-ND",
+)
+sankey_label(
+    ax_true_false,
+    row2,
+    1.0 * pad,
+    ND_D,
+    "Model missed\nthe drought\n(false negative)\n" + str(round(ND_D, 1)) + "%",
+    "right",
+    -width,
+    label_alpha,
+    gid="tf-label-ND-YD",
+)
+sankey_label(
+    ax_true_false,
+    row2,
+    2.0 * pad + ND_D,
+    ND_ND,
+    "No drought\noccurred\n(true negative)\n" + str(round(ND_ND, 1)) + "%",
+    "right",
+    -width,
+    label_alpha,
+    gid="tf-label-ND-ND",
+)
+
+# set axis parameters
 ax_true_false.set_xlim(-5)
 ax_true_false.set_axis_off()
 

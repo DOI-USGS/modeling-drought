@@ -9,12 +9,7 @@ from Task_config.defaults import *
 from Task_config.functions import *
 from Task_config.parameters import *
 
-### Data Arrays
-# load drought data
-tf_d = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_interpolated.csv"
-)
-
+# compute rights and wrongs
 horizon_weeks = tf_d["horizon"]
 total = tf_d["true_pos"] + tf_d["false_pos"] + tf_d["false_neg"] + tf_d["true_neg"]
 
@@ -23,7 +18,6 @@ right_list = tf_d["true_neg"] / total * 100.0 + D_D_list
 
 ND_D_list = tf_d["false_neg"] / total * 100.0 + right_list
 wrong_list = tf_d["false_pos"] / total * 100.0 + ND_D_list
-
 
 # make figure
 fig_true_false = plt.figure(
@@ -43,27 +37,25 @@ ax_true_false = fig_true_false.add_axes(
 # labeling
 text_bump = 0.5
 label_pad = 0.1
+# plot for each day
 for i in range(0, len(tf_d)):
-
+    # Right - True
     ax_true_false.fill_between(
         [i + label_pad, i + 1 - label_pad],
         [right_list[i], right_list[i]],
         [0.0, 0.0],
         facecolor=ratio_7,
-        # edgecolor=ratio_7,
     )
+    # Wrong - False
     ax_true_false.fill_between(
         [i + label_pad, i + 1 - label_pad],
         [right_list[i], right_list[i]],
         [wrong_list[i], wrong_list[i]],
         facecolor=ratio_3,
-        # hatch="/",
-        # edgecolor=ratio_5,
-        # linewidth=0.0,
     )
 
+# set axes parameters
 ax_true_false.set_ylim(0, 100)
-# ax_true_false.set_xlim(0, 5)
 ax_true_false.set_yticks(
     [0.0, 20.0, 40.0, 60.0, 80.0, 100], ["0%", "20%", "40%", "60%", "80%", "100%"]
 )

@@ -140,6 +140,7 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
         solid_capstyle="round",
     )
 
+# add desktop annotation
 ax_forecast.annotate(
     "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
     color=ratio_5,
@@ -157,6 +158,7 @@ ax_forecast.annotate(
     alpha=0.0,
 )
 
+# add mobile annotation
 ax_forecast.annotate(
     "Tap on the plot to\nsee drought forecasts",
     color=ratio_5,
@@ -174,6 +176,7 @@ ax_forecast.annotate(
     alpha=0.0,
 )
 
+# add tablet annotation
 ax_forecast.annotate(
     "Tap on the plot to\nsee drought forecasts",
     color=ratio_5,

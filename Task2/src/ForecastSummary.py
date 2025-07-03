@@ -9,8 +9,6 @@ from Task_config.defaults import *
 from Task_config.functions import *
 from Task_config.parameters import *
 
-### Plotting
-
 # make figure
 fig_pred_interval = plt.figure(
     1,
@@ -20,15 +18,10 @@ fig_pred_interval = plt.figure(
     ),
     gid="figure-" + basename_gid_forecast_summary_1,
 )
+
 # add axes for the forecast
 ax_pred_interval = fig_pred_interval.add_axes(
     [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_forecast_summary_1
-)
-
-### Data Arrays
-# load drought data
-drought_data = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_20250527_interpolated.csv"
 )
 
 horizon_weeks = drought_data["horizon"].to_list()
