@@ -27,9 +27,7 @@ ax_pred_interval = fig_pred_interval.add_axes(
 horizon_weeks = drought_data["horizon"].to_list()
 horizon_weeks.insert(0, 0.0)
 avg_median = (drought_data["overall_ave_q50"]).to_list()
-median_obs = (
-    49.0733279613215  # this is the median observed prediction for the entire data set
-)
+
 avg_median.insert(0, median_obs)
 avg_width_top = (drought_data["overall_ave_q95"]).to_list()
 avg_width_top.insert(0, median_obs)

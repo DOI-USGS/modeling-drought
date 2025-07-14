@@ -17,8 +17,9 @@ forecast_data = [
     feather.read_feather("Task_Data/" + forecast_file)
     for forecast_file in forecast_files
 ]
+
+# plotting variables
 x = np.linspace(0.0, 13.0, 14)
-index_plot = 158
 y_issue_date = list(forecast_data[0]["observed"])[index_plot - 1]
 y = [y_issue_date]
 y += list(forecast_data[0]["median"])[index_plot : index_plot + 13]

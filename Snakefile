@@ -1,5 +1,7 @@
 rule all:
     input:
+        "src/assets/svgs/lf_example_tablet.svg",
+        "src/assets/svgs/pi_example_tablet.svg",
         "src/assets/svgs/fc_diagram.svg",
         "src/assets/svgs/fc_example_desktop.svg",
         "src/assets/svgs/fc_summary_desktop.svg",
@@ -8,6 +10,18 @@ rule all:
         "src/assets/svgs/fc_tf_sum_rw_desktop.svg",
         "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
         "src/assets/svgs/fc_tf_sum_nd_desktop.svg",
+
+rule loss_function:
+    output:
+        "src/assets/svgs/lf_example_tablet.svg"
+    script:
+        'Task1/src/LossFunction.py'
+
+rule prediction_interval:
+    output:
+        "src/assets/svgs/pi_example_tablet.svg"
+    script:
+        'Task1/src/PredictionInterval.py'
 
 rule forecast_diagram:
     output:

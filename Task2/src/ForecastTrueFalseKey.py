@@ -10,10 +10,6 @@ from Task_config.functions import *
 from Task_config.parameters import *
 
 ### Data Arrays
-# load drought data
-tf_d = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts.csv"
-)
 
 i = 0
 total = (
@@ -29,16 +25,6 @@ ND = (tf_d["true_neg"][i] + tf_d["false_neg"][i]) / total * 100.0
 ND_D = tf_d["false_neg"][i] / total * 100.0
 ND_ND = tf_d["true_neg"][i] / total * 100.0
 
-pad = 5.0
-width = 1.0
-
-row0 = 0.0
-row1 = 10.0
-row2 = 20.0
-
-bar_alpha = 0.25
-swoop_alpha = 0.05
-label_alpha = 0.0
 ### Plotting
 
 # make figure

@@ -4,22 +4,29 @@ from scipy import stats
 import pandas as pd
 import pyarrow.feather as feather
 
-### Shared
+### Shared Parameters########################################################################################
+#############################################################################################################
+
 min_percentile = 0.05
 date_range = ["2017-07-03", "2019-07-01"]
-river_label = ""  #'Colorado River Near Colorado-Utah State Line - 09163500'
-labels_bump = 1.01  # label x location
-button_padding = 0.2
+river_label = ""
 obs_linestyle = "dotted"
-# forecast data for task 1
+
+### LossFunction.py and PredictionInterval.py ###############################################################
+#############################################################################################################
+
+# forecast data
 forecast_data = feather.read_feather("Task_Data/ForJeffrey_7day_forecast.feather")
+
+# load date data
+x_forecast = forecast_data["datetime"].values.astype("datetime64[D]")
 
 # asymmetric laplace distribution parameters: https://en.wikipedia.org/wiki/Asymmetric_Laplace_distribution
 loc = 0.0
 scale = 1.0
 kappa = 0.5
 
-# find lower, upper and median of ALD
+# find lower, upper, and median of asymmetric laplace distribution
 z_val_min = stats.laplace_asymmetric.ppf(
     min_percentile, kappa=kappa, loc=loc, scale=scale
 )
@@ -31,20 +38,29 @@ if kappa < 1.0:
 else:
     z_median = loc + kappa / scale * np.log((1.0 + kappa**2.0) / (2.0 * kappa**2.0))
 
-### Loss Function
+# loss function, x
+x_LF = np.array([-1.0, 0.0, 1.0])
+
+### LossFunction.py #########################################################################################
+#############################################################################################################
+
 basename_gid_lf = "lossfunction"
 number_of_frames_lf = 501
 static_alpha = 0.25
 fill_alpha = 0.15
 annotation_label_loc_lf = (0.65, 0.7)
 
-### Prediction Interval
+### PredictionInterval.py####################################################################################
+#############################################################################################################
+
 basename_gid_pi = "predictioninterval"
 va_list = ["top", "center", "bottom"]
 annotation_label_loc_pi = (0.75, 0.9)
 missed_marker_size = 8.0
 
-### Forecast
+### Forecast.py##############################################################################################
+#############################################################################################################
+
 basename_gid_forecast = "forecast"
 basename_gid_forecast_summary_1 = "forecast_summary_1"
 basename_gid_true_false = "forecast_truefalse"
@@ -64,13 +80,49 @@ forecast_files = [
     "ForJeffrey_91day_forecast.feather",
 ]
 
-### Forecast Summary
+### ForecastDiagram.py#######################################################################################
+#############################################################################################################
+
+# starting index in the forecast data used to generate the diagram
+index_plot = 158
+
+### ForecastSummary.py ######################################################################################
+#############################################################################################################
+
+# this is the median observed prediction for the entire data set, calculated from the model results
+median_obs = 49.0733279613215
+
+# line width
 line_width_summary = 5.0
+
+# data used for the forecast summary
 drought_data = pd.read_csv(
     "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_20250527_interpolated.csv"
 )
 
-### TrueFalse Summary
+
+### All ForecastTrueFalseXXXXX.py ###########################################################################
+#############################################################################################################
+
+# data used for forecast summary
 tf_d = pd.read_csv(
     "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_interpolated.csv"
 )
+
+# labeling
+text_bump = 0.5
+label_pad = 0.1
+
+### ForecastTrueFalseKey.py #################################################################################
+#############################################################################################################
+
+pad = 5.0
+width = 1.0
+
+row0 = 0.0
+row1 = 10.0
+row2 = 20.0
+
+bar_alpha = 0.25
+swoop_alpha = 0.05
+label_alpha = 0.0

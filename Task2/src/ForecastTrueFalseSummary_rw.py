@@ -33,10 +33,6 @@ ax_true_false = fig_true_false.add_axes(
     [0.1, 0.15, 0.85, 0.75], gid="axis-" + basename_gid_true_false_summary + "-rw"
 )
 
-
-# labeling
-text_bump = 0.5
-label_pad = 0.1
 # plot for each day
 for i in range(0, len(tf_d)):
     # Right - True

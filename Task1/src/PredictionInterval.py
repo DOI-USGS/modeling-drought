@@ -27,9 +27,6 @@ ax_forecast = fig.add_axes(
 
 ### Data Arrays
 
-# loss function x-array
-x_LF = np.array([-1.0, 0.0, 1.0])
-
 # load date data
 x_forecast = forecast_data["datetime"].values.astype("datetime64[D]")
 
