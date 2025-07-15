@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
-from scipy import interpolate
 from Task_config.defaults import *
 from Task_config.functions import *
 from Task_config.parameters import *
