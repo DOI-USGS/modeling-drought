@@ -110,3 +110,68 @@ def sankey_swoop(ax, x1, x2, width, y1, y2, height, color, alpha=0.2, gid=""):
     y_lower = y1 + (y2 - y1) * (1.0 / (1.0 + np.exp(-sigmoid_swoopiness * (x - x_mid))))
     y_upper = y_lower + height
     ax.fill_between(x, y_lower, y_upper, color=color, alpha=alpha, linewidth=0, gid=gid)
+
+
+def save_desktop_mobile_tablet(
+    dir_1,
+    dir_2,
+    base_name,
+    fig,
+    mobile_dimensions,
+    tablet_dimensions,
+    mod_ax_list=None,
+    mobile_pos_list=None,
+    tablet_pos_list=None,
+    text_obj=None,
+    text_change=None,
+):
+
+    # save desktop version
+    fig.savefig(dir_1 + base_name + "_desktop.svg", dpi=150, metadata=None)
+
+    # remove metadata
+    remove_metadata_and_fix(
+        dir_1 + base_name + "_desktop.svg",
+        dir_2 + base_name + "_desktop.svg",
+    )
+
+    # change text if needed
+    if text_obj != None:
+        text_obj.set_text(text_change)
+
+    # to make the mobile version, we first adjust the figure size to a more horizontal aspect
+    fig.set_size_inches(mobile_dimensions)
+    if mobile_pos_list != None:
+        for i, mod_ax in enumerate(mod_ax_list):
+            mod_ax.set_position(mobile_pos_list[i])
+
+    # make svg
+    fig.savefig(dir_1 + base_name + "_mobile.svg", dpi=150, metadata=None)
+
+    # remove metadata
+    remove_metadata_and_fix(
+        dir_1 + base_name + "_mobile.svg",
+        dir_2 + base_name + "_mobile.svg",
+    )
+
+    # to make the tablet version, we first adjust the figure size to a more horizontal aspect
+    fig.set_size_inches(tablet_dimensions)
+    if tablet_pos_list != None:
+        for i, mod_ax in enumerate(mod_ax_list):
+            mod_ax.set_position(tablet_pos_list[i])
+
+    # make svg
+    fig.savefig(dir_1 + base_name + "_tablet.svg", dpi=150, metadata=None)
+
+    # remove metadata
+    remove_metadata_and_fix(
+        dir_1 + base_name + "_tablet.svg",
+        dir_2 + base_name + "_tablet.svg",
+    )
+
+
+def set_axis_up(ax):
+    ax.tick_params(direction="out")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.set_axisbelow(True)

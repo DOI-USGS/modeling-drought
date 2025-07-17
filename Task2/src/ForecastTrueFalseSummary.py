@@ -88,42 +88,18 @@ ax_true_false.grid(visible=True, axis="y")
 ax_true_false.set_axisbelow(True)
 ax_true_false.tick_params(direction="out")
 
-# make svg
-fig_true_false.savefig("Task2/out/fc_tf_sum_desktop.png", dpi=400, metadata=None)
-fig_true_false.savefig("Task2/out/fc_tf_sum_desktop.svg", dpi=150, metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_tf_sum_desktop.svg",
-    "src/assets/svgs/fc_tf_sum_desktop.svg",
-)
-
-# to make the mobile version, we first adjust the figure size to a more horizontal aspect
-fig_true_false.set_size_inches(
-    target_plotwidth_in_mobile,
-    target_plotwidth_in_mobile / aspect_single_plot,
-)
-
-# make svg
-fig_true_false.savefig("Task2/out/fc_tf_sum_mobile.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_tf_sum_mobile.svg",
-    "src/assets/svgs/fc_tf_sum_mobile.svg",
-)
-
-# to make the tablet version, we first adjust the figure size to a more horizontal aspect
-fig_true_false.set_size_inches(
-    target_plotwidth_in_tablet,
-    target_plotwidth_in_tablet / aspect_single_plot,
-)
-
-# make svg
-fig_true_false.savefig("Task2/out/fc_tf_sum_tablet.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_tf_sum_tablet.svg",
-    "src/assets/svgs/fc_tf_sum_tablet.svg",
+# save plots
+save_desktop_mobile_tablet(
+    dir_1="Task2/out/",
+    dir_2="src/assets/svgs/",
+    base_name="fc_tf_sum",
+    fig=fig_true_false,
+    mobile_dimensions=[
+        target_plotwidth_in_mobile,
+        target_plotwidth_in_mobile / aspect_single_plot,
+    ],
+    tablet_dimensions=[
+        target_plotwidth_in_tablet,
+        target_plotwidth_in_tablet / aspect_single_plot,
+    ],
 )

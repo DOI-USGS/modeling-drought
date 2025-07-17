@@ -53,20 +53,10 @@ rule truefalsesum:
     script:
         'Task2/src/ForecastTrueFalseSummary.py'
 
-rule truefalsesum_rw:
+rule truefalse_outcomes:
     output:
+        "src/assets/svgs/fc_tf_sum_nd_desktop.svg",
+        "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
         "src/assets/svgs/fc_tf_sum_rw_desktop.svg"
     script:
-        'Task2/src/ForecastTrueFalseSummary_rw.py'
-
-rule truefalsesum_yd:
-    output:
-        "src/assets/svgs/fc_tf_sum_yd_desktop.svg"
-    script:
-        'Task2/src/ForecastTrueFalseSummary_yd.py'
-
-rule truefalsesum_nd:
-    output:
-        "src/assets/svgs/fc_tf_sum_nd_desktop.svg"
-    script:
-        'Task2/src/ForecastTrueFalseSummary_nd.py'
+        'Task2/src/ForecastTrueFalseOutcomes.py'

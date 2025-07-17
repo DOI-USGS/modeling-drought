@@ -72,14 +72,20 @@ for i, forecast_datum in enumerate(forecast_data):
 fig = plt.figure(
     1,
     figsize=(
-        target_plotwidth_in_tablet,
-        target_plotwidth_in_tablet / aspect_double_plot_tablet * 0.5,
+        target_plotwidth_in_desktop,
+        target_plotwidth_in_desktop / (aspect_double_plot_desktop * 2.0 / 3.0),
     ),
     gid="figure-" + basename_gid_forecast,
 )
 # add axes
 ax_forecast = fig.add_axes(
-    [0.125, 0.125, 0.825, 0.375 * 2.0], gid="axis-" + basename_gid_forecast
+    [
+        (1.0 - 0.825) / 2.0,
+        0.075 * 2.0,
+        0.825,
+        0.375 * 2.0,
+    ],
+    gid="axis-" + basename_gid_forecast,
 )
 
 # print default value for the vue site
@@ -202,7 +208,6 @@ ax_forecast.plot(
     gid="observation-full-forecast",
 )
 ax_forecast.grid(visible=True, axis="y")
-ax_forecast.tick_params(direction="out")
 ax_forecast.set_ylim(0, 100.0)
 ax_forecast.set_xlim(np.datetime64(date_range[0]), np.datetime64(date_range[-1]))
 start_year = 1971 + np.datetime64(date_range[0], "Y").astype(int)
@@ -225,58 +230,24 @@ ax_forecast.set_xlabel("Date", weight="semibold")
 ax_forecast.set_title(
     "Streamflow percentile", loc="left", weight="extra bold", color="k"
 )
-ax_forecast.spines["top"].set_visible(False)
-ax_forecast.spines["right"].set_visible(False)
-ax_forecast.set_axisbelow(True)
 
-# river label
-plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
+set_axis_up(ax_forecast)
 
-# make svg
-fig.savefig("Task2/out/fc_example_tablet.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_example_tablet.svg", "src/assets/svgs/fc_example_tablet.svg"
-)
-
-# to make the desktop version, we first adjust the figure size to a more horizontal aspect
-fig.set_size_inches(
-    target_plotwidth_in_desktop,
-    target_plotwidth_in_desktop / (aspect_double_plot_desktop * 2.0 / 3.0),
-)
-
-# we then set a new position for the loss function plot and make it more square
-ax_forecast.set_position(
-    [
-        (1.0 - 0.825) / 2.0,
-        0.075 * 2.0,
-        0.825,
-        0.375 * 2.0,
-    ]
-)
-
-# make svg
-fig.savefig("Task2/out/fc_example_desktop.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_example_desktop.svg", "src/assets/svgs/fc_example_desktop.svg"
-)
-
-# to make the mobile version, we first adjust the figure size to a more horizontal aspect
-fig.set_size_inches(
-    target_plotwidth_in_mobile,
-    target_plotwidth_in_mobile / aspect_double_plot_mobile * 0.5,
-)
-
-# # we then set a new position for the loss function plot and make it more square
-ax_forecast.set_position([0.14, 0.175, 0.8, 0.333 * 2.0])
-
-# make svg
-fig.savefig("Task2/out/fc_example_mobile.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_example_mobile.svg", "src/assets/svgs/fc_example_mobile.svg"
+# save plots
+save_desktop_mobile_tablet(
+    dir_1="Task2/out/",
+    dir_2="src/assets/svgs/",
+    base_name="fc_example",
+    fig=fig,
+    mobile_dimensions=[
+        target_plotwidth_in_mobile,
+        target_plotwidth_in_mobile / aspect_double_plot_mobile * 0.5,
+    ],
+    tablet_dimensions=[
+        target_plotwidth_in_tablet,
+        target_plotwidth_in_tablet / aspect_double_plot_tablet * 0.5,
+    ],
+    mod_ax_list=[ax_forecast],
+    mobile_pos_list=[[0.14, 0.175, 0.8, 0.333 * 2.0]],
+    tablet_pos_list=[[0.125, 0.125, 0.825, 0.375 * 2.0]],
 )

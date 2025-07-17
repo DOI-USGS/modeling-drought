@@ -91,18 +91,13 @@ ax_forecast.set_xlabel("Forecast horizon in weeks", weight="semibold")
 ax_forecast.set_title(
     "Streamflow percentile", loc="left", weight="extra bold", color="k"
 )
-ax_forecast.spines["top"].set_visible(False)
-ax_forecast.spines["right"].set_visible(False)
 ax_forecast.spines["left"].set_visible(False)
 ax_forecast.yaxis.set_visible(False)
-ax_forecast.set_axisbelow(True)
 ax_forecast.set_ylim(20, 80)
 
-# river label
-plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
+set_axis_up(ax_forecast)
 
 # make svg
-fig.savefig("Task2/out/fc_diagram.png", dpi=150)
 fig.savefig("Task2/out/fc_diagram.svg", metadata=None)
 
 # remove metadata

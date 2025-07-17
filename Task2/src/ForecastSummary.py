@@ -237,45 +237,23 @@ ax_pred_interval.set_xticks(np.linspace(0, 13 * 7, 14), [str(i) for i in range(0
 ax_pred_interval.set_title(
     "Streamflow prediction interval", loc="left", weight="extra bold", color="k"
 )
-ax_pred_interval.spines["top"].set_visible(False)
-ax_pred_interval.spines["right"].set_visible(False)
 ax_pred_interval.set_xlabel("Forecast horizon in weeks", weight="semibold")
 ax_pred_interval.grid(visible=True, axis="y")
-ax_pred_interval.set_axisbelow(True)
-ax_pred_interval.tick_params(direction="out")
 
-# make svg
-fig_pred_interval.savefig("Task2/out/fc_summary_desktop.svg", dpi=150, metadata=None)
+set_axis_up(ax_pred_interval)
 
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_summary_desktop.svg", "src/assets/svgs/fc_summary_desktop.svg"
-)
-
-# to make the mobile version, we first adjust the figure size to a more horizontal aspect
-fig_pred_interval.set_size_inches(
-    target_plotwidth_in_mobile,
-    target_plotwidth_in_mobile / aspect_single_plot,
-)
-
-# make svg
-fig_pred_interval.savefig("Task2/out/fc_summary_mobile.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_summary_mobile.svg", "src/assets/svgs/fc_summary_mobile.svg"
-)
-
-# to make the tablet version, we first adjust the figure size to a more horizontal aspect
-fig_pred_interval.set_size_inches(
-    target_plotwidth_in_tablet,
-    target_plotwidth_in_tablet / aspect_single_plot,
-)
-
-# make svg
-fig_pred_interval.savefig("Task2/out/fc_summary_tablet.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task2/out/fc_summary_tablet.svg", "src/assets/svgs/fc_summary_tablet.svg"
+# save plots
+save_desktop_mobile_tablet(
+    dir_1="Task2/out/",
+    dir_2="src/assets/svgs/",
+    base_name="fc_summary",
+    fig=fig_pred_interval,
+    mobile_dimensions=[
+        target_plotwidth_in_mobile,
+        target_plotwidth_in_mobile / aspect_single_plot,
+    ],
+    tablet_dimensions=[
+        target_plotwidth_in_tablet,
+        target_plotwidth_in_tablet / aspect_single_plot,
+    ],
 )

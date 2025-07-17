@@ -9,7 +9,6 @@ import pyarrow.feather as feather
 
 min_percentile = 0.05
 date_range = ["2017-07-03", "2019-07-01"]
-river_label = ""
 obs_linestyle = "dotted"
 
 ### LossFunction.py and PredictionInterval.py ###############################################################
