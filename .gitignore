@@ -37,7 +37,7 @@ coverage
 __pycache__
 
 #remove in/out files
-Task_Data
+Task_Data/outdated
 */out/*
 */tmp/*
 
