@@ -32,7 +32,7 @@ def forecast_format(y):
 
 # remove annoying metadata that sets vue warnings off
 def remove_metadata_and_fix(infile, outfile):
-    with open(infile, "r") as input_file:
+    with open(infile, "r", encoding="utf-8") as input_file:
         input_content = input_file.read()
 
     # Remove <metadata> sections
