@@ -47,7 +47,7 @@ def remove_metadata_and_fix(infile, outfile):
     # NOTE: For this to work font must be specified in pixels, despite matplotlib documentation saying it's in points.
     modified_content = modified_content.replace("pt", "px")
 
-    with open(outfile, "w") as output_file:
+    with open(outfile, "w", encoding="utf-8") as output_file:
         output_file.write(modified_content)
 
 
