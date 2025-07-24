@@ -1,3 +1,9 @@
+import os
+if not os.path.exists("Task1/out"):
+    os.makedirs("Task1/out")
+if not os.path.exists("Task2/out"):
+    os.makedirs("Task2/out")
+
 rule all:
     input:
         "src/assets/svgs/lf_example_tablet.svg",
