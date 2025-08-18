@@ -80,7 +80,7 @@
         {
             label: 'Observations',
             id: 'observation',
-            visible: false,
+            visible: true,
             color: 'var(--color-observations)'
         }
     ]);
@@ -159,19 +159,31 @@
 
     function annotation(opacity){
       if (mobileView == true){
-        d3.select("#annotation_forecast_mobile").selectAll("text")
+        d3.select("#annotation_1_forecast_mobile").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow_mobile").selectAll("path")
+        d3.select("#annotation_1_forecast_arrow_mobile").selectAll("path")
+            .style("opacity", opacity);
+        d3.select("#annotation_2_forecast_mobile").selectAll("text")
+            .style("opacity", opacity);
+        d3.select("#annotation_2_forecast_arrow_mobile").selectAll("path")
             .style("opacity", opacity);
       }else if (tabletView == true){
-        d3.select("#annotation_forecast_tablet").selectAll("text")
+        d3.select("#annotation_1_forecast_tablet").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow_tablet").selectAll("path")
+        d3.select("#annotation_1_forecast_arrow_tablet").selectAll("path")
+            .style("opacity", opacity);
+        d3.select("#annotation_2_forecast_tablet").selectAll("text")
+            .style("opacity", opacity);
+        d3.select("#annotation_2_forecast_arrow_tablet").selectAll("path")
             .style("opacity", opacity);
       }else{
-        d3.select("#annotation_forecast").selectAll("text")
+        d3.select("#annotation_1_forecast").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow").selectAll("path")
+        d3.select("#annotation_1_forecast_arrow").selectAll("path")
+            .style("opacity", opacity);
+        d3.select("#annotation_2_forecast").selectAll("text")
+            .style("opacity", opacity);
+        d3.select("#annotation_2_forecast_arrow").selectAll("path")
             .style("opacity", opacity);
       }
     }
@@ -181,13 +193,19 @@
         draw_line(default_line,lookback);
         // add annotation
         annotation(1.0)
+        // remove washout layer
+        d3.select("#forecast-washout").selectAll("path")
+            .style("fill-opacity", 0.0);
     }
 
     function mouseenter(default_line,lookback) {
         // remove default line
         remove_line(default_line,lookback)
         // remove annotation
-        annotation(0.0)    
+        annotation(0.0)   
+        // add washout layer
+        d3.select("#forecast-washout").selectAll("path")
+            .style("fill-opacity", 0.75); 
     }
 
     function addInteractions() {

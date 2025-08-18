@@ -261,7 +261,7 @@ ax_forecast.set_xlim(np.datetime64(date_range[0]), np.datetime64(date_range[-1])
 start_year = 1971 + np.datetime64(date_range[0], "Y").astype(int)
 end_year = 1971 + np.datetime64(date_range[-1], "Y").astype(int)
 x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)]
-x_ticks_labels = [i for i in range(start_year, end_year)]
+x_ticks_labels = [i + year_label_offset for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
     [0.0, 20.0, 40.0, 60.0, 80.0, 100],
