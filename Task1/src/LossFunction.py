@@ -42,7 +42,7 @@ upper_bound = np.argmin(np.abs(x_forecast_raw - np.datetime64(date_range[1]))) +
 x_forecast = x_forecast_raw[lower_bound:upper_bound]
 
 # load observed data
-y_training = forecast_data["observed"][lower_bound:upper_bound]
+y_training = forecast_data["observation"][lower_bound:upper_bound]
 
 # load model data (lower, median, and upper)
 y_forecast_lower = forecast_format(forecast_data["lower"][lower_bound:upper_bound])

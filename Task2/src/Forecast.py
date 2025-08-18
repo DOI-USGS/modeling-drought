@@ -10,16 +10,11 @@ from Task_config.parameters import *
 
 ### Data Arrays
 
-# load the raw data - 0 day forecast
-forecast_data = [
-    feather.read_feather("Task_Data/" + forecast_file)
-    for forecast_file in forecast_files
-]
-x_forecast_raw = forecast_data[0]["datetime"].values.astype("datetime64[D]")
-y_training_raw = forecast_data[0]["observed"]
-y_forecast_lower_raw = forecast_format(forecast_data[0]["lower"])
-y_forecast_median_raw = forecast_format(forecast_data[0]["median"])
-y_forecast_upper_raw = forecast_format(forecast_data[0]["upper"])
+x_forecast_raw = forecast_data_list[0]["datetime"].values.astype("datetime64[D]")
+y_training_raw = forecast_data_list[0]["observation"]
+y_forecast_lower_raw = forecast_format(forecast_data_list[0]["lower"])
+y_forecast_median_raw = forecast_format(forecast_data_list[0]["median"])
+y_forecast_upper_raw = forecast_format(forecast_data_list[0]["upper"])
 
 # set a more densly packed dataset (spaced by 1 day instead of 7 days) - this is for the 0-day forecast
 x_forecast = np.arange(x_forecast_raw[0], x_forecast_raw[-1], dense_dt)
@@ -45,29 +40,24 @@ lower_bound = np.argmin(np.abs(x_forecast - np.datetime64(date_range[0])))
 upper_bound = np.argmin(np.abs(x_forecast - np.datetime64(date_range[1]))) + 1
 
 # set interpolators for the 7,14,28,56,91 - day forcasts
-f_cloud_lower_list = []
 f_cloud_median_list = []
-f_cloud_upper_list = []
-for i, forecast_datum in enumerate(forecast_data):
-    x_forecast_raw_temp = forecast_data[i]["datetime"].values.astype("datetime64[D]")
-    dx_forecast_raw_temp = x_forecast_raw_temp - x_forecast_raw_temp[0]
-    f_cloud_lower_list += [
-        interpolate.interp1d(
-            dx_forecast_raw_temp.astype(float), forecast_format(forecast_datum["lower"])
-        )
-    ]
+datetime_anchorpoint = forecast_data_list[0]["datetime"].values.astype("datetime64[D]")[
+    0
+]
+for i, forecast_datum in enumerate(forecast_data_list):
+    x_forecast_raw_temp = forecast_data_list[i]["datetime"].values.astype(
+        "datetime64[D]"
+    )
+
+    dx_forecast_raw_temp = (
+        x_forecast_raw_temp - datetime_anchorpoint
+    )  # this should be right. it should be referenced to the first date, not the start of the array!!!!
     f_cloud_median_list += [
         interpolate.interp1d(
             dx_forecast_raw_temp.astype(float),
             forecast_format(forecast_datum["median"]),
         )
     ]
-    f_cloud_upper_list += [
-        interpolate.interp1d(
-            dx_forecast_raw_temp.astype(float), forecast_format(forecast_datum["upper"])
-        )
-    ]
-
 # make figure
 fig = plt.figure(
     1,
@@ -90,11 +80,11 @@ ax_forecast = fig.add_axes(
 
 # print default value for the vue site
 print(
-    "default value to use is "
+    "the default value to use is "
     + str(np.argmin(np.abs(x_forecast - np.datetime64(date_range[0]))))
 )
 
-# generate lines
+# generate line
 for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     x_cloud = x_forecast[j] + np.array(offset) * 7
     y_cloud_lower = []
@@ -103,10 +93,9 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
 
     for i in range(0, len(f_cloud_median_list)):
         lead_time = dx_forecast.astype(float)[j + int(offset[i] * dt / dense_dt)]
-        y_cloud_lower += [f_cloud_lower_list[i](lead_time)]
         y_cloud_median += [f_cloud_median_list[i](lead_time)]
-        y_cloud_upper += [f_cloud_upper_list[i](lead_time)]
 
+    # exit()
     # observation
     ax_forecast.plot(
         x_forecast[: 1 + j],
@@ -149,8 +138,8 @@ ax_forecast.annotate(
     "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
     color=ratio_5,
     va="center",
-    xy=(np.datetime64("2017-11-28"), 90),
-    xytext=(np.datetime64("2017-07-08"), 90),
+    xy=(np.datetime64(date_range[0]) + 147, 50),
+    xytext=(np.datetime64(date_range[0]) + 7, 50),
     arrowprops=dict(
         facecolor=ratio_5,
         edgecolor=ratio_5,
@@ -160,6 +149,7 @@ ax_forecast.annotate(
     ),
     gid="annotation_forecast",
     alpha=0.0,
+    zorder=100,
 )
 
 # add mobile annotation
@@ -167,8 +157,8 @@ ax_forecast.annotate(
     "Tap on the plot to\nsee drought forecasts",
     color=ratio_5,
     va="center",
-    xy=(np.datetime64("2018-07-28"), 80),
-    xytext=(np.datetime64("2017-07-08"), 80),
+    xy=(np.datetime64(date_range[0]) + 400, 50),
+    xytext=(np.datetime64(date_range[0]) + 7, 50),
     arrowprops=dict(
         facecolor=ratio_5,
         edgecolor=ratio_5,
@@ -178,6 +168,7 @@ ax_forecast.annotate(
     ),
     gid="annotation_forecast_mobile",
     alpha=0.0,
+    zorder=100,
 )
 
 # add tablet annotation
@@ -185,8 +176,8 @@ ax_forecast.annotate(
     "Tap on the plot to\nsee drought forecasts",
     color=ratio_5,
     va="center",
-    xy=(np.datetime64("2018-02-28"), 90),
-    xytext=(np.datetime64("2017-07-08"), 90),
+    xy=(np.datetime64(date_range[0]) + 230, 50),
+    xytext=(np.datetime64(date_range[0]) + 7, 50),
     arrowprops=dict(
         facecolor=ratio_5,
         edgecolor=ratio_5,
@@ -196,6 +187,7 @@ ax_forecast.annotate(
     ),
     gid="annotation_forecast_tablet",
     alpha=0.0,
+    zorder=100,
 )
 
 # forecast axis parameters
@@ -207,6 +199,24 @@ ax_forecast.plot(
     alpha=0.0,
     gid="observation-full-forecast",
 )
+
+# de emphasize above 30
+ax_forecast.plot(
+    [np.datetime64(date_range[0]), np.datetime64(date_range[-1])],
+    [30, 30],
+    color="k",
+    linestyle="--",
+)
+ax_forecast.fill_between(
+    [np.datetime64(date_range[0]), np.datetime64(date_range[-1])],
+    [30, 30],
+    [100, 100],
+    edgecolor="none",
+    facecolor="w",
+    alpha=0.75,
+    zorder=99,
+)
+
 ax_forecast.grid(visible=True, axis="y")
 ax_forecast.set_ylim(0, 100.0)
 ax_forecast.set_xlim(np.datetime64(date_range[0]), np.datetime64(date_range[-1]))

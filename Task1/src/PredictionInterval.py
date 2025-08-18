@@ -35,7 +35,7 @@ ax_forecast = fig.add_axes(
 x_forecast = forecast_data["datetime"].values.astype("datetime64[D]")
 
 # load observed data
-y_training = forecast_data["observed"]
+y_training = forecast_data["observation"]
 
 # load model data (lower, median, and upper)
 y_forecast_lower = forecast_format(forecast_data["lower"])
@@ -143,16 +143,17 @@ for i, lower_percentile in enumerate(pi_list):
     missed_x = []
     missed_y = []
     for j in range(lower_bound, upper_bound):
-        if (
-            y_forecast_temp_lower.values[j] <= y_training.values[j]
-            and y_training.values[j] <= y_forecast_temp_upper.values[j]
-        ):
-            inside_count += 1
-        else:
-            outside_count += 1
-            missed_x += [j]
-            missed_y += [y_training.values[j]]
-        count += 1
+        if y_training.values[j] < 30.0:
+            if (
+                y_forecast_temp_lower.values[j] <= y_training.values[j]
+                and y_training.values[j] <= y_forecast_temp_upper.values[j]
+            ):
+                inside_count += 1
+            else:
+                outside_count += 1
+                missed_x += [j]
+                missed_y += [y_training.values[j]]
+            count += 1
 
     inside_proportion += [float(inside_count) / float(count)]
 

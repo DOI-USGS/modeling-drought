@@ -6,19 +6,11 @@ from Task_config.defaults import *
 from Task_config.functions import *
 from Task_config.parameters import *
 
-### Data Arrays
-
-# load the raw data - 0 day forecast
-forecast_data = [
-    feather.read_feather("Task_Data/" + forecast_file)
-    for forecast_file in forecast_files
-]
-
 # plotting variables
 x = np.linspace(0.0, 13.0, 14)
-y_issue_date = list(forecast_data[0]["observed"])[index_plot - 1]
+y_issue_date = list(forecast_data_diagram["observed"])[index_plot - 1]
 y = [y_issue_date]
-y += list(forecast_data[0]["median"])[index_plot : index_plot + 13]
+y += list(forecast_data_diagram["median"])[index_plot : index_plot + 13]
 
 # make figure
 fig = plt.figure(

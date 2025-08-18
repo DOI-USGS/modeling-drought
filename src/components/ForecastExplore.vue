@@ -196,7 +196,7 @@
 
         // plot parameters
         const lookback = 13
-        var default_line = "13055"
+        var default_line = "0"
         draw_line(default_line,lookback)
 
         // draw annotations

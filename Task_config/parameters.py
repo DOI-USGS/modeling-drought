@@ -8,17 +8,19 @@ import pyarrow.feather as feather
 #############################################################################################################
 
 min_percentile = 0.05
-date_range = ["2017-07-03", "2019-07-01"]
+date_range = ["2000-10-09", " 2002-09-16"]
 obs_linestyle = "dotted"
+site_id = "09070500"
 
 ### LossFunction.py and PredictionInterval.py ###############################################################
 #############################################################################################################
 
 # forecast data
-forecast_data = feather.read_feather("Task_Data/ForJeffrey_7day_forecast.feather")
-
-# load date data
-x_forecast = forecast_data["datetime"].values.astype("datetime64[D]")
+forecast_data_all = feather.read_feather(
+    "Task_Data/all_horizon_LSTM_30_forecasts.feather"
+)
+forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+forecast_data = forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]
 
 # asymmetric laplace distribution parameters: https://en.wikipedia.org/wiki/Asymmetric_Laplace_distribution
 loc = 0.0
@@ -65,22 +67,26 @@ basename_gid_forecast_summary_1 = "forecast_summary_1"
 basename_gid_true_false = "forecast_truefalse"
 basename_gid_true_false_key = "forecast_truefalse_key"
 basename_gid_true_false_summary = "forecast_truefalse_summary"
-offset = [0, 1, 2, 4, 8, 13]
+offset = [1, 2, 4, 8, 13]
 dt = 7
 dense_dt = 1
 
 # forecast files
-forecast_files = [
-    "ForJeffrey_0day_forecast.feather",
-    "ForJeffrey_7day_forecast.feather",
-    "ForJeffrey_14day_forecast.feather",
-    "ForJeffrey_28day_forecast.feather",
-    "ForJeffrey_56day_forecast.feather",
-    "ForJeffrey_91day_forecast.feather",
+forecast_data_list = [
+    forecast_data_site[forecast_data_site["nday_forecast"] == 7.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 14.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 28.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 63.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 91.0],
 ]
 
 ### ForecastDiagram.py#######################################################################################
 #############################################################################################################
+
+# real data for diagram
+forecast_data_diagram = feather.read_feather(
+    "Task_Data/ForJeffrey_0day_forecast.feather"
+)
 
 # starting index in the forecast data used to generate the diagram
 index_plot = 158
@@ -105,7 +111,7 @@ drought_data = pd.read_csv(
 
 # data used for forecast summary
 tf_d = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_interpolated.csv"
+    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20250812_interpolated.csv"
 )
 
 # labeling
