@@ -175,11 +175,11 @@ for i, pi in enumerate(pi_list):
 
     popup_text(
         ax_forecast,
-        0.6,
+        0.75,
         0.7,
-        "PI Contains\n"
+        "PI contains "
         + str(round(inside_proportion[i] * 100.0, 1))
-        + "% of Observations",
+        + "%\nof observations",
         observation_color_hex,
         "NULL",
         "NULL",
