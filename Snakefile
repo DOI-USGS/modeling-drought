@@ -16,6 +16,7 @@ rule all:
         "src/assets/svgs/fc_tf_sum_rw_desktop.svg",
         "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
         "src/assets/svgs/fc_tf_sum_nd_desktop.svg",
+        "src/assets/svgs/ob_example_mobile.svg",
 
 rule loss_function:
     output:
@@ -40,6 +41,12 @@ rule forecast:
         "src/assets/svgs/fc_example_desktop.svg"
     script:
         'Task2/src/Forecast.py'
+
+rule observation:
+    output:
+        "src/assets/svgs/ob_example_mobile.svg"
+    script:
+        'Task2/src/Observation.py'
 
 rule summary:
     output:
