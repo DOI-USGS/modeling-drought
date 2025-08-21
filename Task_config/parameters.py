@@ -10,8 +10,9 @@ import pyarrow.feather as feather
 min_percentile = 0.05
 date_range = ["2000-10-09", " 2002-09-16"]
 year_label_offset = 20
+label_year = "-11-01"
 obs_linestyle = "dotted"
-site_id = "09070500"
+site_id = "13055000"
 
 ### LossFunction.py and PredictionInterval.py ###############################################################
 #############################################################################################################
@@ -22,15 +23,6 @@ forecast_data_all = feather.read_feather(
 )
 forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
 forecast_data = forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]
-forecast_data_site["reference_datetime"] = pd.to_datetime(
-    forecast_data_site["reference_datetime"], errors="coerce"
-)
-forecast_data_site["datetime"] = pd.to_datetime(
-    forecast_data_site["datetime"], errors="coerce"
-)
-# target_date = pd.Timestamp("2001-11-19")  # Specify the target date
-# matching_rows = forecast_data_site[forecast_data_site["datetime"] == target_date]
-# print(matching_rows.sort_values(by=["nday_forecast"]))
 
 # asymmetric laplace distribution parameters: https://en.wikipedia.org/wiki/Asymmetric_Laplace_distribution
 loc = 0.0
@@ -89,6 +81,14 @@ forecast_data_list = [
     forecast_data_site[forecast_data_site["nday_forecast"] == 63.0],
     forecast_data_site[forecast_data_site["nday_forecast"] == 91.0],
 ]
+
+### Observation.py##############################################################################################
+#############################################################################################################
+
+# Shorten x-axis in mobile site
+x_shorten_mobile = 0.575
+x_label_section_mobile = x_shorten_mobile + 0.075
+
 
 ### ForecastDiagram.py#######################################################################################
 #############################################################################################################

@@ -3,6 +3,10 @@ export default {
     WhatIsStreamflowDrought: {
         title: "What is streamflow drought?",
         subtitle:"Streamflow droughts occur when streamflow drops to unusually low levels",
+        observationExplore: {
+            caption1Desktop: "Hover your mouse over the plot to see the flow when a stream goes into drought.",
+            caption1Responsive: "Tap on the plot to see the flow when a stream goes into drought.",
+        },
         paragraph1: "<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>Streamflow drought</a> occurs in the wake of meteorological and agricultural drought, when streamflow drops to levels that are unusually low for the time of year. Reduced streamflow has significant impact on plants, animals, and humans.",
         accordionData: [
             {

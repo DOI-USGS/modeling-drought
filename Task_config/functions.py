@@ -124,16 +124,20 @@ def save_desktop_mobile_tablet(
     tablet_pos_list=None,
     text_obj=None,
     text_change=None,
+    save_desktop=True,
+    save_tablet=True,
+    save_mobile=True,
 ):
 
-    # save desktop version
-    fig.savefig(dir_1 + base_name + "_desktop.svg", dpi=150, metadata=None)
+    if save_desktop == True:
+        # save desktop version
+        fig.savefig(dir_1 + base_name + "_desktop.svg", dpi=150, metadata=None)
 
-    # remove metadata
-    remove_metadata_and_fix(
-        dir_1 + base_name + "_desktop.svg",
-        dir_2 + base_name + "_desktop.svg",
-    )
+        # remove metadata
+        remove_metadata_and_fix(
+            dir_1 + base_name + "_desktop.svg",
+            dir_2 + base_name + "_desktop.svg",
+        )
 
     # change text if needed
     if text_obj != None:
@@ -145,14 +149,15 @@ def save_desktop_mobile_tablet(
         for i, mod_ax in enumerate(mod_ax_list):
             mod_ax.set_position(mobile_pos_list[i])
 
-    # make svg
-    fig.savefig(dir_1 + base_name + "_mobile.svg", dpi=150, metadata=None)
+    if save_mobile == True:
+        # make svg
+        fig.savefig(dir_1 + base_name + "_mobile.svg", dpi=150, metadata=None)
 
-    # remove metadata
-    remove_metadata_and_fix(
-        dir_1 + base_name + "_mobile.svg",
-        dir_2 + base_name + "_mobile.svg",
-    )
+        # remove metadata
+        remove_metadata_and_fix(
+            dir_1 + base_name + "_mobile.svg",
+            dir_2 + base_name + "_mobile.svg",
+        )
 
     # to make the tablet version, we first adjust the figure size to a more horizontal aspect
     fig.set_size_inches(tablet_dimensions)
@@ -160,14 +165,15 @@ def save_desktop_mobile_tablet(
         for i, mod_ax in enumerate(mod_ax_list):
             mod_ax.set_position(tablet_pos_list[i])
 
-    # make svg
-    fig.savefig(dir_1 + base_name + "_tablet.svg", dpi=150, metadata=None)
+    if save_tablet == True:
+        # make svg
+        fig.savefig(dir_1 + base_name + "_tablet.svg", dpi=150, metadata=None)
 
-    # remove metadata
-    remove_metadata_and_fix(
-        dir_1 + base_name + "_tablet.svg",
-        dir_2 + base_name + "_tablet.svg",
-    )
+        # remove metadata
+        remove_metadata_and_fix(
+            dir_1 + base_name + "_tablet.svg",
+            dir_2 + base_name + "_tablet.svg",
+        )
 
 
 def set_axis_up(ax):
@@ -175,3 +181,32 @@ def set_axis_up(ax):
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.set_axisbelow(True)
+
+
+def forecast_annotations(ax, labels, xys, xy_texts, gid_prefix, ha="left"):
+    fontsizes = [
+        target_fontsize_px,
+        0.8 * target_fontsize_px,
+        0.8 * target_fontsize_px,
+    ]
+    gid_suffix = ["", "-tablet", "-mobile"]
+    for i, label in enumerate(labels):
+        ax.annotate(
+            label,
+            color=ratio_5,
+            va="center",
+            fontsize=fontsizes[i],
+            ha=ha,
+            xy=xys[i],
+            xytext=xy_texts[i],
+            arrowprops=dict(
+                facecolor=ratio_5,
+                edgecolor=ratio_5,
+                alpha=0.00001,
+                arrowstyle="fancy",
+                gid=gid_prefix + "-arrow" + gid_suffix[i],
+            ),
+            gid=gid_prefix + gid_suffix[i],
+            alpha=0.0,
+            zorder=100,
+        )
