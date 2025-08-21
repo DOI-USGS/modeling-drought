@@ -35,7 +35,7 @@ fig_true_false = plt.figure(
 )
 # add axes for the forecast
 ax_true_false = fig_true_false.add_axes(
-    [0.0, 0.0, 1.0, 1.0], gid="axis-" + basename_gid_true_false_key
+    [0.03, 0.03, 0.97, 1.0], gid="axis-" + basename_gid_true_false_key
 )
 
 
@@ -107,7 +107,7 @@ sankey_label(
     row1,
     -0.5 * pad,
     -D,
-    "Model predicts\ndrought - " + str(round(D, 1)) + "%",
+    "Streamflow\ndought predicted\n" + str(round(D, 1)) + "%",
     "right",
     -width,
     label_alpha,
@@ -118,7 +118,7 @@ sankey_label(
     row1,
     0.5 * pad,
     ND,
-    "Model predicts\nno drought - " + str(round(ND, 1)) + "%",
+    "Streamflow dought\nnot predicted\n" + str(round(ND, 1)) + "%",
     "right",
     -width,
     label_alpha,
@@ -225,7 +225,7 @@ sankey_label(
     row2,
     -2.0 * pad - D_ND,
     -D_D,
-    "Model detected\nthe drought\n(true positive)\n" + str(round(D_D, 1)) + "%",
+    "Did occur\n(true positive)\n" + str(round(D_D, 1)) + "%",
     "right",
     -width,
     label_alpha,
@@ -236,7 +236,7 @@ sankey_label(
     row2,
     -1.0 * pad,
     -D_ND,
-    "Model wrongly\npredicted drought\n(false positive)\n" + str(round(D_ND, 1)) + "%",
+    "Did not occur\n(false positive)\n" + str(round(D_ND, 1)) + "%",
     "right",
     -width,
     label_alpha,
@@ -247,7 +247,7 @@ sankey_label(
     row2,
     1.0 * pad,
     ND_D,
-    "Model missed\nthe drought\n(false negative)\n" + str(round(ND_D, 1)) + "%",
+    "Streamflow\ndrought did occur\n(false negative)\n" + str(round(ND_D, 1)) + "%",
     "right",
     -width,
     label_alpha,
@@ -258,7 +258,7 @@ sankey_label(
     row2,
     2.0 * pad + ND_D,
     ND_ND,
-    "No drought\noccurred\n(true negative)\n" + str(round(ND_ND, 1)) + "%",
+    "Streamflow drought\ndid not occur\n(true negative)\n" + str(round(ND_ND, 1)) + "%",
     "right",
     -width,
     label_alpha,

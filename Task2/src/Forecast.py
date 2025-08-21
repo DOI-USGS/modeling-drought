@@ -118,7 +118,7 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
         alpha=0.0,
         gid="forecast_hover_" + str(j),
         linewidth=target_linewidth,
-        zorder=100,
+        zorder=101,
     )
 
     # # add forecast lines
@@ -133,144 +133,73 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     )
 
 # add desktop annotations
-ax_forecast.annotate(
-    "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
-    color=ratio_5,
-    va="center",
-    xy=(np.datetime64(date_range[0]) + 147, 70),
-    xytext=(np.datetime64(date_range[0]) + 7, 70),
-    arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
-        alpha=0.00001,
-        arrowstyle="fancy",
-        gid="annotation_1_forecast_arrow",
-    ),
-    gid="annotation_1_forecast",
-    alpha=0.0,
-    zorder=100,
+
+# limits on x axis with 1 week buffer
+x_limits = [np.datetime64(date_range[0]) + 7, np.datetime64(date_range[-1]) - 7]
+x_length = x_limits[-1] - x_limits[0]
+
+# annotation for forecast arrow
+forecast_annotations(
+    ax_forecast,
+    [
+        "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
+        "Tap on the plot to\nsee drought forecasts",
+        "Tap on the plot to\nsee drought forecasts",
+    ],
+    [
+        (x_limits[0] + x_length * 0.2, 70),
+        (x_limits[0] + x_length * 0.33, 90),
+        (x_limits[0] + x_length * 0.57, 90),
+    ],
+    [
+        (x_limits[0], 70),
+        (x_limits[0], 70),
+        (x_limits[0], 90),
+    ],
+    "annotation-1-forecast",
 )
 
-ax_forecast.annotate(
-    "Model prioritizes\nlow flow predictions",
-    color=ratio_5,
-    va="center",
+# annotation for observation arrow
+forecast_annotations(
+    ax_forecast,
+    [
+        "Drag mouse over the\nplot rightwards to see\nstreamflow observations",
+        "Tap on the plot to see\nstreamflow observations",
+        "Tap on the plot to see\nstreamflow observations",
+    ],
+    [
+        (x_limits[0] + x_length * 0.23, 70),
+        (x_limits[0] + x_length * 0.36, 90),
+        (x_limits[0] + x_length * 0.60, 90),
+    ],
+    [
+        (x_limits[0], 70),
+        (x_limits[0], 90),
+        (x_limits[0], 90),
+    ],
+    "annotation-1-observation",
+)
+
+# annotation for model note arrow
+forecast_annotations(
+    ax_forecast,
+    [
+        "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
+        "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
+        "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
+    ],
+    [
+        (x_limits[0] + x_length * 0.55, 12),
+        (x_limits[0] + x_length * 0.55, 12),
+        (x_limits[0] + x_length * 0.55, 12),
+    ],
+    [
+        (x_limits[0] + x_length * 0.55, 50),
+        (x_limits[0] + x_length * 0.55, 50),
+        (x_limits[0] + x_length * 0.55, 50),
+    ],
+    "annotation-2-forecast",
     ha="center",
-    xy=(
-        np.datetime64(date_range[0])
-        + 0.65 * (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])),
-        10,
-    ),
-    xytext=(
-        np.datetime64(date_range[0])
-        + 0.65 * (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])),
-        50,
-    ),
-    arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
-        alpha=0.00001,
-        arrowstyle="fancy",
-        gid="annotation_2_forecast_arrow",
-    ),
-    gid="annotation_2_forecast",
-    alpha=0.0,
-    transform=ax_forecast.transAxes,
-    zorder=100,
-)
-
-# add mobile annotations
-ax_forecast.annotate(
-    "Tap on the plot to\nsee drought forecasts",
-    color=ratio_5,
-    va="center",
-    xy=(np.datetime64(date_range[0]) + 400, 90),
-    xytext=(np.datetime64(date_range[0]) + 7, 90),
-    arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
-        alpha=0.0001,
-        arrowstyle="fancy",
-        gid="annotation_1_forecast_arrow_mobile",
-    ),
-    gid="annotation_1_forecast_mobile",
-    alpha=0.0,
-    zorder=100,
-)
-
-ax_forecast.annotate(
-    "Model prioritizes\nlow flow predictions",
-    color=ratio_5,
-    va="center",
-    ha="center",
-    xy=(
-        np.datetime64(date_range[0])
-        + 0.7 * (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])),
-        5,
-    ),
-    xytext=(
-        np.datetime64(date_range[0])
-        + 0.7 * (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])),
-        50,
-    ),
-    arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
-        alpha=0.00001,
-        arrowstyle="fancy",
-        gid="annotation_2_forecast_arrow_mobile",
-    ),
-    gid="annotation_2_forecast_mobile",
-    alpha=0.0,
-    transform=ax_forecast.transAxes,
-    zorder=100,
-)
-
-# add tablet annotations
-ax_forecast.annotate(
-    "Tap on the plot to\nsee drought forecasts",
-    color=ratio_5,
-    va="center",
-    xy=(np.datetime64(date_range[0]) + 230, 70),
-    xytext=(np.datetime64(date_range[0]) + 7, 70),
-    arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
-        alpha=0.00001,
-        arrowstyle="fancy",
-        gid="annotation_1_forecast_arrow_tablet",
-    ),
-    gid="annotation_1_forecast_tablet",
-    alpha=0.0,
-    zorder=100,
-)
-
-ax_forecast.annotate(
-    "Model prioritizes\nlow flow predictions",
-    color=ratio_5,
-    va="center",
-    ha="center",
-    xy=(
-        np.datetime64(date_range[0])
-        + 0.65 * (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])),
-        10,
-    ),
-    xytext=(
-        np.datetime64(date_range[0])
-        + 0.65 * (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])),
-        50,
-    ),
-    arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
-        alpha=0.00001,
-        arrowstyle="fancy",
-        gid="annotation_2_forecast_arrow_tablet",
-    ),
-    gid="annotation_2_forecast_tablet",
-    alpha=0.0,
-    transform=ax_forecast.transAxes,
-    zorder=100,
 )
 
 # forecast axis parameters
@@ -284,12 +213,37 @@ ax_forecast.plot(
 )
 
 # de emphasize above 30
-ax_forecast.plot(
-    [np.datetime64(date_range[0]), np.datetime64(date_range[-1])],
-    [30, 30],
-    color="k",
-    linestyle="--",
-)
+drought_labels = [
+    "Normal",
+    "Abnormally dry",
+    "Moderate drought",
+    "Severe drought",
+    "Extreme drought",
+]
+gid_prefixes = ["obsv-nm-", "obsv-ad-", "obsv-md-", "obsv-sd-", "obsv-ed-"]
+drought_label_lines = [40, 30, 20, 10, 5, 0]
+fontsizes = [target_fontsize_px, 0.8 * target_fontsize_px]
+for j, platform in enumerate(["", "-tablet"]):
+    for i, drought_label in enumerate(drought_labels):
+        ax_forecast.text(
+            x_limits[-1],
+            0.5 * (drought_label_lines[i] + drought_label_lines[i + 1]),
+            drought_label,
+            ha="right",
+            va="center",
+            fontsize=fontsizes[j],
+            gid=gid_prefixes[i] + "label" + platform,
+            alpha=0.0,
+        )
+        ax_forecast.plot(
+            [np.datetime64(date_range[0]), np.datetime64(date_range[-1])],
+            [drought_label_lines[i], drought_label_lines[i]],
+            color="k",
+            linestyle="--",
+            gid=gid_prefixes[i] + "line" + platform,
+            alpha=0.0,
+        )
+
 ax_forecast.fill_between(
     [np.datetime64(date_range[0]), np.datetime64(date_range[-1])],
     [30, 30],
@@ -301,12 +255,16 @@ ax_forecast.fill_between(
     gid="forecast-washout",
 )
 
+
 ax_forecast.grid(visible=True, axis="y")
 ax_forecast.set_ylim(0, 100.0)
-ax_forecast.set_xlim(np.datetime64(date_range[0]), np.datetime64(date_range[-1]))
+ax_forecast.set_xlim(
+    np.datetime64(date_range[0]),
+    np.datetime64(date_range[-1]),
+)
 start_year = 1971 + np.datetime64(date_range[0], "Y").astype(int)
 end_year = 1971 + np.datetime64(date_range[-1], "Y").astype(int)
-x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)]
+x_ticks = [np.datetime64(str(i - 1) + label_year) for i in range(start_year, end_year)]
 x_ticks_labels = [i + year_label_offset for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
