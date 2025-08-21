@@ -162,16 +162,6 @@ export default {
             paragraph3: "Notice that the steeper the asymmetric loss functions, the wider the resulting prediction interval."
         }
     },
-    HowUncertaintyChange: {
-        title: "How does uncertainty change with forecast horizon?",
-        subtitle: "Uncertainty increases further into the future",
-        forecastSummary: {
-            paragraph1: "We saw previously that as we look further into the future, the accuracy of the model decreases. We determined this by assessing if the median prediction was correct or incorrect. But how does the whole prediction interval change with forecast horizon?",
-            captionDesktop: "Hover your mouse over the plot to explore how the model’s uncertainty changes with forecast horizon.",
-            captionResponsive: "Tap the plot to explore how the model’s uncertainty changes with forecast horizon.",
-            paragraph2: "Uncertainty grows from 1 to 3 weeks out and then plateaus at a higher level from 4 weeks on. Predictions for 13 weeks out are the most uncertain, with the widest prediction interval. This is what we would expect, as weather forecasts are very limited for that time frame."
-        }
-    },
     WhatsNext: {
         title: "What comes next?",
         subtitle: "Continued work to improve the model and make it more useful",

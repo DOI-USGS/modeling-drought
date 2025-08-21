@@ -23,9 +23,6 @@
     <HowCaptureUncertainty 
       :text="text.HowCaptureUncertainty"
     />
-    <HowUncertaintyChange 
-      :text="text.HowUncertaintyChange"
-    />
     <WhatsNext 
       :text="text.WhatsNext"
     />
@@ -72,7 +69,6 @@
   import WhatDoForecastsLookLike from "@/components/WhatDoForecastsLookLike.vue";
   import HowWellModelPerform from "@/components/HowWellModelPerform.vue"
   import HowCaptureUncertainty from "@/components/HowCaptureUncertainty.vue"
-  import HowUncertaintyChange from "@/components/HowUncertaintyChange.vue"
   import WhatsNext from "@/components/WhatsNext.vue";
   import WhoContributing from "@/components/WhoContributing.vue";
   import ReferencesSection from '@/components/ReferencesSection.vue';

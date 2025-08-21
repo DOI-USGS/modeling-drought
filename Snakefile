@@ -10,7 +10,6 @@ rule all:
         "src/assets/svgs/pi_example_tablet.svg",
         "src/assets/svgs/fc_diagram.svg",
         "src/assets/svgs/fc_example_desktop.svg",
-        "src/assets/svgs/fc_summary_desktop.svg",
         "src/assets/svgs/fc_tf_key_desktop.svg",
         "src/assets/svgs/fc_tf_sum_desktop.svg",
         "src/assets/svgs/fc_tf_sum_rw_desktop.svg",
@@ -47,12 +46,6 @@ rule observation:
         "src/assets/svgs/ob_example_mobile.svg"
     script:
         'Task2/src/Observation.py'
-
-rule summary:
-    output:
-        "src/assets/svgs/fc_summary_desktop.svg"
-    script:
-        'Task2/src/ForecastSummary.py'
 
 rule truefalsekey:
     output:
