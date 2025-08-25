@@ -148,12 +148,12 @@ forecast_annotations(
     ],
     [
         (x_limits[0] + x_length * 0.2, 70),
-        (x_limits[0] + x_length * 0.33, 90),
-        (x_limits[0] + x_length * 0.57, 90),
+        (x_limits[0] + x_length * 0.27, 90),
+        (x_limits[0] + x_length * 0.47, 90),
     ],
     [
         (x_limits[0], 70),
-        (x_limits[0], 70),
+        (x_limits[0], 90),
         (x_limits[0], 90),
     ],
     "annotation-1-forecast",
@@ -169,7 +169,7 @@ forecast_annotations(
     ],
     [
         (x_limits[0] + x_length * 0.23, 70),
-        (x_limits[0] + x_length * 0.36, 90),
+        (x_limits[0] + x_length * 0.3, 90),
         (x_limits[0] + x_length * 0.60, 90),
     ],
     [
@@ -189,14 +189,14 @@ forecast_annotations(
         "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
     ],
     [
-        (x_limits[0] + x_length * 0.55, 12),
-        (x_limits[0] + x_length * 0.55, 12),
-        (x_limits[0] + x_length * 0.55, 12),
+        (x_limits[0] + x_length * 0.55, 30),
+        (x_limits[0] + x_length * 0.55, 30),
+        (x_limits[0] + x_length * 0.55, 30),
     ],
     [
         (x_limits[0] + x_length * 0.55, 50),
         (x_limits[0] + x_length * 0.55, 50),
-        (x_limits[0] + x_length * 0.55, 50),
+        (x_limits[0] + x_length * 0.55, 55),
     ],
     "annotation-2-forecast",
     ha="center",

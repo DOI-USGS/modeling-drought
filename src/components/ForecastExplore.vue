@@ -189,16 +189,8 @@
     }
 
     function drought_line(svg,opacity){
-      if (mobileView == true){
-        svg.select("#obsv-ad-line-mobile").selectAll("path")
-            .style("stroke-opacity", opacity);
-      }else if (tabletView == true){
-        svg.select("#obsv-ad-line-tablet").selectAll("path")
-            .style("stroke-opacity", opacity);
-      }else{
         svg.select("#obsv-ad-line").selectAll("path")
             .style("stroke-opacity", opacity);
-      }
     }
 
     function mouseleave(svg, default_line,lookback) {
