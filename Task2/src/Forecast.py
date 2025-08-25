@@ -214,7 +214,7 @@ ax_forecast.plot(
 
 # de emphasize above 30
 drought_labels = [
-    "Normal",
+    "Normal conditions",
     "Abnormally dry",
     "Moderate drought",
     "Severe drought",
