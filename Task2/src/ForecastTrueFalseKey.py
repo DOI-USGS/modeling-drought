@@ -35,7 +35,7 @@ fig_true_false = plt.figure(
 )
 # add axes for the forecast
 ax_true_false = fig_true_false.add_axes(
-    [0.03, 0.03, 0.97, 1.0], gid="axis-" + basename_gid_true_false_key
+    [0.025, 0.03, 1.0, 1.0], gid="axis-" + basename_gid_true_false_key
 )
 
 
@@ -249,7 +249,7 @@ sankey_label(
     row2,
     1.0 * pad,
     ND_D,
-    "Severe or extreme\nstreamflow occurred\n(false negative)\n"
+    "Severe or extreme\nstreamflow drought\noccurred\n(false negative)\n"
     + str(round(ND_D, 1))
     + "%",
     "right",
