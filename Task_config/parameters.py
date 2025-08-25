@@ -89,7 +89,6 @@ forecast_data_list = [
 x_shorten_mobile = 0.575
 x_label_section_mobile = x_shorten_mobile + 0.075
 
-
 ### ForecastDiagram.py#######################################################################################
 #############################################################################################################
 
@@ -100,21 +99,6 @@ forecast_data_diagram = feather.read_feather(
 
 # starting index in the forecast data used to generate the diagram
 index_plot = 158
-
-### ForecastSummary.py ######################################################################################
-#############################################################################################################
-
-# this is the median observed prediction for the entire data set, calculated from the model results
-median_obs = 49.0733279613215
-
-# line width
-line_width_summary = 5.0
-
-# data used for the forecast summary
-drought_data = pd.read_csv(
-    "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_20250527_interpolated.csv"
-)
-
 
 ### All ForecastTrueFalseXXXXX.py ###########################################################################
 #############################################################################################################
