@@ -87,7 +87,7 @@
 
     // Watches layers for changes and updates figure layers
     watch(layers, () => {
-        updateFigure();
+        updateFigure(d3.select("#fc-svg"));
     });
 
     // Declare behavior on mounted
@@ -157,30 +157,37 @@
         }
     }
 
-    function annotation(svg, opacity){
+    function annotation_1(svg, opacity){
       if (mobileView == true){
         svg.select("#annotation-1-forecast-mobile").selectAll("text")
             .style("opacity", opacity);
         svg.select("#annotation-1-forecast-arrow-mobile").selectAll("path")
-            .style("opacity", opacity);
-        svg.select("#annotation-2-forecast-mobile").selectAll("text")
-            .style("opacity", opacity);
-        svg.select("#annotation-2-forecast-arrow-mobile").selectAll("path")
             .style("opacity", opacity);
       }else if (tabletView == true){
         svg.select("#annotation-1-forecast-tablet").selectAll("text")
             .style("opacity", opacity);
         svg.select("#annotation-1-forecast-arrow-tablet").selectAll("path")
             .style("opacity", opacity);
-        svg.select("#annotation-2-forecast-tablet").selectAll("text")
-            .style("opacity", opacity);
-        svg.select("#annotation-2-forecast-arrow-tablet").selectAll("path")
-            .style("opacity", opacity);
       }else{
         svg.select("#annotation-1-forecast").selectAll("text")
             .style("opacity", opacity);
         svg.select("#annotation-1-forecast-arrow").selectAll("path")
             .style("opacity", opacity);
+      }
+    }
+
+    function annotation_2(svg, opacity){
+      if (mobileView == true){
+        svg.select("#annotation-2-forecast-mobile").selectAll("text")
+            .style("opacity", opacity);
+        svg.select("#annotation-2-forecast-arrow-mobile").selectAll("path")
+            .style("opacity", opacity);
+      }else if (tabletView == true){
+        svg.select("#annotation-2-forecast-tablet").selectAll("text")
+            .style("opacity", opacity);
+        svg.select("#annotation-2-forecast-arrow-tablet").selectAll("path")
+            .style("opacity", opacity);
+      }else{
         svg.select("#annotation-2-forecast").selectAll("text")
             .style("opacity", opacity);
         svg.select("#annotation-2-forecast-arrow").selectAll("path")
@@ -197,7 +204,7 @@
         // draw default line
         draw_line(svg, default_line,lookback);
         // add annotation
-        annotation(svg, 1.0)
+        annotation_1(svg, 1.0)
         // remove washout layer
         svg.select("#forecast-washout").selectAll("path")
             .style("fill-opacity", 0.0);
@@ -207,7 +214,7 @@
         // remove default line
         remove_line(svg, default_line,lookback)
         // remove annotation
-        annotation(svg, 0.0)   
+        annotation_1(svg, 0.0)   
         // add washout layer
         svg.select("#forecast-washout").selectAll("path")
             .style("fill-opacity", 0.75); 
@@ -223,7 +230,8 @@
         draw_line(fcSVG, default_line,lookback)
 
         // draw annotations
-        annotation(fcSVG, 1.0)
+        annotation_1(fcSVG, 1.0)
+        annotation_2(fcSVG, 1.0)
 
         // draw drought line
         drought_line(fcSVG, 1.0)

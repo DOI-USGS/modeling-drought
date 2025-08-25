@@ -72,11 +72,6 @@
         }
     ]);
 
-    // Watches layers for changes and updates figure layers
-    watch(layers, () => {
-        updateFigure();
-    });
-
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
