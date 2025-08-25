@@ -107,7 +107,7 @@ sankey_label(
     row1,
     -0.5 * pad,
     -D,
-    "Streamflow\ndought predicted\n" + str(round(D, 1)) + "%",
+    "Severe or extreme\nstreamflow dought\npredicted\n" + str(round(D, 1)) + "%",
     "right",
     -width,
     label_alpha,
@@ -118,7 +118,9 @@ sankey_label(
     row1,
     0.5 * pad,
     ND,
-    "Streamflow dought\nnot predicted\n" + str(round(ND, 1)) + "%",
+    "Neither severe nor\nextreme streamflow\ndought predicted\n"
+    + str(round(ND, 1))
+    + "%",
     "right",
     -width,
     label_alpha,
@@ -247,7 +249,9 @@ sankey_label(
     row2,
     1.0 * pad,
     ND_D,
-    "Streamflow\ndrought did occur\n(false negative)\n" + str(round(ND_D, 1)) + "%",
+    "Severe or extreme\nstreamflow occurred\n(false negative)\n"
+    + str(round(ND_D, 1))
+    + "%",
     "right",
     -width,
     label_alpha,
@@ -258,7 +262,9 @@ sankey_label(
     row2,
     2.0 * pad + ND_D,
     ND_ND,
-    "Streamflow drought\ndid not occur\n(true negative)\n" + str(round(ND_ND, 1)) + "%",
+    "Neither severe nor\nextreme streamflow\ndought occurred\n(true negative)\n"
+    + str(round(ND_ND, 1))
+    + "%",
     "right",
     -width,
     label_alpha,
