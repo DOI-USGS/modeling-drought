@@ -117,7 +117,7 @@ bar_outcomes(
 )
 
 bar_outcomes(
-    title="When severe nor extreme\nstreamflow drought is predicted",
+    title="When severe or extreme\nstreamflow drought is predicted",
     lower_bar=true_pos_list,
     lower_color=lower_color_limit_hex,
     upper_bar=false_pos_list,
