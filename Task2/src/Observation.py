@@ -204,8 +204,17 @@ ax_forecast.set_yticks(
     ],
 )
 ax_forecast.set_xlabel("Date", weight="semibold")
+ax_forecast.set_ylabel(
+    "Streamflow percentile",
+    weight="semibold",
+    gid="observation-forecast-ylabel",
+)
 ax_forecast.set_title(
-    "Streamflow percentile", loc="left", weight="extra bold", color="k"
+    "Streamflow percentile",
+    loc="left",
+    weight="extra bold",
+    color="k",
+    gid="observation-forecast-title",
 )
 
 set_axis_up(ax_forecast)

@@ -236,6 +236,10 @@
         // draw drought line
         drought_line(fcSVG, 1.0)
 
+        // remove y label
+        fcSVG.select("#observation-forecast-ylabel").selectAll("text")
+            .style("opacity",0.0);
+
         // Add interaction to loss function chart
         fcSVG.select("#axis-forecast")
             .on("mouseleave", () => mouseleave(fcSVG, default_line,lookback))

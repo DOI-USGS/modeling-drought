@@ -223,7 +223,11 @@
 
         // remove full observation line
         obsvSVG.select("#observation-full-forecast").selectAll("path")
-            .style("stroke-opacity", 0.0)
+            .style("stroke-opacity", 0.0);
+
+        // remove title
+        obsvSVG.select("#observation-forecast-title").selectAll("text")
+            .style("opacity",0.0);
 
         // add drought categories
         drought_labels(obsvSVG, 1.0)
@@ -234,7 +238,7 @@
             .on("mouseenter", () => mouseenter(obsvSVG,default_line));
         obsvSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(obsvSVG,event))
-            .on("mouseout", (event) => mouseout(obsvSVG,event))
+            .on("mouseout", (event) => mouseout(obsvSVG,event));
     }
 </script>
 

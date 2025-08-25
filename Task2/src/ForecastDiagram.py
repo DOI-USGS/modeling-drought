@@ -24,7 +24,7 @@ fig = plt.figure(
 
 # add axes
 ax_forecast = fig.add_axes(
-    [0.05, 0.15, 0.9, 0.75],
+    [0.15, 0.15, 0.8, 0.75],
     gid="axis-forecast-diagram" + basename_gid_forecast,
 )
 
@@ -80,12 +80,18 @@ ax_forecast.set_xticks(
     weight="regular",
 )
 ax_forecast.set_xlabel("Forecast horizon in weeks", weight="semibold")
-ax_forecast.set_title(
-    "Streamflow percentile", loc="left", weight="extra bold", color="k"
-)
-ax_forecast.spines["left"].set_visible(False)
-ax_forecast.yaxis.set_visible(False)
+ax_forecast.set_ylabel("Streamflow percentile", weight="semibold")
+# ax_forecast.spines["left"].set_visible(False)
+# ax_forecast.yaxis.set_visible(False)
 ax_forecast.set_ylim(20, 80)
+ax_forecast.set_yticks(
+    [25, 75.0],
+    [
+        "0ᵗʰ",
+        "100ᵗʰ",
+    ],
+    weight="regular",
+)
 
 set_axis_up(ax_forecast)
 
