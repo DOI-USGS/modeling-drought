@@ -16,12 +16,19 @@ rule all:
         "src/assets/svgs/fc_tf_sum_yd_desktop.svg",
         "src/assets/svgs/fc_tf_sum_nd_desktop.svg",
         "src/assets/svgs/ob_example_mobile.svg",
+        "src/assets/svgs/lf_diagram_desktop.svg"
 
 rule loss_function:
     output:
         "src/assets/svgs/lf_example_tablet.svg"
     script:
         'Task1/src/LossFunction.py'
+
+rule loss_function_diagram:
+    output:
+        "src/assets/svgs/lf_diagram_desktop.svg"
+    script:
+        'Task1/src/LossFunctionDiagram.py'
 
 rule prediction_interval:
     output:
