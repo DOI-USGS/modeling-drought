@@ -108,7 +108,7 @@ bar_outcomes(
 )
 
 bar_outcomes(
-    title="When neither extreme nor severe\nstreamflow drought is predicted",
+    title="When neither severe nor extreme\nstreamflow drought is predicted",
     lower_bar=true_neg_list,
     lower_color=upper_color_limit_hex,
     upper_bar=false_neg_list,
@@ -117,7 +117,7 @@ bar_outcomes(
 )
 
 bar_outcomes(
-    title="When extreme or severe\nstreamflow drought is predicted",
+    title="When severe nor extreme\nstreamflow drought is predicted",
     lower_bar=true_pos_list,
     lower_color=lower_color_limit_hex,
     upper_bar=false_pos_list,
