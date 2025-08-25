@@ -37,7 +37,7 @@ def bar_outcomes(title, lower_bar, lower_color, upper_bar, upper_color, suffix):
     )
     # add axes for the forecast
     ax_true_false = fig_true_false.add_axes(
-        [0.1, 0.15, 0.85, 0.75],
+        [0.1, 0.15, 0.85, 0.7],
         gid="axis-" + basename_gid_true_false_summary + "-" + suffix,
     )
 
@@ -108,7 +108,7 @@ bar_outcomes(
 )
 
 bar_outcomes(
-    title="When drought is not predicted",
+    title="When neither extreme nor severe\nstreamflow drought is predicted",
     lower_bar=true_neg_list,
     lower_color=upper_color_limit_hex,
     upper_bar=false_neg_list,
@@ -117,7 +117,7 @@ bar_outcomes(
 )
 
 bar_outcomes(
-    title="When drought is predicted",
+    title="When extreme or severe\nstreamflow drought is predicted",
     lower_bar=true_pos_list,
     lower_color=lower_color_limit_hex,
     upper_bar=false_pos_list,
