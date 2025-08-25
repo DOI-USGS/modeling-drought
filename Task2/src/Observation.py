@@ -114,15 +114,15 @@ ax_forecast.annotate(
 # de emphasize above 30
 drought_labels = [
     "Abnormally dry",
-    "Moderate drought",
-    "Severe drought",
-    "Extreme drought",
+    "Moderate\nstreamflow drought",
+    "Severe\nstreamflow drought",
+    "Extreme\nstreamflow drought",
 ]
 gid_prefixes = ["obsv-ad-", "obsv-md-", "obsv-sd-", "obsv-ed-"]
 x_length = x_limits[-1] - x_limits[0]
 y_drought_lines = [30, 20, 10, 5]
-y_drought_label_lines = [60, 40, 20, 10, 0]
-y_drought_labels = [50, 30, 15, 5]
+y_drought_label_lines = [80, 60, 40, 20, 0]
+y_drought_labels = [70, 50, 30, 10]
 platform = "-mobile"
 
 x_drought_label_line = [
@@ -132,10 +132,10 @@ x_drought_label_line = [
 ]
 
 ax_forecast.text(
-    x_limits[-1] - 7,
-    70,
+    x_drought_label_line[1] + 7,
+    90,
     "Normal conditions",
-    ha="right",
+    ha="left",
     va="center",
     fontsize=0.8 * target_fontsize_px,
     gid="obsv-nm-label" + platform,
@@ -143,10 +143,10 @@ ax_forecast.text(
 
 for i, drought_label in enumerate(drought_labels):
     ax_forecast.text(
-        x_limits[-1] - 7,
+        x_drought_label_line[1] + 14,
         y_drought_labels[i],
         drought_labels[i],
-        ha="right",
+        ha="left",
         va="center",
         fontsize=0.8 * target_fontsize_px,
         gid=gid_prefixes[i] + "label" + platform,
@@ -183,7 +183,10 @@ ax_forecast.fill_between(
 
 ax_forecast.grid(visible=True, axis="y")
 ax_forecast.set_ylim(0, 100.0)
-ax_forecast.set_xlim(x_limits[0], x_limits[0] + x_length * x_shorten_mobile)
+ax_forecast.set_xlim(
+    x_limits[0],
+    x_limits[0] + x_length * (x_shorten_mobile),
+)
 start_year = 1971 + np.datetime64(date_range[0], "Y").astype(int)
 end_year = 1971 + np.datetime64(date_range[-1], "Y").astype(int)
 x_ticks = [np.datetime64(str(i - 1) + label_year) for i in range(start_year, end_year)]
@@ -217,13 +220,10 @@ save_desktop_mobile_tablet(
         target_plotwidth_in_mobile,
         target_plotwidth_in_mobile / aspect_double_plot_mobile * 0.5,
     ],
-    tablet_dimensions=[
-        target_plotwidth_in_tablet * x_shorten_mobile,
-        target_plotwidth_in_tablet / aspect_double_plot_tablet * 0.5,
-    ],
+    tablet_dimensions=[],
     mod_ax_list=[ax_forecast],
     mobile_pos_list=[[0.14, 0.175, 0.8 * x_shorten_mobile, 0.333 * 2.0]],
-    tablet_pos_list=[[0.125, 0.125, 0.825 * x_shorten_mobile, 0.375 * 2.0]],
+    tablet_pos_list=[[]],
     save_desktop=False,
     save_tablet=False,
     save_mobile=True,

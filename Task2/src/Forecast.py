@@ -142,17 +142,17 @@ x_length = x_limits[-1] - x_limits[0]
 forecast_annotations(
     ax_forecast,
     [
-        "Drag mouse over the\nplot rightwards to see\ndrought forecasts",
-        "Tap on the plot to\nsee drought forecasts",
-        "Tap on the plot to\nsee drought forecasts",
+        "Drag mouse over the plot\nrightwards to see streamflow\ndrought forecasts",
+        "Tap on the plot to see\nstreamflow drought forecasts",
+        "Tap on the plot to see\nstreamflow drought forecasts",
     ],
     [
-        (x_limits[0] + x_length * 0.2, 70),
-        (x_limits[0] + x_length * 0.27, 90),
-        (x_limits[0] + x_length * 0.47, 90),
+        (x_limits[0] + x_length * 0.23, 90),
+        (x_limits[0] + x_length * 0.32, 90),
+        (x_limits[0] + x_length * 0.57, 90),
     ],
     [
-        (x_limits[0], 70),
+        (x_limits[0], 90),
         (x_limits[0], 90),
         (x_limits[0], 90),
     ],
@@ -169,7 +169,7 @@ forecast_annotations(
     ],
     [
         (x_limits[0] + x_length * 0.23, 70),
-        (x_limits[0] + x_length * 0.3, 90),
+        (x_limits[0] + x_length * 0.28, 90),
         (x_limits[0] + x_length * 0.60, 90),
     ],
     [
@@ -216,9 +216,9 @@ ax_forecast.plot(
 drought_labels = [
     "Normal conditions",
     "Abnormally dry",
-    "Moderate drought",
-    "Severe drought",
-    "Extreme drought",
+    "Moderate streamflow drought",
+    "Severe streamflow drought",
+    "Extreme streamflow drought",
 ]
 gid_prefixes = ["obsv-nm-", "obsv-ad-", "obsv-md-", "obsv-sd-", "obsv-ed-"]
 drought_label_lines = [40, 30, 20, 10, 5, 0]
