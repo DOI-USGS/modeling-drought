@@ -143,13 +143,13 @@ def save_desktop_mobile_tablet(
     if text_obj != None:
         text_obj.set_text(text_change)
 
-    # to make the mobile version, we first adjust the figure size to a more horizontal aspect
-    fig.set_size_inches(mobile_dimensions)
-    if mobile_pos_list != None:
-        for i, mod_ax in enumerate(mod_ax_list):
-            mod_ax.set_position(mobile_pos_list[i])
-
     if save_mobile == True:
+        # to make the mobile version, we first adjust the figure size to a more horizontal aspect
+        fig.set_size_inches(mobile_dimensions)
+        if mobile_pos_list != None:
+            for i, mod_ax in enumerate(mod_ax_list):
+                mod_ax.set_position(mobile_pos_list[i])
+
         # make svg
         fig.savefig(dir_1 + base_name + "_mobile.svg", dpi=150, metadata=None)
 
@@ -159,13 +159,13 @@ def save_desktop_mobile_tablet(
             dir_2 + base_name + "_mobile.svg",
         )
 
-    # to make the tablet version, we first adjust the figure size to a more horizontal aspect
-    fig.set_size_inches(tablet_dimensions)
-    if tablet_pos_list != None:
-        for i, mod_ax in enumerate(mod_ax_list):
-            mod_ax.set_position(tablet_pos_list[i])
-
     if save_tablet == True:
+        # to make the tablet version, we first adjust the figure size to a more horizontal aspect
+        fig.set_size_inches(tablet_dimensions)
+        if tablet_pos_list != None:
+            for i, mod_ax in enumerate(mod_ax_list):
+                mod_ax.set_position(tablet_pos_list[i])
+
         # make svg
         fig.savefig(dir_1 + base_name + "_tablet.svg", dpi=150, metadata=None)
 
