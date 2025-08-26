@@ -127,7 +127,7 @@ export default {
         paragraphB1: "As the model continues to run, USGS scientists can use the growing pool of predictions to evaluate model performance in new ways. Specifically, we can assess if the model accurately predicts when a streamflow drought event will start (streamflow drought onset), how long it will last (streamflow drought duration), when it will end (streamflow drought termination), and how low the streamflow percentile will become (streamflow drought intensity). This is valuable information for water managers and communities that are preparing for streamflow drought conditions.",
         figureBpath: "drought_event_explainer.png",
         headingC: "Forecasts for more places",
-        paragraphC1: "USGS is also expanding the model to generate streamflow drought forecasts for CONUS basins that do not have streamgages. The lack of real-time and historical streamflow data in these regions makes water management challenging for decision makers. By applying this streamflow drought forecast model to ungaged areas, USGS aims to provide valuable information on water availability at management-relevant scales.",
+        paragraphC1: "USGS is also expanding the model to generate streamflow drought forecasts for CONUS basins that do not have streamgages. The <a href='https://www.usgs.gov/media/images/how-far-away-your-closest-streamgage'>lack of real-time and historical streamflow data</a> in these regions makes water management challenging for decision makers. By applying this streamflow drought forecast model to ungaged areas, USGS aims to provide valuable information on water availability at management-relevant scales.",
     },
     WhoContributing: {
         title: "Who is contributing to this project?",
@@ -145,3 +145,4 @@ export default {
         title: "USGS Vizlab"
     }
 }
+
