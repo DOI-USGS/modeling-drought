@@ -45,4 +45,15 @@
 </script>
 
 <style>
+  .group-label.median {
+    background-color: var(--color-median);
+    color: white;
+  }
+  .group-label.q95 {
+    background-color: var(--color-quantile-95);
+    color: white;
+  }
+  .group-label.q5 {
+    background-color: var(--color-quantile-5);
+  }
 </style>
