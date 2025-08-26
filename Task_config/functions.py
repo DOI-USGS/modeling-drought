@@ -32,7 +32,7 @@ def forecast_format(y):
 
 # remove annoying metadata that sets vue warnings off
 def remove_metadata_and_fix(infile, outfile):
-    with open(infile, "r") as input_file:
+    with open(infile, "r", encoding="utf-8") as input_file:
         input_content = input_file.read()
 
     # Remove <metadata> sections
@@ -47,53 +47,11 @@ def remove_metadata_and_fix(infile, outfile):
     # NOTE: For this to work font must be specified in pixels, despite matplotlib documentation saying it's in points.
     modified_content = modified_content.replace("pt", "px")
 
-    with open(outfile, "w") as output_file:
+    with open(outfile, "w", encoding="utf-8") as output_file:
         output_file.write(modified_content)
 
 
-def selectable_text(ax, x, y, label, fontcolor, facecolor, edgecolor, va, ha, gid):
-    text = ax.text(
-        x,
-        y,
-        label,
-        color=fontcolor,
-        va=va,
-        ha=ha,
-        gid=gid,
-        transform=ax.transAxes,
-        bbox=dict(
-            facecolor=facecolor,
-            boxstyle="round",
-            alpha=1,
-            edgecolor=edgecolor,
-            pad=button_padding,
-            linewidth=0.75,
-        ),
-        zorder=1,
-    )
-
-    ax.text(
-        x + shadow_offset_x,
-        y + shadow_offset_y,
-        label,
-        color=shadow_color,
-        va=va,
-        ha=ha,
-        gid="shadow-" + gid,
-        transform=ax.transAxes,
-        bbox=dict(
-            facecolor=shadow_color,
-            boxstyle="round",
-            alpha=1,
-            edgecolor=shadow_color,
-            pad=button_padding,
-            linewidth=0.75,
-        ),
-        zorder=0,
-    )
-    return text.get_window_extent().transformed(ax.transData.inverted())
-
-
+# create text in the svg that's meant to become opaque when something happens
 def popup_text(ax, x, y, label, fontcolor, facecolor, edgecolor, va, ha, gid):
     ax.text(
         x,
@@ -152,3 +110,103 @@ def sankey_swoop(ax, x1, x2, width, y1, y2, height, color, alpha=0.2, gid=""):
     y_lower = y1 + (y2 - y1) * (1.0 / (1.0 + np.exp(-sigmoid_swoopiness * (x - x_mid))))
     y_upper = y_lower + height
     ax.fill_between(x, y_lower, y_upper, color=color, alpha=alpha, linewidth=0, gid=gid)
+
+
+def save_desktop_mobile_tablet(
+    dir_1,
+    dir_2,
+    base_name,
+    fig,
+    mobile_dimensions,
+    tablet_dimensions,
+    mod_ax_list=None,
+    mobile_pos_list=None,
+    tablet_pos_list=None,
+    text_obj=None,
+    text_change=None,
+    save_desktop=True,
+    save_tablet=True,
+    save_mobile=True,
+):
+
+    if save_desktop == True:
+        # save desktop version
+        fig.savefig(dir_1 + base_name + "_desktop.svg", dpi=150, metadata=None)
+
+        # remove metadata
+        remove_metadata_and_fix(
+            dir_1 + base_name + "_desktop.svg",
+            dir_2 + base_name + "_desktop.svg",
+        )
+
+    # change text if needed
+    if text_obj != None:
+        text_obj.set_text(text_change)
+
+    if save_mobile == True:
+        # to make the mobile version, we first adjust the figure size to a more horizontal aspect
+        fig.set_size_inches(mobile_dimensions)
+        if mobile_pos_list != None:
+            for i, mod_ax in enumerate(mod_ax_list):
+                mod_ax.set_position(mobile_pos_list[i])
+
+        # make svg
+        fig.savefig(dir_1 + base_name + "_mobile.svg", dpi=150, metadata=None)
+
+        # remove metadata
+        remove_metadata_and_fix(
+            dir_1 + base_name + "_mobile.svg",
+            dir_2 + base_name + "_mobile.svg",
+        )
+
+    if save_tablet == True:
+        # to make the tablet version, we first adjust the figure size to a more horizontal aspect
+        fig.set_size_inches(tablet_dimensions)
+        if tablet_pos_list != None:
+            for i, mod_ax in enumerate(mod_ax_list):
+                mod_ax.set_position(tablet_pos_list[i])
+
+        # make svg
+        fig.savefig(dir_1 + base_name + "_tablet.svg", dpi=150, metadata=None)
+
+        # remove metadata
+        remove_metadata_and_fix(
+            dir_1 + base_name + "_tablet.svg",
+            dir_2 + base_name + "_tablet.svg",
+        )
+
+
+def set_axis_up(ax):
+    ax.tick_params(direction="out")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.set_axisbelow(True)
+
+
+def forecast_annotations(ax, labels, xys, xy_texts, gid_prefix, ha="left"):
+    fontsizes = [
+        target_fontsize_px,
+        0.8 * target_fontsize_px,
+        0.8 * target_fontsize_px,
+    ]
+    gid_suffix = ["", "-tablet", "-mobile"]
+    for i, label in enumerate(labels):
+        ax.annotate(
+            label,
+            color=ratio_5,
+            va="center",
+            fontsize=fontsizes[i],
+            ha=ha,
+            xy=xys[i],
+            xytext=xy_texts[i],
+            arrowprops=dict(
+                facecolor=ratio_5,
+                edgecolor=ratio_5,
+                alpha=0.00001,
+                arrowstyle="fancy",
+                gid=gid_prefix + "-arrow" + gid_suffix[i],
+            ),
+            gid=gid_prefix + gid_suffix[i],
+            alpha=0.0,
+            zorder=100,
+        )

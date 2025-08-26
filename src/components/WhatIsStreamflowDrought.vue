@@ -1,4 +1,7 @@
 <template>
+  <ObservationExplore
+    :text="text.observationExplore"
+  />
   <section>
     <div
       class="text-container"
@@ -34,6 +37,7 @@
 
 <script setup>
   import CollapsibleAccordion from "@/components/CollapsibleAccordion.vue";
+  import ObservationExplore from '@/components/ObservationExplore.vue';
 
   // define props
   defineProps({

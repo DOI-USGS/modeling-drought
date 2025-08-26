@@ -3,6 +3,10 @@ export default {
     WhatIsStreamflowDrought: {
         title: "What is streamflow drought?",
         subtitle:"Streamflow droughts occur when streamflow drops to unusually low levels",
+        observationExplore: {
+            caption1Desktop: "Hover your mouse over the plot to see when a stream goes into streamflow drought.",
+            caption1Responsive: "Tap on the plot to see when a stream goes into streamflow drought.",
+        },
         paragraph1: "<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>Streamflow drought</a> occurs in the wake of meteorological and agricultural drought, when streamflow drops to levels that are unusually low for the time of year. Reduced streamflow has significant impact on plants, animals, and humans.",
         accordionData: [
             {
@@ -156,16 +160,6 @@ export default {
             paragraph2: "You can see that the model does a good job of capturing the expected percent of observations if we specify different prediction intervals:",
             caption: "Use the radio buttons to explore the loss functions (left) and corresponding prediction intervals (right).",
             paragraph3: "Notice that the steeper the asymmetric loss functions, the wider the resulting prediction interval."
-        }
-    },
-    HowUncertaintyChange: {
-        title: "How does uncertainty change with forecast horizon?",
-        subtitle: "Uncertainty increases further into the future",
-        forecastSummary: {
-            paragraph1: "We saw previously that as we look further into the future, the accuracy of the model decreases. We determined this by assessing if the median prediction was correct or incorrect. But how does the whole prediction interval change with forecast horizon?",
-            captionDesktop: "Hover your mouse over the plot to explore how the model’s uncertainty changes with forecast horizon.",
-            captionResponsive: "Tap the plot to explore how the model’s uncertainty changes with forecast horizon.",
-            paragraph2: "Uncertainty grows from 1 to 3 weeks out and then plateaus at a higher level from 4 weeks on. Predictions for 13 weeks out are the most uncertain, with the widest prediction interval. This is what we would expect, as weather forecasts are very limited for that time frame."
         }
     },
     WhatsNext: {

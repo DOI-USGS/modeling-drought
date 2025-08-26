@@ -80,114 +80,144 @@
         {
             label: 'Observations',
             id: 'observation',
-            visible: false,
+            visible: true,
             color: 'var(--color-observations)'
         }
     ]);
 
     // Watches layers for changes and updates figure layers
     watch(layers, () => {
-        updateFigure();
+        updateFigure(d3.select("#fc-svg"));
     });
 
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        updateFigure();
+        updateFigure(d3.select("#fc-svg"));
         addInteractions();
     });
 
-    function updateFigure() {
+    function updateFigure(svg) {
         layers.map(layer => {
             const targetOpacity = layer.visible ? 1 : 0;
-            toggleLayer(layer.id, targetOpacity)
+            toggleLayer(svg, layer.id, targetOpacity)
         })
     }
 
-    function toggleLayer(targetID, targetOpacity) {
+    function toggleLayer(svg, targetID, targetOpacity) {
         if (targetID == 'observation') {
-            d3.select("#" + targetID + "-full-forecast").selectAll("path")
+            svg.select("#" + targetID + "-full-forecast").selectAll("path")
                 .style("stroke-opacity", targetOpacity)
         } 
     }
     
-    function draw_line(line_id_base,lookback) {
+    function draw_line(svg, line_id_base,lookback) {
         for (let i = 0; i < lookback; i++) {
             let line_id = (parseInt(line_id_base) - i * 7).toString()
             let opacity = (lookback - i) / lookback
             //forecast lines
-            d3.select("#forecast_middl_" + line_id).selectAll("path")
+            svg.select("#forecast_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", Math.pow(opacity,1.5))
                 .style("stroke", d3.interpolateCividis(1-opacity))
                 .style("stroke-width",2.*opacity);
         }
-        d3.select("#forecast_patch_" + line_id_base).selectAll("path")
+        svg.select("#forecast_patch_" + line_id_base).selectAll("path")
             .style("fill", d3.rgb(0,0,0,0.0));
-        d3.select("#observation_" + line_id_base).selectAll("path")
+        svg.select("#observation_" + line_id_base).selectAll("path")
                 .style("stroke-opacity", 1.0);
       }
 
-    function remove_line(line_id_base,lookback) {
+    function remove_line(svg, line_id_base,lookback) {
         for (let i = 0; i < lookback; i++) {
             let line_id = (parseInt(line_id_base) - i * 7).toString()
-            d3.select("#forecast_middl_" + line_id).selectAll("path")
+            svg.select("#forecast_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", 0);
         }
-        d3.select("#forecast_patch_" + line_id_base).selectAll("path")
+        svg.select("#forecast_patch_" + line_id_base).selectAll("path")
             .style("fill", d3.rgb(0,0,0,0));
-        d3.select("#observation_" + line_id_base).selectAll("path")
+        svg.select("#observation_" + line_id_base).selectAll("path")
             .style("stroke-opacity", 0);
     }
 
-    function mouseover(event,lookback) {
+    function mouseover(svg, event,lookback) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
-            d3.select("#"+event.currentTarget.id).selectAll("path")
+            svg.select("#"+event.currentTarget.id).selectAll("path")
                 .style("stroke-opacity", 0.1);
             let line_id_base = event.currentTarget.id.slice(15);
-            draw_line(line_id_base,lookback)
+            draw_line(svg, line_id_base,lookback)
         }
     }
 
-    function mouseout(event,lookback) {
+    function mouseout(svg, event,lookback) {
         if (event.currentTarget.id.startsWith("forecast_hover_")){
-            d3.select("#"+event.currentTarget.id).selectAll("path")
+            svg.select("#"+event.currentTarget.id).selectAll("path")
                 .style("stroke-opacity", 0.0);
             let line_id_base = event.currentTarget.id.slice(15);
-            remove_line(line_id_base,lookback)
+            remove_line(svg, line_id_base,lookback)
         }
     }
 
-    function annotation(opacity){
+    function annotation_1(svg, opacity){
       if (mobileView == true){
-        d3.select("#annotation_forecast_mobile").selectAll("text")
+        svg.select("#annotation-1-forecast-mobile").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow_mobile").selectAll("path")
+        svg.select("#annotation-1-forecast-arrow-mobile").selectAll("path")
             .style("opacity", opacity);
       }else if (tabletView == true){
-        d3.select("#annotation_forecast_tablet").selectAll("text")
+        svg.select("#annotation-1-forecast-tablet").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow_tablet").selectAll("path")
+        svg.select("#annotation-1-forecast-arrow-tablet").selectAll("path")
             .style("opacity", opacity);
       }else{
-        d3.select("#annotation_forecast").selectAll("text")
+        svg.select("#annotation-1-forecast").selectAll("text")
             .style("opacity", opacity);
-        d3.select("#annotation_forecast_arrow").selectAll("path")
+        svg.select("#annotation-1-forecast-arrow").selectAll("path")
             .style("opacity", opacity);
       }
     }
 
-    function mouseleave(default_line,lookback) {
-        // draw default line
-        draw_line(default_line,lookback);
-        // add annotation
-        annotation(1.0)
+    function annotation_2(svg, opacity){
+      if (mobileView == true){
+        svg.select("#annotation-2-forecast-mobile").selectAll("text")
+            .style("opacity", opacity);
+        svg.select("#annotation-2-forecast-arrow-mobile").selectAll("path")
+            .style("opacity", opacity);
+      }else if (tabletView == true){
+        svg.select("#annotation-2-forecast-tablet").selectAll("text")
+            .style("opacity", opacity);
+        svg.select("#annotation-2-forecast-arrow-tablet").selectAll("path")
+            .style("opacity", opacity);
+      }else{
+        svg.select("#annotation-2-forecast").selectAll("text")
+            .style("opacity", opacity);
+        svg.select("#annotation-2-forecast-arrow").selectAll("path")
+            .style("opacity", opacity);
+      }
     }
 
-    function mouseenter(default_line,lookback) {
+    function drought_line(svg,opacity){
+        svg.select("#obsv-ad-line").selectAll("path")
+            .style("stroke-opacity", opacity);
+    }
+
+    function mouseleave(svg, default_line,lookback) {
+        // draw default line
+        draw_line(svg, default_line,lookback);
+        // add annotation
+        annotation_1(svg, 1.0)
+        // remove washout layer
+        svg.select("#forecast-washout").selectAll("path")
+            .style("fill-opacity", 0.0);
+    }
+
+    function mouseenter(svg, default_line,lookback) {
         // remove default line
-        remove_line(default_line,lookback)
+        remove_line(svg, default_line,lookback)
         // remove annotation
-        annotation(0.0)    
+        annotation_1(svg, 0.0)   
+        // add washout layer
+        svg.select("#forecast-washout").selectAll("path")
+            .style("fill-opacity", 0.75); 
     }
 
     function addInteractions() {
@@ -196,19 +226,27 @@
 
         // plot parameters
         const lookback = 13
-        var default_line = "13055"
-        draw_line(default_line,lookback)
+        var default_line = "0"
+        draw_line(fcSVG, default_line,lookback)
 
         // draw annotations
-        annotation(1.0)
+        annotation_1(fcSVG, 1.0)
+        annotation_2(fcSVG, 1.0)
+
+        // draw drought line
+        drought_line(fcSVG, 1.0)
+
+        // remove y label
+        fcSVG.select("#observation-forecast-ylabel").selectAll("text")
+            .style("opacity",0.0);
 
         // Add interaction to loss function chart
         fcSVG.select("#axis-forecast")
-            .on("mouseleave", () => mouseleave(default_line,lookback))
-            .on("mouseenter", () => mouseenter(default_line,lookback));
+            .on("mouseleave", () => mouseleave(fcSVG, default_line,lookback))
+            .on("mouseenter", () => mouseenter(fcSVG, default_line,lookback));
         fcSVG.selectAll("g")
-            .on("mouseover", (event) => mouseover(event,lookback))
-            .on("mouseout", (event) => mouseout(event,lookback))
+            .on("mouseover", (event) => mouseover(fcSVG, event,lookback))
+            .on("mouseout", (event) => mouseout(fcSVG, event,lookback))
     }
 </script>
 

@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
-from scipy import interpolate
 from Task_config.defaults import *
 from Task_config.functions import *
 from Task_config.parameters import *
@@ -14,22 +13,23 @@ from Task_config.parameters import *
 fig = plt.figure(
     1,
     figsize=(
-        target_plotwidth_in_tablet,
-        target_plotwidth_in_tablet / aspect_double_plot_tablet,
+        target_plotwidth_in_desktop,
+        target_plotwidth_in_desktop / aspect_double_plot_desktop,
     ),
     gid="figure-" + basename_gid_lf,
 )
 # add axes for loss function
-ax_LF = fig.add_axes([0.125, 0.575, 0.825, 0.375], gid="axis-" + basename_gid_lf + "1")
+ax_LF = fig.add_axes(
+    [0.125 / 2.0, 0.075 * 2.0, 0.825 / 3.0, 0.375 * 2.0],
+    gid="axis-" + basename_gid_lf + "1",
+)
 # add axes for the forecast
 ax_forecast = fig.add_axes(
-    [0.125, 0.075, 0.825, 0.375], gid="axis-" + basename_gid_lf + "2"
+    [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0],
+    gid="axis-" + basename_gid_lf + "2",
 )
 
 ### Data Arrays
-
-# loss function x-array
-x_LF = np.array([-1.0, 0.0, 1.0])
 
 # load date data
 x_forecast_raw = forecast_data["datetime"].values.astype("datetime64[D]")
@@ -42,7 +42,7 @@ upper_bound = np.argmin(np.abs(x_forecast_raw - np.datetime64(date_range[1]))) +
 x_forecast = x_forecast_raw[lower_bound:upper_bound]
 
 # load observed data
-y_training = forecast_data["observed"][lower_bound:upper_bound]
+y_training = forecast_data["observation"][lower_bound:upper_bound]
 
 # load model data (lower, median, and upper)
 y_forecast_lower = forecast_format(forecast_data["lower"][lower_bound:upper_bound])
@@ -89,7 +89,7 @@ for i, percentile in enumerate(
 
 # annotations
 annotation_instructions = ax_LF.annotate(
-    "Tap in the\ngray region",
+    "Drag mouse over\ngray region",
     color=ratio_5,
     va="center",
     ha="center",
@@ -244,13 +244,12 @@ ax_forecast.plot(
 
 # forecast axis parameters
 ax_forecast.grid(visible=True, axis="y", clip_on=False)
-ax_forecast.tick_params(direction="out")
 ax_forecast.set_ylim(0, 100.0)
 ax_forecast.set_xlim(np.datetime64(date_range[0]), np.datetime64(date_range[-1]))
 start_year = 1971 + np.datetime64(date_range[0], "Y").astype(int)
 end_year = 1971 + np.datetime64(date_range[-1], "Y").astype(int)
-x_ticks = [np.datetime64(str(i) + "-01-01") for i in range(start_year, end_year)]
-x_ticks_labels = [i for i in range(start_year, end_year)]
+x_ticks = [np.datetime64(str(i - 1) + label_year) for i in range(start_year, end_year)]
+x_ticks_labels = [i + year_label_offset for i in range(start_year, end_year)]
 ax_forecast.set_xticks(x_ticks, x_ticks_labels)
 ax_forecast.set_yticks(
     [0.0, 20.0, 40.0, 60.0, 80.0, 100],
@@ -267,59 +266,25 @@ ax_forecast.set_xlabel("Date", weight="semibold")
 ax_forecast.set_title(
     "Streamflow percentile", loc="left", weight="extra bold", color="k"
 )
-ax_forecast.spines["top"].set_visible(False)
-ax_forecast.spines["right"].set_visible(False)
-ax_forecast.set_axisbelow(True)
+set_axis_up(ax_forecast)
 
-# river label
-plt.figtext(1, 0, river_label, ha="right", va="bottom", alpha=0.5)
-
-# make svg
-fig.savefig("Task1/out/lf_example_tablet.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task1/out/lf_example_tablet.svg", "src/assets/svgs/lf_example_tablet.svg"
-)
-
-# to make the desktop version, we first adjust the figure size to a more horizontal aspect
-fig.set_size_inches(
-    target_plotwidth_in_desktop,
-    target_plotwidth_in_desktop / aspect_double_plot_desktop,
-)
-
-# we then set a new position for the loss function plot and make it more square
-ax_LF.set_position([0.125 / 2.0, 0.075 * 2.0, 0.825 / 3.0, 0.375 * 2.0])
-# last we stretch the forecase plot to make it wider
-ax_forecast.set_position(
-    [0.125 / 2.0 + 1.0 / 3.0, 0.075 * 2.0, 0.825 * 2.0 / 3.0, 0.375 * 2.0]
-)
-annotation_instructions.set_text("Drag mouse over\ngray region")
-# make svg
-fig.savefig("Task1/out/lf_example_desktop.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task1/out/lf_example_desktop.svg", "src/assets/svgs/lf_example_desktop.svg"
-)
-
-# to make the mobile version, we first adjust the figure size to a more horizontal aspect
-fig.set_size_inches(
-    target_plotwidth_in_mobile,
-    target_plotwidth_in_mobile / aspect_double_plot_mobile,
-)
-
-# we then set a new position for the loss function plot and make it more square
-ax_LF.set_position([0.14, 0.6, 0.8, 0.333])
-# last we stretch the forecase plot to make it wider
-ax_forecast.set_position([0.14, 0.1, 0.8, 0.333])
-
-annotation_instructions.set_text("Tap in the\ngray region")
-
-# make svg
-fig.savefig("Task1/out/lf_example_mobile.svg", metadata=None)
-
-# remove metadata
-remove_metadata_and_fix(
-    "Task1/out/lf_example_mobile.svg", "src/assets/svgs/lf_example_mobile.svg"
+# save plots
+save_desktop_mobile_tablet(
+    dir_1="Task1/out/",
+    dir_2="src/assets/svgs/",
+    base_name="lf_example",
+    fig=fig,
+    mobile_dimensions=[
+        target_plotwidth_in_mobile,
+        target_plotwidth_in_mobile / aspect_double_plot_mobile,
+    ],
+    tablet_dimensions=[
+        target_plotwidth_in_tablet,
+        target_plotwidth_in_tablet / aspect_double_plot_tablet,
+    ],
+    mod_ax_list=[ax_LF, ax_forecast],
+    mobile_pos_list=[[0.14, 0.6, 0.8, 0.333], [0.14, 0.1, 0.8, 0.333]],
+    tablet_pos_list=[[0.125, 0.575, 0.825, 0.375], [0.125, 0.075, 0.825, 0.375]],
+    text_obj=annotation_instructions,
+    text_change="Tap in the\ngray region",
 )

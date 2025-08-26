@@ -16,10 +16,10 @@ z
   </g>
   <g id="axis-forecast-diagramforecast">
    <g id="patch_2">
-    <path d="M 19.98 254.592 
+    <path d="M 59.94 254.592 
 L 379.62 254.592 
 L 379.62 29.952 
-L 19.98 29.952 
+L 59.94 29.952 
 z
 " style="fill: #ffffff"/>
    </g>
@@ -27,52 +27,82 @@ z
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="m0d28e13862" d="M 0 0 
+       <path id="m39f98ec653" d="M 0 0 
 L 0 3.5 
 " style="stroke: #949494; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m0d28e13862" x="67.932" y="254.592" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m39f98ec653" x="102.564" y="254.592" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
-      <text style="font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="67.932" y="273.1445" transform="rotate(-0 67.932 273.1445)">1</text>
+      <text style="font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="102.564" y="273.1445" transform="rotate(-0 102.564 273.1445)">1</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#m0d28e13862" x="355.644" y="254.592" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m39f98ec653" x="358.308" y="254.592" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
-      <text style="font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="355.644" y="273.1445" transform="rotate(-0 355.644 273.1445)">13</text>
+      <text style="font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="358.308" y="273.1445" transform="rotate(-0 358.308 273.1445)">13</text>
      </g>
     </g>
     <g id="text_3">
-     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="199.8" y="292.2495" transform="rotate(-0 199.8 292.2495)">Forecast horizon in weeks</text>
+     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="219.78" y="292.2495" transform="rotate(-0 219.78 292.2495)">Forecast horizon in weeks</text>
     </g>
    </g>
-   <g id="line2d_3">
-    <path d="M 43.956 155.223214 
-L 67.932 169.618242 
-L 91.908 158.94488 
-L 115.884 90.359395 
-L 139.86 71.352787 
-L 163.836 137.595771 
-L 187.812 155.00772 
-L 211.788 103.720049 
-L 235.764 108.504025 
-L 259.74 144.96568 
-L 283.716 174.660811 
-L 307.692 162.377629 
-L 331.668 125.614282 
-L 355.644 153.45616 
-" clip-path="url(#p1e900e6026)" style="fill: none; stroke: #00264c; stroke-width: 2; stroke-linecap: square"/>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_3">
+      <defs>
+       <path id="md447109419" d="M 0 0 
+L -3.5 0 
+" style="stroke: #949494; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#md447109419" x="59.94" y="235.872" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: end; fill: #595959" x="52.94" y="241.64825" transform="rotate(-0 52.94 241.64825)">0ᵗʰ</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#md447109419" x="59.94" y="48.672" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: end; fill: #595959" x="52.94" y="54.44825" transform="rotate(-0 52.94 54.44825)">100ᵗʰ</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="13.7375" y="142.272" transform="rotate(-90 13.7375 142.272)">Streamflow percentile</text>
+    </g>
+   </g>
+   <g id="line2d_5">
+    <path d="M 81.252 155.223214 
+L 102.564 169.618242 
+L 123.876 158.94488 
+L 145.188 90.359395 
+L 166.5 71.352787 
+L 187.812 137.595771 
+L 209.124 155.00772 
+L 230.436 103.720049 
+L 251.748 108.504025 
+L 273.06 144.96568 
+L 294.372 174.660811 
+L 315.684 162.377629 
+L 336.996 125.614282 
+L 358.308 153.45616 
+" clip-path="url(#p05d5062107)" style="fill: none; stroke: #00264c; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="PathCollection_1">
     <defs>
-     <path id="me4e17db32d" d="M 0 5 
+     <path id="m9e2fc5ff12" d="M 0 5 
 C 1.326016 5 2.597899 4.473168 3.535534 3.535534 
 C 4.473168 2.597899 5 1.326016 5 0 
 C 5 -1.326016 4.473168 -2.597899 3.535534 -3.535534 
@@ -84,13 +114,13 @@ C -2.597899 4.473168 -1.326016 5 0 5
 z
 " style="stroke: #00264c"/>
     </defs>
-    <g clip-path="url(#p1e900e6026)">
-     <use xlink:href="#me4e17db32d" x="43.956" y="155.223214" style="fill: #ffffff; stroke: #00264c"/>
+    <g clip-path="url(#p05d5062107)">
+     <use xlink:href="#m9e2fc5ff12" x="81.252" y="155.223214" style="fill: #ffffff; stroke: #00264c"/>
     </g>
    </g>
    <g id="PathCollection_2">
     <defs>
-     <path id="m5ea7f78c40" d="M 0 5 
+     <path id="ma21d3effb8" d="M 0 5 
 C 1.326016 5 2.597899 4.473168 3.535534 3.535534 
 C 4.473168 2.597899 5 1.326016 5 0 
 C 5 -1.326016 4.473168 -2.597899 3.535534 -3.535534 
@@ -102,39 +132,41 @@ C -2.597899 4.473168 -1.326016 5 0 5
 z
 " style="stroke: #00264c"/>
     </defs>
-    <g clip-path="url(#p1e900e6026)">
-     <use xlink:href="#m5ea7f78c40" x="67.932" y="169.618242" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="91.908" y="158.94488" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="115.884" y="90.359395" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="139.86" y="71.352787" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="163.836" y="137.595771" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="187.812" y="155.00772" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="211.788" y="103.720049" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="235.764" y="108.504025" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="259.74" y="144.96568" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="283.716" y="174.660811" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="307.692" y="162.377629" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="331.668" y="125.614282" style="fill: #00264c; stroke: #00264c"/>
-     <use xlink:href="#m5ea7f78c40" x="355.644" y="153.45616" style="fill: #00264c; stroke: #00264c"/>
+    <g clip-path="url(#p05d5062107)">
+     <use xlink:href="#ma21d3effb8" x="102.564" y="169.618242" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="123.876" y="158.94488" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="145.188" y="90.359395" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="166.5" y="71.352787" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="187.812" y="137.595771" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="209.124" y="155.00772" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="230.436" y="103.720049" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="251.748" y="108.504025" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="273.06" y="144.96568" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="294.372" y="174.660811" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="315.684" y="162.377629" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="336.996" y="125.614282" style="fill: #00264c; stroke: #00264c"/>
+     <use xlink:href="#ma21d3effb8" x="358.308" y="153.45616" style="fill: #00264c; stroke: #00264c"/>
     </g>
    </g>
    <g id="patch_3">
-    <path d="M 19.98 254.592 
+    <path d="M 59.94 254.592 
+L 59.94 29.952 
+" style="fill: none; stroke: #949494; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 59.94 254.592 
 L 379.62 254.592 
 " style="fill: none; stroke: #949494; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="text_4">
-    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #00264c" transform="translate(27.6835 126.767214)">Issue</text>
-    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #00264c" transform="translate(29.5085 144.182714)">date</text>
-   </g>
-   <g id="text_5">
-    <text style="font-weight: 800; font-size: 20px; font-family: 'Source Sans 3', sans-serif; text-anchor: start" x="19.98" y="23.952" transform="rotate(-0 19.98 23.952)">Streamflow percentile</text>
+   <g id="text_7">
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #00264c" transform="translate(64.9795 126.767214)">Issue</text>
+    <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #00264c" transform="translate(66.8045 144.182714)">date</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p1e900e6026">
-   <rect x="19.98" y="29.952" width="359.64" height="224.64"/>
+  <clipPath id="p05d5062107">
+   <rect x="59.94" y="29.952" width="319.68" height="224.64"/>
   </clipPath>
  </defs>
 </svg>
