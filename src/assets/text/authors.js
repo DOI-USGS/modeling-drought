@@ -32,7 +32,7 @@ export default {
       link: 'https://www.usgs.gov/staff-profiles/althea-archer'
     },
     {
-      name: 'Mandy Carr',
+      name: 'Mandie Carr',
       link: 'https://www.usgs.gov/staff-profiles/amanda-carr'
     }
   ],
