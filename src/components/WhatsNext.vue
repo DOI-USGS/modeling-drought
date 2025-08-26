@@ -28,7 +28,6 @@
       </div>
       <h3 v-html="text.headingC" />
       <p v-html="text.paragraphC1" />
-      <p v-html="text.paragraphC2" />
     </div>
   </section>
 </template>

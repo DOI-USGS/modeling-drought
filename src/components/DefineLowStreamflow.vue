@@ -5,7 +5,6 @@
     >
       <h3 v-html="text.heading" />
       <p v-html="text.paragraph1" />
-      <p v-html="text.paragraph2" />
       <div
         class="explainer-image-container"
       >
@@ -14,21 +13,12 @@
           class="explainer-image"
         >
       </div>
-      <p v-html="text.paragraph3" />
+      <p v-html="text.paragraph2" />
       <div
         class="explainer-image-container"
       >
         <img
           :src="getImageURL(text.figure2Path)"
-          class="explainer-image"
-        >
-      </div>
-      <p v-html="text.paragraph4" />
-      <div
-        class="explainer-image-container"
-      >
-        <img
-          :src="getImageURL(text.figure3Path)"
           class="explainer-image"
         >
       </div>
