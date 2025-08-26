@@ -1,7 +1,4 @@
 <template>
-  <ObservationExplore
-    :text="text.observationExplore"
-  />
   <section>
     <div
       class="text-container"
@@ -17,8 +14,12 @@
         class="section-subtitle"
         v-html="text.subtitle"
       />
-      <p v-html="text.paragraph1" />
-      <p v-html="text.paragraph2" />
+      <DefineLowStreamflow
+        :text="text.defineLowStreamflow"
+      />
+      <ClassifyStreamflowDrought
+        :text="text.classifyStreamflowDrought"
+      />
       <CollapsibleAccordion 
         v-for="item, index in text.accordionData"
         :key="index"
@@ -36,8 +37,9 @@
 </template>
 
 <script setup>
+  import DefineLowStreamflow from "@/components/DefineLowStreamflow.vue";
+  import ClassifyStreamflowDrought from "@/components/ClassifyStreamflowDrought.vue";
   import CollapsibleAccordion from "@/components/CollapsibleAccordion.vue";
-  import ObservationExplore from '@/components/ObservationExplore.vue';
 
   // define props
   defineProps({

@@ -1,67 +1,38 @@
 export default {
-    pageTitle: "Modeling <span class='emph'>streamflow</span> drought",
-    WhatIsStreamflowDrought: {
-        title: "What is streamflow drought?",
-        subtitle:"Streamflow droughts occur when streamflow drops to unusually low levels",
+    pageTitle: "Modeling <span class='emph'>streamflow drought</span>",
+    WhyForecastStreamflowDrought: {
         observationExplore: {
             caption1Desktop: "Hover your mouse over the plot to see when a stream goes into streamflow drought.",
             caption1Responsive: "Tap on the plot to see when a stream goes into streamflow drought.",
         },
-        paragraph1: "<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>Streamflow drought</a> occurs in the wake of meteorological and agricultural drought, when streamflow drops to levels that are unusually low for the time of year. Reduced streamflow has significant impact on plants, animals, and humans.",
+        title: "Why forecast streamflow drought?",
+        subtitle:"Streamflow drought forecasts help decision makers prepare for reduced water availability",
+        paragraph1: "The food we eat, the water we drink...",
+        mapperDiagram: {
+            figurePath: "timeseries.png",
+            caption: "Explore a map of current..."
+        }        
+    },
+    WhenIsADroughtADrought: {
+        title: "When is a drought a drought?",
+        subtitle:"Percentiles tell us when low flows are streamflow droughts based on how often they occur",
+        defineLowStreamflow: {
+            heading: "Defining ‘unusually low’ streamflow using percentiles",
+            paragraph1: "For any stream or river, defining ‘unusually low’ streamflow means understanding typical conditions throughout the year. For <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>stream gages</a> with at least 40 years of data, we have a good understanding of what streamflow levels are typically observed at that site.",
+            paragraph2: "To understand how typical a mean daily streamflow value is, we can compare it to previous mean daily streamflow values on that same day of year in earlier years.",
+            figure1Path: "percentiles_explainer_1.png",
+            paragraph3: "We can then lump all of these values into percentile bins, based on how often they occur. For example, take an observed streamflow level of 4,800 cubic feet per second (cfs). If streamflow at the site is below 4,800 cfs on March 1<sup>st</sup> in 20% of recorded years, then 4,800 cfs is the 20<sup>th</sup> percentile streamflow for that site on that date. Another way to say it is that on March 1<sup>st</sup>, streamflow at that site is less than 4,800 cfs 20% of the time.  The USGS categorizes streamflow percentiles in the 10 – 25 percentile range as ‘below normal.’",
+            figure2Path: "percentiles_explainer_2.png",
+            paragraph4: "By doing this for every day of the year, we are able to place mean daily streamflow values in the context of historical observations.",
+            figure3Path: "percentiles_explainer_3.png"
+        },
+        classifyStreamflowDrought: {
+            heading: "Classifying streamflow drought using percentiles",
+            paragraph1: "While the USGS streamflow categories shown above are useful for classifying all streamflow observed at a site, the low levels of streamflow that indicate streamflow drought are classified using <a href='https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx' target='_blank'>U.S. Drought Monitor categories</a>. These categories bin low streamflow percentiles into specific drought categories that describe the intensity of the drought:",
+            figurePath: "drought_percentiles_explainer.png",
+            paragraph2: "For this project, we have specifically trained the model to forecast the following three categories of streamflow drought:<span><ul><li>Moderate drought (< 20<sup>th</sup> percentile)</li><li>Severe drought (< 10<sup>th</sup> percentile)</li><li>Extreme drought (< 5<sup>th</sup> percentile)</li></ul></span>"
+        },
         accordionData: [
-            {
-                heading: "Defining ‘unusually low’ streamflow using percentiles",
-                content: [
-                    {
-                        type: "text",
-                        content: "For any stream or river, defining ‘unusually low’ streamflow means understanding typical conditions throughout the year. For <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>stream gages</a> with at least 40 years of data, we have a good understanding of what streamflow levels are typically observed at that site. "
-                    },
-                    {
-                        type: "text",
-                        content: "To understand how typical a mean daily streamflow value is, we can compare it to previous mean daily streamflow values on that same day of year in earlier years."
-                    },
-                    {
-                        type: "image",
-                        content: "percentiles_explainer_1.png"
-                    },
-                    {
-                        type: "text",
-                        content: "We can then lump all of these values into percentile bins, based on how often they occur. For example, take an observed streamflow level of 4,800 cubic feet per second (cfs). If streamflow at the site is below 4,800 cfs on March 1<sup>st</sup> in 20% of recorded years, then 4,800 cfs is the 20<sup>th</sup> percentile streamflow for that site on that date. Another way to say it is that on March 1<sup>st</sup>, streamflow at that site is less than 4,800 cfs 20% of the time.  The USGS categorizes streamflow percentiles in the 10 – 25 percentile range as ‘below normal.’ "
-                    },
-                    {
-                        type: "image",
-                        content: "percentiles_explainer_2.png"
-                    },
-                    
-                    {
-                        type: "text",
-                        content: "By doing this for every day of the year, we are able to place mean daily streamflow values in the context of historical observations."
-                    },
-                    {
-                        type: "image",
-                        content: "percentiles_explainer_3.png"
-                    },
-                ],
-                activeOnLoad: false
-            },
-            {
-                heading: "Classifying streamflow drought using percentiles",
-                content: [
-                    {
-                        type: "text",
-                        content: "While the USGS streamflow categories shown above are useful for classifying all streamflow observed at a site, the low levels of streamflow that indicate streamflow drought are classified using <a href='https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx' target='_blank'>U.S. Drought Monitor categories</a>. These categories bin low streamflow percentiles into specific drought categories that describe the intensity of the drought:"
-                    },
-                    {
-                        type: "image",
-                        content: "drought_percentiles_explainer.png"
-                    },
-                    {
-                        type: "text",
-                        content: "For this project, we have specifically trained the model to forecast the following three categories of streamflow drought:<span><ul><li>Moderate drought (< 20<sup>th</sup> percentile)</li><li>Severe drought (< 10<sup>th</sup> percentile)</li><li>Extreme drought (< 5<sup>th</sup> percentile)</li></ul></span>"
-                    }
-                ],
-                activeOnLoad: false
-            },
             {
                 heading: "How are ‘low flows’ different from ‘streamflow drought’?",
                 content: [
@@ -80,7 +51,7 @@ export default {
     },
     HowModelStreamflowDrought: {
         title: "How do we model streamflow drought?",
-        subtitle:"We train a model to accurately predict <i>low</i> streamflow percentiles",
+        subtitle:"Scientists train a model to accurately predict <i>low</i> streamflow percentiles",
         paragraph1: "To forecast streamflow drought at <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>USGS stream gages</a> across the contiguous United States (CONUS), we have built a machine learning model (a Long Short-Term Memory network, or LSTM) that predicts streamflow percentiles.",
         paragraph2: "To predict streamflow percentiles, we train the model with input data and output data for all of CONUS: <span><ul><li>Input data: <span class='tooltip-group'><span class='tooltip-span'>Watershed characteristics</span><span id='characteristics-tooltip' class='tooltiptext'>Some watershed characteristics that the model finds useful are average annual precipitation summaries, watershed elevation, and flowline slope. Many other characteristics are also provided, including land cover types, soil types, irrigation density (ditches, withdrawals, tile drainage), and transportation density (trails, roads, highways).</span></span>, antecedent precipitation and streamflow conditions, and upcoming weather forecasts</li><li>Output data: Streamflow percentiles at USGS stream gages. Because streamflow droughts occur when streamflow is unusually low, we specifically train the model to predict low streamflow percentiles by restricting the training dataset to observations below the 30th percentile</li></ul></span>",
         paragraph3: "Using cloud computing resources, the model is trained to “learn” the relationship between the input and output data.  After being trained on thousands of watersheds, the model learns that the same weather can lead to different relative streamflow conditions (streamflow percentiles) at different sites.",
@@ -88,26 +59,10 @@ export default {
     },
     WhatDoForecastsLookLike: {
         title: "What do the forecasts look like?",
-        subtitle: "We generate weekly forecasts for 1-13 weeks in the future",
+        subtitle: "The model generates weekly forecasts for 1-13 weeks in the future",
         forecastTimeseries: {
             paragraph1: "Every week, we ask the model to generate weekly forecasts for 1-13 weeks out. For each forecast horizon (e.g., 4 weeks out), the model produces a prediction (its best estimate of the streamflow percentile for each week) along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece later!",
-            caption: "On each issue date, we generate forecasts for the next 13 weeks.",
-            accordionData: [
-                {
-                    heading: "How are the forecasts shared with the public?",
-                    content: [
-                        {
-                            type: "text",
-                            content: "The forecasts are shared publicly on the <a href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>streamflow drought forecasts interactive map</a>. Users can explore a map of current and forecast conditions across CONUS and can also view detailed forecasts for individual sites. Note that for the forecast timeseries shown here, the site-specific predicted streamflow percentiles have been converted to streamflow, in units of cubic feet per second (cfs):"
-                        },
-                        {
-                            type: "image",
-                            content: "timeseries.png"
-                        }
-                    ],
-                    activeOnLoad: false
-                },
-            ]
+            caption: "On each issue date, we generate forecasts for the next 13 weeks."
         },
         forecastExplore: {
             paragraph1: "We regenerate the forecast weekly – explore the figure below to see how the forecast updates over time, and how it compares to observations.",
@@ -138,24 +93,28 @@ export default {
         }
     },
     HowCaptureUncertainty: {
-        title: "How do we capture uncertainty?",
-        subtitle:"We train the model to give us a range of possible values",
+        title: "How does the model capture uncertainty?",
+        subtitle:"Scientists train the model to provide a range of possible values",
         paragraph1: "When we forecast streamflow percentiles, we want to know the uncertainty associated with each prediction. To capture the uncertainty, we train the model to predict three things:<span><ul><li>The model’s best estimate of the streamflow percentile for each forecast date—this is the median prediction</li><li>The upper bound for the streamflow percentile—this is the 95% quantile. The model is predicting a value that is so high, given the current conditions, that we think it will only be exceeded 5% of the time</li><li>The lower bound for the streamflow percentile—this is the 5% quantile. The model is predicting a value that is so low, given the current conditions, that we think it will only be lower 5% of the time</li></ul></span>",
         paragraph2: "Essentially, we want the model to consider everything that could happen, given the current inputs, and give us the range of possible streamflow percentiles, excluding the 10% least likely scenarios.",
         paragraph3: "We set up the model to generate these three predicted values by using what are called loss functions.",
+        lossFunctionDiagram: {
+            heading: "Training models with loss functions",
+            paragraph1: "Training an AI/ML model requires directing...",
+            caption: "Loss functions use different rates of penalties for incorrect predictions depending on whether scientists are interested in the median, 95% quantile (upper bound), or 5% quantile (lower bound) values."
+        },
         lossFunction: {
-            heading: "Using loss functions",
             paragraph1: "When we train the machine learning model, we incentivize it to find the best solution by penalizing it when it predicts incorrectly. In general, the more inaccurate the prediction, the higher the penalty. But some of the incorrect predictions may be overestimates, while some may be underestimates. Depending on what we are asking the model to predict, we want to penalize it differently for over- and under- estimations.",
             paragraph2: "To set the model up to generate the median prediction, we use a loss function that penalizes the model equally for under- and over- estimations. When plotted, this loss function has identical left and right slopes, so we call this a symmetric loss function. Incorrect predictions are penalized more the further they are from the actual value, regardless of whether they are over- or under- estimations.",
             paragraph3: "To set the model up to generate the upper bound prediction, we use a loss function that penalizes the model more steeply for under- estimating the actual value than for over-estimating it. When plotted, this loss function has a steeper left slope than right slope, so we call this an asymmetric loss function.",
             paragraph4: "To set the model up to generate the lower bound prediction, we do the opposite, using a loss function that penalizes the model more steeply for over-estimating the actual value. When plotted, this loss function is also asymmetric, with a steeper right slope than left slope.",
             paragraph5: "Explore the plot below to see how the asymmetry of the loss function influences model predictions:",
-            captionDesktop: "Hover your mouse in the gray region to see the relationship between the loss function (left) and the streamflow percentile prediction (right).",
-            captionResponsive: "Tap in the gray region to see the relationship between the loss function (left) and the streamflow percentile prediction (right).",
+            caption2Desktop: "Hover your mouse in the gray region to see the relationship between the loss function (left) and the streamflow percentile prediction (right).",
+            caption2Responsive: "Tap in the gray region to see the relationship between the loss function (left) and the streamflow percentile prediction (right).",
             paragraph6: "What do you see? When the left slope in the loss function is steeper than the right slope, the model favors high predictions, as we would expect. And the other way around, the model favors low predictions. This approach allows the model to bracket the range of its predictions, capturing the uncertainty."
         },
         predictionInterval: {
-            heading: "The prediction interval",
+            heading: "Defining prediction intervals",
             paragraph1: "The upper and lower bounds that the model predicts define what we call the prediction interval. In this case, the model is predicting a 90% prediction interval. The percentage of the prediction interval tells us the approximate percentage of actual observations the model expects to be within the interval.",
             paragraph2: "You can see that the model does a good job of capturing the expected percent of observations if we specify different prediction intervals:",
             caption: "Use the radio buttons to explore the loss functions (left) and corresponding prediction intervals (right).",
