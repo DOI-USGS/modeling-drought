@@ -9,8 +9,9 @@ export default {
         subtitle:"Streamflow drought forecasts help decision makers prepare for reduced water availability",
         paragraph1: "The food we eat, the water we drink...",
         mapperDiagram: {
-            figurePath: "timeseries.png",
-            caption: "Explore a map of current..."
+            mapPathDesktop: "map_desktop.png",
+            mapPathMobile: "map_mobile.png",
+            caption: "Explore a map of current and forecast streamflow drought conditions across the lower 48 states and view detailed forecasts for individual sites on the <a href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>Streamflow drought assesment and forecasting tool</a>."
         }        
     },
     WhenIsADroughtADrought: {
@@ -20,16 +21,15 @@ export default {
             heading: "Defining ‘unusually low’ streamflow using percentiles",
             paragraph1: "For any stream or river, defining ‘unusually low’ streamflow means understanding typical conditions throughout the year. For <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>stream gages</a> with at least 40 years of data, we have a good understanding of what streamflow levels are typically observed at that site.",
             paragraph2: "To understand how typical a mean daily streamflow value is, we can compare it to previous mean daily streamflow values on that same day of year in earlier years.",
-            figure1Path: "percentiles_explainer_1.png",
+            figure1Path: "percentile-01.png",
             paragraph3: "We can then lump all of these values into percentile bins, based on how often they occur. For example, take an observed streamflow level of 4,800 cubic feet per second (cfs). If streamflow at the site is below 4,800 cfs on March 1<sup>st</sup> in 20% of recorded years, then 4,800 cfs is the 20<sup>th</sup> percentile streamflow for that site on that date. Another way to say it is that on March 1<sup>st</sup>, streamflow at that site is less than 4,800 cfs 20% of the time.  The USGS categorizes streamflow percentiles in the 10 – 25 percentile range as ‘below normal.’",
-            figure2Path: "percentiles_explainer_2.png",
-            paragraph4: "By doing this for every day of the year, we are able to place mean daily streamflow values in the context of historical observations.",
-            figure3Path: "percentiles_explainer_3.png"
+            figure2Path: "percentile-03.png",
+            paragraph4: "By doing this for every day of the year, we are able to place mean daily streamflow values in the context of historical observations."
         },
         classifyStreamflowDrought: {
             heading: "Classifying streamflow drought using percentiles",
             paragraph1: "While the USGS streamflow categories shown above are useful for classifying all streamflow observed at a site, the low levels of streamflow that indicate streamflow drought are classified using <a href='https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx' target='_blank'>U.S. Drought Monitor categories</a>. These categories bin low streamflow percentiles into specific drought categories that describe the intensity of the drought:",
-            figurePath: "drought_percentiles_explainer.png",
+            figurePath: "drought-example.png",
             paragraph2: "For this project, we have specifically trained the model to forecast the following three categories of streamflow drought:<span><ul><li>Moderate drought (< 20<sup>th</sup> percentile)</li><li>Severe drought (< 10<sup>th</sup> percentile)</li><li>Extreme drought (< 5<sup>th</sup> percentile)</li></ul></span>"
         },
         accordionData: [

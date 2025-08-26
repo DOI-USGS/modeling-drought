@@ -15,20 +15,12 @@
         >
       </div>
       <p v-html="text.paragraph3" />
-      <div
-        class="explainer-image-container"
-      >
-        <img
-          :src="getImageURL(text.figure2Path)"
-          class="explainer-image"
-        >
-      </div>
       <p v-html="text.paragraph4" />
       <div
         class="explainer-image-container"
       >
         <img
-          :src="getImageURL(text.figure3Path)"
+          :src="getImageURL(text.figure2Path)"
           class="explainer-image"
         >
       </div>
@@ -53,9 +45,9 @@
 <style scoped>
 .explainer-image-container {
   text-align: center;
+  margin: 2rem 0 2rem 0;
 }
 .explainer-image {
-  padding: 10px;
-  max-width: 95%;
+  max-width: 100%;
 }
 </style>
