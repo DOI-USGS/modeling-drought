@@ -56,7 +56,7 @@ const svg = ref(null);
 
 const nodes = ref([
     { id: 'Althea', name: 'Althea Archer', group:  'IIDD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs', url: 'https://www.usgs.gov/staff-profiles/althea-a-archer'},
-    { id: 'Mandy', name: 'Amanda Carr', group:  'IIDD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/mandiecarr_oct2022.JPG?itok=j5wLD7PI', url: 'https://www.usgs.gov/staff-profiles/amanda-carr'},
+    { id: 'Mandie', name: 'Amanda Carr', group:  'IIDD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/mandiecarr_oct2022.JPG?itok=j5wLD7PI', url: 'https://www.usgs.gov/staff-profiles/amanda-carr'},
     { id: 'Jeremy', name: 'Jeremy Diaz', group: 'IIDD', img: 'https://dfi09q69oy2jm.cloudfront.net/visualizations/headshots/jeremy_diaz.jpg', url: 'https://scholar.google.com/citations?user=roIN6vgAAAAJ'},
     { id: 'Phillip', name: 'Phillip Goodling', group: 'ESPD', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/PXL_20220409_214211061~2.jpg?itok=OHgiDh8V', url: 'https://www.usgs.gov/staff-profiles/phillip-goodling' },
     { id: 'John', name: 'John Hammond', group: 'MD-DE-DC', img: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/john.hammond.png?h=eb4caff5&itok=FPW57mEo', url: 'https://www.usgs.gov/staff-profiles/john-c-hammond' },
