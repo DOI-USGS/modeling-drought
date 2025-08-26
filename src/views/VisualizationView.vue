@@ -8,8 +8,11 @@
         v-html="text.pageTitle" 
       />
     </div>
-    <WhatIsStreamflowDrought 
-      :text="text.WhatIsStreamflowDrought"
+    <WhyForecastStreamflowDrought
+      :text="text.WhyForecastStreamflowDrought"
+    />
+    <WhenIsADroughtADrought 
+      :text="text.WhenIsADroughtADrought"
     />
     <HowModelStreamflowDrought 
       :text="text.HowModelStreamflowDrought"
@@ -64,7 +67,8 @@
   import text from "@/assets/text/text.js";
   import references from "@/assets/text/references";
   import authors from "@/assets/text/authors";
-  import WhatIsStreamflowDrought from "@/components/WhatIsStreamflowDrought.vue";
+  import WhyForecastStreamflowDrought from "@/components/WhyForecastStreamflowDrought.vue";
+  import WhenIsADroughtADrought from "@/components/WhenIsADroughtADrought.vue";
   import HowModelStreamflowDrought from "@/components/HowModelStreamflowDrought.vue";
   import WhatDoForecastsLookLike from "@/components/WhatDoForecastsLookLike.vue";
   import HowWellModelPerform from "@/components/HowWellModelPerform.vue"

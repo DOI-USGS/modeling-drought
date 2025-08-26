@@ -18,6 +18,9 @@
       <p v-html="text.paragraph2" />
       <p v-html="text.paragraph3" />
     </div>
+    <LossFunctionDiagram
+      :text="text.lossFunctionDiagram"
+    />
     <LossFunction
       :text="text.lossFunction"
     />
@@ -28,6 +31,7 @@
 </template>
 
 <script setup>
+  import LossFunctionDiagram from '@/components/LossFunctionDiagram.vue';
   import LossFunction from '@/components/LossFunction.vue';
   import PredictionInterval from '@/components/PredictionInterval.vue';
 
