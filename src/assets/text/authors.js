@@ -30,6 +30,10 @@ export default {
     {
       name: 'Althea Archer',
       link: 'https://www.usgs.gov/staff-profiles/althea-archer'
+    },
+    {
+      name: 'Mandy Carr',
+      link: 'https://www.usgs.gov/staff-profiles/amanda-carr'
     }
   ],
   lastAuthor: [
