@@ -40,9 +40,6 @@
     <template #figureCaption>
       <p v-html="text.caption" />
     </template>
-    <template #belowExplanation>
-      <p v-html="text.paragraph3" />
-    </template>
   </VizSection>
 </template>
 
