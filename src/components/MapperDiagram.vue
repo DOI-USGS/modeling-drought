@@ -10,7 +10,13 @@
     <template #figures>
       <div id="mapper-image-container">
         <img
-          :src="getImageURL(text.figurePath)"
+          v-if="!mobileView"
+          :src="getImageURL(text.mapPathDesktop)"
+          class="mapper-image"
+        >
+        <img
+          v-if="mobileView"
+          :src="getImageURL(text.mapPathMobile)"
           class="mapper-image"
         >
       </div>
@@ -23,6 +29,7 @@
 </template>
 
 <script setup>
+  import { isMobileOnly } from 'mobile-device-detect';
   import VizSection from '@/components/VizSection.vue';
 
   // define props
@@ -35,17 +42,28 @@
     }
   })
 
+  // global variables
+  const mobileView = isMobileOnly;
+
   function getImageURL(file) {
     return new URL(`../assets/images/${file}`, import.meta.url).href
   }
 </script>
 
 <style scoped>
-.mapper-image-container {
-  text-align: center;
+#mapper-image-container {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  margin: 0 auto 0 auto;
+  @media only screen and (max-width: 600px) {
+    max-width: 90vw; /* 90% of view width on mobile */
+  }
 }
 .mapper-image {
   padding: 10px;
-  max-width: 95%;
+  max-width: 100%;
+  margin: 0 auto 0 auto;
 }
 </style>

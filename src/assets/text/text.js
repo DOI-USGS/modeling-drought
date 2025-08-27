@@ -9,8 +9,9 @@ export default {
         subtitle:"Streamflow drought forecasts help decision makers prepare for reduced water availability",
         paragraph1: "The food we eat, the water we drink, the clothes we buy, and the electricity we use depend on ample amounts of clean, accessible water. When water flowing through rivers and streams drops to unusually low levels—termed “<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>streamflow drought</a>”—water managers can have trouble allocating enough water to meet home, farm, business, and energy needs. Streamflow drought forecasts help decision makers anticipate periods of limited water availability so they can develop plans for ensuring the safety and health of their communities. To meet this need, USGS developed AI machine learning (AI/ML) models that predict streamflow drought up to 13 weeks into the future.",
         mapperDiagram: {
-            figurePath: "timeseries.png",
-            caption: "Explore a map of current and forecast conditions across the lower 48 states and view detailed forecasts for individual sites on the streamflow drought forecasts interactive map &lt;LINK - To be added&gt;."
+            mapPathDesktop: "map_desktop.png",
+            mapPathMobile: "map_mobile.png",
+            caption: "Explore a map of current and forecast streamflow drought conditions across the lower 48 states and view detailed forecasts for individual sites on the <a href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>Streamflow drought assessment and forecasting tool</a>."
         }        
     },
     WhenIsADroughtADrought: {
@@ -19,14 +20,14 @@ export default {
         defineLowStreamflow: {
             heading: "Defining ‘unusually low’ streamflow using percentiles",
             paragraph1: "To understand how typical a mean daily streamflow value is, USGS scientists compare it to previous mean daily streamflow values on that same day in earlier years. The chart below shows the observed streamflow values on March 1<sup>st</sup> over 112 years at one USGS <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>streamgage</a>.",
-            figure1Path: "percentiles_explainer_2.png",
+            figure1Path: "percentile-01.png",
             paragraph2: "Streamflow values are categorized as normal, below normal, or above normal based on how often they occur. These frequency-based bins are called <span class ='emph'>percentiles</span>. For example, the observed streamflow at this site on April 12<sup>th</sup>, 2025, was 1,200 cubic feet per second (cfs). If streamflow at this site on April 12<sup>th</sup> is below 1,200 cfs in 20% of recorded years, then 1,200 cfs is the <span class ='emph'>20<sup>th</sup>-percentile streamflow</span> for that site on that date. Another way to say it is, at that site on April 12<sup>th</sup>, streamflow is less than 1,200 cfs 20% of the time. By calculating percentile values for every day of the year, we understand mean daily streamflow values in the context of historical observations.",
-            figure2Path: "percentiles_explainer_3.png",
+            figure2Path: "percentile-03.png",
         },
         classifyStreamflowDrought: {
             heading: "Classifying streamflow drought using percentiles",
             paragraph1: "While the USGS streamflow categories shown above are useful for classifying all streamflow observed at a site, the USGS is using the following U.S. Drought Monitor (USDM) categories to classify the low levels of streamflow that indicate streamflow drought:<span><ul><li>Moderate streamflow drought (10<sup>th</sup> - 20<sup>th</sup> percentile, USDM D1 drought)</li><li>Severe streamflow drought (5<sup>th</sup> - 10<sup>th</sup> percentile, USDM D2 drought)</li><li>Extreme streamflow drought (< 5<sup>th</sup> percentile, USDM D3 drought)</li></ul></span>",
-            figurePath: "drought_percentiles_explainer.png",
+            figurePath: "drought-example.png",
             paragraph2: "The U.S. Drought Monitor provides an additional category of drought below the 2<sup>nd</sup> percentile, termed exceptional drought (D4). For the data-driven models used to generate our streamflow drought forecasts, the sample of streamflow droughts below the 2<sup>nd</sup> percentile was too small to generate accurate models<u>,</u> so the lowest percentile-based category that the USGS is using is extreme streamflow drought."
         },
         accordionData: [

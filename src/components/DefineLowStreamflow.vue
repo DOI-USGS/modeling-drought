@@ -43,9 +43,9 @@
 <style scoped>
 .explainer-image-container {
   text-align: center;
+  margin: 2rem 0 2rem 0;
 }
 .explainer-image {
-  padding: 10px;
-  max-width: 95%;
+  max-width: 100%;
 }
 </style>
