@@ -10,7 +10,6 @@
       <p v-html="text.paragraph2" />
       <p v-html="text.paragraph3" />
       <p v-html="text.paragraph4" />
-      <p v-html="text.paragraph5" />
       <div class="toggle-container">
         <ToggleSwitch 
           v-for="layer, index in layers"
@@ -53,7 +52,7 @@
       />
     </template>
     <template #belowExplanation>
-      <p v-html="text.paragraph6" />
+      <p v-html="text.paragraph5" />
     </template>
   </VizSection>
 </template>

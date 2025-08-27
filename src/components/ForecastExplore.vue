@@ -6,6 +6,7 @@
   >
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
       <div class="toggle-container">
         <ToggleSwitch 
           v-for="layer, index in layers"
