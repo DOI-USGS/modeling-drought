@@ -35,7 +35,7 @@ fig_true_false = plt.figure(
 )
 # add axes for the forecast
 ax_true_false = fig_true_false.add_axes(
-    [0.025, 0.03, 1.0, 1.0], gid="axis-" + basename_gid_true_false_key
+    [0.026, 0.03, 1.0, 1.0], gid="axis-" + basename_gid_true_false_key
 )
 
 

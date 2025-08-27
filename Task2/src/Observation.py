@@ -231,7 +231,7 @@ save_desktop_mobile_tablet(
     ],
     tablet_dimensions=[],
     mod_ax_list=[ax_forecast],
-    mobile_pos_list=[[0.14, 0.175, 0.8 * x_shorten_mobile, 0.333 * 2.0]],
+    mobile_pos_list=[[0.15, 0.175, 0.8 * x_shorten_mobile, 0.333 * 2.0]],
     tablet_pos_list=[[]],
     save_desktop=False,
     save_tablet=False,
