@@ -14,7 +14,7 @@ export default {
         }        
     },
     WhenIsADroughtADrought: {
-        title: "When is a drought a drought?",
+        title: "When does low streamflow become a drought?",
         subtitle:"Percentiles tell us when low flows are streamflow droughts based on how often they occur",
         defineLowStreamflow: {
             heading: "Defining ‘unusually low’ streamflow using percentiles",
