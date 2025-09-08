@@ -93,15 +93,15 @@ x_limits = [np.datetime64(date_range[0]), np.datetime64(date_range[-1])]
 
 ax_forecast.annotate(
     "Tap on the plot to see\nstreamflow observations",
-    color=ratio_5,
+    color=ratio_7,
     va="center",
     ha="left",
     fontsize=0.8 * target_fontsize_px,
     xy=(x_limits[0] + 7 + 0.5 * (x_limits[-1] - x_limits[0]), 90),
     xytext=(x_limits[0] + 7, 90),
     arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
+        facecolor=ratio_7,
+        edgecolor=ratio_7,
         alpha=1,
         arrowstyle="fancy",
         gid="annotation-1-observation-arrow-mobile",

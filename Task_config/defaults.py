@@ -24,6 +24,7 @@ aspect_double_plot_tablet = 1.0
 aspect_double_plot_desktop = 3.0
 
 # Shades of Gray
+ratio_9 = "#494949"
 ratio_7 = "#595959"
 ratio_5 = "#6E6E6E"
 ratio_3 = "#949494"
@@ -37,11 +38,11 @@ mpl.rcParams["font.family"] = "sans-serif"
 mpl.rcParams["font.sans-serif"] = "Source Sans 3"  # prop.get_name()
 mpl.rcParams["font.weight"] = "light"
 mpl.rcParams["font.size"] = target_fontsize_px
-mpl.rcParams["text.color"] = ratio_7
+mpl.rcParams["text.color"] = ratio_9
 mpl.rcParams["axes.titlesize"] = target_fontsize_px_title
-mpl.rcParams["axes.labelcolor"] = ratio_7
-mpl.rcParams["xtick.labelcolor"] = ratio_7
-mpl.rcParams["ytick.labelcolor"] = ratio_7
+mpl.rcParams["axes.labelcolor"] = ratio_9
+mpl.rcParams["xtick.labelcolor"] = ratio_9
+mpl.rcParams["ytick.labelcolor"] = ratio_9
 mpl.rcParams["xtick.color"] = ratio_3
 mpl.rcParams["ytick.color"] = ratio_3
 mpl.rcParams["axes.edgecolor"] = ratio_3
