@@ -119,7 +119,6 @@
             //forecast lines
             svg.select("#forecast_middl_" + line_id).selectAll("path")
                 .style("stroke-opacity", Math.pow(opacity,1.5))
-                .style("stroke", d3.interpolateCividis(1-opacity))
                 .style("stroke-width",2.*opacity);
         }
         svg.select("#forecast_patch_" + line_id_base).selectAll("path")
