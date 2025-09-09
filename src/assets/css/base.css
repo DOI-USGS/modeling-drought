@@ -12,6 +12,7 @@
   --medium-light-grey: #e8e8e8;
   --grey_3_1: #949494;
   --grey_7_1: #595959;
+  --grey_9_1: #494949;
   --usgs-blue: #00264c;
   --extremely-faded-usgs-blue: #F5F7FA;
   --faded-usgs-blue: #d8dee4;
@@ -44,7 +45,7 @@
   --color-text: var(--black-soft);
   --color-title-text: var(--usgs-blue);
   --color-section-title-text: var(--usgs-blue);
-  --color-subtitle-text: var(--grey_7_1);
+  --color-subtitle-text: var(--grey_9_1);
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--light-grey);

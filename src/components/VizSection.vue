@@ -95,7 +95,7 @@
     justify-content: center;
     font-style: italic;
     margin-bottom: $spacing;
-    color: var(--inactive-text-grey);
+    color: var(--grey_7_1);
   }
 
   /*#####CUSTOMIZATION CLASSES#####*/
