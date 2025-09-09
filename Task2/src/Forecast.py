@@ -259,7 +259,7 @@ ax_forecast.fill_between(
 legend_elements = 6
 
 for legend_element in range(0, legend_elements):
-    if legend_element == (legend_elements) / 2 - 1:
+    if legend_element == (legend_elements / 2) - 1:
         labelcolor = (ratio_7,)
         # create dummy lines for observation to make legend
         (obs_line,) = ax_forecast.plot(
@@ -302,11 +302,11 @@ for legend_element in range(0, legend_elements):
         labelcolor=labelcolor,
     )
     legend.set_zorder(100)
+    legend.set(gid="forecast-legend-" + str(legend_element))
     ax_forecast.add_artist(legend)
 
 # forecast axis parameters
 ax_forecast.grid(visible=True, axis="y")
-ax_forecast.add_artist(legend)
 ax_forecast.set_ylim(0, 100.0)
 ax_forecast.set_xlim(
     np.datetime64(date_range[0]),
