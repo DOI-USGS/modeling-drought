@@ -87,11 +87,13 @@ export default {
             paragraph2: "We can think of true negatives and positives as the model being right, and false negatives and positives as the model being wrong. The chart below shows the percentage of severe or extreme streamflow drought (&lt;<sup> </sup>10<sup>th</sup> percentile streamflow) predictions that fall into each of these categories when the model is forecasting streamflow drought one week into the future.",
             caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts </i>streamflow <i>drought or not, and how often that prediction is right (a ‘true’ outcome).",
             caption1Responsive: "Tap the Sankey plot to see how often the model predicts </i>streamflow <i>drought or not, and how often that prediction is right (a ‘true’ outcome).",
+            ariaLabel: "PLOT DESCRIPTION",
             paragraph3: "Overall, the model does a good job of correctly predicting when streamflow drought will and will not occur 1 week in the future."
         },
         forecastTrueFalseSummary: {
             paragraph1: "As we generate forecasts for weeks that are further out, accuracy decreases. In other words, we see more ‘false’ outcomes—where the model incorrectly predicts whether or not streamflow drought will occur—as the forecast horizon lengthens. Here is the accuracy breakdown for predictions of severe or extreme streamflow drought (&lt;<sup> </sup>10<sup>th</sup> percentile streamflow) for 1 through 13 weeks:",
-            caption: "The proportion of true negatives, false negatives, false positives, and true positives changes with forecast horizon."
+            caption: "The proportion of true negatives, false negatives, false positives, and true positives changes with forecast horizon.",
+            ariaLabel: "PLOT DESCRIPTION"
         },
         forecastTrueFalseRightOrWrong: {
             paragraph1: "With these results, we can evaluate model accuracy several different ways:",

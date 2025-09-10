@@ -61,7 +61,7 @@
     const tabletView = isTablet;
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -73,9 +73,19 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addInteractions();
+      addAriaLabel("#fc-true-false-svg");
+      addInteractions();
     });
     
+    function addAriaLabel(svgId) {
+      const obsvSVG = d3.select(svgId)
+
+      obsvSVG
+        .attr("aria-label", props.text.ariaLabel)
+
+      obsvSVG.selectChildren()
+        .attr("aria-hidden", true)
+    }
 
     // Draw the percent width line and label
     function draw_sankey(tf_id) {
