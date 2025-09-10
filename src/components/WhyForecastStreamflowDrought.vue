@@ -1,6 +1,5 @@
 <template>
-  <ObservationExplore
-    :text="text.observationExplore"
+  <ForecastArt
   />
   <section>
     <div
@@ -26,7 +25,7 @@
 </template>
 
 <script setup>
-  import ObservationExplore from '@/components/ObservationExplore.vue';
+  import ForecastArt from '@/components/ForecastArt.vue';
   import MapperDiagram from '@/components/MapperDiagram.vue';
 
   // define props
@@ -39,15 +38,5 @@
 
 </script>
 
-<style scoped>
-.mapper-image-container {
-  text-align: center;
-}
-.mapper-image {
-  padding: 10px;
-  max-width: 85%;
-  @media only screen and (max-width: 600px) {
-    max-width: 100%;
-  }
-}
+<style>
 </style>
