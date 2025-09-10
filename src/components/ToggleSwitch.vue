@@ -130,7 +130,8 @@ defineEmits(['update:modelValue']);
 
 /* toggle input (hidden) */
 .toggle-input {
-  display: none;
+  position: absolute;
+  left: -9999px;
 }
 
 /* toggle slider styles */
@@ -155,6 +156,11 @@ defineEmits(['update:modelValue']);
   left: 2px;
   transition: transform 0.3s ease;
   /* border: 1px solid var(--black-soft);  */
+}
+
+.toggle-input:focus-visible + .toggle-slider::before {
+  border: 3.5px solid white;
+  background-color: black;
 }
 
 /* move slider to the right when checked */
