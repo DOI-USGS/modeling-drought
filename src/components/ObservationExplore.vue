@@ -4,6 +4,9 @@
     :figures="true"
     :fig-caption="true"
   >
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+    </template>
     <template #figures>
       <div id="obsv-grid-container">
         <obsvPlotTablet
