@@ -31,12 +31,14 @@
 </template>
 
 <script setup>
+  import { onMounted } from "vue";
+  import * as d3 from 'd3';
   import VizSection from '@/components/VizSection.vue';
   import fcDiagramPlot from "@/assets/svgs/fc_diagram.svg";
 
 
   // define props
-  defineProps({
+  const props = defineProps({
     text: { 
       type: Object,
         default() {
@@ -44,6 +46,20 @@
         } 
     }
   })
+
+  onMounted(() => {
+    addAriaLabel('#fc-diagram-svg');
+  });
+
+  function addAriaLabel(svgId) {
+    const obsvSVG = d3.select(svgId)
+
+    obsvSVG
+      .attr("aria-label", props.text.ariaLabel)
+
+    obsvSVG.selectChildren()
+      .attr("aria-hidden", true)
+  }
 
   function scrollToUncertainty() {
     const targetElement = document.getElementById('uncertainty-section-title');

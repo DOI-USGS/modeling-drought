@@ -94,9 +94,20 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        addAriaLabel("#fc-svg");
         updateFigure(d3.select("#fc-svg"));
         addInteractions();
     });
+
+    function addAriaLabel(svgId) {
+        const obsvSVG = d3.select(svgId)
+
+        obsvSVG
+            .attr("aria-label", props.text.ariaLabel)
+
+        obsvSVG.selectChildren()
+            .attr("aria-hidden", true)
+    }
 
     function updateFigure(svg) {
         layers.map(layer => {

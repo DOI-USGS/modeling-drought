@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-    import { onMounted, reactive, watch } from "vue";
+    import { onMounted, reactive } from "vue";
     import * as d3 from 'd3';
     import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
@@ -53,7 +53,7 @@
     const tabletView = isTablet;
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -75,8 +75,19 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        addAriaLabel("#obsv-svg");
         addInteractions();
     });
+
+    function addAriaLabel(svgId) {
+        const obsvSVG = d3.select(svgId)
+
+        obsvSVG
+            .attr("aria-label", props.text.ariaLabel)
+
+        obsvSVG.selectChildren()
+            .attr("aria-hidden", true)
+    }
     
     function draw_line(svg, line_id_base) {
         svg.select("#observation_" + line_id_base).selectAll("path")

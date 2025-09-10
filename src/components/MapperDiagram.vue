@@ -13,11 +13,13 @@
           v-if="!mobileView"
           :src="getImageURL(text.mapPathDesktop)"
           class="mapper-image"
+          :alt="text.ariaLabelDesktop"
         >
         <img
           v-if="mobileView"
           :src="getImageURL(text.mapPathMobile)"
           class="mapper-image"
+          :alt="text.ariaLabelMobile"
         >
       </div>
     </template>
