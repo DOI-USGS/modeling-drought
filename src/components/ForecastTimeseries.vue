@@ -23,7 +23,6 @@
 
 <script setup>
   import VizSection from '@/components/VizSection.vue';
-  import CollapsibleAccordion from '@/components/CollapsibleAccordion.vue';
   import fcDiagramPlot from "@/assets/svgs/fc_diagram.svg";
 
 
