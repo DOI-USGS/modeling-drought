@@ -1,10 +1,6 @@
 export default {
     pageTitle: "Modeling <span class='emph'>streamflow drought</span>",
     WhyForecastStreamflowDrought: {
-        observationExplore: {
-            caption1Desktop: "Hover your mouse over the plot to see when a stream goes into streamflow drought.",
-            caption1Responsive: "Tap on the plot to see when a stream goes into streamflow drought.",
-        },
         title: "Why forecast streamflow drought?",
         subtitle:"Streamflow drought forecasts help decision makers prepare for reduced water availability",
         paragraph1: "The food we eat, the water we drink, the clothes we buy, and the electricity we use depend on ample amounts of clean, accessible water. When water flowing through rivers and streams drops to unusually low levels—termed “<a href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>streamflow drought</a>”—water managers can have trouble allocating enough water to meet home, farm, business, and energy needs. Streamflow drought forecasts help decision makers anticipate periods of limited water availability so they can develop plans for ensuring the safety and health of their communities. To meet this need, USGS developed AI machine learning (AI/ML) models that predict streamflow drought up to 13 weeks into the future.",
@@ -17,6 +13,10 @@ export default {
     WhenIsADroughtADrought: {
         title: "When does low streamflow become a drought?",
         subtitle:"Percentiles tell us when low flows are streamflow droughts based on how often they occur",
+        streamflowDroughtExample: {
+            figurePath: "StreamflowDroughtExample.webp",
+            caption: "Unusually low streamflow on the Peabody River in New Hampshire. Credit: John Hammond"
+        },
         defineLowStreamflow: {
             heading: "Defining ‘unusually low’ streamflow using percentiles",
             paragraph1: "To understand how typical a mean daily streamflow value is, USGS scientists compare it to previous mean daily streamflow values on that same day in earlier years. The chart below shows the observed streamflow values on March 1<sup>st</sup> over 112 years at one USGS <a href='https://labs.waterdata.usgs.gov/visualizations/gages-through-the-ages/index.html' target='_blank'>streamgage</a>.",
@@ -45,7 +45,11 @@ export default {
                 ],
                 activeOnLoad: false
             }
-        ]
+        ],
+        observationExplore: {
+            caption1Desktop: "Hover your mouse over the plot to see when a stream goes into streamflow drought.",
+            caption1Responsive: "Tap on the plot to see when a stream goes into streamflow drought.",
+        },
     },
     HowModelStreamflowDrought: {
         title: "How does the USGS model streamflow drought?",
