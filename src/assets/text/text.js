@@ -59,7 +59,9 @@ export default {
         title: "What do the forecasts look like?",
         subtitle: "The model generates weekly forecasts for 1-13 weeks in the future",
         forecastTimeseries: {
-            paragraph1: "Every week, the model generates streamflow drought forecasts for 1-13 weeks in the future. Each point in the future that receives a prediction is called a <span class ='emph'>forecast horizon</span>. For each forecast horizon, the model predicts its best estimate of the streamflow percentile for that week, along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece later!",
+            paragraph1Start: "Every week, the model generates streamflow drought forecasts for 1-13 weeks in the future. Each point in the future that receives a prediction is called a <span class ='emph'>forecast horizon</span>. For each forecast horizon, the model predicts its best estimate of the streamflow percentile for that week, along with a 90% prediction interval that captures the uncertainty of the prediction. More on that piece ",
+            paragraph1Button:"later",
+            paragraph1End: "!",
             caption: "On each issue date, we generate forecasts for the next 13 weeks."
         },
         forecastExplore: {

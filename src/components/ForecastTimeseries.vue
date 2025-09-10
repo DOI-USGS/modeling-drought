@@ -5,7 +5,16 @@
     :fig-caption="true"
   >
     <template #aboveExplanation>
-      <p v-html="text.paragraph1" />
+      <p>
+        <span v-html="text.paragraph1Start" />
+        <button
+          id="scroll-button"
+          @click="scrollToUncertainty"
+        >
+          <a v-html="text.paragraph1Button" />
+        </button>
+        <span v-html="text.paragraph1End" />
+      </p>
     </template>
     <template #figures>
       <div id="fc-diagram-grid-container">
@@ -23,7 +32,6 @@
 
 <script setup>
   import VizSection from '@/components/VizSection.vue';
-  import CollapsibleAccordion from '@/components/CollapsibleAccordion.vue';
   import fcDiagramPlot from "@/assets/svgs/fc_diagram.svg";
 
 
@@ -37,6 +45,10 @@
     }
   })
 
+  function scrollToUncertainty() {
+    const targetElement = document.getElementById('uncertainty-section-title');
+     targetElement.scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
 
 <style scoped lang="scss">
@@ -53,5 +65,10 @@
         place-self: center;
         height: 100%;
         width: 100%;
+    }
+    #scroll-button {
+      background-color: transparent;
+      border: none;
+      padding: 0;
     }
 </style>

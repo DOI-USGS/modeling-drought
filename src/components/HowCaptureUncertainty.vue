@@ -5,6 +5,7 @@
     >
       <h2
         class="section-title"
+        id="uncertainty-section-title"
       >
         <span>
           {{ text.title }}

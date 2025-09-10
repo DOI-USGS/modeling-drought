@@ -16,9 +16,8 @@
 a {
   color: var(--color-link);
   font-weight: 600;
-  @media only screen and (max-width: 600px) {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
+  cursor: pointer;
 }
 /* sets width of text column throughout components */
 .text-container {
