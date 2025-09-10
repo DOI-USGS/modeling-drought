@@ -206,7 +206,7 @@ forecast_annotations(
 ax_forecast.plot(
     x_forecast,
     y_training,
-    color="tab:red",
+    color=observation_color_hex,
     linestyle=obs_linestyle,
     alpha=0.0,
     gid="observation-full-forecast",
@@ -265,7 +265,7 @@ for legend_element in range(0, legend_elements):
         (obs_line,) = ax_forecast.plot(
             [0, 1],
             [-10, -10],
-            color="tab:red",
+            color=observation_color_hex,
             linestyle=obs_linestyle,
             alpha=1.0,
         )

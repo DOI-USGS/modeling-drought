@@ -52,7 +52,7 @@ mpl.rcParams["grid.color"] = ratio_1_5
 mpl.rcParams["svg.fonttype"] = "none"
 
 # Set default linewidth
-mpl.rcParams["lines.linewidth"] = 1.0
+mpl.rcParams["lines.linewidth"] = 1.5
 
 
 # Custom Colormap
@@ -66,7 +66,7 @@ lower_color_limit_hex_half_alpha = "#DBC49A"
 lower_color_limit_hex = "#B78935"
 upper_color_limit_hex = "#406992"
 upper_color_limit_hex_half_alpha = "#9FB4C8"
-observation_color_hex = "#883e3a"
+observation_color_hex = "#AF3331"
 median_color_hex = "#00264c"
 
 # convert hex to rgb 8-bit
