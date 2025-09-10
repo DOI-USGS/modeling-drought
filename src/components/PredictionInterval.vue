@@ -16,6 +16,7 @@
       <p v-html="text.paragraph2" />
       <RadioGroup
         v-model="selectedLayer"
+        radio-group-name="pi-radio-group"
         :options="layers"
         :center-color="centerColor"
       />

@@ -14,6 +14,7 @@
       <p v-html="text.paragraph1" />
       <RadioGroup
         v-model="selectedfcSumLayer"
+        radio-group-name="tf-radio-group"
         :options="fcSumLayers"
         :center-color="centerColorfcSum"
       />
@@ -73,16 +74,19 @@
     const fcSumLayers = reactive([
         {
             label: props.text.questionAll,
+            ariaLabel: props.text.questionAllAriaLabel,
             value: 'RW-all',
             color: 'var(--grey_3_1)'
         },
         {
             label: props.text.questionNoDrought,
+            ariaLabel: props.text.questionNoDroughtAriaLabel,
             value: 'RW_noDrought',
             color: 'var(--color-true-negative)'
         },
         {
             label: props.text.questionDrought,
+            ariaLabel: props.text.questionDroughtAriaLabel,
             value: 'RW-drought',
             color: 'var(--color-true-positive)'
         }

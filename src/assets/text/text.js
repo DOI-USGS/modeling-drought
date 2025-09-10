@@ -88,8 +88,11 @@ export default {
         forecastTrueFalseRightOrWrong: {
             paragraph1: "With these results, we can evaluate model accuracy several different ways:",
             questionAll: "<span class ='emph'>Overall</span>, how often is the model <span class='group-label right'>right</span> or <span class='group-label wrong'>wrong</span>?",
+            questionAllAriaLabel: "Overall, how often is the model right or wrong?",
             questionNoDrought: "If the model <span class ='emph'>does not predict streamflow drought</span>, how often is it <span class='group-label true-neg'>right</span> or <span class='group-label false-neg'>wrong</span>?",
+            questionNoDroughtAriaLabel: "If the model does not predict streamflow drought, how often is it right or wrong?",
             questionDrought: "If the model <span class ='emph'>does predict streamflow drought</span>, how often is it <span class='group-label true-pos'>right</span> or <span class='group-label false-pos'>wrong</span>?",
+            questionDroughtAriaLabel: "If the model does predict streamflow drought, how often is it right or wrong?",
             caption: "Use the radio buttons to see the overall model performance and how right or wrong the model is depending on whether it predicts severe or extreme streamflow drought or not.",
             paragraph2: "Across the board, the model’s prediction ability is better with shorter forecast horizons."
         }
