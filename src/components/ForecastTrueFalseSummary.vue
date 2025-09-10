@@ -46,7 +46,7 @@
     const tabletView = isTablet;
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -58,84 +58,17 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addInteractions();
+      addAriaLabel("#fc-true-false-sum-svg");
     });
 
-    // Draw the percent width line and label
-    function draw_sankey(tf_id) {
-        d3.select("#tf-bar-" + tf_id).selectAll("path")
-            .style("fill-opacity", 1)
-        d3.select("#tf-swoop-" + tf_id).selectAll("path")
-            .style("fill-opacity", 0.2)
-        d3.select("#tf-label-" + tf_id).selectAll("text")
-            .style("opacity", 1);
-    }
+    function addAriaLabel(svgId) {
+      const obsvSVG = d3.select(svgId)
 
-    // Draw the percent width line and label
-    function remove_sankey(tf_id) {
-        d3.select("#tf-bar-" + tf_id).selectAll("path")
-            .style("fill-opacity", 0.25)
-        d3.select("#tf-swoop-" + tf_id).selectAll("path")
-            .style("fill-opacity", 0.05)
-        d3.select("#tf-label-" + tf_id).selectAll("text")
-            .style("opacity", 0.0);
-    }
+      obsvSVG
+        .attr("aria-label", props.text.ariaLabel)
 
-    function mouseover(event) {
-      if (event.currentTarget.id.startsWith("tf-bar-")){
-            let tf_id = event.currentTarget.id.slice(7);
-            draw_sankey(tf_id);
-            if (tf_id.length > 2){
-              draw_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-label-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            draw_sankey(tf_id);
-            if (tf_id.length > 2){
-              draw_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-swoop-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            draw_sankey(tf_id);
-            if (tf_id.length > 2){
-              draw_sankey(tf_id.slice(0,-3));
-            }
-        }
-      }
-
-    function mouseout(event) {
-      if (event.currentTarget.id.startsWith("tf-bar-")){
-            let tf_id = event.currentTarget.id.slice(7);
-            remove_sankey(tf_id);
-            if (tf_id.length > 2){
-              remove_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-label-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            remove_sankey(tf_id);
-            if (tf_id.length > 2){
-              remove_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-swoop-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            remove_sankey(tf_id);
-            if (tf_id.length > 2){
-              remove_sankey(tf_id.slice(0,-3));
-            }
-        }
-      }
-
-    function addInteractions() {
-        // set viewbox for svg with confidence interval chart
-        const fckeySVG = d3.select("#fc-true-false-svg")
-        // Add interaction to confidence interval chart
-        fckeySVG.selectAll("g")
-            .on("mouseover", (event) => mouseover(event))
-            .on("mouseout", (event) => mouseout(event))
+      obsvSVG.selectChildren()
+        .attr("aria-hidden", true)
     }
 </script>
 
