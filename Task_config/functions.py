@@ -193,15 +193,15 @@ def forecast_annotations(ax, labels, xys, xy_texts, gid_prefix, ha="left"):
     for i, label in enumerate(labels):
         ax.annotate(
             label,
-            color=ratio_5,
+            color=ratio_7,
             va="center",
             fontsize=fontsizes[i],
             ha=ha,
             xy=xys[i],
             xytext=xy_texts[i],
             arrowprops=dict(
-                facecolor=ratio_5,
-                edgecolor=ratio_5,
+                facecolor=ratio_7,
+                edgecolor=ratio_7,
                 alpha=0.00001,
                 arrowstyle="fancy",
                 gid=gid_prefix + "-arrow" + gid_suffix[i],

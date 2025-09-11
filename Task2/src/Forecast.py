@@ -125,7 +125,7 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     ax_forecast.plot(
         x_cloud,
         y_cloud_median,
-        color="k",
+        color=median_color_hex,
         linestyle="-",
         alpha=0.0,
         gid="forecast_middl_" + str(j),
@@ -206,7 +206,7 @@ forecast_annotations(
 ax_forecast.plot(
     x_forecast,
     y_training,
-    color="tab:red",
+    color=observation_color_hex,
     linestyle=obs_linestyle,
     alpha=0.0,
     gid="observation-full-forecast",
@@ -255,7 +255,57 @@ ax_forecast.fill_between(
     gid="forecast-washout",
 )
 
+# Make a legend
+legend_elements = 6
 
+for legend_element in range(0, legend_elements):
+    if legend_element == (legend_elements / 2) - 1:
+        labelcolor = (ratio_7,)
+        # create dummy lines for observation to make legend
+        (obs_line,) = ax_forecast.plot(
+            [0, 1],
+            [-10, -10],
+            color=observation_color_hex,
+            linestyle=obs_linestyle,
+            alpha=1.0,
+        )
+    else:
+        labelcolor = [0, 0, 0, 0]
+        # create dummy lines for observation to make legend
+        (obs_line,) = ax_forecast.plot(
+            [0, 1],
+            [-10, -10],
+            color="none",
+            linestyle=obs_linestyle,
+            alpha=1.0,
+        )
+
+    # create dummy lines for forecast to make legend
+    (for_line,) = ax_forecast.plot(
+        [0, 1],
+        [-10, -10],
+        color=median_color_hex,
+        linestyle="-",
+        linewidth=2.0 - legend_element * 0.2,
+        alpha=1.0 - legend_element * 0.2,
+        solid_capstyle="round",
+    )
+
+    legend = ax_forecast.legend(
+        handles=[obs_line, for_line],
+        bbox_to_anchor=(1.0, 1.0 - legend_element * 0.01),
+        labels=["Observation", "Forecasts"],
+        loc="upper right",
+        edgecolor="none",
+        facecolor="none",
+        ncols=2,
+        labelcolor=labelcolor,
+    )
+    legend.set_zorder(100)
+    legend.set(gid="forecast-legend-" + str(legend_element))
+    ax_forecast.add_artist(legend)
+
+# forecast axis parameters
 ax_forecast.grid(visible=True, axis="y")
 ax_forecast.set_ylim(0, 100.0)
 ax_forecast.set_xlim(

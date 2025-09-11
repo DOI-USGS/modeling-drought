@@ -212,9 +212,6 @@ ax_LF.set_xlabel("Estimate", weight="semibold")
 ax_LF.set_title("Loss function", loc="left", color="k", weight="extra bold")
 ax_LF.spines["top"].set_visible(False)
 ax_LF.spines["right"].set_visible(False)
-ax_LF.spines["bottom"].set_color(ratio_3)
-ax_LF.spines["left"].set_color(ratio_3)
-ax_LF.tick_params(axis="both", colors=ratio_3, labelcolor=ratio_5)
 
 ### Forecast Plot
 # # add static forecast lines

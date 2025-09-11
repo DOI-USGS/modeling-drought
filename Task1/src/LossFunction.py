@@ -90,14 +90,14 @@ for i, percentile in enumerate(
 # annotations
 annotation_instructions = ax_LF.annotate(
     "Drag mouse over\ngray region",
-    color=ratio_5,
+    color=ratio_7,
     va="center",
     ha="center",
     xy=(-0.8, 0.1),
     xytext=(-0.1, 0.65),
     arrowprops=dict(
-        facecolor=ratio_5,
-        edgecolor=ratio_5,
+        facecolor=ratio_7,
+        edgecolor=ratio_7,
         gid="annotation_lossfunction_arrow",
         arrowstyle="fancy",
         connectionstyle="arc3,rad=0.3",

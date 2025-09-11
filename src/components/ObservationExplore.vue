@@ -4,6 +4,9 @@
     :figures="true"
     :fig-caption="true"
   >
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+    </template>
     <template #figures>
       <div id="obsv-grid-container">
         <obsvPlotTablet
@@ -229,6 +232,13 @@
         obsvSVG.select("#observation-forecast-title").selectAll("text")
             .style("opacity",0.0);
 
+        // remove legend
+        for (let i = 0; i <= 4; i++) {
+        obsvSVG.select(`#forecast-legend-${i}`)
+            .selectAll('path, text')
+            .style('opacity', 0.0);
+        }
+        
         // add drought categories
         drought_labels(obsvSVG, 1.0)
         

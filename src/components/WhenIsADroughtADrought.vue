@@ -14,6 +14,9 @@
         class="section-subtitle"
         v-html="text.subtitle"
       />
+      <StreamflowDroughtExample
+        :text="text.streamflowDroughtExample"
+      />
       <DefineLowStreamflow
         :text="text.defineLowStreamflow"
       />
@@ -34,12 +37,17 @@
       />
     </div>
   </section>
+  <ObservationExplore
+    :text="text.observationExplore"
+  />
 </template>
 
 <script setup>
+  import StreamflowDroughtExample from "@/components/StreamflowDroughtExample.vue";
   import DefineLowStreamflow from "@/components/DefineLowStreamflow.vue";
   import ClassifyStreamflowDrought from "@/components/ClassifyStreamflowDrought.vue";
   import CollapsibleAccordion from "@/components/CollapsibleAccordion.vue";
+  import ObservationExplore from '@/components/ObservationExplore.vue';
 
   // define props
   defineProps({
