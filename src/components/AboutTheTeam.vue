@@ -22,7 +22,7 @@
           class="svg"
           :width="width"
           :height="height"
-          :aria-label="ariaLabel"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -97,7 +97,6 @@ const colors = {
     OPP: "var(--medium-grey)",
     KS: "var(--dark-tan)"
 }
-const ariaLabel = "DIAGRAM ALT"
 
 onMounted(() => {
     resizeAndDraw();
