@@ -139,8 +139,14 @@ export default {
             paragraph1: "The upper and lower bounds that the model predicts define what we call the <span class ='emph'>prediction interval</span>. In this case, by excluding the 10% least likely prediction scenarios, the streamflow drought forecast model has a 90% prediction interval. The size of the prediction interval tells us the approximate percentage of actual observations <i>below the 30<sup>th</sup> percentile </i>the model expects to be within the interval. In other words, a 90% prediction interval should contain approximately 90% of observed streamflow values below the 30<sup>th</sup> percentile.",
             paragraph2: "The plot below shows that as the prediction interval increases, more observations are captured within the range of predictions. Moreover, by favoring underestimation and overestimation, steep asymmetric loss functions create wider prediction intervals than do loss functions with more equal slopes.",
             caption: "Use the radio buttons to explore the relationship between different prediction interval sizes, loss functions (left), and % of observations below the 30<sup>th</sup> percentile captured within the prediction intervals (right).",
-            ariaLabelDesktop: "PLOT DESCRIPTION DESKTOP",
-            ariaLabelResponsive: "PLOT DESCRIPTION MOBILE/TABLET"
+            medianAriaLabelDesktop: "MEDIAN PLOT DESCRIPTION DESKTOP",
+            medianAriaLabelMobile: "MEDIAN PLOT DESCRIPTION MOBILE/TABLET",
+            pi50AriaLabelDesktop: "PI 50 PLOT DESCRIPTION DESKTOP",
+            pi50AriaLabelMobile: "PI 50 PLOT DESCRIPTION MOBILE/TABLET",
+            pi75AriaLabelDesktop: "PI 75 PLOT DESCRIPTION DESKTOP",
+            pi75AriaLabelMobile: "PI 75 PLOT DESCRIPTION MOBILE/TABLET",
+            pi90AriaLabelDesktop: "PI 90 PLOT DESCRIPTION DESKTOP",
+            pi90AriaLabelMobile: "PI 90 PLOT DESCRIPTION MOBILE/TABLET"
         }
     },
     WhatsNext: {

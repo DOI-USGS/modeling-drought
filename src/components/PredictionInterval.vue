@@ -26,17 +26,17 @@
         <piPlotTablet
           v-if="tabletView"
           id="pi-svg"
-          :aria-label="text.ariaLabelResponsive"
+          :aria-label="ariaLabel"
         />
         <piPlotMobile
           v-else-if="mobileView"
           id="pi-svg"
-          :aria-label="text.ariaLabelResponsive"
+          :aria-label="ariaLabel"
         />
         <piPlotDesktop
           v-else
           id="pi-svg"
-          :aria-label="text.ariaLabelDesktop"
+          :aria-label="ariaLabel"
         />
       </div>
     </template>
@@ -48,8 +48,9 @@
 </template>
 
 <script setup>
-    import { onMounted, reactive, ref, watch } from "vue";
+    import { computed, onMounted, reactive, ref, watch } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
     import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
@@ -59,11 +60,12 @@
     import piPlotMobile from "@/assets/svgs/pi_example_mobile.svg";
 
     // global variables
+    const mobileTabletView = isMobile;
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -99,6 +101,24 @@
 
     // define global variables
     const centerColor = 'var(--color-background)'
+    const ariaLabel = computed(() => {
+      let svgAriaLabel;
+      switch(true) {
+        case selectedLayer.value  == 'MEDIAN':
+          svgAriaLabel = mobileTabletView? props.text.medianAriaLabelMobile : props.text.medianAriaLabelDesktop;
+          break;
+        case selectedLayer.value  == '2':
+          svgAriaLabel = mobileTabletView? props.text.pi50AriaLabelMobile : props.text.pi50AriaLabelDesktop;
+          break;
+        case selectedLayer.value  == '1':
+          svgAriaLabel = mobileTabletView? props.text.pi75AriaLabelMobile : props.text.pi75AriaLabelDesktop;
+          break;
+        case selectedLayer.value  == '0':
+          svgAriaLabel = mobileTabletView? props.text.pi90AriaLabelMobile : props.text.pi90AriaLabelDesktop;
+          break;
+      }
+      return svgAriaLabel;
+    })
 
     // Watches selectedLayer for changes and updates figure layers
     watch(selectedLayer, () => {
