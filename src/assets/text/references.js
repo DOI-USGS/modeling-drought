@@ -4,33 +4,7 @@ export default {
     {
       reference: "Reference 1.",
       num: "1",
-      authors: "Clow, D. W.",
-      year: "2010",
-      title: "Changes in the Timing of Snowmelt and Streamflow in Colorado: A Response to Recent Warming",
-      link: "https://pubs.er.usgs.gov/publication/70003325",
-      journal: true,
-      journal_name: "Journal of Climate",
-      journal_issue: " 23, 2293–2306",
-      data_release: false,
-      doi: "https://doi.org/10.1175/2009JCLI2951.1"
-    },
-    {
-      reference: "Reference 2.",
-      num: "2",
-      authors: "Simeone, C.",
-      year: "2022",
-      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
-      data_release: true,
-      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
-      doi: "https://doi.org/10.5066/P92FAASD"
-    },
-    {
-      reference: "Reference 3.",
-      num: "3",
-      authors: "Smith, E.",
+      authors: "Carlisle, D.",
       year: "2023",
       title: "Drought Prediction Science",
       journal: false,
@@ -41,8 +15,47 @@ export default {
       doi: null
     },
     {
+      reference: "Reference 2.",
+      num: "2",
+      authors: "Hammond, J., Goodling, P., Diaz, J., Corson-Dosch, H., Heldmyer, A., Hamshaw, S., McShane, R., Ross, J., Sando, R., Simeone, C., Smith, E., Staub, L., Watkins, D., Wieczorek, M., Wnuk, K. & Zwart, J.",
+      year: "2025",
+      title: "Machine Learning Generated Streamflow Drought Forecasts for the Conterminous United States (CONUS): Developing and Evaluating an Operational Tool to Enhance Sub-seasonal to Seasonal Streamflow Drought Early Warning for Gaged Locations ",
+      link: "TBD",
+      journal: true,
+      journal_name: "EarthArxiv",
+      journal_issue: "",
+      data_release: false,
+      doi: "TBD"
+    },
+    {
+      reference: "Reference 3.",
+      num: "3",
+      authors: "McShane, R., Goodling, P., Diaz, J. & Heldmyer, A.",
+      year: "2025",
+      title: "Model outputs and model code for machine learning models forecasting streamflow drought across the conterminous United States",
+      link: "",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      doi: "https://doi.org/10.5066/P132NSWY"
+    },
+    {
       reference: "Reference 4.",
       num: "4",
+      authors: "Corson-Dosch, H., Watkins, D., Ross, J., Bucknell, M., Simeone, C., Hammond, J., Archer, A. & Nell, C.",
+      year: "2025",
+      title: "Streamflow Drought Assessment and Forecasting Tool",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: false,
+      link: "https://water.usgs.gov/vizlab/streamflow-drought-forecasts/",
+      doi: "https://doi.org/10.5066/P138JIEN"
+    },
+    {
+      reference: "Reference 5.",
+      num: "5",
       authors: "U.S. Drought Monitor",
       year: "2025",
       title: "Drought Classification",
@@ -52,19 +65,6 @@ export default {
       data_release: false,
       link: "https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx",
       doi: null
-    },
-    {
-      reference: "Reference 5.",
-      num: "5",
-      authors: "Viviroli, D., Dürr, H. H., Messerli, B., Meybeck, M. & Weingartner, R.",
-      year: "2007",
-      title: "Mountains of the world, water towers for humanity: Typology, mapping, and global significance",
-      link: "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006WR005653",
-      journal: true,
-      journal_name: "Water Resources Research",
-      journal_issue: " 43",
-      data_release: false,
-      doi: "https://doi.org/10.1029/2006WR005653"
     },
     {
       reference: "Reference 6.",
