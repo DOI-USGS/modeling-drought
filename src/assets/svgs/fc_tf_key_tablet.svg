@@ -17,7 +17,7 @@ z
   <g id="axis-forecast_truefalse_key">
    <g id="FillBetweenPolyCollection_1">
     <defs>
-     <path id="m2a66952899" d="M 136.812789 -79.368218 
+     <path id="m86698f56a1" d="M 136.812789 -79.368218 
 L 136.812789 -477.004582 
 L 163.172111 -477.004582 
 L 163.172111 -79.368218 
@@ -26,13 +26,13 @@ L 136.812789 -79.368218
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m2a66952899" x="0" y="524.88" style="fill: #00264c"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m86698f56a1" x="0" y="524.88" style="fill: #00264c"/>
     </g>
    </g>
    <g id="tf-swoop-ND">
     <defs>
-     <path id="mf7df5fa658" d="M 163.172111 -477.005808 
+     <path id="m8dea4d7ac5" d="M 163.172111 -477.005808 
 L 163.172111 -123.351831 
 L 165.568413 -123.352075 
 L 167.964715 -123.352368 
@@ -237,13 +237,13 @@ L 163.172111 -477.005808
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#mf7df5fa658" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.05"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m8dea4d7ac5" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.05"/>
     </g>
    </g>
    <g id="tf-swoop-YD">
     <defs>
-     <path id="m4b9f9c7cea" d="M 163.172111 -79.366992 
+     <path id="mc1900675d7" d="M 163.172111 -79.366992 
 L 163.172111 -123.349377 
 L 165.568413 -123.349133 
 L 167.964715 -123.348839 
@@ -448,13 +448,13 @@ L 163.172111 -79.366992
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m4b9f9c7cea" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.05"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#mc1900675d7" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.05"/>
     </g>
    </g>
    <g id="tf-bar-ND">
     <defs>
-     <path id="me63c396d6c" d="M 400.406009 -133.291513 
+     <path id="m5dc88d0855" d="M 400.406009 -133.291513 
 L 400.406009 -486.945491 
 L 426.765332 -486.945491 
 L 426.765332 -133.291513 
@@ -463,13 +463,13 @@ L 400.406009 -133.291513
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#me63c396d6c" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.25"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m5dc88d0855" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.25"/>
     </g>
    </g>
    <g id="tf-bar-YD">
     <defs>
-     <path id="m5f822dfe04" d="M 400.406009 -69.427309 
+     <path id="m443054f6ba" d="M 400.406009 -69.427309 
 L 400.406009 -113.409695 
 L 426.765332 -113.409695 
 L 426.765332 -69.427309 
@@ -478,13 +478,13 @@ L 400.406009 -69.427309
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m5f822dfe04" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.25"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m443054f6ba" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.25"/>
     </g>
    </g>
    <g id="tf-swoop-YD-ND">
     <defs>
-     <path id="m933311bcdf" d="M 426.765332 -101.84761 
+     <path id="m4f2de64b03" d="M 426.765332 -101.84761 
 L 426.765332 -113.408468 
 L 429.161634 -113.408224 
 L 431.557936 -113.40793 
@@ -689,13 +689,13 @@ L 426.765332 -101.84761
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m933311bcdf" x="0" y="524.88" style="fill: #dbc49a; fill-opacity: 0.05"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m4f2de64b03" x="0" y="524.88" style="fill: #dbc49a; fill-opacity: 0.05"/>
     </g>
    </g>
    <g id="tf-swoop-YD-YD">
     <defs>
-     <path id="ma1324918a8" d="M 426.765332 -69.423629 
+     <path id="m65c71d14cd" d="M 426.765332 -69.423629 
 L 426.765332 -101.845157 
 L 429.161634 -101.844423 
 L 431.557936 -101.843544 
@@ -900,13 +900,13 @@ L 426.765332 -69.423629
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#ma1324918a8" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.05"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m65c71d14cd" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.05"/>
     </g>
    </g>
    <g id="tf-swoop-ND-YD">
     <defs>
-     <path id="m2c2642260e" d="M 426.765332 -146.352531 
+     <path id="m50d79cecc4" d="M 426.765332 -146.352531 
 L 426.765332 -133.29274 
 L 429.161634 -133.292984 
 L 431.557936 -133.293277 
@@ -1111,13 +1111,13 @@ L 426.765332 -146.352531
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m2c2642260e" x="0" y="524.88" style="fill: #9fb4c8; fill-opacity: 0.05"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m50d79cecc4" x="0" y="524.88" style="fill: #9fb4c8; fill-opacity: 0.05"/>
     </g>
    </g>
    <g id="tf-swoop-ND-ND">
     <defs>
-     <path id="m61b6d7b1d4" d="M 426.765332 -486.949171 
+     <path id="mce9ae96604" d="M 426.765332 -486.949171 
 L 426.765332 -146.354984 
 L 429.161634 -146.355718 
 L 431.557936 -146.356598 
@@ -1322,13 +1322,13 @@ L 426.765332 -486.949171
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m61b6d7b1d4" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.05"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#mce9ae96604" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.05"/>
     </g>
    </g>
    <g id="tf-bar-YD-YD">
     <defs>
-     <path id="m0a3ffad3de" d="M 663.99923 -39.604582 
+     <path id="m66dac9976b" d="M 663.99923 -39.604582 
 L 663.99923 -72.02611 
 L 690.358552 -72.02611 
 L 690.358552 -39.604582 
@@ -1337,13 +1337,13 @@ L 663.99923 -39.604582
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m0a3ffad3de" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.25"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m66dac9976b" x="0" y="524.88" style="fill: #b78935; fill-opacity: 0.25"/>
     </g>
    </g>
    <g id="tf-bar-YD-ND">
     <defs>
-     <path id="m2350a66c4e" d="M 663.99923 -91.907928 
+     <path id="me9ab0ea299" d="M 663.99923 -91.907928 
 L 663.99923 -103.468786 
 L 690.358552 -103.468786 
 L 690.358552 -91.907928 
@@ -1352,13 +1352,13 @@ L 663.99923 -91.907928
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m2350a66c4e" x="0" y="524.88" style="fill: #dbc49a; fill-opacity: 0.25"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#me9ab0ea299" x="0" y="524.88" style="fill: #dbc49a; fill-opacity: 0.25"/>
     </g>
    </g>
    <g id="tf-bar-ND-YD">
     <defs>
-     <path id="m2ff973abd3" d="M 663.99923 -143.232422 
+     <path id="m0679b7c79c" d="M 663.99923 -143.232422 
 L 663.99923 -156.292213 
 L 690.358552 -156.292213 
 L 690.358552 -143.232422 
@@ -1367,13 +1367,13 @@ L 663.99923 -143.232422
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m2ff973abd3" x="0" y="524.88" style="fill: #9fb4c8; fill-opacity: 0.25"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m0679b7c79c" x="0" y="524.88" style="fill: #9fb4c8; fill-opacity: 0.25"/>
     </g>
    </g>
    <g id="tf-bar-ND-ND">
     <defs>
-     <path id="m3edd5b737d" d="M 663.99923 -176.174031 
+     <path id="m46cc4a457e" d="M 663.99923 -176.174031 
 L 663.99923 -516.768218 
 L 690.358552 -516.768218 
 L 690.358552 -176.174031 
@@ -1382,54 +1382,54 @@ L 663.99923 -176.174031
 z
 "/>
     </defs>
-    <g clip-path="url(#p357241332a)">
-     <use xlink:href="#m3edd5b737d" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.25"/>
+    <g clip-path="url(#p752358c967)">
+     <use xlink:href="#m46cc4a457e" x="0" y="524.88" style="fill: #406992; fill-opacity: 0.25"/>
     </g>
    </g>
    <g id="text_1">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(63.378128 241.98585)">All model</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(51.410628 259.40135)">predictions</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(63.378128 241.98585)">All model</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(51.410628 259.40135)">predictions</text>
    </g>
    <g id="tf-label-YD">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(272.736348 411.126498)">Severe or extreme</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(266.201348 428.772998)">streamflow dought</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(325.596348 446.380998)">predicted</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(348.473848 463.796498)">11.1%</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(272.736348 411.126498)">Severe or extreme</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(266.201348 428.772998)">streamflow dought</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(325.596348 446.380998)">predicted</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(348.473848 463.796498)">11.1%</text>
    </g>
    <g id="tf-label-ND">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(270.973848 192.541998)">Neither severe nor</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(260.766348 209.957498)">extreme streamflow</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(275.993848 227.372998)">dought predicted</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(348.473848 244.980998)">88.9%</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(270.973848 192.541998)">Neither severe nor</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(260.766348 209.957498)">extreme streamflow</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(275.993848 227.372998)">dought predicted</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(348.473848 244.980998)">88.9%</text>
    </g>
    <g id="tf-label-YD-YD">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(589.764569 455.572654)">Did occur</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(563.329569 473.141154)">(true positive)</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(619.619569 490.556654)">8.2%</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(589.764569 455.572654)">Did occur</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(563.329569 473.141154)">(true positive)</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(619.619569 490.556654)">8.2%</text>
    </g>
    <g id="tf-label-YD-ND">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(564.804569 413.660643)">Did not occur</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(559.554569 431.307143)">(false positive)</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(619.619569 448.722643)">2.9%</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(564.804569 413.660643)">Did not occur</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(559.554569 431.307143)">(false positive)</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(619.619569 448.722643)">2.9%</text>
    </g>
    <g id="tf-label-ND-YD">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(536.329569 343.863182)">Severe or extreme</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(524.899569 361.509682)">streamflow drought</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(593.574569 379.117682)">occurred</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(555.142069 396.764182)">(false negative)</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(619.619569 414.372182)">3.3%</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(536.329569 343.863182)">Severe or extreme</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(524.899569 361.509682)">streamflow drought</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(593.574569 379.117682)">occurred</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(555.142069 396.764182)">(false negative)</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(619.619569 414.372182)">3.3%</text>
    </g>
    <g id="tf-label-ND-ND">
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(534.567069 147.308875)">Neither severe nor</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(524.359569 164.724375)">extreme streamflow</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(543.972069 182.139875)">dought occurred</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(558.917069 199.900875)">(true negative)</text>
-    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959; opacity: 0" transform="translate(612.067069 217.508875)">85.7%</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(534.567069 147.308875)">Neither severe nor</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(524.359569 164.724375)">extreme streamflow</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(543.972069 182.139875)">dought occurred</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(558.917069 199.900875)">(true negative)</text>
+    <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949; opacity: 0" transform="translate(612.067069 217.508875)">85.7%</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p357241332a">
+  <clipPath id="p752358c967">
    <rect x="18.19584" y="-15.7464" width="699.84" height="524.88"/>
   </clipPath>
  </defs>

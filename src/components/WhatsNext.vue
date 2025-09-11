@@ -19,17 +19,21 @@
       <p v-html="text.paragraphA1" />
       <h3 v-html="text.headingB" />
       <p v-html="text.paragraphB1" />
+      <h3 v-html="text.headingC" />
+      <p v-html="text.paragraphC1" />
+      <h3 v-html="text.headingD" />
+      <p v-html="text.paragraphD1" />
       <div
         class="explainer-image-container"
       >
         <img
-          :src="getImageURL(text.figureBpath)"
+          :src="getImageURL(text.figureDpath)"
           class="explainer-image"
-          :alt="text.figureBalt"
+          :alt="text.figureDalt"
         >
       </div>
-      <h3 v-html="text.headingC" />
-      <p v-html="text.paragraphC1" />
+      <h3 v-html="text.headingE" />
+      <p v-html="text.paragraphE1" />
     </div>
   </section>
 </template>

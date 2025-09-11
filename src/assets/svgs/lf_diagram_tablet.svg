@@ -27,7 +27,7 @@ z
     <path d="M 87.48 162.7128 
 L 376.164 293.9328 
 L 664.848 162.7128 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #00264c; stroke-opacity: 0.25"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #00264c; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="FillBetweenPolyCollection_1">
     <path d="M 87.48 44.6148 
@@ -39,82 +39,82 @@ L 664.848 280.8108
 L 376.164 293.9328 
 L 87.48 44.6148 
 z
-" clip-path="url(#p3df50c1a82)" style="fill: #7f7f7f; fill-opacity: 0.15"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: #7f7f7f; fill-opacity: 0.15"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_2">
       <defs>
-       <path id="m6c1d1673dd" d="M 0 0 
+       <path id="m565bbd4822" d="M 0 0 
 L 0 3.5 
 " style="stroke: #949494; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m6c1d1673dd" x="87.48" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="87.48" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="87.48" y="312.4853" transform="rotate(-0 87.48 312.4853)">Lower</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="87.48" y="312.4853" transform="rotate(-0 87.48 312.4853)">Lower</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="376.164" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="376.164" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="376.164" y="312.4853" transform="rotate(-0 376.164 312.4853)">Median</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="376.164" y="312.4853" transform="rotate(-0 376.164 312.4853)">Median</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="664.848" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="664.848" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="664.848" y="312.4853" transform="rotate(-0 664.848 312.4853)">Upper</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="664.848" y="312.4853" transform="rotate(-0 664.848 312.4853)">Upper</text>
      </g>
     </g>
     <g id="text_4">
-     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="376.164" y="331.5903" transform="rotate(-0 376.164 331.5903)">Estimate</text>
+     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="376.164" y="331.5903" transform="rotate(-0 376.164 331.5903)">Estimate</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_5">
       <defs>
-       <path id="m9ac9bf80df" d="M 0 0 
+       <path id="m75b950011f" d="M 0 0 
 L -3.5 0 
 " style="stroke: #949494; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="293.9328" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(52.6725 283.4488)">Less</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(32.6725 300.8643)">Penalty</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(80.48 318.2798)"/>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(52.6725 283.4488)">Less</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(32.6725 300.8643)">Penalty</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(80.48 318.2798)"/>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_6">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="162.7128" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="162.7128" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_7">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="31.4928" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="31.4928" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_6">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(48.2575 29.71655)">More</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(32.6725 47.13205)">Penalty</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(48.2575 29.71655)">More</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(32.6725 47.13205)">Penalty</text>
      </g>
     </g>
    </g>
@@ -122,31 +122,31 @@ L -3.5 0
     <path d="M 87.48 280.8108 
 L 376.164 293.9328 
 L 664.848 44.6148 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b68835; stroke-opacity: 0.25"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #b68835; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="line2d_9">
     <path d="M 87.48 44.6148 
 L 376.164 293.9328 
 L 664.848 280.8108 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #406991; stroke-opacity: 0.25"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #406991; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="line2d_10">
     <path d="M 87.48 280.8108 
 L 376.164 293.9328 
 L 664.848 44.6148 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke: #b68835; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke: #b68835; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_11">
     <path d="M 87.48 162.7128 
 L 376.164 293.9328 
 L 664.848 162.7128 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke: #00264c; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke: #00264c; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_12">
     <path d="M 87.48 44.6148 
 L 376.164 293.9328 
 L 664.848 280.8108 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke: #406991; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke: #406991; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
     <path d="M 87.48 293.9328 
@@ -165,7 +165,7 @@ L 664.848 293.9328
     <path d="M 87.48 162.7128 
 L 376.164 293.9328 
 L 664.848 162.7128 
-" clip-path="url(#p3df50c1a82)" style="fill: none; stroke: #00264c; stroke-linecap: square"/>
+" clip-path="url(#p5b2915c7d5)" style="fill: none; stroke: #00264c; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
   </g>
   <g id="axes_2">
@@ -181,7 +181,7 @@ z
     <path d="M 87.48 519.6312 
 L 376.164 650.8512 
 L 664.848 519.6312 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #00264c; stroke-opacity: 0.25"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #00264c; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="FillBetweenPolyCollection_2">
     <path d="M 87.48 401.5332 
@@ -193,72 +193,72 @@ L 664.848 637.7292
 L 376.164 650.8512 
 L 87.48 401.5332 
 z
-" clip-path="url(#p0f30dd2f43)" style="fill: #7f7f7f; fill-opacity: 0.15"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: #7f7f7f; fill-opacity: 0.15"/>
    </g>
    <g id="matplotlib.axis_3">
     <g id="xtick_4">
      <g id="line2d_15">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="87.48" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="87.48" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="87.48" y="669.4037" transform="rotate(-0 87.48 669.4037)">Lower</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="87.48" y="669.4037" transform="rotate(-0 87.48 669.4037)">Lower</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_16">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="376.164" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="376.164" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="376.164" y="669.4037" transform="rotate(-0 376.164 669.4037)">Median</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="376.164" y="669.4037" transform="rotate(-0 376.164 669.4037)">Median</text>
      </g>
     </g>
     <g id="xtick_6">
      <g id="line2d_17">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="664.848" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="664.848" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_10">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="664.848" y="669.4037" transform="rotate(-0 664.848 669.4037)">Upper</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="664.848" y="669.4037" transform="rotate(-0 664.848 669.4037)">Upper</text>
      </g>
     </g>
     <g id="text_11">
-     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="376.164" y="688.5087" transform="rotate(-0 376.164 688.5087)">Estimate</text>
+     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="376.164" y="688.5087" transform="rotate(-0 376.164 688.5087)">Estimate</text>
     </g>
    </g>
    <g id="matplotlib.axis_4">
     <g id="ytick_4">
      <g id="line2d_18">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="650.8512" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_12">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(52.6725 640.3672)">Less</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(32.6725 657.7827)">Penalty</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(80.48 675.1982)"/>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(52.6725 640.3672)">Less</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(32.6725 657.7827)">Penalty</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(80.48 675.1982)"/>
      </g>
     </g>
     <g id="ytick_5">
      <g id="line2d_19">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="519.6312" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="519.6312" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="ytick_6">
      <g id="line2d_20">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="388.4112" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="388.4112" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_13">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(48.2575 386.63495)">More</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(32.6725 404.05045)">Penalty</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(48.2575 386.63495)">More</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(32.6725 404.05045)">Penalty</text>
      </g>
     </g>
    </g>
@@ -266,31 +266,31 @@ z
     <path d="M 87.48 637.7292 
 L 376.164 650.8512 
 L 664.848 401.5332 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b68835; stroke-opacity: 0.25"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #b68835; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="line2d_22">
     <path d="M 87.48 401.5332 
 L 376.164 650.8512 
 L 664.848 637.7292 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #406991; stroke-opacity: 0.25"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #406991; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="line2d_23">
     <path d="M 87.48 637.7292 
 L 376.164 650.8512 
 L 664.848 401.5332 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke: #b68835; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke: #b68835; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_24">
     <path d="M 87.48 519.6312 
 L 376.164 650.8512 
 L 664.848 519.6312 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke: #00264c; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke: #00264c; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_25">
     <path d="M 87.48 401.5332 
 L 376.164 650.8512 
 L 664.848 637.7292 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke: #406991; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke: #406991; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="patch_6">
     <path d="M 87.48 650.8512 
@@ -309,7 +309,7 @@ L 664.848 650.8512
     <path d="M 87.48 401.5332 
 L 376.164 650.8512 
 L 664.848 637.7292 
-" clip-path="url(#p0f30dd2f43)" style="fill: none; stroke: #406991; stroke-linecap: square"/>
+" clip-path="url(#p3c8d1f277b)" style="fill: none; stroke: #406991; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
   </g>
   <g id="axes_3">
@@ -325,7 +325,7 @@ z
     <path d="M 87.48 876.5496 
 L 376.164 1007.7696 
 L 664.848 876.5496 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #00264c; stroke-opacity: 0.25"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #00264c; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="FillBetweenPolyCollection_3">
     <path d="M 87.48 758.4516 
@@ -337,72 +337,72 @@ L 664.848 994.6476
 L 376.164 1007.7696 
 L 87.48 758.4516 
 z
-" clip-path="url(#pdef8c5a00d)" style="fill: #7f7f7f; fill-opacity: 0.15"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: #7f7f7f; fill-opacity: 0.15"/>
    </g>
    <g id="matplotlib.axis_5">
     <g id="xtick_7">
      <g id="line2d_28">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="87.48" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="87.48" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_15">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="87.48" y="1026.3221" transform="rotate(-0 87.48 1026.3221)">Lower</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="87.48" y="1026.3221" transform="rotate(-0 87.48 1026.3221)">Lower</text>
      </g>
     </g>
     <g id="xtick_8">
      <g id="line2d_29">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="376.164" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="376.164" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_16">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="376.164" y="1026.3221" transform="rotate(-0 376.164 1026.3221)">Median</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="376.164" y="1026.3221" transform="rotate(-0 376.164 1026.3221)">Median</text>
      </g>
     </g>
     <g id="xtick_9">
      <g id="line2d_30">
       <g>
-       <use xlink:href="#m6c1d1673dd" x="664.848" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m565bbd4822" x="664.848" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_17">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="664.848" y="1026.3221" transform="rotate(-0 664.848 1026.3221)">Upper</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="664.848" y="1026.3221" transform="rotate(-0 664.848 1026.3221)">Upper</text>
      </g>
     </g>
     <g id="text_18">
-     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #595959" x="376.164" y="1045.4271" transform="rotate(-0 376.164 1045.4271)">Estimate</text>
+     <text style="font-weight: 600; font-size: 16px; font-family: 'Source Sans 3', sans-serif; text-anchor: middle; fill: #494949" x="376.164" y="1045.4271" transform="rotate(-0 376.164 1045.4271)">Estimate</text>
     </g>
    </g>
    <g id="matplotlib.axis_6">
     <g id="ytick_7">
      <g id="line2d_31">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="1007.7696" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_19">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(52.6725 997.2856)">Less</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(32.6725 1014.7011)">Penalty</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(80.48 1032.1166)"/>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(52.6725 997.2856)">Less</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(32.6725 1014.7011)">Penalty</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(80.48 1032.1166)"/>
      </g>
     </g>
     <g id="ytick_8">
      <g id="line2d_32">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="876.5496" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="876.5496" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="ytick_9">
      <g id="line2d_33">
       <g>
-       <use xlink:href="#m9ac9bf80df" x="87.48" y="745.3296" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
+       <use xlink:href="#m75b950011f" x="87.48" y="745.3296" style="fill: #949494; stroke: #949494; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_20">
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(48.2575 743.55335)">More</text>
-      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #595959" transform="translate(32.6725 760.96885)">Penalty</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(48.2575 743.55335)">More</text>
+      <text style="font-weight: 300; font-size: 16px; font-family: 'Source Sans 3', sans-serif; fill: #494949" transform="translate(32.6725 760.96885)">Penalty</text>
      </g>
     </g>
    </g>
@@ -410,31 +410,31 @@ z
     <path d="M 87.48 994.6476 
 L 376.164 1007.7696 
 L 664.848 758.4516 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b68835; stroke-opacity: 0.25"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #b68835; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="line2d_35">
     <path d="M 87.48 758.4516 
 L 376.164 1007.7696 
 L 664.848 994.6476 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #406991; stroke-opacity: 0.25"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #406991; stroke-opacity: 0.25; stroke-width: 1.5"/>
    </g>
    <g id="line2d_36">
     <path d="M 87.48 994.6476 
 L 376.164 1007.7696 
 L 664.848 758.4516 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke: #b68835; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke: #b68835; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_37">
     <path d="M 87.48 876.5496 
 L 376.164 1007.7696 
 L 664.848 876.5496 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke: #00264c; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke: #00264c; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_38">
     <path d="M 87.48 758.4516 
 L 376.164 1007.7696 
 L 664.848 994.6476 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke: #406991; stroke-opacity: 0; stroke-linecap: square"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke: #406991; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="patch_9">
     <path d="M 87.48 1007.7696 
@@ -453,18 +453,18 @@ L 664.848 1007.7696
     <path d="M 87.48 994.6476 
 L 376.164 1007.7696 
 L 664.848 758.4516 
-" clip-path="url(#pdef8c5a00d)" style="fill: none; stroke: #b68835; stroke-linecap: square"/>
+" clip-path="url(#pe672a9a9c4)" style="fill: none; stroke: #b68835; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p3df50c1a82">
+  <clipPath id="p5b2915c7d5">
    <rect x="87.48" y="31.4928" width="577.368" height="262.44"/>
   </clipPath>
-  <clipPath id="p0f30dd2f43">
+  <clipPath id="p3c8d1f277b">
    <rect x="87.48" y="388.4112" width="577.368" height="262.44"/>
   </clipPath>
-  <clipPath id="pdef8c5a00d">
+  <clipPath id="pe672a9a9c4">
    <rect x="87.48" y="745.3296" width="577.368" height="262.44"/>
   </clipPath>
  </defs>
