@@ -25,8 +25,8 @@
       />
       <CollapsibleAccordion 
         v-for="item, index in text.accordionData"
-        accordion-id="low-flow-accordion"
         :key="index"
+        accordion-id="low-flow-accordion"
         :heading="item.heading"
         :content="item.content"
         :active-on-load="item.activeOnLoad"

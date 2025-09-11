@@ -4,8 +4,8 @@
       class="text-container"
     >
       <h2
-        class="section-title"
         id="uncertainty-section-title"
+        class="section-title"
       >
         <span>
           {{ text.title }}

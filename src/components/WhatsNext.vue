@@ -1,8 +1,8 @@
 <template>
   <section>
     <div
-      class="text-container"
       id="whats-next-section"
+      class="text-container"
     >
       <h2
         class="section-title"

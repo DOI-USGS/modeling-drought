@@ -5,9 +5,9 @@
     :style="{'border-left-color': leftBorderColor }"
   > 
     <button 
-      class="accordion" 
+      :id="`${accordionId}-button`" 
+      class="accordion"
       type="button"
-      :id="`${accordionId}-button`"
       :class="{ active: active }" 
       :aria-expanded="active ? true : false"
       :aria-controls="`${accordionId}-panel`"
@@ -46,10 +46,10 @@
       </span>
     </button>
     <div 
-      role="region"
-      class="panel" 
-      :aria-labelledby="`${accordionId}-button`"
       :id="`${accordionId}-panel`"
+      role="region" 
+      class="panel"
+      :aria-labelledby="`${accordionId}-button`"
       :class="[{ 'active': active }]"
     >
       <div
