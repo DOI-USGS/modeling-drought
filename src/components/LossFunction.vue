@@ -25,14 +25,17 @@
         <lfPlotTablet
           v-if="tabletView"
           id="lf-svg"
+          :aria-label="text.ariaLabelResponsive"
         />
         <lfPlotMobile
           v-else-if="mobileView"
           id="lf-svg"
+          :aria-label="text.ariaLabelResponsive"
         />
         <lfPlotDesktop
           v-else
           id="lf-svg"
+          :aria-label="text.ariaLabelDesktop"
         />
       </div>
     </template>
@@ -118,9 +121,15 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        hideSVGChildren("#lf-svg");
         updateFigure();
         addInteractions();
     });
+
+    function hideSVGChildren(svgId) {
+        d3.select(svgId).selectChildren()
+            .attr("aria-hidden", true)
+    }
     
     function updateFigure() {
         layers.map(layer => {

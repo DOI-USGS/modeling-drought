@@ -22,14 +22,17 @@
         <fcPlotTablet
           v-if="tabletView"
           id="fc-svg"
+          :aria-label="text.ariaLabel"
         />
         <fcPlotMobile
           v-else-if="mobileView"
           id="fc-svg"
+          :aria-label="text.ariaLabel"
         />
         <fcPlotDesktop
           v-else
           id="fc-svg"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -67,7 +70,7 @@
     const tabletView = isTablet;
 
     // define props
-    const props = defineProps({
+    defineProps({
         text: { 
             type: Object,
             default() {
@@ -94,18 +97,13 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addAriaLabel("#fc-svg");
+        hideSVGChildren("#fc-svg");
         updateFigure(d3.select("#fc-svg"));
         addInteractions();
     });
 
-    function addAriaLabel(svgId) {
-        const obsvSVG = d3.select(svgId)
-
-        obsvSVG
-            .attr("aria-label", props.text.ariaLabel)
-
-        obsvSVG.selectChildren()
+    function hideSVGChildren(svgId) {
+        d3.select(svgId).selectChildren()
             .attr("aria-hidden", true)
     }
 

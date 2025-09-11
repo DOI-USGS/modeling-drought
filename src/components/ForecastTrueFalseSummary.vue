@@ -13,14 +13,17 @@
         <fcsumTFPlotTablet
           v-if="tabletView"
           id="fc-true-false-sum-svg"
+          :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotMobile
           v-else-if="mobileView"
           id="fc-true-false-sum-svg"
+          :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotDesktop
           v-else
           id="fc-true-false-sum-svg"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -46,7 +49,7 @@
     const tabletView = isTablet;
 
     // define props
-    const props = defineProps({
+    defineProps({
         text: { 
             type: Object,
             default() {
@@ -58,16 +61,11 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-      addAriaLabel("#fc-true-false-sum-svg");
+      hideSVGChildren("#fc-true-false-sum-svg");
     });
 
-    function addAriaLabel(svgId) {
-      const obsvSVG = d3.select(svgId)
-
-      obsvSVG
-        .attr("aria-label", props.text.ariaLabel)
-
-      obsvSVG.selectChildren()
+    function hideSVGChildren(svgId) {
+      d3.select(svgId).selectChildren()
         .attr("aria-hidden", true)
     }
 </script>

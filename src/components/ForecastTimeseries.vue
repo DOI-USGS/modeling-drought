@@ -20,6 +20,7 @@
       <div id="fc-diagram-grid-container">
         <fcDiagramPlot
           id="fc-diagram-svg"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -38,7 +39,7 @@
 
 
   // define props
-  const props = defineProps({
+  defineProps({
     text: { 
       type: Object,
         default() {
@@ -48,16 +49,11 @@
   })
 
   onMounted(() => {
-    addAriaLabel('#fc-diagram-svg');
+    hideSVGChildren('#fc-diagram-svg');
   });
 
-  function addAriaLabel(svgId) {
-    const obsvSVG = d3.select(svgId)
-
-    obsvSVG
-      .attr("aria-label", props.text.ariaLabel)
-
-    obsvSVG.selectChildren()
+  function hideSVGChildren(svgId) {
+    d3.select(svgId).selectChildren()
       .attr("aria-hidden", true)
   }
 

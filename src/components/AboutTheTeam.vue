@@ -22,6 +22,7 @@
           class="svg"
           :width="width"
           :height="height"
+          :aria-label="ariaLabel"
         />
       </div>
     </template>
@@ -96,6 +97,7 @@ const colors = {
     OPP: "var(--medium-grey)",
     KS: "var(--dark-tan)"
 }
+const ariaLabel = "DIAGRAM ALT"
 
 onMounted(() => {
     resizeAndDraw();
@@ -189,7 +191,10 @@ function drawGraph() {
         .join('a')
         .attr('xlink:href', d => d.url || null)
         .attr('target', '_blank')
+        .attr('aria-hidden', d => d.url ? false : true)
+        .attr('aria-label', d => d.url ? `Link to USGS staff profile for ${d.name}` : null)
         .append('circle')
+        .attr('aria-hidden', true)
         .attr('r', nodeRadius)
         .attr('stroke', d => groupAuras.get(d.group))
         .attr('stroke-width', 6)

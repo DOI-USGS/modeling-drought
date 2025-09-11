@@ -104,6 +104,9 @@ export default {
             questionDrought: "If the model <span class ='emph'>does predict streamflow drought</span>, how often is it <span class='group-label true-pos'>right</span> or <span class='group-label false-pos'>wrong</span>?",
             questionDroughtAriaLabel: "If the model does predict streamflow drought, how often is it right or wrong?",
             caption: "Use the radio buttons to see the overall model performance and how right or wrong the model is depending on whether it predicts severe or extreme streamflow drought or not.",
+            rwAllAriaLabel: "ALL PLOT DESCRIPTION",
+            rwNoDroughtAriaLabel: "NO DROUGHT PLOT DESCRIPTION",
+            rwDroughtAriaLabel: "DROUGHT PLOT DESCRIPTION",
             paragraph2: "Across the board, the model’s prediction ability is better with shorter forecast horizons."
         }
     },
@@ -116,7 +119,9 @@ export default {
         lossFunctionDiagram: {
             heading: "Training models with loss functions",
             paragraph1: "Training an AI/ML model requires directing it to the right solution. We do so by penalizing it when it predicts incorrectly. Some predictions may be overestimates, while others may be underestimates. Depending on the goal, different types of errors may warrant different penalties. In this case, because the model is trained on observed streamflow values below the 30<sup>th</sup> percentile, only predictions corresponding to observations below the 30<sup>th</sup> percentile are evaluated.",
-            caption: "Loss functions use different rates of penalties for incorrect predictions depending on whether scientists are interested in the median, 95% quantile (upper bound), or 5% quantile (lower bound) values."
+            caption: "Loss functions use different rates of penalties for incorrect predictions depending on whether scientists are interested in the median, 95% quantile (upper bound), or 5% quantile (lower bound) values.",
+            ariaLabelDesktop: "PLOT DESCRIPTION DESKTOP",
+            ariaLabelResponsive: "PLOT DESCRIPTION MOBILE/TABLET"
         },
         lossFunction: {
             paragraph1: "To generate a <span class ='group-label median'>median prediction</span>, scientists use a <span class ='emph'>symmetric loss function</span>. This function penalizes under- and overestimations equally. When plotted, the loss function has identical slopes on both sides of zero error—meaning penalties for incorrect predictions increase at the same rate whether the prediction is too high or too low.",
@@ -125,13 +130,17 @@ export default {
             paragraph4: "The plot below illustrates how different loss functions influence model predictions by changing the penalty applied to prediction errors.",
             captionDesktop: "Hover your mouse in the gray region on either chart to see the relationship between the loss function (left) and the streamflow percentile prediction (right). Use the toggles to highlight the loss function shapes and streamflow percentiles for the 95% quantile (upper bound), median, and 5% quantile (lower bound) predictions. Note that the training dataset restriction means the loss functions are only penalizing predictions corresponding to observations below the 30<sup>th</sup> percentile, and therefore best capture uncertainty for predictions in this range.",
             captionResponsive: "Tap in the gray region on either chart to see the relationship between the loss function (left) and the streamflow percentile prediction (right). Use the toggles to highlight the loss function shapes and streamflow percentiles for the 95% quantile (upper bound), median, and 5% quantile (lower bound) predictions. Note that the training dataset restriction means the loss functions are only penalizing predictions corresponding to observations below the 30<sup>th</sup> percentile, and therefore best capture uncertainty for predictions in this range.",
+            ariaLabelDesktop: "PLOT DESCRIPTION DESKTOP",
+            ariaLabelResponsive: "PLOT DESCRIPTION MOBILE/TABLET",
             paragraph5: "What do you see? When the left slope in the loss function is steeper than the right slope, meaning the function penalizes underestimation more strongly than overestimation, the model favors high predictions. Conversely, when the right slope is steeper than the left, the model favors low predictions. This approach allows the model to bracket the range of its predictions, capturing uncertainty in the forecast."
         },
         predictionInterval: {
             heading: "Defining prediction intervals",
             paragraph1: "The upper and lower bounds that the model predicts define what we call the <span class ='emph'>prediction interval</span>. In this case, by excluding the 10% least likely prediction scenarios, the streamflow drought forecast model has a 90% prediction interval. The size of the prediction interval tells us the approximate percentage of actual observations <i>below the 30<sup>th</sup> percentile </i>the model expects to be within the interval. In other words, a 90% prediction interval should contain approximately 90% of observed streamflow values below the 30<sup>th</sup> percentile.",
             paragraph2: "The plot below shows that as the prediction interval increases, more observations are captured within the range of predictions. Moreover, by favoring underestimation and overestimation, steep asymmetric loss functions create wider prediction intervals than do loss functions with more equal slopes.",
-            caption: "Use the radio buttons to explore the relationship between different prediction interval sizes, loss functions (left), and % of observations below the 30<sup>th</sup> percentile captured within the prediction intervals (right)."
+            caption: "Use the radio buttons to explore the relationship between different prediction interval sizes, loss functions (left), and % of observations below the 30<sup>th</sup> percentile captured within the prediction intervals (right).",
+            ariaLabelDesktop: "PLOT DESCRIPTION DESKTOP",
+            ariaLabelResponsive: "PLOT DESCRIPTION MOBILE/TABLET"
         }
     },
     WhatsNext: {
@@ -142,6 +151,7 @@ export default {
         headingB: "More ways to evaluate model performance",
         paragraphB1: "As the model continues to run, USGS scientists can use the growing pool of predictions to evaluate model performance in new ways. Specifically, we can assess if the model accurately predicts when a streamflow drought event will start (streamflow drought onset), how long it will last (streamflow drought duration), when it will end (streamflow drought termination), and how low the streamflow percentile will become (streamflow drought intensity). This is valuable information for water managers and communities that are preparing for streamflow drought conditions.",
         figureBpath: "drought_event_explainer.png",
+        figureBalt: "ALT TEXT",
         headingC: "Forecasts for more places",
         paragraphC1: "USGS is also expanding the model to generate streamflow drought forecasts for CONUS basins that do not have streamgages. The <a href='https://www.usgs.gov/media/images/how-far-away-your-closest-streamgage' target='_blank'>lack of real-time and historical streamflow data</a> in these regions makes water management challenging for decision makers. By applying this streamflow drought forecast model to ungaged areas, USGS aims to provide valuable information on water availability at management-relevant scales.",
     },

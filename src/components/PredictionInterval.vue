@@ -26,14 +26,17 @@
         <piPlotTablet
           v-if="tabletView"
           id="pi-svg"
+          :aria-label="text.ariaLabelResponsive"
         />
         <piPlotMobile
           v-else-if="mobileView"
           id="pi-svg"
+          :aria-label="text.ariaLabelResponsive"
         />
         <piPlotDesktop
           v-else
           id="pi-svg"
+          :aria-label="text.ariaLabelDesktop"
         />
       </div>
     </template>
@@ -105,6 +108,7 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        hideSVGChildren("#pi-svg");
         // FOR NOW, drop button annotations (won't exist in futurre)
         // hide annotations
         d3.select("#annotation_buttons2").selectAll("text")
@@ -116,6 +120,11 @@
         // update figure based on radio button selection
         updateFigure();
     });
+
+    function hideSVGChildren(svgId) {
+        d3.select(svgId).selectChildren()
+            .attr("aria-hidden", true)
+    }
 
     function updateFigure() {
         layers.map(layer => {

@@ -24,6 +24,7 @@
         <img
           :src="getImageURL(text.figureBpath)"
           class="explainer-image"
+          :alt="text.figureBalt"
         >
       </div>
       <h3 v-html="text.headingC" />

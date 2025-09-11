@@ -9,14 +9,17 @@
         <obsvPlotTablet
           v-if="tabletView"
           id="obsv-svg"
+          :aria-label="text.ariaLabel"
         />
         <obsvPlotMobile
           v-else-if="mobileView"
           id="obsv-svg"
+          :aria-label="text.ariaLabel"
         />
         <obsvPlotDesktop
           v-else
           id="obsv-svg"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -53,7 +56,7 @@
     const tabletView = isTablet;
 
     // define props
-    const props = defineProps({
+    defineProps({
         text: { 
             type: Object,
             default() {
@@ -75,18 +78,13 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addAriaLabel("#obsv-svg");
+        hideSVGChildren("#obsv-svg");
         addInteractions();
     });
 
-    function addAriaLabel(svgId) {
-        const obsvSVG = d3.select(svgId)
-
-        obsvSVG
-            .attr("aria-label", props.text.ariaLabel)
-
-        obsvSVG.selectChildren()
-            .attr("aria-hidden", true)
+    function hideSVGChildren(svgId) {
+      d3.select(svgId).selectChildren()
+        .attr("aria-hidden", true)
     }
     
     function draw_line(svg, line_id_base) {
