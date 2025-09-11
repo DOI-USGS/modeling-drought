@@ -9,6 +9,8 @@
         <span v-html="text.paragraph1Start" />
         <button
           id="scroll-button"
+          type="button"
+          aria-label="Scroll to section on how the model captures uncertainty"
           @click="scrollToUncertainty"
         >
           <a v-html="text.paragraph1Button" />
