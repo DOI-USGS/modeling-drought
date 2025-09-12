@@ -23,7 +23,6 @@
         class="toggle-input" 
         :checked="modelValue"
         :aria-checked="modelValue"
-        aria-hidden="true" 
         @change="$emit('update:modelValue', !modelValue)"
       >
       <span 
@@ -131,9 +130,6 @@ defineEmits(['update:modelValue']);
 
 .toggle-text.tactive {
   color: var(--black-soft); /* active label is black */
-}
-.toggle-input:focus-visible {
-  outline: none; /* removes focus outline */
 }
 
 .toggle-label:focus-visible {
