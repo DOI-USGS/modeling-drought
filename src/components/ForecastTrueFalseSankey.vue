@@ -13,17 +13,20 @@
       <div id="fc-true-false-grid-container">
         <fckeyPlotTablet
           v-if="tabletView"
-          id="fc-true-false-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
         <fckeyPlotMobile
           v-else-if="mobileView"
-          id="fc-true-false-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
         <fckeyPlotDesktop
           v-else
-          id="fc-true-false-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
       </div>
@@ -62,9 +65,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "fc-true-false-svg"
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -76,13 +80,20 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-      hideSVGChildren("#fc-true-false-svg");
-      addInteractions();
+      hideSVGChildren(svgId);
+      addSVGDesc(svgId);
+      addInteractions(svgId);
     });
     
     function hideSVGChildren(svgId) {
-      d3.select(svgId).selectChildren()
+      d3.select(`#${svgId}`).selectChildren()
         .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDesc)
     }
 
     // Draw the percent width line and label
@@ -173,9 +184,9 @@
         remove_sankey(default_swoop);
     }
 
-    function addInteractions() {
+    function addInteractions(svgId) {
         // set viewbox for svg with confidence interval chart
-        const fckeySVG = d3.select("#fc-true-false-svg")
+        const fckeySVG = d3.select(`#${svgId}`)
 
         // plot parameters
         const default_swoop = "ND"

@@ -22,17 +22,20 @@
       <div id="fc-grid-container">
         <fcPlotTablet
           v-if="tabletView"
-          id="fc-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
         <fcPlotMobile
           v-else-if="mobileView"
-          id="fc-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
         <fcPlotDesktop
           v-else
-          id="fc-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
       </div>
@@ -69,9 +72,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "fc-svg"
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -92,23 +96,31 @@
 
     // Watches layers for changes and updates figure layers
     watch(layers, () => {
-        updateFigure(d3.select("#fc-svg"));
+        updateFigure(svgId);
     });
 
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        hideSVGChildren("#fc-svg");
-        updateFigure(d3.select("#fc-svg"));
-        addInteractions();
+        hideSVGChildren(svgId);
+        addSVGDesc(svgId);
+        updateFigure(svgId);
+        addInteractions(svgId);
     });
 
     function hideSVGChildren(svgId) {
-        d3.select(svgId).selectChildren()
-            .attr("aria-hidden", true)
+      d3.select(`#${svgId}`).selectChildren()
+        .attr("aria-hidden", true)
     }
 
-    function updateFigure(svg) {
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDesc)
+    }
+
+    function updateFigure(svgId) {
+        const svg = d3.select(`#${svgId}`)
         layers.map(layer => {
             const targetOpacity = layer.visible ? 1 : 0;
             toggleLayer(svg, layer.id, targetOpacity)
@@ -230,9 +242,9 @@
             .style("fill-opacity", 0.75); 
     }
 
-    function addInteractions() {
+    function addInteractions(svgId) {
         // set viewbox for svg with loss function chart
-        const fcSVG = d3.select("#fc-svg")
+        const fcSVG = d3.select(`#${svgId}`)
 
         // plot parameters
         const lookback = 13

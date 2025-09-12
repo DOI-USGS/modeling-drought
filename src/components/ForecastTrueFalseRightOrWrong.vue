@@ -18,7 +18,8 @@
       <div id="fc-true-false-rw-grid-container">
         <component
           :is="getCurrentSVG()"
-          id="fc-true-false-rw-svg"
+          role="img"
+          :id="svgId"
           :aria-label="ariaLabel"
         />
       </div>
@@ -53,6 +54,7 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = 'fc-true-false-rw-svg';
 
     // define props
     const props = defineProps({
@@ -101,27 +103,51 @@
       }
       return svgAriaLabel;
     })
-
+    const ariaDesc = computed(() => {
+      let svgAriaDesc;
+      switch(true) {
+        case selectedfcSumLayer.value  == 'RW_noDrought':
+          svgAriaDesc = props.text.rwNoDroughtAriaDesc;
+          break;
+        case selectedfcSumLayer.value  == 'RW-all':
+          svgAriaDesc = props.text.rwAllAriaDesc;
+          break;
+        case selectedfcSumLayer.value  == 'RW-drought':
+          svgAriaDesc = props.text.rwDroughtAriaDesc;
+          break;
+      }
+      return svgAriaDesc;
+    })
+    
     // define global variables
     const centerColorfcSum = 'var(--color-background)'
 
     // Hide SVG children each time svg changes
     watch(selectedfcSumLayer, () => {
-      hideSVGChildren("#fc-true-false-rw-svg")
+      hideSVGChildren(svgId);
+      addSVGDesc(svgId);
     });
 
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        hideSVGChildren("#fc-true-false-rw-svg");
+        hideSVGChildren(svgId);
+        addSVGDesc(svgId);
         // update figure based on radio button selection
         getCurrentSVG();
     });
 
     async function hideSVGChildren(svgId) {
       await nextTick();
-      d3.select(svgId).selectChildren()
+      d3.select(`#${svgId}`).selectChildren()
         .attr("aria-hidden", true)
+    }
+
+    async function addSVGDesc(svgId) {
+      await nextTick();
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(ariaDesc.value)
     }
 
     function getCurrentSVG() {

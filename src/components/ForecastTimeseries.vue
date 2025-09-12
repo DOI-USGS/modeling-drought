@@ -21,7 +21,8 @@
     <template #figures>
       <div id="fc-diagram-grid-container">
         <fcDiagramPlot
-          id="fc-diagram-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
       </div>
@@ -41,7 +42,7 @@
 
 
   // define props
-  defineProps({
+  const props = defineProps({
     text: { 
       type: Object,
         default() {
@@ -50,18 +51,16 @@
     }
   })
 
+  // global variables
+  const svgId = "fc-diagram-svg"
+
   onMounted(() => {
-    hideSVGChildren('#fc-diagram-svg');
+    hideSVGChildren(svgId);
   });
 
   function hideSVGChildren(svgId) {
-    d3.select(svgId).selectChildren()
+    d3.select(`#${svgId}`).selectChildren()
       .attr("aria-hidden", true)
-  }
-
-  function scrollToUncertainty() {
-    const targetElement = document.getElementById('uncertainty-section-title');
-     targetElement.scrollIntoView({ behavior: 'smooth' });
   }
 </script>
 

@@ -24,17 +24,20 @@
       <div id="lf-grid-container">
         <lfPlotTablet
           v-if="tabletView"
-          id="lf-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabelResponsive"
         />
         <lfPlotMobile
           v-else-if="mobileView"
-          id="lf-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabelResponsive"
         />
         <lfPlotDesktop
           v-else
-          id="lf-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabelDesktop"
         />
       </div>
@@ -74,9 +77,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "lf-svg"
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -121,14 +125,27 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        hideSVGChildren("#lf-svg");
+        hideSVGChildren(svgId);
+        addSVGDesc(svgId);
         updateFigure();
-        addInteractions();
+        addInteractions(svgId);
     });
 
     function hideSVGChildren(svgId) {
-        d3.select(svgId).selectChildren()
+        d3.select(`#${svgId}`).selectChildren()
             .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+        if (mobileView | tabletView) {
+            d3.select(`#${svgId}`).append('desc')
+                .attr("id", `${svgId}-desc`)
+                .text(props.text.ariaDescResponsive)
+        } else {
+            d3.select(`#${svgId}`).append('desc')
+                .attr("id", `${svgId}-desc`)
+                .text(props.text.ariaDescDesktop)
+        }
     }
     
     function updateFigure() {
@@ -219,9 +236,9 @@
         annotation(0.0)
     }
 
-    function addInteractions() {
+    function addInteractions(svgId) {
         // set viewbox for svg with loss function chart
-        const lfSVG = d3.select("#lf-svg")
+        const lfSVG = d3.select(`#${svgId}`);
 
         // Add interaction to loss function chart
         lfSVG.select("#figure-lossfunction")

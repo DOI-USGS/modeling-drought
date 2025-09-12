@@ -7,6 +7,7 @@
     <template #figures>
       <div id="fc-art-grid-container">
         <fcArtPlot
+          role="img"
           id="fc-art-svg"
           :aria-label="text.ariaLabel"
         />

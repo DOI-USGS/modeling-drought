@@ -20,6 +20,7 @@
           id="force-svg"
           ref="svg"
           class="svg"
+          role="img"
           :width="width"
           :height="height"
           :aria-label="text.ariaLabel"
@@ -38,7 +39,7 @@ import VizSection from '@/components/VizSection.vue';
 // Importing images from assets
 import Person from '@/assets/images/face.jpeg';
 
-defineProps({
+const props = defineProps({
     text: { 
       type: Object,
       default() {
@@ -172,6 +173,10 @@ function drawGraph() {
 
     // build the svg
     const svgElement = d3.select(svg.value);
+
+    svgElement.append('desc')
+        .attr("id", "force-svg-desc")
+        .text(props.text.ariaDesc)
 
     svgElement.append("defs").selectAll("clipPath")
         .data(nodes.value)

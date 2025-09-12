@@ -18,17 +18,20 @@
       <div id="lf-diagram-grid-container">
         <lfDiagramTablet
           v-if="tabletView"
-          id="lf-diagram-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabelResponsive"
         />
         <lfDiagramMobile
           v-else-if="mobileView"
-          id="lf-diagram-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabelResponsive"
         />
         <lfDiagramDesktop
           v-else
-          id="lf-diagram-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabelDesktop"
         />
       </div>
@@ -53,9 +56,10 @@
   // global variables
   const mobileView = isMobileOnly;
   const tabletView = isTablet;
+  const svgId = "lf-diagram-svg"
 
   // define props
-  defineProps({
+  const props = defineProps({
     text: { 
       type: Object,
       default() {
@@ -67,12 +71,25 @@
   // Declare behavior on mounted
   // functions called here
   onMounted(() => {
-    hideSVGChildren("#lf-diagram-svg");
+    hideSVGChildren(svgId);
+    addSVGDesc(svgId);
   });
 
   function hideSVGChildren(svgId) {
-    d3.select(svgId).selectChildren()
+    d3.select(`#${svgId}`).selectChildren()
       .attr("aria-hidden", true)
+  }
+
+  function addSVGDesc(svgId) {
+    if (mobileView | tabletView) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDescResponsive)
+    } else {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDescDesktop)
+    }
   }
 </script>
 

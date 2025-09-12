@@ -25,17 +25,20 @@
       <div id="pi-grid-container">
         <piPlotTablet
           v-if="tabletView"
-          id="pi-svg"
+          role="img"
+          :id="svgId"
           :aria-label="ariaLabel"
         />
         <piPlotMobile
           v-else-if="mobileView"
-          id="pi-svg"
+          role="img"
+          :id="svgId"
           :aria-label="ariaLabel"
         />
         <piPlotDesktop
           v-else
-          id="pi-svg"
+          role="img"
+          :id="svgId"
           :aria-label="ariaLabel"
         />
       </div>
@@ -48,7 +51,7 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, reactive, ref, watch } from "vue";
+    import { computed, nextTick, onMounted, reactive, ref, watch } from "vue";
     import * as d3 from 'd3';
     import { isMobile } from 'mobile-device-detect';
     import { isMobileOnly } from 'mobile-device-detect';
@@ -63,6 +66,7 @@
     const mobileTabletView = isMobile;
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = 'pi-svg';
 
     // define props
     const props = defineProps({
@@ -119,16 +123,36 @@
       }
       return svgAriaLabel;
     })
+    const ariaDesc = computed(() => {
+      let svgAriaDesc;
+      switch(true) {
+        case selectedLayer.value  == 'MEDIAN':
+          svgAriaDesc = mobileTabletView? props.text.medianAriaDescMobile : props.text.medianAriaDescDesktop;
+          break;
+        case selectedLayer.value  == '2':
+          svgAriaDesc = mobileTabletView? props.text.pi50AriaDescMobile : props.text.pi50AriaDescDesktop;
+          break;
+        case selectedLayer.value  == '1':
+          svgAriaDesc = mobileTabletView? props.text.pi75AriaDescMobile : props.text.pi75AriaDescDesktop;
+          break;
+        case selectedLayer.value  == '0':
+          svgAriaDesc = mobileTabletView? props.text.pi90AriaDescMobile : props.text.pi90AriaDescDesktop;
+          break;
+      }
+      return svgAriaDesc;
+    })
 
     // Watches selectedLayer for changes and updates figure layers
     watch(selectedLayer, () => {
-        updateFigure()
+        updateFigure();
+        updateSVGDesc(svgId);
     })
 
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        hideSVGChildren("#pi-svg");
+        hideSVGChildren(svgId);
+        addSVGDesc(svgId);
         // FOR NOW, drop button annotations (won't exist in futurre)
         // hide annotations
         d3.select("#annotation_buttons2").selectAll("text")
@@ -142,8 +166,20 @@
     });
 
     function hideSVGChildren(svgId) {
-        d3.select(svgId).selectChildren()
-            .attr("aria-hidden", true)
+      d3.select(`#${svgId}`).selectChildren()
+        .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(ariaDesc.value)
+    }
+
+    async function updateSVGDesc(svgId) {
+      await nextTick();
+      d3.select(`#${svgId}`).select('desc')
+        .text(ariaDesc.value)
     }
 
     function updateFigure() {

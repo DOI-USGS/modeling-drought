@@ -56,7 +56,8 @@ export default {
         ],        
         observationExplore: {
             paragraph1: "The plot below shows how streamflow at a site varies, dropping below normal and abnormally dry conditions to enter a streamflow drought.",
-            ariaLabel: "A hydrograph showing a timeseries of streamflow in a stream during 2021 and 2022. Horizontal lines on the plot mark the 30th percentile (above which streamflow conditions are normal, below which streamflow conditions are abnormally dry), the 20th percentile (below which the stream is in moderate streamflow drought), the 10th percentile (below which the stream is in severe streamflow drought), and the 5th percentile (below which the stream is in extreme streamflow drought). In mid-2021, the stream goes into streamflow drought, remaining in drought for nearly a year.",
+            ariaLabel: "A hydrograph timeseries of streamflow percentiles in a stream.",
+            ariaDesc: "A hydrograph showing a timeseries of streamflow in a stream during 2021 and 2022. Horizontal lines on the plot mark the 30th percentile (above which streamflow conditions are normal, below which streamflow conditions are abnormally dry), the 20th percentile (below which the stream is in moderate streamflow drought), the 10th percentile (below which the stream is in severe streamflow drought), and the 5th percentile (below which the stream is in extreme streamflow drought). In mid-2021, the stream goes into streamflow drought, remaining in drought for nearly a year.",
             caption1Desktop: "Hover your mouse over the plot to see when a stream goes into streamflow drought.",
             caption1Responsive: "Tap on the plot to see when a stream goes into streamflow drought.",
         },
@@ -84,7 +85,8 @@ export default {
             paragraph3: "We can see how this model works and performs by comparing forecasts to observations at an example site. On the initial issue date, the model uses past streamflow conditions and other input data to make a forecast for the next 13 weeks. On the next issue date, the model updates its forecast by taking into account the most recent streamflow and precipitation data. The plot below overlays current and previous forecasts, showing how the model incorporates new data and updates its predictions.",
             caption1Desktop: "Hover your mouse over the plot to see how the model forecasts streamflow drought. For each issue date, the darkest line shows the current forecast. Previously generated forecasts are shown using faded lines, where the oldest forecasts are the faintest. The dotted line indicates the 30<sup>th</sup> percentile. The model is trained to accurately predict streamflow below this percentile. Anything below the 20<sup>th</sup> percentile is considered streamflow drought.",
             caption1Responsive: "Tap on the plot to see how the model forecasts streamflow drought. For each issue date, the darkest line shows the current forecast. Previously generated forecasts are shown using faded lines, where the oldest forecasts are the faintest. The dotted line indicates the 30<sup>th</sup> percentile. The model is trained to accurately predict streamflow below this percentile. Anything below the 20<sup>th</sup> percentile is considered streamflow drought.",
-            ariaLabel: "PLOT DESCRIPTION"
+            ariaLabel: "A hydrograph timeseries of streamflow percentiles and streamflow percentile forecasts.",
+            ariaDesc: "PLOT DESCRIPTION"
         }
     },
     HowWellModelPerform: {
@@ -95,13 +97,15 @@ export default {
             paragraph2: "We can think of true negatives and positives as the model being right, and false negatives and positives as the model being wrong. The chart below shows the percentage of severe or extreme streamflow drought (&lt;<sup> </sup>10<sup>th</sup> percentile streamflow) predictions that fall into each of these categories when the model is forecasting streamflow drought one week into the future.",
             caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts </i>streamflow <i>drought or not, and how often that prediction is right (a ‘true’ outcome).",
             caption1Responsive: "Tap the Sankey plot to see how often the model predicts </i>streamflow <i>drought or not, and how often that prediction is right (a ‘true’ outcome).",
-            ariaLabel: "PLOT DESCRIPTION",
+            ariaLabel: "PLOT LABEL",
+            ariaDesc: "PLOT DESCRIPTION",
             paragraph3: "Overall, the model does a good job of correctly predicting when streamflow drought will and will not occur 1 week in the future."
         },
         forecastTrueFalseSummary: {
             paragraph1: "As we generate forecasts for weeks that are further out, accuracy decreases. In other words, we see more ‘false’ outcomes—where the model incorrectly predicts whether or not streamflow drought will occur—as the forecast horizon lengthens. Here is the accuracy breakdown for predictions of severe or extreme streamflow drought (&lt;<sup> </sup>10<sup>th</sup> percentile streamflow) for 1 through 13 weeks:",
             caption: "The proportion of true negatives, false negatives, false positives, and true positives changes with forecast horizon.",
-            ariaLabel: "PLOT DESCRIPTION"
+            ariaLabel: "PLOT LABEL",
+            ariaDesc: "PLOT DESCRIPTION"
         },
         forecastTrueFalseRightOrWrong: {
             paragraph1: "With these results, we can evaluate model accuracy several different ways:",
@@ -112,9 +116,12 @@ export default {
             questionDrought: "If the model <span class ='emph'>does predict streamflow drought</span>, how often is it <span role='presentation' class='group-label true-pos'>right</span> or <span role='presentation' class='group-label false-pos'>wrong</span>?",
             questionDroughtAriaLabel: "If the model does predict streamflow drought, how often is it right or wrong?",
             caption: "Use the radio buttons to see the overall model performance and how right or wrong the model is depending on whether it predicts severe or extreme streamflow drought or not.",
-            rwAllAriaLabel: "ALL PLOT DESCRIPTION",
-            rwNoDroughtAriaLabel: "NO DROUGHT PLOT DESCRIPTION",
-            rwDroughtAriaLabel: "DROUGHT PLOT DESCRIPTION",
+            rwAllAriaLabel: "ALL PLOT LABEL",
+            rwNoDroughtAriaLabel: "NO DROUGHT PLOT LABEL",
+            rwDroughtAriaLabel: "DROUGHT PLOT LABEL",
+            rwAllAriaDesc: "ALL PLOT DESCRIPTION",
+            rwNoDroughtAriaDesc: "NO DROUGHT PLOT DESCRIPTION",
+            rwDroughtAriaDesc: "DROUGHT PLOT DESCRIPTION",
             paragraph2: "Across the board, the model’s prediction ability is better with shorter forecast horizons."
         }
     },
@@ -128,8 +135,10 @@ export default {
             heading: "Training models with loss functions",
             paragraph1: "Training an AI/ML model requires directing it to the right solution. We do so by penalizing it when it predicts incorrectly. Some predictions may be overestimates, while others may be underestimates. Depending on the goal, different types of errors may warrant different penalties. In this case, because the model is trained on observed streamflow values below the 30<sup>th</sup> percentile, only predictions corresponding to observations below the 30<sup>th</sup> percentile are evaluated.",
             caption: "Loss functions use different rates of penalties for incorrect predictions depending on whether scientists are interested in the median, 95% quantile (upper bound), or 5% quantile (lower bound) values.",
-            ariaLabelDesktop: "PLOT DESCRIPTION DESKTOP",
-            ariaLabelResponsive: "PLOT DESCRIPTION MOBILE/TABLET"
+            ariaLabelDesktop: "PLOT LABEL DESKTOP",
+            ariaLabelResponsive: "PLOT LABEL MOBILE/TABLET",
+            ariaDescDesktop: "PLOT DESCRIPTION DESKTOP",
+            ariaDescResponsive: "PLOT DESCRIPTION MOBILE/TABLET"
         },
         lossFunction: {
             paragraph1: "To generate a <span role='presentation' class ='group-label median'>median prediction</span>, scientists use a <span class ='emph'>symmetric loss function</span>. This function penalizes under- and overestimations equally. When plotted, the loss function has identical slopes on both sides of zero error—meaning penalties for incorrect predictions increase at the same rate whether the prediction is too high or too low.",
@@ -138,8 +147,10 @@ export default {
             paragraph4: "The plot below illustrates how different loss functions influence model predictions by changing the penalty applied to prediction errors.",
             captionDesktop: "Hover your mouse in the gray region on either chart to see the relationship between the loss function (left) and the 1-week streamflow percentile prediction (right). Use the toggles to highlight the loss function shapes and streamflow percentiles for the 95% quantile (upper bound), median, and 5% quantile (lower bound) predictions. Note that the training dataset restriction means the loss functions are only penalizing predictions corresponding to observations below the 30<sup>th</sup> percentile, and therefore best capture uncertainty for predictions in this range.",
             captionResponsive: "Tap in the gray region on either chart to see the relationship between the loss function (left) and the 1-week streamflow percentile prediction (right). Use the toggles to highlight the loss function shapes and streamflow percentiles for the 95% quantile (upper bound), median, and 5% quantile (lower bound) predictions. Note that the training dataset restriction means the loss functions are only penalizing predictions corresponding to observations below the 30<sup>th</sup> percentile, and therefore best capture uncertainty for predictions in this range.",
-            ariaLabelDesktop: "PLOT DESCRIPTION DESKTOP",
-            ariaLabelResponsive: "PLOT DESCRIPTION MOBILE/TABLET",
+            ariaLabelDesktop: "PLOT LABEL DESKTOP",
+            ariaLabelResponsive: "PLOT LABEL MOBILE/TABLET",
+            ariaDescDesktop: "PLOT DESCRIPTION DESKTOP",
+            ariaDescResponsive: "PLOT DESCRIPTION MOBILE/TABLET",
             paragraph5: "What do you see? When the left slope in the loss function is steeper than the right slope, meaning the function penalizes underestimation more strongly than overestimation, the model favors high predictions. Conversely, when the right slope is steeper than the left, the model favors low predictions. This approach allows the model to bracket the range of its predictions, capturing uncertainty in the forecast."
         },
         predictionInterval: {
@@ -147,14 +158,22 @@ export default {
             paragraph1: "The upper and lower bounds that the model predicts define what we call the <span class ='emph'>prediction interval</span> (PI for short). In this case, by excluding the 10% least likely prediction scenarios, the streamflow drought forecast model has a 90% prediction interval. The size of the prediction interval tells us the approximate percentage of actual observations <i>below the 30<sup>th</sup> percentile </i>the model expects to be within the interval. In other words, a 90% prediction interval should contain approximately 90% of observed streamflow values below the 30<sup>th</sup> percentile.",
             paragraph2: "The plot below shows that as the prediction interval increases, more observations are captured within the range of predictions. Moreover, by favoring underestimation and overestimation, steep asymmetric loss functions create wider prediction intervals than do loss functions with more equal slopes.",
             caption: "Use the radio buttons to explore the relationship between different prediction interval sizes (generated with a 1-week forecast horizon), loss functions (left), and % of observations below the 30<sup>th</sup> percentile captured within the prediction intervals (right).",
-            medianAriaLabelDesktop: "MEDIAN PLOT DESCRIPTION DESKTOP",
-            medianAriaLabelMobile: "MEDIAN PLOT DESCRIPTION MOBILE/TABLET",
-            pi50AriaLabelDesktop: "PI 50 PLOT DESCRIPTION DESKTOP",
-            pi50AriaLabelMobile: "PI 50 PLOT DESCRIPTION MOBILE/TABLET",
-            pi75AriaLabelDesktop: "PI 75 PLOT DESCRIPTION DESKTOP",
-            pi75AriaLabelMobile: "PI 75 PLOT DESCRIPTION MOBILE/TABLET",
-            pi90AriaLabelDesktop: "PI 90 PLOT DESCRIPTION DESKTOP",
-            pi90AriaLabelMobile: "PI 90 PLOT DESCRIPTION MOBILE/TABLET"
+            medianAriaLabelDesktop: "MEDIAN PLOT LABEL DESKTOP",
+            medianAriaLabelMobile: "MEDIAN PLOT LABEL MOBILE/TABLET",
+            pi50AriaLabelDesktop: "PI 50 PLOT LABEL DESKTOP",
+            pi50AriaLabelMobile: "PI 50 PLOT LABEL MOBILE/TABLET",
+            pi75AriaLabelDesktop: "PI 75 PLOT LABEL DESKTOP",
+            pi75AriaLabelMobile: "PI 75 PLOT LABEL MOBILE/TABLET",
+            pi90AriaLabelDesktop: "PI 90 PLOT LABEL DESKTOP",
+            pi90AriaLabelMobile: "PI 90 PLOT LABEL MOBILE/TABLET",
+            medianAriaDescDesktop: "MEDIAN PLOT DESCRIPTION DESKTOP",
+            medianAriaDescMobile: "MEDIAN PLOT DESCRIPTION MOBILE/TABLET",
+            pi50AriaDescDesktop: "PI 50 PLOT DESCRIPTION DESKTOP",
+            pi50AriaDescMobile: "PI 50 PLOT DESCRIPTION MOBILE/TABLET",
+            pi75AriaDescDesktop: "PI 75 PLOT DESCRIPTION DESKTOP",
+            pi75AriaDescMobile: "PI 75 PLOT DESCRIPTION MOBILE/TABLET",
+            pi90AriaDescDesktop: "PI 90 PLOT DESCRIPTION DESKTOP",
+            pi90AriaDescMobile: "PI 90 PLOT DESCRIPTION MOBILE/TABLET"
         }
     },
     WhatsNext: {
@@ -180,7 +199,8 @@ export default {
             heading: "Collaboration across the USGS water community",
             paragraph1: "An interdisciplinary team of USGS researchers and data scientists are working together to forecast streamflow drought at a national scale.",
             paragraph2: "This is a collective effort by the <span  role='presentation' class='group-label' data-group='ESPD'>Earth Systems Processes Division</span>, <span  role='presentation' class='group-label' data-group='IIDD'>Integrated Information Dissemination Division</span>, <span  role='presentation' class='group-label' data-group='IMPD'>Integrated Modeling and Prediction Division</span>, <span  role='presentation' class='group-label' data-group='OSD'>Observing Systems Division</span>, and <span  role='presentation' class='group-label' data-group='OPP'>Office of Planning and Programming</span> within the USGS Water Resources Mission Area and the <span  role='presentation' class='group-label' data-group='KS'>KS Water Science Center</span>, <span  role='presentation' class='group-label' data-group='MD-DE-DC'>MD-DE-DC Water Science Center</span>, <span  role='presentation' class='group-label' data-group='OR'>OR Water Science Center</span>, <span  role='presentation' class='group-label' data-group='UT'>UT Water Science Center</span> and <span  role='presentation' class='group-label' data-group='WY-MT'>WY-MT Water Science Center</span>.",
-            ariaLabel: "This diagram depicts the team of USGS scientists working to forecast streamflow drought. There is a circle for each USGS scientist, filled with their picture and with a colored border indicating what part of the USGS water community they sit in. Each circle links out to the staff profile for that USGS scientist. Within the USGS Water Resources Mission Area, there is one individual from the Earth Systems Procssses Division, nine from the Integrated Information Dissemination Division, one from the Integrated Modeling and Prediction Division, One from the Observing Systems Division, and one from the Office of Planning and Programming. There are also numerous contributors from state and regional water science centers, including one from the Kansas Water Science Center, five from the Maryland-Delaware-District of Columbia Water Science Center, one from the Oregon Water Science Center, one from the Utah Water Science Center, and three from the Wyoming-Montana Water Science Center."
+            ariaLabel: "Clustered circle diagram of USGS team members",
+            ariaDesc: "This diagram depicts the team of USGS scientists working to forecast streamflow drought. There is a circle for each USGS scientist, filled with their picture and with a colored border indicating what part of the USGS water community they sit in. Each circle links out to the staff profile for that USGS scientist. Within the USGS Water Resources Mission Area, there is one individual from the Earth Systems Procssses Division, nine from the Integrated Information Dissemination Division, one from the Integrated Modeling and Prediction Division, One from the Observing Systems Division, and one from the Office of Planning and Programming. There are also numerous contributors from state and regional water science centers, including one from the Kansas Water Science Center, five from the Maryland-Delaware-District of Columbia Water Science Center, one from the Oregon Water Science Center, one from the Utah Water Science Center, and three from the Wyoming-Montana Water Science Center."
         }
     },
     References: {

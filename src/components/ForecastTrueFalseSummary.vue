@@ -12,17 +12,20 @@
       <div id="fc-true-false-sum-grid-container">
         <fcsumTFPlotTablet
           v-if="tabletView"
-          id="fc-true-false-sum-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotMobile
           v-else-if="mobileView"
-          id="fc-true-false-sum-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotDesktop
           v-else
-          id="fc-true-false-sum-svg"
+          role="img"
+          :id="svgId"
           :aria-label="text.ariaLabel"
         />
       </div>
@@ -47,9 +50,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "fc-true-false-sum-svg";
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -61,12 +65,19 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-      hideSVGChildren("#fc-true-false-sum-svg");
+      hideSVGChildren(svgId);
+      addSVGDesc(svgId);
     });
 
     function hideSVGChildren(svgId) {
-      d3.select(svgId).selectChildren()
+      d3.select(`#${svgId}`).selectChildren()
         .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDesc)
     }
 </script>
 
