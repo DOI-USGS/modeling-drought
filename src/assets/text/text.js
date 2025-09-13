@@ -10,7 +10,7 @@ export default {
         mapperDiagram: {
             mapPathDesktop: "map_desktop.png",
             mapPathMobile: "map_mobile.png",
-            caption: "Explore a map of current and forecast streamflow drought conditions across the conterminous United States and view detailed forecasts for individual sites on the <a aria-label='Link to Streamflow Drought Assessment and Forecating Tool' href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>Streamflow Drought Assessment and Forecasting Tool</a> (Corson-Dosch et al., 2025).",
+            caption: "Explore a map of current and forecast streamflow drought conditions across the conterminous United States and view detailed forecasts for individual sites on the <a aria-label='Link to Streamflow Drought Assessment and Forecasting Tool' href='https://water.usgs.gov/vizlab/streamflow-drought-forecasts/' target='_blank'>Streamflow Drought Assessment and Forecasting Tool</a> (Corson-Dosch et al., 2025).",
             mapAlt: "The Streamflow Drought Assessment and Forecasting Tool web map displays current streamflow drought at USGS streamgages across the lower 48 states."
         }        
     },
