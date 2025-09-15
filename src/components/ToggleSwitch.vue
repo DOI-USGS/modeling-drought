@@ -5,7 +5,7 @@
   >
     <label
       class="toggle-label"
-      aria-hidden="true"
+      :aria-label="toggleTitle"
     >
       <!-- Left label for either/or use case -->
       <span 
@@ -22,7 +22,7 @@
         type="checkbox" 
         class="toggle-input" 
         :checked="modelValue"
-        aria-hidden="true" 
+        :aria-checked="modelValue"
         @change="$emit('update:modelValue', !modelValue)"
       >
       <span 
@@ -54,26 +54,28 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
   modelValue: Boolean, // v-model binding for toggle state
 
   // optional props for either/or labels
   leftLabel: {
     type: String,
     required: false,
-    default: ''
+    default: null
   },
   rightLabel: {
     type: String,
     required: false,
-    default: ''
+    default: null
   },
 
   // optional prop for single label (on/off use case)
   label: {
     type: String,
     required: false,
-    default: ''
+    default: null
   },
   // colors for each label and inactive state
   leftColor: {
@@ -89,6 +91,10 @@ defineProps({
     default: 'var(--inactive-grey)' 
   }
 });
+
+const toggleTitle = computed(() => {
+  return props.label ? `Show ${props.label}` : `Show ${rightLabel}`;
+})
 
 defineEmits(['update:modelValue']);
 </script>
@@ -110,7 +116,12 @@ defineEmits(['update:modelValue']);
   cursor: pointer;
   position: relative;
 }
-
+.toggle-label:has(:focus-visible) {
+  border: 2px solid var(--usgs-blue);
+  border-radius: 10px;
+  padding: 0 3px 0 3px;
+  margin: -2px -5px -2px -5px;
+}
 /* text styles */
 .toggle-text {
   transition: color 0.3s ease;
@@ -120,9 +131,6 @@ defineEmits(['update:modelValue']);
 .toggle-text.tactive {
   color: var(--black-soft); /* active label is black */
 }
-.toggle-input:focus-visible {
-  outline: none; /* removes focus outline */
-}
 
 .toggle-label:focus-visible {
   outline: none; /* removes focus outline */
@@ -130,7 +138,8 @@ defineEmits(['update:modelValue']);
 
 /* toggle input (hidden) */
 .toggle-input {
-  display: none;
+  position: absolute;
+  left: -9999px;
 }
 
 /* toggle slider styles */

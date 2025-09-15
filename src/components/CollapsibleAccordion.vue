@@ -1,11 +1,16 @@
 <template>
   <div 
+    :id="accordionId"
     class="accordion-container"
     :style="{'border-left-color': leftBorderColor }"
   > 
     <button 
-      class="accordion" 
+      :id="`${accordionId}-button`" 
+      class="accordion"
+      type="button"
       :class="{ active: active }" 
+      :aria-expanded="active ? true : false"
+      :aria-controls="`${accordionId}-panel`"
       :style="{'background-color': active ? buttonActiveBackgroundColor : buttonInactiveBackgroundColor, 'font-weight': buttonFontWeight, color: buttonFontColor}"
       @click="accordionClick"
     >
@@ -41,7 +46,10 @@
       </span>
     </button>
     <div 
-      class="panel" 
+      :id="`${accordionId}-panel`"
+      role="region" 
+      class="panel"
+      :aria-labelledby="`${accordionId}-button`"
       :class="[{ 'active': active }]"
     >
       <div
@@ -78,6 +86,11 @@
 
   const props = defineProps({
     activeOnLoad: Boolean, // should accordion be open on load
+    accordionId: {
+      type: String,
+      required: true,
+      default: ""
+    },
     heading: {
       type: String,
       required: true,

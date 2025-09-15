@@ -4,6 +4,7 @@
       class="text-container"
     >
       <h2
+        id="uncertainty-section-title"
         class="section-title"
       >
         <span>

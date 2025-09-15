@@ -11,15 +11,21 @@
       <div id="obsv-grid-container">
         <obsvPlotTablet
           v-if="tabletView"
-          id="obsv-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
         <obsvPlotMobile
           v-else-if="mobileView"
-          id="obsv-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
         <obsvPlotDesktop
           v-else
-          id="obsv-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -42,7 +48,7 @@
 </template>
 
 <script setup>
-    import { onMounted, reactive, watch } from "vue";
+    import { onMounted } from "vue";
     import * as d3 from 'd3';
     import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
@@ -54,9 +60,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "obsv-svg"
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -65,21 +72,24 @@
         }
     })
 
-    // set up reactive variables
-    const layers = reactive([
-        {
-            label: 'Observations',
-            id: 'observation',
-            visible: true,
-            color: 'var(--color-observations)'
-        }
-    ]);
-
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addInteractions();
+       hideSVGChildren(svgId);
+       addSVGDesc(svgId);
+       addInteractions(svgId);
     });
+
+    function hideSVGChildren(svgId) {
+      d3.select(`#${svgId}`).selectChildren()
+        .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDesc)
+    }
     
     function draw_line(svg, line_id_base) {
         svg.select("#observation_" + line_id_base).selectAll("path")
@@ -213,9 +223,9 @@
         annotation(svg, 0.0)   
     }
 
-    function addInteractions() {
+    function addInteractions(svgId) {
         // set viewbox for svg with loss function chart
-        const obsvSVG = d3.select("#obsv-svg")
+        const obsvSVG = d3.select(`#${svgId}`)
 
         // plot parameters
         var default_line = "70"

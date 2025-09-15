@@ -16,6 +16,7 @@
       <p v-html="text.paragraph2" />
       <RadioGroup
         v-model="selectedLayer"
+        radio-group-name="pi-radio-group"
         :options="layers"
         :center-color="centerColor"
       />
@@ -24,15 +25,21 @@
       <div id="pi-grid-container">
         <piPlotTablet
           v-if="tabletView"
-          id="pi-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="ariaLabel"
         />
         <piPlotMobile
           v-else-if="mobileView"
-          id="pi-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="ariaLabel"
         />
         <piPlotDesktop
           v-else
-          id="pi-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="ariaLabel"
         />
       </div>
     </template>
@@ -44,8 +51,9 @@
 </template>
 
 <script setup>
-    import { onMounted, reactive, ref, watch } from "vue";
+    import { computed, nextTick, onMounted, reactive, ref, watch } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
     import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
@@ -55,11 +63,13 @@
     import piPlotMobile from "@/assets/svgs/pi_example_mobile.svg";
 
     // global variables
+    const mobileTabletView = isMobile;
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = 'pi-svg';
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -95,15 +105,54 @@
 
     // define global variables
     const centerColor = 'var(--color-background)'
+    const ariaLabel = computed(() => {
+      let svgAriaLabel;
+      switch(true) {
+        case selectedLayer.value  == 'MEDIAN':
+          svgAriaLabel = props.text.medianAriaLabel;
+          break;
+        case selectedLayer.value  == '2':
+          svgAriaLabel = props.text.pi50AriaLabel;
+          break;
+        case selectedLayer.value  == '1':
+          svgAriaLabel = props.text.pi75AriaLabel;
+          break;
+        case selectedLayer.value  == '0':
+          svgAriaLabel = props.text.pi90AriaLabel;
+          break;
+      }
+      return svgAriaLabel;
+    })
+    const ariaDesc = computed(() => {
+      let svgAriaDesc;
+      switch(true) {
+        case selectedLayer.value  == 'MEDIAN':
+          svgAriaDesc = props.text.medianAriaDesc;
+          break;
+        case selectedLayer.value  == '2':
+          svgAriaDesc = props.text.pi50AriaDesc;
+          break;
+        case selectedLayer.value  == '1':
+          svgAriaDesc = props.text.pi75AriaDesc;
+          break;
+        case selectedLayer.value  == '0':
+          svgAriaDesc = props.text.pi90AriaDesc;
+          break;
+      }
+      return svgAriaDesc;
+    })
 
     // Watches selectedLayer for changes and updates figure layers
     watch(selectedLayer, () => {
-        updateFigure()
+        updateFigure();
+        updateSVGDesc(svgId);
     })
 
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
+        hideSVGChildren(svgId);
+        addSVGDesc(svgId);
         // FOR NOW, drop button annotations (won't exist in futurre)
         // hide annotations
         d3.select("#annotation_buttons2").selectAll("text")
@@ -115,6 +164,23 @@
         // update figure based on radio button selection
         updateFigure();
     });
+
+    function hideSVGChildren(svgId) {
+      d3.select(`#${svgId}`).selectChildren()
+        .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(ariaDesc.value)
+    }
+
+    async function updateSVGDesc(svgId) {
+      await nextTick();
+      d3.select(`#${svgId}`).select('desc')
+        .text(ariaDesc.value)
+    }
 
     function updateFigure() {
         layers.map(layer => {

@@ -20,8 +20,10 @@
           id="force-svg"
           ref="svg"
           class="svg"
+          role="img"
           :width="width"
           :height="height"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -37,7 +39,7 @@ import VizSection from '@/components/VizSection.vue';
 // Importing images from assets
 import Person from '@/assets/images/face.jpeg';
 
-defineProps({
+const props = defineProps({
     text: { 
       type: Object,
       default() {
@@ -172,6 +174,10 @@ function drawGraph() {
     // build the svg
     const svgElement = d3.select(svg.value);
 
+    svgElement.append('desc')
+        .attr("id", "force-svg-desc")
+        .text(props.text.ariaDesc)
+
     svgElement.append("defs").selectAll("clipPath")
         .data(nodes.value)
         .join("clipPath")
@@ -189,7 +195,10 @@ function drawGraph() {
         .join('a')
         .attr('xlink:href', d => d.url || null)
         .attr('target', '_blank')
+        .attr('aria-hidden', d => d.url ? false : true)
+        .attr('aria-label', d => d.url ? `Link to USGS staff profile for ${d.name}` : null)
         .append('circle')
+        .attr('aria-hidden', true)
         .attr('r', nodeRadius)
         .attr('stroke', d => groupAuras.get(d.group))
         .attr('stroke-width', 6)

@@ -1,5 +1,9 @@
 <template>
-  <div class="radio_wrap">
+  <div 
+    :id="radioGroupName"
+    class="radio_wrap"
+    role="radiogroup"
+  >
     <label
       v-for="option in options"
       :key="option.value"
@@ -16,7 +20,9 @@
         class="radio-input"
         :value="option.value"
         :checked="modelValue === option.value"
-        name="radio-group"
+        :aria-checked="modelValue === option.value"
+        :aria-label="option.ariaLabel ? option.ariaLabel : option.label"
+        :name="radioGroupName"
         @change="$emit('update:modelValue', option.value)"
       >
       <span
@@ -52,6 +58,10 @@ defineProps({
     default: ''
   }, // v-model binding for selected value
 
+  radioGroupName: {
+    type: String,
+    default: 'radio-group'
+  },
   // array of radio options: [{ label: 'Option 1', value: 'opt1' }, ...]
   options: {
     type: Array,
@@ -83,8 +93,13 @@ defineEmits(['update:modelValue']);
   column-gap: 16px;
   flex-wrap: wrap;
   margin-top: 1rem;
+  padding: 2px;
 }
-
+.radio_wrap:has(:focus-visible) {
+  border: 2px solid var(--usgs-blue);
+  border-radius: 8px;
+  padding: 0px;
+}
 .radio-label {
   display: flex;
   /* width: max-content; */
@@ -99,10 +114,14 @@ defineEmits(['update:modelValue']);
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
-
+.radio-label:has(:focus-visible) {
+  border: 1px solid var(--usgs-blue);
+  margin: -1px -1px -1px -1px;
+}
 
 .radio-input {
-  display: none;
+  position: absolute;
+  left: -9999px;
 }
 
 .radio-button-container {

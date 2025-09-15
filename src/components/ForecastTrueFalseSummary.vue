@@ -12,15 +12,21 @@
       <div id="fc-true-false-sum-grid-container">
         <fcsumTFPlotTablet
           v-if="tabletView"
-          id="fc-true-false-sum-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotMobile
           v-else-if="mobileView"
-          id="fc-true-false-sum-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotDesktop
           v-else
-          id="fc-true-false-sum-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -44,9 +50,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "fc-true-false-sum-svg";
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -58,84 +65,19 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addInteractions();
+      hideSVGChildren(svgId);
+      addSVGDesc(svgId);
     });
 
-    // Draw the percent width line and label
-    function draw_sankey(tf_id) {
-        d3.select("#tf-bar-" + tf_id).selectAll("path")
-            .style("fill-opacity", 1)
-        d3.select("#tf-swoop-" + tf_id).selectAll("path")
-            .style("fill-opacity", 0.2)
-        d3.select("#tf-label-" + tf_id).selectAll("text")
-            .style("opacity", 1);
+    function hideSVGChildren(svgId) {
+      d3.select(`#${svgId}`).selectChildren()
+        .attr("aria-hidden", true)
     }
 
-    // Draw the percent width line and label
-    function remove_sankey(tf_id) {
-        d3.select("#tf-bar-" + tf_id).selectAll("path")
-            .style("fill-opacity", 0.25)
-        d3.select("#tf-swoop-" + tf_id).selectAll("path")
-            .style("fill-opacity", 0.05)
-        d3.select("#tf-label-" + tf_id).selectAll("text")
-            .style("opacity", 0.0);
-    }
-
-    function mouseover(event) {
-      if (event.currentTarget.id.startsWith("tf-bar-")){
-            let tf_id = event.currentTarget.id.slice(7);
-            draw_sankey(tf_id);
-            if (tf_id.length > 2){
-              draw_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-label-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            draw_sankey(tf_id);
-            if (tf_id.length > 2){
-              draw_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-swoop-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            draw_sankey(tf_id);
-            if (tf_id.length > 2){
-              draw_sankey(tf_id.slice(0,-3));
-            }
-        }
-      }
-
-    function mouseout(event) {
-      if (event.currentTarget.id.startsWith("tf-bar-")){
-            let tf_id = event.currentTarget.id.slice(7);
-            remove_sankey(tf_id);
-            if (tf_id.length > 2){
-              remove_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-label-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            remove_sankey(tf_id);
-            if (tf_id.length > 2){
-              remove_sankey(tf_id.slice(0,-3));
-            }
-        }
-      else if (event.currentTarget.id.startsWith("tf-swoop-")){
-            let tf_id = event.currentTarget.id.slice(9);
-            remove_sankey(tf_id);
-            if (tf_id.length > 2){
-              remove_sankey(tf_id.slice(0,-3));
-            }
-        }
-      }
-
-    function addInteractions() {
-        // set viewbox for svg with confidence interval chart
-        const fckeySVG = d3.select("#fc-true-false-svg")
-        // Add interaction to confidence interval chart
-        fckeySVG.selectAll("g")
-            .on("mouseover", (event) => mouseover(event))
-            .on("mouseout", (event) => mouseout(event))
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDesc)
     }
 </script>
 

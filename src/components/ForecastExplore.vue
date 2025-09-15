@@ -13,15 +13,21 @@
       <div id="fc-grid-container">
         <fcPlotTablet
           v-if="tabletView"
-          id="fc-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
         <fcPlotMobile
           v-else-if="mobileView"
-          id="fc-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
         <fcPlotDesktop
           v-else
-          id="fc-svg"
+          role="img"
+          :id="svgId"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -56,9 +62,10 @@
     // global variables
     const mobileView = isMobileOnly;
     const tabletView = isTablet;
+    const svgId = "fc-svg"
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { 
             type: Object,
             default() {
@@ -70,8 +77,21 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
-        addInteractions();
+        hideSVGChildren(svgId);
+        addSVGDesc(svgId);
+        addInteractions(svgId);
     });
+
+    function hideSVGChildren(svgId) {
+      d3.select(`#${svgId}`).selectChildren()
+        .attr("aria-hidden", true)
+    }
+
+    function addSVGDesc(svgId) {
+      d3.select(`#${svgId}`).append('desc')
+        .attr("id", `${svgId}-desc`)
+        .text(props.text.ariaDesc)
+    }
     
     function draw_line(svg, line_id_base,lookback) {
         for (let i = 0; i < lookback; i++) {
@@ -181,9 +201,9 @@
             .style("fill-opacity", 0.75); 
     }
 
-    function addInteractions() {
+    function addInteractions(svgId) {
         // set viewbox for svg with loss function chart
-        const fcSVG = d3.select("#fc-svg")
+        const fcSVG = d3.select(`#${svgId}`)
 
         // plot parameters
         const lookback = 13

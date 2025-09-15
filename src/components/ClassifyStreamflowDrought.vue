@@ -11,6 +11,7 @@
         <img
           :src="getImageURL(text.figurePath)"
           class="explainer-image"
+          :alt="text.figureAlt"
         >
       </div>
       <p v-html="text.paragraph2" />

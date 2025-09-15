@@ -1,5 +1,6 @@
 <template>
   <ForecastArt
+    :text="text.forecastArt"
   />
   <section>
     <div

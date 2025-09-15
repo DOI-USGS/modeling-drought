@@ -11,6 +11,7 @@
         <img
           :src="getImageURL(text.figurePath)"
           class="river-image"
+          :alt="text.figureAlt"
         >
       </div>
     </template>
