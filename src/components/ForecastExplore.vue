@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-    import { onMounted, reactive, watch } from "vue";
+    import { onMounted} from "vue";
     import * as d3 from 'd3';
     import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
