@@ -8,15 +8,6 @@
       <p v-html="text.paragraph1" />
       <p v-html="text.paragraph2" />
       <p v-html="text.paragraph3" />
-      <div class="toggle-container">
-        <ToggleSwitch 
-          v-for="layer, index in layers"
-          :key="index"
-          v-model="layer.visible" 
-          :label="layer.label"
-          :right-color="layer.color"
-        />
-      </div>
     </template>
     <template #figures>
       <div id="fc-grid-container">
@@ -59,12 +50,11 @@
 </template>
 
 <script setup>
-    import { onMounted, reactive, watch } from "vue";
+    import { onMounted} from "vue";
     import * as d3 from 'd3';
     import { isMobileOnly } from 'mobile-device-detect';
     import { isTablet } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
-    import ToggleSwitch from "@/components/ToggleSwitch.vue"
     import fcPlotDesktop from "@/assets/svgs/fc_example_desktop.svg";
     import fcPlotTablet from "@/assets/svgs/fc_example_tablet.svg";
     import fcPlotMobile from "@/assets/svgs/fc_example_mobile.svg";
@@ -84,27 +74,11 @@
         }
     })
 
-    // set up reactive variables
-    const layers = reactive([
-        {
-            label: 'Observations',
-            id: 'observation',
-            visible: true,
-            color: 'var(--color-observations)'
-        }
-    ]);
-
-    // Watches layers for changes and updates figure layers
-    watch(layers, () => {
-        updateFigure(svgId);
-    });
-
     // Declare behavior on mounted
     // functions called here
     onMounted(() => {
         hideSVGChildren(svgId);
         addSVGDesc(svgId);
-        updateFigure(svgId);
         addInteractions(svgId);
     });
 
@@ -117,21 +91,6 @@
       d3.select(`#${svgId}`).append('desc')
         .attr("id", `${svgId}-desc`)
         .text(props.text.ariaDesc)
-    }
-
-    function updateFigure(svgId) {
-        const svg = d3.select(`#${svgId}`)
-        layers.map(layer => {
-            const targetOpacity = layer.visible ? 1 : 0;
-            toggleLayer(svg, layer.id, targetOpacity)
-        })
-    }
-
-    function toggleLayer(svg, targetID, targetOpacity) {
-        if (targetID == 'observation') {
-            svg.select("#" + targetID + "-full-forecast").selectAll("path")
-                .style("stroke-opacity", targetOpacity)
-        } 
     }
     
     function draw_line(svg, line_id_base,lookback) {
@@ -261,6 +220,10 @@
         // remove y label
         fcSVG.select("#observation-forecast-ylabel").selectAll("text")
             .style("opacity",0.0);
+
+        // add observation line
+        fcSVG.select("#observation-full-forecast").selectAll("path")
+            .style("stroke-opacity", 1.0)
 
         // Add interaction to loss function chart
         fcSVG.select("#axis-forecast")
