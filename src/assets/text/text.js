@@ -5,7 +5,7 @@ export default {
         subtitle:"Streamflow drought forecasts help decision makers prepare for reduced water availability",
         paragraph1: "The food we eat, the water we drink, the clothes we buy, and the electricity we use depend on ample amounts of clean, accessible water. When water flowing through rivers and streams drops to unusually low levels—termed “<a aria-label='Link to What is Streamflow Drought data visualization website' href='https://water.usgs.gov/vizlab/what-is-drought/' target='_blank'>streamflow drought</a>”—water managers can have trouble allocating enough water to meet home, farm, business, and energy needs. To assist water managers, USGS developed Artificial Intelligence/Machine Learning (AI/ML) models that forecast streamflow drought up to 13 weeks (3 months) into the future (Carlisle, 2023; Hammond et al., 2025; McShane et al., 2025). Streamflow drought forecasts help decision makers anticipate periods of limited water availability so they can develop plans for ensuring the safety and health of their communities.",
         forecastArt: {
-            ariaLabel: "PLOT DESCRIPTION"
+            ariaLabel: "A header image that shows a preview of the streamflow drought model’s output data."
         },
         mapperDiagram: {
             mapPathDesktop: "map_desktop.png",
@@ -19,7 +19,7 @@ export default {
         subtitle:"Percentiles tell us when low flows are streamflow droughts based on how often they occur",
         streamflowDroughtExample: {
             figurePath: "StreamflowDroughtExample.webp",
-            figureAlt: "ALT TEXT",
+            figureAlt: "A field photograph of a dry riverbed experiencing streamflow drought. The photograph is taken from the center of the river channel looking upstream. In the foreground, there are large boulders and cobbles. The riverbed contains many exposed rocks with very little to no water flowing.",
             caption: "Unusually low streamflow on the Peabody River in New Hampshire. Credit: John Hammond"
         },
         defineLowStreamflow: {
@@ -86,7 +86,7 @@ export default {
             caption1Desktop: "Hover your mouse over the plot to see how the model forecasts streamflow drought. For each issue date, the darkest line shows the current forecast. Previously generated forecasts are shown using faded lines, where the oldest forecasts are the faintest. The dotted line indicates the 30<sup>th</sup> percentile. The model is trained to accurately predict streamflow below this percentile. Anything below the 20<sup>th</sup> percentile is considered streamflow drought.",
             caption1Responsive: "Tap on the plot to see how the model forecasts streamflow drought. For each issue date, the darkest line shows the current forecast. Previously generated forecasts are shown using faded lines, where the oldest forecasts are the faintest. The dotted line indicates the 30<sup>th</sup> percentile. The model is trained to accurately predict streamflow below this percentile. Anything below the 20<sup>th</sup> percentile is considered streamflow drought.",
             ariaLabel: "A hydrograph timeseries of streamflow percentiles and streamflow percentile forecasts.",
-            ariaDesc: "PLOT DESCRIPTION"
+            ariaDesc: "A hydrograph showing a timeseries of streamflow in a stream during 2021 and 2022. A horizontal line on the plot marks the 30th percentile (above which streamflow conditions are normal, below which streamflow conditions are abnormally dry). The streamflow model is trained to prioritize accurate prediction under this line. At each point of the hydrograph, individual forecasts show streamflow percentile predictions from 1 to 13 weeks into the future. In mid-2021, the stream goes into streamflow drought, remaining in drought for nearly a year. The model forecasts show accurate prediction of this streamflow drought event."
         }
     },
     HowWellModelPerform: {
@@ -97,15 +97,15 @@ export default {
             paragraph2: "We can think of true negatives and positives as the model being right, and false negatives and positives as the model being wrong. The chart below shows the percentage of severe or extreme streamflow drought (&lt;<sup> </sup>10<sup>th</sup> percentile streamflow) predictions that fall into each of these categories when the model is forecasting streamflow drought one week into the future.",
             caption1Desktop: "Hover your mouse over the Sankey plot to see how often the model predicts </i>streamflow <i>drought or not, and how often that prediction is right (a ‘true’ outcome).",
             caption1Responsive: "Tap the Sankey plot to see how often the model predicts </i>streamflow <i>drought or not, and how often that prediction is right (a ‘true’ outcome).",
-            ariaLabel: "PLOT LABEL",
-            ariaDesc: "PLOT DESCRIPTION",
+            ariaLabel: "A Sankey plot depicting the streamflow drought model’s behavior and performance for the 1-week forecast horizon.",
+            ariaDesc: "The Sankey plot has three columns, starting with all model predictions then breaking those out into subcategories of predictions where neither a severe nor extreme drought was forecast (88.9%) or a severe/extreme drought was forecast (11.1%). Then, those subcategories are each broken down into two additional subcategories of whether the prediction was correct or not. The breakdown of these final subcategories are as follows: Correct model predictions of drought, or true positives, are 8.2% of the total predictions and correct model predictions of drought not happening, true negatives, are 85.7%. Incorrect model predictions of drought, false positives, are 2.9% and incorrect model predictions of no drought when drought occurred, false negatives, are 3.3%.",
             paragraph3: "Overall, the model does a good job of correctly predicting when streamflow drought will and will not occur 1 week in the future."
         },
         forecastTrueFalseSummary: {
             paragraph1: "As we generate forecasts for weeks that are further out, accuracy decreases. In other words, we see more ‘false’ outcomes—where the model incorrectly predicts whether or not streamflow drought will occur—as the forecast horizon lengthens. Here is the accuracy breakdown for predictions of severe or extreme streamflow drought (&lt;<sup> </sup>10<sup>th</sup> percentile streamflow) for 1 through 13 weeks:",
             caption: "The proportion of true negatives, false negatives, false positives, and true positives changes with forecast horizon.",
-            ariaLabel: "PLOT LABEL",
-            ariaDesc: "PLOT DESCRIPTION"
+            ariaLabel: "A bar plot summarizing changes to the proportion of true negatives, false negatives, false positives, and true positives with forecast horizon.",
+            ariaDesc: "The plot contains thirteen bars representing a 1 week to 13 week forecast horizon. Each bar is made up of four subcategories: true positives, false positives, false negatives, and true negatives, all adding up 100%. For a 1 week forecast horizon (the leftmost bar), the bar shows most predictions being either true positives or true negatives. As forecast horizon increases, the proportion of false positives and negatives increase."
         },
         forecastTrueFalseRightOrWrong: {
             paragraph1: "With these results, we can evaluate model accuracy several different ways:",
@@ -116,12 +116,12 @@ export default {
             questionDrought: "If the model <span class ='emph'>does predict streamflow drought</span>, how often is it <span role='presentation' class='group-label true-pos'>right</span> or <span role='presentation' class='group-label false-pos'>wrong</span>?",
             questionDroughtAriaLabel: "If the model does predict streamflow drought, how often is it right or wrong?",
             caption: "Use the radio buttons to see the overall model performance and how right or wrong the model is depending on whether it predicts severe or extreme streamflow drought or not.",
-            rwAllAriaLabel: "ALL PLOT LABEL",
-            rwNoDroughtAriaLabel: "NO DROUGHT PLOT LABEL",
-            rwDroughtAriaLabel: "DROUGHT PLOT LABEL",
-            rwAllAriaDesc: "ALL PLOT DESCRIPTION",
-            rwNoDroughtAriaDesc: "NO DROUGHT PLOT DESCRIPTION",
-            rwDroughtAriaDesc: "DROUGHT PLOT DESCRIPTION",
+            rwAllAriaLabel: "A bar plot comparing right and wrong predictions with forecast horizon.",
+            rwNoDroughtAriaLabel: "A bar plot comparing true negative and false negative predictions with forecast horizon.",
+            rwDroughtAriaLabel: "A bar plot comparing true positive and false positive predictions with forecast horizon.",
+            rwAllAriaDesc: "The plot contains thirteen bars representing a 1 week to 13 week forecast horizon. Each bar is made up of two subcategories: right (sum of true positives and true negatives) and wrong (sum of false positives and false negatives), together adding up 100%. When the model predicts 1-week out, the model is correct about 94% of the time. This percentage decreases to about 85% at the 13-week mark.",
+            rwNoDroughtAriaDesc: "The plot contains thirteen bars representing a 1 week to 13 week forecast horizon. Each bar is made up of two subcategories: true negatives and false negatives. When the model does not predict drought 1-week out, the model is correct about 96% of the time. This percentage decreases to about 85% at the 13-week mark.",
+            rwDroughtAriaDesc: "The plot contains thirteen bars representing a 1 week to 13 week forecast horizon. Each bar is made up of two subcategories: true positives and false positives. When the model predicts drought 1-week out, the model is correct about 75% of the time. This percentage decreases to about 30% at the 13-week mark.",
             paragraph2: "Across the board, the model’s prediction ability is better with shorter forecast horizons."
         }
     },
@@ -135,10 +135,10 @@ export default {
             heading: "Training models with loss functions",
             paragraph1: "Training an AI/ML model requires directing it to the right solution. We do so by penalizing it when it predicts incorrectly. Some predictions may be overestimates, while others may be underestimates. Depending on the goal, different types of errors may warrant different penalties. In this case, because the model is trained on observed streamflow values below the 30<sup>th</sup> percentile, only predictions corresponding to observations below the 30<sup>th</sup> percentile are evaluated.",
             caption: "Loss functions use different rates of penalties for incorrect predictions depending on whether scientists are interested in the median, 95% quantile (upper bound), or 5% quantile (lower bound) values.",
-            ariaLabelDesktop: "PLOT LABEL DESKTOP",
-            ariaLabelResponsive: "PLOT LABEL MOBILE/TABLET",
-            ariaDescDesktop: "PLOT DESCRIPTION DESKTOP",
-            ariaDescResponsive: "PLOT DESCRIPTION MOBILE/TABLET"
+            ariaLabelDesktop: "Three different loss function diagram configurations for median, upper, and lower predictions.",
+            ariaLabelResponsive: "Three different loss function diagram configurations for median, upper, and lower predictions.",
+            ariaDescDesktop: "Each plot contains a V-shaped line that represents the loss function. The height of this line represents the amount of penalty the model experiences. The center of the V-shaped line represents the median estimate where the penalty is lowest. The left and right sides of the line represent how under- and over- estimates are penalized, respectively. The plot representing a median prediction shows a horizontally symmetrical V-shaped where the penalty is equal for under- and over- estimates. The plot for the upper prediction shows an asymmetrical line where the slope of the left side is steeper than the right. Underestimates are penalized more than overestimates. The plot for the lower prediction also shows an asymmetric line but the slope of the right side is steeper than the left. Here, overestimates are penalized more than underestimates.",
+            ariaDescResponsive: "Each plot contains a V-shaped line that represents the loss function. The height of this line represents the amount of penalty the model experiences. The center of the V-shaped line represents the median estimate where the penalty is lowest. The left and right sides of the line represent how under- and over- estimates are penalized, respectively. The plot representing a median prediction shows a horizontally symmetrical V-shaped where the penalty is equal for under- and over- estimates. The plot for the upper prediction shows an asymmetrical line where the slope of the left side is steeper than the right. Underestimates are penalized more than overestimates. The plot for the lower prediction also shows an asymmetric line but the slope of the right side is steeper than the left. Here, overestimates are penalized more than underestimates."
         },
         lossFunction: {
             paragraph1: "To generate a <span role='presentation' class ='group-label median'>median prediction</span>, scientists use a <span class ='emph'>symmetric loss function</span>. This function penalizes under- and overestimations equally. When plotted, the loss function has identical slopes on both sides of zero error—meaning penalties for incorrect predictions increase at the same rate whether the prediction is too high or too low.",
@@ -147,10 +147,10 @@ export default {
             paragraph4: "The plot below illustrates how different loss functions influence model predictions by changing the penalty applied to prediction errors.",
             captionDesktop: "Hover your mouse in the gray region on either chart to see the relationship between the loss function (left) and the 1-week streamflow percentile prediction (right). Use the toggles to highlight the loss function shapes and streamflow percentiles for the 95% quantile (upper bound), median, and 5% quantile (lower bound) predictions. Note that the training dataset restriction means the loss functions are only penalizing predictions corresponding to observations below the 30<sup>th</sup> percentile, and therefore best capture uncertainty for predictions in this range.",
             captionResponsive: "Tap in the gray region on either chart to see the relationship between the loss function (left) and the 1-week streamflow percentile prediction (right). Use the toggles to highlight the loss function shapes and streamflow percentiles for the 95% quantile (upper bound), median, and 5% quantile (lower bound) predictions. Note that the training dataset restriction means the loss functions are only penalizing predictions corresponding to observations below the 30<sup>th</sup> percentile, and therefore best capture uncertainty for predictions in this range.",
-            ariaLabelDesktop: "PLOT LABEL DESKTOP",
-            ariaLabelResponsive: "PLOT LABEL MOBILE/TABLET",
-            ariaDescDesktop: "PLOT DESCRIPTION DESKTOP",
-            ariaDescResponsive: "PLOT DESCRIPTION MOBILE/TABLET",
+            ariaLabelDesktop: "Two corresponding line plots that show the loss function and streamflow percentile prediction for a 1-week forecast horizon.",
+            ariaLabelResponsive: "Two corresponding line plots that show the loss function and streamflow percentile prediction for a 1-week forecast horizon.",
+            ariaDescDesktop: "The first plot shows a loss function that can be modified by the user. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. When using a symmetric loss function, the model makes a median streamflow percentile prediction that follows the hydrograph well when the percentile is less than 30. When the penalty for underestimates decreases, the model is incentivized to predict lower streamflow percentiles. When the penalty for overestimates decreases, the model is incentivized to predict higher streamflow percentiles.",
+            ariaDescResponsive: "The first plot shows a loss function that can be modified by the user. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. When using a symmetric loss function, the model makes a median streamflow percentile prediction that follows the hydrograph well when the percentile is less than 30. When the penalty for underestimates decreases, the model is incentivized to predict lower streamflow percentiles. When the penalty for overestimates decreases, the model is incentivized to predict higher streamflow percentiles.",
             paragraph5: "What do you see? When the left slope in the loss function is steeper than the right slope, meaning the function penalizes underestimation more strongly than overestimation, the model favors high predictions. Conversely, when the right slope is steeper than the left, the model favors low predictions. This approach allows the model to bracket the range of its predictions, capturing uncertainty in the forecast."
         },
         predictionInterval: {
@@ -158,22 +158,22 @@ export default {
             paragraph1: "The upper and lower bounds that the model predicts define what we call the <span class ='emph'>prediction interval</span> (PI for short). In this case, by excluding the 10% least likely prediction scenarios, the streamflow drought forecast model has a 90% prediction interval. The size of the prediction interval tells us the approximate percentage of actual observations <i>below the 30<sup>th</sup> percentile </i>the model expects to be within the interval. In other words, a 90% prediction interval should contain approximately 90% of observed streamflow values below the 30<sup>th</sup> percentile.",
             paragraph2: "The plot below shows that as the prediction interval increases, more observations are captured within the range of predictions. Moreover, by favoring underestimation and overestimation, steep asymmetric loss functions create wider prediction intervals than do loss functions with more equal slopes.",
             caption: "Use the radio buttons to explore the relationship between different prediction interval sizes (generated with a 1-week forecast horizon), loss functions (left), and % of observations below the 30<sup>th</sup> percentile captured within the prediction intervals (right).",
-            medianAriaLabelDesktop: "MEDIAN PLOT LABEL DESKTOP",
-            medianAriaLabelMobile: "MEDIAN PLOT LABEL MOBILE/TABLET",
-            pi50AriaLabelDesktop: "PI 50 PLOT LABEL DESKTOP",
-            pi50AriaLabelMobile: "PI 50 PLOT LABEL MOBILE/TABLET",
-            pi75AriaLabelDesktop: "PI 75 PLOT LABEL DESKTOP",
-            pi75AriaLabelMobile: "PI 75 PLOT LABEL MOBILE/TABLET",
-            pi90AriaLabelDesktop: "PI 90 PLOT LABEL DESKTOP",
-            pi90AriaLabelMobile: "PI 90 PLOT LABEL MOBILE/TABLET",
-            medianAriaDescDesktop: "MEDIAN PLOT DESCRIPTION DESKTOP",
-            medianAriaDescMobile: "MEDIAN PLOT DESCRIPTION MOBILE/TABLET",
-            pi50AriaDescDesktop: "PI 50 PLOT DESCRIPTION DESKTOP",
-            pi50AriaDescMobile: "PI 50 PLOT DESCRIPTION MOBILE/TABLET",
-            pi75AriaDescDesktop: "PI 75 PLOT DESCRIPTION DESKTOP",
-            pi75AriaDescMobile: "PI 75 PLOT DESCRIPTION MOBILE/TABLET",
-            pi90AriaDescDesktop: "PI 90 PLOT DESCRIPTION DESKTOP",
-            pi90AriaDescMobile: "PI 90 PLOT DESCRIPTION MOBILE/TABLET"
+            medianAriaLabelDesktop: "Two corresponding line plots that show the loss function and streamflow percentile median prediction for a 1-week forecast horizon.",
+            medianAriaLabelMobile: "Two corresponding line plots that show the loss function and streamflow percentile median prediction for a 1-week forecast horizon.",
+            pi50AriaLabelDesktop: "Two corresponding line plots that show the loss function and streamflow percentile 50% prediction interval for a 1-week forecast horizon.",
+            pi50AriaLabelMobile: "Two corresponding line plots that show the loss function and streamflow percentile 50% prediction interval for a 1-week forecast horizon.",
+            pi75AriaLabelDesktop: "Two corresponding line plots that show the loss function and streamflow percentile 75% prediction interval for a 1-week forecast horizon.",
+            pi75AriaLabelMobile: "Two corresponding line plots that show the loss function and streamflow percentile 75% prediction interval for a 1-week forecast horizon.",
+            pi90AriaLabelDesktop: "Two corresponding line plots that show the loss function and streamflow percentile 90% prediction interval for a 1-week forecast horizon.",
+            pi90AriaLabelMobile: "Two corresponding line plots that show the loss function and streamflow percentile 90% prediction interval for a 1-week forecast horizon.",
+            medianAriaDescDesktop: "The first plot shows a symmetric loss function. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The median prediction is plotted with the hydrograph and aligns well when streamflow percentiles are less than 30.",
+            medianAriaDescMobile: "The first plot shows a symmetric loss function. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The median prediction is plotted with the hydrograph and aligns well when streamflow percentiles are less than 30.",
+            pi50AriaDescDesktop: "The first plot shows two asymmetric loss functions that correspond to the lower and upper bounds of the 50% prediction interval. These loss functions are least asymmetric. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The 50% prediction interval envelopes the hydrograph and contains 44.9% of the observations.",
+            pi50AriaDescMobile: "The first plot shows two asymmetric loss functions that correspond to the lower and upper bounds of the 50% prediction interval. These loss functions are least asymmetric. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The 50% prediction interval envelopes the hydrograph and contains 44.9% of the observations.",
+            pi75AriaDescDesktop: "The first plot shows two asymmetric loss functions that correspond to the lower and upper bounds of the 75% prediction interval. These loss functions are more asymmetric than the 50% loss functions and less asymmetric than the 90% prediction interval. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The 75% prediction interval envelopes the hydrograph and contains 65.2% of the observations.",
+            pi75AriaDescMobile: "The first plot shows two asymmetric loss functions that correspond to the lower and upper bounds of the 75% prediction interval. These loss functions are more asymmetric than the 50% loss functions and less asymmetric than the 90% prediction interval. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The 75% prediction interval envelopes the hydrograph and contains 65.2% of the observations.",
+            pi90AriaDescDesktop: "The first plot shows two asymmetric loss functions that correspond to the lower and upper bounds of the 90% prediction interval. These loss functions are most asymmetric. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The 90% prediction interval envelopes the hydrograph and contains 85.5% of the observations.",
+            pi90AriaDescMobile: "The first plot shows two asymmetric loss functions that correspond to the lower and upper bounds of the 90% prediction interval. These loss functions are most asymmetric. The second timeseries plot depicts a hydrograph, showing streamflow in a stream during 2021 and 2022. The 90% prediction interval envelopes the hydrograph and contains 85.5% of the observations."
         }
     },
     WhatsNext: {
