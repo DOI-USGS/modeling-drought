@@ -20,19 +20,19 @@
           v-if="tabletView"
           role="img"
           :id="svgId"
-          :aria-label="text.ariaLabelResponsive"
+          :aria-label="text.ariaLabel"
         />
         <lfDiagramMobile
           v-else-if="mobileView"
           role="img"
           :id="svgId"
-          :aria-label="text.ariaLabelResponsive"
+          :aria-label="text.ariaLabel"
         />
         <lfDiagramDesktop
           v-else
           role="img"
           :id="svgId"
-          :aria-label="text.ariaLabelDesktop"
+          :aria-label="text.ariaLabel"
         />
       </div>
     </template>
@@ -81,16 +81,10 @@
   }
 
   function addSVGDesc(svgId) {
-    if (mobileView | tabletView) {
       d3.select(`#${svgId}`).append('desc')
         .attr("id", `${svgId}-desc`)
-        .text(props.text.ariaDescResponsive)
-    } else {
-      d3.select(`#${svgId}`).append('desc')
-        .attr("id", `${svgId}-desc`)
-        .text(props.text.ariaDescDesktop)
+        .text(props.text.ariaDesc)
     }
-  }
 </script>
 
 <style scoped lang="scss">

@@ -109,16 +109,16 @@
       let svgAriaLabel;
       switch(true) {
         case selectedLayer.value  == 'MEDIAN':
-          svgAriaLabel = mobileTabletView? props.text.medianAriaLabelMobile : props.text.medianAriaLabelDesktop;
+          svgAriaLabel = props.text.medianAriaLabel;
           break;
         case selectedLayer.value  == '2':
-          svgAriaLabel = mobileTabletView? props.text.pi50AriaLabelMobile : props.text.pi50AriaLabelDesktop;
+          svgAriaLabel = props.text.pi50AriaLabel;
           break;
         case selectedLayer.value  == '1':
-          svgAriaLabel = mobileTabletView? props.text.pi75AriaLabelMobile : props.text.pi75AriaLabelDesktop;
+          svgAriaLabel = props.text.pi75AriaLabel;
           break;
         case selectedLayer.value  == '0':
-          svgAriaLabel = mobileTabletView? props.text.pi90AriaLabelMobile : props.text.pi90AriaLabelDesktop;
+          svgAriaLabel = props.text.pi90AriaLabel;
           break;
       }
       return svgAriaLabel;
@@ -127,16 +127,16 @@
       let svgAriaDesc;
       switch(true) {
         case selectedLayer.value  == 'MEDIAN':
-          svgAriaDesc = mobileTabletView? props.text.medianAriaDescMobile : props.text.medianAriaDescDesktop;
+          svgAriaDesc = props.text.medianAriaDesc;
           break;
         case selectedLayer.value  == '2':
-          svgAriaDesc = mobileTabletView? props.text.pi50AriaDescMobile : props.text.pi50AriaDescDesktop;
+          svgAriaDesc = props.text.pi50AriaDesc;
           break;
         case selectedLayer.value  == '1':
-          svgAriaDesc = mobileTabletView? props.text.pi75AriaDescMobile : props.text.pi75AriaDescDesktop;
+          svgAriaDesc = props.text.pi75AriaDesc;
           break;
         case selectedLayer.value  == '0':
-          svgAriaDesc = mobileTabletView? props.text.pi90AriaDescMobile : props.text.pi90AriaDescDesktop;
+          svgAriaDesc = props.text.pi90AriaDesc;
           break;
       }
       return svgAriaDesc;
