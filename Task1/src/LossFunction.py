@@ -3,9 +3,56 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+import pyarrow.feather as feather
+from Task_config.functions import (
+    forecast_format,
+    laplace,
+    pinball_LF,
+    adjust,
+    set_axis_up,
+    save_desktop_mobile_tablet,
+)
+from Task_config.setup_matplotlib import (
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_tablet,
+    LFCMap,
+)
+
+# load in parameters
+aspect_double_plot_desktop = snakemake.params["aspect_double_plot_desktop"]
+aspect_double_plot_tablet = snakemake.params["aspect_double_plot_tablet"]
+aspect_double_plot_mobile = snakemake.params["aspect_double_plot_mobile"]
+
+# import gray ratio_7
+ratio_7 = snakemake.params["ratio_7"]
+
+# import colors
+lower_color_limit_hex = snakemake.params["lower_color_limit_hex"]
+median_color_hex = snakemake.params["median_color_hex"]
+upper_color_limit_hex = snakemake.params["upper_color_limit_hex"]
+observation_color_hex = snakemake.params["observation_color_hex"]
+
+site_id = snakemake.params["site_id"]
+basename_gid_lf = snakemake.params["basename_gid_lf"]
+date_range = snakemake.params["date_range"]
+label_year = snakemake.params["label_year"]
+year_label_offset = snakemake.params["year_label_offset"]
+min_percentile = snakemake.params["min_percentile"]
+number_of_frames_lf = snakemake.params["number_of_frames_lf"]
+static_alpha = snakemake.params["static_alpha"]
+fill_alpha = snakemake.params["fill_alpha"]
+loc = snakemake.params["loc"]
+scale = snakemake.params["scale"]
+kappa = snakemake.params["kappa"]
+
+# forecast data
+forecast_data_all = feather.read_feather(snakemake.input[0])
+forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+forecast_data = forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]
+
+# asymmetric laplace distribution
+z_val_min, z_val_max, z_median, x_LF = laplace(loc, scale, kappa, min_percentile)
 
 ### Plotting
 
@@ -58,7 +105,7 @@ for i, percentile in enumerate(
     ax_LF.plot(
         x_LF,
         pinball_LF(x_LF, 0.0, percentile),
-        color=LFCMap(adjust(percentile)),
+        color=LFCMap(adjust(percentile, min_percentile)),
         gid="LF-" + str(i),
         alpha=0.0,
         zorder=5,
@@ -81,7 +128,7 @@ for i, percentile in enumerate(
     ax_forecast.plot(
         x_forecast,
         y_forecast_temp,
-        color=LFCMap(adjust(percentile)),
+        color=LFCMap(adjust(percentile, min_percentile)),
         gid="FORECAST-" + str(i),
         alpha=0.0,
         zorder=5,
@@ -112,10 +159,11 @@ annotation_instructions = ax_LF.annotate(
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, min_percentile),
-    color=np.array(lower_color_limit) / 256.0,
+    color=lower_color_limit_hex,
     linestyle="--",
     alpha=static_alpha,
 )
+
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, 0.5),
@@ -127,7 +175,7 @@ ax_LF.plot(
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, 1.0 - min_percentile),
-    color=np.array(upper_color_limit) / 256.0,
+    color=upper_color_limit_hex,
     linestyle="--",
     alpha=static_alpha,
 )
@@ -144,7 +192,7 @@ ax_LF.fill_between(
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, min_percentile),
-    color=np.array(lower_color_limit) / 256.0,
+    color=lower_color_limit_hex,
     alpha=0.0,
     zorder=2,
     gid="LOWER-LF-LINE",
@@ -160,7 +208,7 @@ ax_LF.plot(
 ax_LF.plot(
     x_LF,
     pinball_LF(x_LF, 0.0, 1.0 - min_percentile),
-    color=np.array(upper_color_limit) / 256.0,
+    color=upper_color_limit_hex,
     alpha=0.0,
     zorder=2,
     gid="UPPER-LF-LINE",
@@ -181,7 +229,7 @@ ax_LF.spines["right"].set_visible(False)
 ax_forecast.plot(
     x_forecast,
     y_forecast_lower,
-    color=np.array(lower_color_limit) / 256.0,
+    color=lower_color_limit_hex,
     linestyle="--",
     alpha=static_alpha,
 )
@@ -195,7 +243,7 @@ ax_forecast.plot(
 ax_forecast.plot(
     x_forecast,
     y_forecast_upper,
-    color=np.array(upper_color_limit) / 256.0,
+    color=upper_color_limit_hex,
     linestyle="--",
     alpha=static_alpha,
 )
@@ -213,14 +261,14 @@ ax_forecast.plot(
     x_forecast,
     y_training,
     color=observation_color_hex,
-    linestyle=obs_linestyle,
+    linestyle="dotted",
     alpha=0.0,
     gid="observation-full-lf",
 )
 ax_forecast.plot(
     x_forecast,
     y_forecast_lower,
-    color=np.array(lower_color_limit) / 256.0,
+    color=lower_color_limit_hex,
     alpha=0.0,
     zorder=2,
     gid="LOWER-FORECAST-LINE",
@@ -236,7 +284,7 @@ ax_forecast.plot(
 ax_forecast.plot(
     x_forecast,
     y_forecast_upper,
-    color=np.array(upper_color_limit) / 256.0,
+    color=upper_color_limit_hex,
     alpha=0.0,
     zorder=2,
     gid="UPPER-FORECAST-LINE",

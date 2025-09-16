@@ -4,17 +4,53 @@ import matplotlib as mpl
 import datetime
 from scipy import interpolate
 import pyarrow.feather as feather
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+from Task_config.functions import (
+    forecast_format,
+    forecast_annotations,
+    set_axis_up,
+    save_desktop_mobile_tablet,
+)
+from Task_config.setup_matplotlib import (
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_tablet,
+)
+
+# load in parameters
+aspect_double_plot_desktop = snakemake.params["aspect_double_plot_desktop"]
+aspect_double_plot_tablet = snakemake.params["aspect_double_plot_tablet"]
+aspect_double_plot_mobile = snakemake.params["aspect_double_plot_mobile"]
+target_fontsize_px = snakemake.params["target_fontsize_px"]
+ratio_7 = snakemake.params["ratio_7"]
+median_color_hex = snakemake.params["median_color_hex"]
+observation_color_hex = snakemake.params["observation_color_hex"]
+site_id = snakemake.params["site_id"]
+basename_gid_forecast = snakemake.params["basename_gid_forecast"]
+date_range = snakemake.params["date_range"]
+label_year = snakemake.params["label_year"]
+year_label_offset = snakemake.params["year_label_offset"]
+
+
+# load data
+forecast_data_all = feather.read_feather(snakemake.input[0])
+forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+
+# forecast files
+forecast_data_list = [forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]]
+
+# plot specific set up
+offset = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+dt = 7
+dense_dt = 1
+
+# Shorten x-axis in mobile site
+x_shorten_mobile = 0.575
+x_label_section_mobile = x_shorten_mobile + 0.075
 
 ### Data Arrays
 
 x_forecast_raw = forecast_data_list[0]["datetime"].values.astype("datetime64[D]")
 y_training_raw = forecast_data_list[0]["observation"]
-y_forecast_lower_raw = forecast_format(forecast_data_list[0]["lower"])
-y_forecast_median_raw = forecast_format(forecast_data_list[0]["median"])
-y_forecast_upper_raw = forecast_format(forecast_data_list[0]["upper"])
 
 # set a more densly packed dataset (spaced by 1 day instead of 7 days) - this is for the 0-day forecast
 x_forecast = np.arange(x_forecast_raw[0], x_forecast_raw[-1], dense_dt)
@@ -25,15 +61,6 @@ dx_forecast = x_forecast - x_forecast[0]  # difference between current day and f
 y_training = interpolate.interp1d(dx_forecast_raw.astype(float), y_training_raw)(
     dx_forecast.astype(float)
 )
-y_forecast_lower = interpolate.interp1d(
-    dx_forecast_raw.astype(float), y_forecast_lower_raw
-)(dx_forecast.astype(float))
-y_forecast_median = interpolate.interp1d(
-    dx_forecast_raw.astype(float), y_forecast_median_raw
-)(dx_forecast.astype(float))
-y_forecast_upper = interpolate.interp1d(
-    dx_forecast_raw.astype(float), y_forecast_upper_raw
-)(dx_forecast.astype(float))
 
 # get temporal bounds
 lower_bound = np.argmin(np.abs(x_forecast - np.datetime64(date_range[0])))

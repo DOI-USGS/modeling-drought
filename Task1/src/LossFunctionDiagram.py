@@ -3,15 +3,43 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+from Task_config.functions import (
+    pinball_LF,
+    adjust,
+    laplace,
+    save_desktop_mobile_tablet,
+)
+from Task_config.setup_matplotlib import (
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_tablet,
+    LFCMap,
+)
 
+# load in parameters
+aspect_double_plot_desktop = snakemake.params["aspect_double_plot_desktop"]
+aspect_double_plot_tablet = snakemake.params["aspect_double_plot_tablet"]
+aspect_double_plot_mobile = snakemake.params["aspect_double_plot_mobile"]
+min_percentile = snakemake.params["min_percentile"]
+loc = snakemake.params["loc"]
+scale = snakemake.params["scale"]
+kappa = snakemake.params["kappa"]
+lower_color_limit_hex = snakemake.params["lower_color_limit_hex"]
+median_color_hex = snakemake.params["median_color_hex"]
+upper_color_limit_hex = snakemake.params["upper_color_limit_hex"]
+static_alpha = snakemake.params["static_alpha"]
+fill_alpha = snakemake.params["fill_alpha"]
+
+# asymmetric laplace distribution
+z_val_min, z_val_max, z_median, x_LF = laplace(loc, scale, kappa, min_percentile)
+
+# figure specifc adjustments
 desktop_shrink = 0.9
 desktop_height = 0.75
 desktop_width = 0.275 * desktop_shrink
 desktop_left = [0.05, 0.39, 0.73]
 desktop_bottom = 0.15
+
 ### Plotting
 
 # make figure
@@ -43,7 +71,7 @@ for i, ax_LF in enumerate([ax_LF_1, ax_LF_2, ax_LF_3]):
     ax_LF.plot(
         x_LF,
         pinball_LF(x_LF, 0.0, percentiles[i]),
-        color=LFCMap(adjust(percentiles[i])),
+        color=LFCMap(adjust(percentiles[i], min_percentile)),
         alpha=1.0,
         zorder=5,
     )
@@ -53,7 +81,7 @@ for i, ax_LF in enumerate([ax_LF_1, ax_LF_2, ax_LF_3]):
     ax_LF.plot(
         x_LF,
         pinball_LF(x_LF, 0.0, min_percentile),
-        color=np.array(lower_color_limit) / 256.0,
+        color=lower_color_limit_hex,
         linestyle="--",
         alpha=static_alpha,
     )
@@ -68,7 +96,7 @@ for i, ax_LF in enumerate([ax_LF_1, ax_LF_2, ax_LF_3]):
     ax_LF.plot(
         x_LF,
         pinball_LF(x_LF, 0.0, 1.0 - min_percentile),
-        color=np.array(upper_color_limit) / 256.0,
+        color=upper_color_limit_hex,
         linestyle="--",
         alpha=static_alpha,
     )
@@ -85,7 +113,7 @@ for i, ax_LF in enumerate([ax_LF_1, ax_LF_2, ax_LF_3]):
     ax_LF.plot(
         x_LF,
         pinball_LF(x_LF, 0.0, min_percentile),
-        color=np.array(lower_color_limit) / 256.0,
+        color=lower_color_limit_hex,
         alpha=0.0,
         zorder=2,
     )
@@ -99,7 +127,7 @@ for i, ax_LF in enumerate([ax_LF_1, ax_LF_2, ax_LF_3]):
     ax_LF.plot(
         x_LF,
         pinball_LF(x_LF, 0.0, 1.0 - min_percentile),
-        color=np.array(upper_color_limit) / 256.0,
+        color=upper_color_limit_hex,
         alpha=0.0,
         zorder=2,
     )

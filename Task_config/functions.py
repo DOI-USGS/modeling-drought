@@ -1,13 +1,61 @@
 ### Import Libraries
 import numpy as np
 import re
-from Task_config.parameters import *
-from Task_config.defaults import *
+from scipy import stats
+import matplotlib as mpl
+
+# from Task_config.parameters import *
+
+# from Task_config.defaults import *
+
+
+# Custom Colormap
+def hex_to_rgb(hex_color):
+    hex_color = hex_color.lstrip("#")
+    return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+
+
+def make_color_ramp(colors):
+    # convert hex to rgb 8-bit
+    lower_color_limit = hex_to_rgb(colors["lower_color_limit_hex"])
+    upper_color_limit = hex_to_rgb(colors["upper_color_limit_hex"])
+    median_color = hex_to_rgb(colors["median_color_hex"])
+
+    vals = np.ones((256, 4))
+    for i in range(0, 3):
+        vals[:128, i] = np.linspace(
+            lower_color_limit[i] / 256, median_color[i] / 256, 128
+        )
+        vals[128:, i] = np.linspace(
+            median_color[i] / 256, upper_color_limit[i] / 256, 128
+        )
+    return mpl.colors.ListedColormap(vals)
 
 
 # rescales the min to max percentile from 0 to 1
-def adjust(percentile):
+def adjust(percentile, min_percentile):
     return (percentile - min_percentile) / (1.0 - 2.0 * min_percentile)
+
+
+# get asymmetric laplace distribution
+def laplace(loc, scale, kappa, min_percentile):
+
+    # find lower, upper, and median of asymmetric laplace distribution
+    z_val_min = stats.laplace_asymmetric.ppf(
+        min_percentile, kappa=kappa, loc=loc, scale=scale
+    )
+    z_val_max = stats.laplace_asymmetric.ppf(
+        1.0 - min_percentile, kappa=kappa, loc=loc, scale=scale
+    )
+    if kappa < 1.0:
+        z_median = loc - 1.0 / (kappa * scale) * np.log((1.0 + kappa**2.0) / (2.0))
+    else:
+        z_median = loc + kappa / scale * np.log((1.0 + kappa**2.0) / (2.0 * kappa**2.0))
+
+    # loss function, x
+    x_LF = np.array([-1.0, 0.0, 1.0])
+
+    return z_val_min, z_val_max, z_median, x_LF
 
 
 # draw pinball loss funcions
@@ -183,7 +231,9 @@ def set_axis_up(ax):
     ax.set_axisbelow(True)
 
 
-def forecast_annotations(ax, labels, xys, xy_texts, gid_prefix, ha="left"):
+def forecast_annotations(
+    ax, labels, xys, xy_texts, target_fontsize_px, color, gid_prefix, ha="left"
+):
     fontsizes = [
         target_fontsize_px,
         0.8 * target_fontsize_px,
@@ -193,15 +243,15 @@ def forecast_annotations(ax, labels, xys, xy_texts, gid_prefix, ha="left"):
     for i, label in enumerate(labels):
         ax.annotate(
             label,
-            color=ratio_7,
+            color=color,
             va="center",
             fontsize=fontsizes[i],
             ha=ha,
             xy=xys[i],
             xytext=xy_texts[i],
             arrowprops=dict(
-                facecolor=ratio_7,
-                edgecolor=ratio_7,
+                facecolor=color,
+                edgecolor=color,
                 alpha=0.00001,
                 arrowstyle="fancy",
                 gid=gid_prefix + "-arrow" + gid_suffix[i],

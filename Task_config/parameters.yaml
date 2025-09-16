@@ -1,0 +1,99 @@
+# Default Font Sizes
+fontsize:
+  target_fontsize_px : 16
+  target_fontsize_px_title : 20 
+
+# Target Widths in pixels
+plotwidth:
+  target_single_plotwidth_px : 700
+  target_plotwidth_px_mobile : 400
+  target_plotwidth_px_tablet : 700
+  target_plotwidth_px_desktop : 1200
+  matplotlib_error_correction : 72 
+
+# Target Aspect Ratios
+aspect:
+  aspect_single_plot : 1.333
+  aspect_single_plot_long : 2.0
+  aspect_double_plot_mobile : 0.8
+  aspect_double_plot_tablet : 1.0
+  aspect_double_plot_desktop : 3.0
+
+# Gray Colors
+grays:
+  ratio_9 : "#494949"
+  ratio_7 : "#595959"
+  ratio_5 : "#6E6E6E"
+  ratio_3 : "#949494"
+  ratio_1_5 : "#D1D1D1"
+
+# Other Colors:
+colors:
+  lower_color_limit_hex_half_alpha : "#DBC49A"
+  lower_color_limit_hex : "#B78935"
+  upper_color_limit_hex : "#406992"
+  upper_color_limit_hex_half_alpha : "#9FB4C8"
+  observation_color_hex : "#AF3331"
+  median_color_hex : "#00264c"
+
+# target linewidth
+linewidth : 1.5
+
+# Site info
+site_id : "13055000"
+
+# Dates
+dates:
+  date_start : "2000-10-09"
+  date_end : "2002-09-16"
+  year_label_offset : 20
+  label_year : "-11-01"
+
+# Minimum percentile in predictions
+min_percentile : 0.05
+
+# GID basenames
+gids:
+  basename_gid_lf : "lossfunction"
+  basename_gid_pi : "predictioninterval"
+  basename_gid_forecast : "forecast"
+  basename_gid_forecast_summary_1 : "forecast_summary_1"
+  basename_gid_true_false : "forecast_truefalse"
+  basename_gid_true_false_key : "forecast_truefalse_key"
+  basename_gid_true_false_summary : "forecast_truefalse_summary"
+
+# Asymmetric Laplace Parameters
+laplace:
+  loc : 0.0
+  scale: 1.0
+  kappa: 0.5
+
+# Loss Function Viz
+lf:
+  number_of_frames_lf : 501
+  static_alpha : 0.25
+  fill_alpha : 0.15
+
+# Prediction Interval Viz
+pi:
+  missed_marker_size : 8.0
+
+# Forecast Diagram
+fd:
+  index_plot: 158
+
+# Sankey Diagram
+sankey:
+  pad : 5.0
+  width : 1.0
+  row0 : 0.0
+  row1 : 10.0
+  row2 : 20.0
+  bar_alpha : 0.25
+  swoop_alpha : 0.05
+  label_alpha : 0.0
+
+# Sankey Summaries
+sankey_sum:
+  text_bump : 0.5
+  label_pad : 0.1
