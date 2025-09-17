@@ -6,6 +6,18 @@ This repo uses ... to build a data visualization website about ...
 
 **The data visualization website can be viewed at [https://water.usgs.gov/vizlab/modeling-drought](https://water.usgs.gov/vizlab/modeling-drought).**
 
+## Building the data visualizations
+
+1. In the project directory, use a conda environment manager (we recommend [Miniforge](https://github.com/conda-forge/miniforge)) to install the environment: `conda env create -f environment.yaml`.
+2. To recreate the data visualizations, use `snakemake --cores 1`. This will rebuild the interactive `.svg` images within the webpage.
+3. You can modify the plot scripts by editing the `.py` files in `Task1/src` and `Task2/src`. 
+
+There are other locations in this directory that you may also want to visit to adjust or edit the figures.
+
+- The `Task_Data` directory holds the datafiles used to generate the visualizations
+- The `Task_config` directory holds a `parameters.yaml` file that you can use to adjust the colors and look of the visualizations. It also houses a `.py` file with the functions used and the default parameters used for [`matplotlib`](https://matplotlib.org/).
+- `src/assets/svgs` will house the `.svg` files used for the website.
+
 
 ## Building the website locally
 

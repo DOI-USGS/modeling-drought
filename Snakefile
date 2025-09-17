@@ -1,7 +1,7 @@
 import os
 import yaml
 
-# Make output folders is they do not exist
+# Make output folders if they do not exist
 if not os.path.exists("Task1/out"):
     os.makedirs("Task1/out")
 if not os.path.exists("Task2/out"):
