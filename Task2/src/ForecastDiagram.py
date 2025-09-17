@@ -2,9 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import pyarrow.feather as feather
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+from Task_config.functions import set_axis_up, remove_metadata_and_fix
+from Task_config.setup_matplotlib import target_plotwidth_in_mobile
+
+# real data for diagram
+forecast_data_diagram = feather.read_feather(snakemake.input[0])
+
+aspect_single_plot = snakemake.params["aspect_single_plot"]
+index_plot = snakemake.params["index_plot"]
+median_color_hex = snakemake.params["median_color_hex"]
 
 # plotting variables
 x = np.linspace(0.0, 13.0, 14)
@@ -19,14 +25,10 @@ fig = plt.figure(
         target_plotwidth_in_mobile,
         target_plotwidth_in_mobile / aspect_single_plot,
     ),
-    gid="figure-forecast-diagram",
 )
 
 # add axes
-ax_forecast = fig.add_axes(
-    [0.15, 0.15, 0.8, 0.75],
-    gid="axis-forecast-diagram" + basename_gid_forecast,
-)
+ax_forecast = fig.add_axes([0.15, 0.15, 0.8, 0.75])
 
 # add line
 ax_forecast.plot(
@@ -81,8 +83,6 @@ ax_forecast.set_xticks(
 )
 ax_forecast.set_xlabel("Forecast horizon in weeks", weight="semibold")
 ax_forecast.set_ylabel("Streamflow percentile", weight="semibold")
-# ax_forecast.spines["left"].set_visible(False)
-# ax_forecast.yaxis.set_visible(False)
 ax_forecast.set_ylim(20, 80)
 ax_forecast.set_yticks(
     [25, 75.0],

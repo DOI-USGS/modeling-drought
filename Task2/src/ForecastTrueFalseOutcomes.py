@@ -2,9 +2,29 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+from Task_config.functions import save_desktop_mobile_tablet
+from Task_config.functions import (
+    save_desktop_mobile_tablet,
+)
+from Task_config.setup_matplotlib import (
+    target_single_plotwidth,
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_tablet,
+)
+
+aspect_single_plot = snakemake.params["aspect_single_plot"]
+basename_gid_true_false_summary = snakemake.params["basename_gid_true_false_summary"]
+lower_color_limit_hex = snakemake.params["lower_color_limit_hex"]
+upper_color_limit_hex = snakemake.params["upper_color_limit_hex"]
+lower_color_limit_hex_half_alpha = snakemake.params["lower_color_limit_hex_half_alpha"]
+upper_color_limit_hex_half_alpha = snakemake.params["upper_color_limit_hex_half_alpha"]
+ratio_3 = snakemake.params["ratio_3"]
+ratio_7 = snakemake.params["ratio_7"]
+text_bump = snakemake.params["text_bump"]
+label_pad = snakemake.params["label_pad"]
+
+# Load in Data
+tf_d = pd.read_csv(snakemake.input[0])
 
 # compute rights and wrongs
 horizon_weeks = tf_d["horizon"]

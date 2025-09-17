@@ -4,9 +4,58 @@ import matplotlib as mpl
 import datetime
 from scipy import interpolate
 import pyarrow.feather as feather
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+from Task_config.functions import (
+    forecast_format,
+    forecast_annotations,
+    set_axis_up,
+    save_desktop_mobile_tablet,
+)
+from Task_config.setup_matplotlib import (
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_tablet,
+)
+
+# load in parameters
+aspect_double_plot_desktop = snakemake.params["aspect_double_plot_desktop"]
+aspect_double_plot_tablet = snakemake.params["aspect_double_plot_tablet"]
+aspect_double_plot_mobile = snakemake.params["aspect_double_plot_mobile"]
+target_fontsize_px = snakemake.params["target_fontsize_px"]
+ratio_7 = snakemake.params["ratio_7"]
+median_color_hex = snakemake.params["median_color_hex"]
+observation_color_hex = snakemake.params["observation_color_hex"]
+site_id = snakemake.params["site_id"]
+basename_gid_forecast = snakemake.params["basename_gid_forecast"]
+date_range = snakemake.params["date_range"]
+label_year = snakemake.params["label_year"]
+year_label_offset = snakemake.params["year_label_offset"]
+
+
+# load data
+forecast_data_all = feather.read_feather(snakemake.input[0])
+forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+
+# forecast files
+forecast_data_list = [
+    forecast_data_site[forecast_data_site["nday_forecast"] == 7.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 14.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 21.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 28.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 35.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 42.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 49.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 56.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 63.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 70.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 77.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 84.0],
+    forecast_data_site[forecast_data_site["nday_forecast"] == 91.0],
+]
+
+# plot specific set up
+offset = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+dt = 7
+dense_dt = 1
 
 ### Data Arrays
 
@@ -156,6 +205,8 @@ forecast_annotations(
         (x_limits[0], 90),
         (x_limits[0], 90),
     ],
+    target_fontsize_px,
+    ratio_7,
     "annotation-1-forecast",
 )
 
@@ -177,6 +228,8 @@ forecast_annotations(
         (x_limits[0], 90),
         (x_limits[0], 90),
     ],
+    target_fontsize_px,
+    ratio_7,
     "annotation-1-observation",
 )
 
@@ -198,6 +251,8 @@ forecast_annotations(
         (x_limits[0] + x_length * 0.55, 50),
         (x_limits[0] + x_length * 0.55, 55),
     ],
+    target_fontsize_px,
+    ratio_7,
     "annotation-2-forecast",
     ha="center",
 )
@@ -207,7 +262,7 @@ ax_forecast.plot(
     x_forecast,
     y_training,
     color=observation_color_hex,
-    linestyle=obs_linestyle,
+    linestyle="dotted",
     alpha=0.0,
     gid="observation-full-forecast",
 )
@@ -266,7 +321,7 @@ for legend_element in range(0, legend_elements):
             [0, 1],
             [-10, -10],
             color=observation_color_hex,
-            linestyle=obs_linestyle,
+            linestyle="dotted",
             alpha=1.0,
         )
     else:
@@ -276,7 +331,7 @@ for legend_element in range(0, legend_elements):
             [0, 1],
             [-10, -10],
             color="none",
-            linestyle=obs_linestyle,
+            linestyle="dotted",
             alpha=1.0,
         )
 

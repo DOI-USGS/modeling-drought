@@ -3,9 +3,54 @@ import matplotlib.pyplot as plt
 import datetime
 from scipy import stats
 from scipy import interpolate
-from Task_config.defaults import *
-from Task_config.functions import *
-from Task_config.parameters import *
+import pyarrow.feather as feather
+from Task_config.functions import (
+    forecast_format,
+    laplace,
+    pinball_LF,
+    popup_text,
+    set_axis_up,
+    save_desktop_mobile_tablet,
+)
+from Task_config.setup_matplotlib import (
+    target_plotwidth_in_desktop,
+    target_plotwidth_in_mobile,
+    target_plotwidth_in_tablet,
+    LFCMap,
+)
+
+# load in parameters
+aspect_double_plot_desktop = snakemake.params["aspect_double_plot_desktop"]
+aspect_double_plot_tablet = snakemake.params["aspect_double_plot_tablet"]
+aspect_double_plot_mobile = snakemake.params["aspect_double_plot_mobile"]
+ratio_7 = snakemake.params["ratio_7"]
+lower_color_limit_hex = snakemake.params["lower_color_limit_hex"]
+median_color_hex = snakemake.params["median_color_hex"]
+upper_color_limit_hex = snakemake.params["upper_color_limit_hex"]
+observation_color_hex = snakemake.params["observation_color_hex"]
+
+site_id = snakemake.params["site_id"]
+basename_gid_pi = snakemake.params["basename_gid_pi"]
+date_range = snakemake.params["date_range"]
+label_year = snakemake.params["label_year"]
+year_label_offset = snakemake.params["year_label_offset"]
+min_percentile = snakemake.params["min_percentile"]
+number_of_frames_lf = snakemake.params["number_of_frames_lf"]
+static_alpha = snakemake.params["static_alpha"]
+fill_alpha = snakemake.params["fill_alpha"]
+loc = snakemake.params["loc"]
+scale = snakemake.params["scale"]
+kappa = snakemake.params["kappa"]
+
+missed_marker_size = snakemake.params["missed_marker_size"]
+
+# forecast data
+forecast_data_all = feather.read_feather(snakemake.input[0])
+forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+forecast_data = forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]
+
+# asymmetric laplace distribution
+z_val_min, z_val_max, z_median, x_LF = laplace(loc, scale, kappa, min_percentile)
 
 ### Plotting
 
@@ -227,7 +272,7 @@ obs_forecast = ax_forecast.plot(
     x_forecast,
     y_training,
     color=observation_color_hex,
-    linestyle=obs_linestyle,
+    linestyle="dotted",
     alpha=1.0,
     gid="OBSERVED-FORECAST-LINE",
     zorder=2,
