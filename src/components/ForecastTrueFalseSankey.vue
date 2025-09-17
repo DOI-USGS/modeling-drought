@@ -136,6 +136,7 @@
             }
         }
       else if (event.currentTarget.id.startsWith("tf-swoop-")){
+            let tf_id = event.currentTarget.id.slice(9);
             // plot sankey
             draw_sankey(tf_id);
             // plot parent sankey
