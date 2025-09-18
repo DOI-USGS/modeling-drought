@@ -39,6 +39,7 @@
               :href="reference.link"
               target="_blank"
             ><span v-html="reference.title" /></a>
+            <span v-if="reference.software_release">. U.S. Geological Survey software release. Reston, VA</span>
             <span v-if="reference.data_release">: U.S. Geological Survey data release</span>.
             <span v-if="reference.journal">
               <span

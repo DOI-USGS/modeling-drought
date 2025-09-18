@@ -10,6 +10,7 @@ export default {
       journal: false,
       journal_name: "",
       journal_issue: "",
+      software_release: false,
       data_release: false,
       link: "https://www.usgs.gov/mission-areas/water-resources/science/drought-prediction-science",
       doi: null
@@ -24,6 +25,7 @@ export default {
       journal: true,
       journal_name: "EarthArxiv",
       journal_issue: "",
+      software_release: false,
       data_release: false,
       doi: "TBD"
     },
@@ -37,6 +39,7 @@ export default {
       journal: false,
       journal_name: "",
       journal_issue: "",
+      software_release: false,
       data_release: true,
       doi: "https://doi.org/10.5066/P132NSWY"
     },
@@ -49,6 +52,7 @@ export default {
       journal: false,
       journal_name: "",
       journal_issue: "",
+      software_release: true,
       data_release: false,
       link: "https://water.usgs.gov/vizlab/streamflow-drought-forecasts/",
       doi: "https://doi.org/10.5066/P138JIEN"
@@ -62,6 +66,7 @@ export default {
       journal: false,
       journal_name: "",
       journal_issue: "",
+      software_release: false,
       data_release: false,
       link: "https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx",
       doi: null
@@ -76,6 +81,7 @@ export default {
       journal: true,
       journal_name: "Operational hydrology report (OHR) No. 50",
       journal_issue: "WMO-No. 1029",
+      software_release: false,
       data_release: false,
       doi: ""
     }

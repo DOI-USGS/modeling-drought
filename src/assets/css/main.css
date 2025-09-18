@@ -67,6 +67,14 @@ text {
   margin-bottom: 3rem;
   line-height: 1.2;
 }
+.paragraph-note {
+  font-style: italic;
+  margin-left: 2rem;
+  padding-left: 1rem;
+  color: var(--grey_7_1);
+  border-left: 1px var(--grey_3_1) solid;
+  display: inline-block;
+}
 .group-label {
   color: black;
   padding: 0.1em 0.4em;
@@ -75,6 +83,9 @@ text {
   display: inline-block;
   font-weight: 500;
   line-height: 1.4;
+}
+.group-label a {
+  color: var(--color-text)
 }
 /* css for tooltips */
 .tooltip-span {
