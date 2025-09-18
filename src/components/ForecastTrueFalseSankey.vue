@@ -13,20 +13,20 @@
       <div id="fc-true-false-grid-container">
         <fckeyPlotTablet
           v-if="tabletView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <fckeyPlotMobile
           v-else-if="mobileView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <fckeyPlotDesktop
           v-else
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
       </div>

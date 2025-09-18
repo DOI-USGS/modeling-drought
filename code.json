@@ -19,22 +19,22 @@
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/modeling-drought/-/raw/main/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/modeling-drought.git",
     "vcs": "git",
-    "laborHours": 50,
+    "laborHours": 450,
     "tags": [
       "R",
       "USGS"
     ],
     "languages": [
-      "R",
+      "Python",
       "Vue",
       "JavaScript"
     ],
     "contact": {
-      "name": "Hayley Corson-Dosch",
-      "email": "hcorson-dosch@usgs.gov"
+      "name": "Jeffrey Kwang",
+      "email": "jkwang@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2025-04-04"
+      "metadataLastUpdated": "2025-09-17"
     }
   }
 ]

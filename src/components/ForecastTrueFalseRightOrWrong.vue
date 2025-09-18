@@ -18,8 +18,8 @@
       <div id="fc-true-false-rw-grid-container">
         <component
           :is="getCurrentSVG()"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="ariaLabel"
         />
       </div>

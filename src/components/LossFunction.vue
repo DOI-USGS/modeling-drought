@@ -24,20 +24,20 @@
       <div id="lf-grid-container">
         <lfPlotTablet
           v-if="tabletView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <lfPlotMobile
           v-else-if="mobileView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <lfPlotDesktop
           v-else
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
       </div>

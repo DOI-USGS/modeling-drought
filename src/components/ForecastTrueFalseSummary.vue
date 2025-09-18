@@ -12,20 +12,20 @@
       <div id="fc-true-false-sum-grid-container">
         <fcsumTFPlotTablet
           v-if="tabletView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotMobile
           v-else-if="mobileView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <fcsumTFPlotDesktop
           v-else
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
       </div>

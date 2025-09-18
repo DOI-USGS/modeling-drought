@@ -25,20 +25,20 @@
       <div id="pi-grid-container">
         <piPlotTablet
           v-if="tabletView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="ariaLabel"
         />
         <piPlotMobile
           v-else-if="mobileView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="ariaLabel"
         />
         <piPlotDesktop
           v-else
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="ariaLabel"
         />
       </div>
