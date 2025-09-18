@@ -1,6 +1,6 @@
 {
   "name": "modeling-drought",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "The methodology behind USGS streamflow drought modeling",
   "main": "index.html",
   "author": "USGS Vizlab",

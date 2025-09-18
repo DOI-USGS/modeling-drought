@@ -34,7 +34,45 @@
       "email": "jkwang@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2025-09-17"
+      "metadataLastUpdated": "2025-09-18"
+    }
+  },
+  {
+    "name": "modeling-drought",
+    "organization": "U.S. Geological Survey",
+    "description": "The methodology behind USGS streamflow drought modeling",
+    "version": "1.0.0",
+    "status": "Release Candidate",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://code.usgs.gov/wma/vizlab/modeling-drought/-/raw/1.0.0/LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "https://water.usgs.gov/vizlab/modeling-drought/",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/modeling-drought/-/archive/1.0.0/modeling-drought-main.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/modeling-drought/-/raw/1.0.0/DISCLAIMER.md",
+    "repositoryURL": "https://code.usgs.gov/wma/vizlab/modeling-drought.git",
+    "vcs": "git",
+    "laborHours": 450,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "Python",
+      "Vue",
+      "JavaScript"
+    ],
+    "contact": {
+      "name": "Jeffrey Kwang",
+      "email": "jkwang@usgs.gov"
+    },
+    "date": {
+      "metadataLastUpdated": "2025-09-18"
     }
   }
 ]
