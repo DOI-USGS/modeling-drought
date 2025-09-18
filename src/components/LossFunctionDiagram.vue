@@ -18,20 +18,20 @@
       <div id="lf-diagram-grid-container">
         <lfDiagramTablet
           v-if="tabletView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <lfDiagramMobile
           v-else-if="mobileView"
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
         <lfDiagramDesktop
           v-else
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
       </div>

@@ -1,8 +1,8 @@
-# Modeling drought
+# Modeling streamflow drought
 
 > _A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/modeling-drought/-/releases to view all releases._
 
-This repo uses ... to build a data visualization website about ...
+This repo uses Python and Javascript to build a data visualization website about the methodology behind USGS streamflow drought modeling.
 
 **The data visualization website can be viewed at [https://water.usgs.gov/vizlab/modeling-drought](https://water.usgs.gov/vizlab/modeling-drought).**
 
@@ -27,10 +27,10 @@ To build the website locally you'll need `node.js` `v22.14.0` and `npm` `v10.9.2
 
 ## Citation
 
-Kwang, Jeffrey, Corson-Dosch, Hayley, Diaz, Jeremy, and Nell, Cee. 2025. Modeling drought. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P14RLGAU](https://doi.org/10.5066/P14RLGAU)
+Kwang, Jeffrey, Corson-Dosch, Hayley, Diaz, Jeremy, Archer, Althea, Carr, Mandie, and Nell, Cee. 2025. Modeling Streamflow Drought. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P14RLGAU](https://doi.org/10.5066/P14RLGAU)
 
 ## Consulting subject matter experts
-Person X, person Y, and person Z consulted on the development of this website as subject matter experts.
+John Hammond consulted on the development of this website as a subject matter expert.
 
 ## Additional information
 * We welcome contributions from the community. See the [guidelines for contributing](https://github.com/DOI-USGS/modeling-drought/) to this repository on GitHub.

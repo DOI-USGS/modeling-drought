@@ -21,8 +21,8 @@
     <template #figures>
       <div id="fc-diagram-grid-container">
         <fcDiagramPlot
-          role="img"
           :id="svgId"
+          role="img"
           :aria-label="text.ariaLabel"
         />
       </div>
