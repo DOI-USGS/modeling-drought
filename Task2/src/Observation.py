@@ -24,7 +24,6 @@ target_fontsize_px = snakemake.params["target_fontsize_px"]
 ratio_7 = snakemake.params["ratio_7"]
 median_color_hex = snakemake.params["median_color_hex"]
 observation_color_hex = snakemake.params["observation_color_hex"]
-site_id = snakemake.params["site_id"]
 basename_gid_forecast = snakemake.params["basename_gid_forecast"]
 date_range = snakemake.params["date_range"]
 label_year = snakemake.params["label_year"]
@@ -32,8 +31,7 @@ year_label_offset = snakemake.params["year_label_offset"]
 
 
 # load data
-forecast_data_all = feather.read_feather(snakemake.input[0])
-forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+forecast_data_site = feather.read_feather(snakemake.input[0])
 
 # forecast files
 forecast_data_list = [forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]]

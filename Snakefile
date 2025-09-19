@@ -63,7 +63,6 @@ rule loss_function:
         median_color_hex = colors["median_color_hex"],
         upper_color_limit_hex = colors["upper_color_limit_hex"],
         observation_color_hex = colors["observation_color_hex"],
-        site_id = params["site_id"],
         basename_gid_lf = params["gids"]["basename_gid_lf"],
         date_range = [dates["date_start"], dates["date_end"]],
         label_year = dates["label_year"],
@@ -76,7 +75,7 @@ rule loss_function:
         scale = params["laplace"]["scale"],
         kappa = params["laplace"]["kappa"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_20250916.feather"
+        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
     output:
         "src/assets/svgs/lf_example_desktop.svg",
         "src/assets/svgs/lf_example_mobile.svg",
@@ -117,7 +116,6 @@ rule prediction_interval:
         median_color_hex = colors["median_color_hex"],
         upper_color_limit_hex = colors["upper_color_limit_hex"],
         observation_color_hex = colors["observation_color_hex"],
-        site_id = params["site_id"],
         basename_gid_pi = params["gids"]["basename_gid_pi"],
         date_range = [dates["date_start"], dates["date_end"]],
         label_year = dates["label_year"],
@@ -131,7 +129,7 @@ rule prediction_interval:
         kappa = params["laplace"]["kappa"],
         missed_marker_size = params["pi"]["missed_marker_size"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_20250916.feather"
+        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
     output:
         "src/assets/svgs/pi_example_desktop.svg",
         "src/assets/svgs/pi_example_mobile.svg",
@@ -163,13 +161,12 @@ rule forecast:
         ratio_7 = grays["ratio_7"],
         median_color_hex = colors["median_color_hex"],
         observation_color_hex = colors["observation_color_hex"],
-        site_id = params["site_id"],
         basename_gid_forecast = params["gids"]["basename_gid_forecast"],
         date_range = [dates["date_start"], dates["date_end"]],
         label_year = dates["label_year"],
         year_label_offset = dates["year_label_offset"],
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_20250916.feather"
+        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
     output:
         "src/assets/svgs/fc_example_desktop.svg",
         "src/assets/svgs/fc_example_mobile.svg",
@@ -187,13 +184,12 @@ rule forecast_art:
         ratio_7 = grays["ratio_7"],
         median_color_hex = colors["median_color_hex"],
         observation_color_hex = colors["observation_color_hex"],
-        site_id = params["site_id"],
         basename_gid_forecast = params["gids"]["basename_gid_forecast"],
         date_range = [dates["date_start"], dates["date_end"]],
         label_year = dates["label_year"],
         year_label_offset = dates["year_label_offset"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_20250916.feather"
+        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
     output:
         "src/assets/svgs/fc_art_desktop.svg"
     script:
@@ -209,13 +205,12 @@ rule observation:
         ratio_7 = grays["ratio_7"],
         median_color_hex = colors["median_color_hex"],
         observation_color_hex = colors["observation_color_hex"],
-        site_id = params["site_id"],
         basename_gid_forecast = params["gids"]["basename_gid_forecast"],
         date_range = [dates["date_start"], dates["date_end"]],
         label_year = dates["label_year"],
         year_label_offset = dates["year_label_offset"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts.feather"
+        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
     output:
         "src/assets/svgs/ob_example_mobile.svg"
     script:
