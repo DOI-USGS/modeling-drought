@@ -42,7 +42,7 @@
     "organization": "U.S. Geological Survey",
     "description": "The methodology behind USGS streamflow drought modeling",
     "version": "1.0.0",
-    "status": "Release Candidate",
+    "status": "Production",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
