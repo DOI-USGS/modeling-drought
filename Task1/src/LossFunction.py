@@ -33,7 +33,6 @@ median_color_hex = snakemake.params["median_color_hex"]
 upper_color_limit_hex = snakemake.params["upper_color_limit_hex"]
 observation_color_hex = snakemake.params["observation_color_hex"]
 
-site_id = snakemake.params["site_id"]
 basename_gid_lf = snakemake.params["basename_gid_lf"]
 date_range = snakemake.params["date_range"]
 label_year = snakemake.params["label_year"]
@@ -47,8 +46,7 @@ scale = snakemake.params["scale"]
 kappa = snakemake.params["kappa"]
 
 # forecast data
-forecast_data_all = feather.read_feather(snakemake.input[0])
-forecast_data_site = forecast_data_all[forecast_data_all["site_id"] == site_id]
+forecast_data_site = feather.read_feather(snakemake.input[0])
 forecast_data = forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]
 
 # asymmetric laplace distribution
