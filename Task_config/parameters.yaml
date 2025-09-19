@@ -39,9 +39,6 @@ colors:
 # target linewidth
 linewidth : 1.5
 
-# Site info
-site_id : "13055000"
-
 # Dates
 dates:
   date_start : "2000-10-09"
