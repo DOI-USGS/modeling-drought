@@ -20,14 +20,14 @@ export default {
       num: "2",
       authors: "Hammond, J., Goodling, P., Diaz, J., Corson-Dosch, H., Heldmyer, A., Hamshaw, S., McShane, R., Ross, J., Sando, R., Simeone, C., Smith, E., Staub, L., Watkins, D., Wieczorek, M., Wnuk, K. & Zwart, J.",
       year: "2025",
-      title: "Machine Learning Generated Streamflow Drought Forecasts for the Conterminous United States (CONUS): Developing and Evaluating an Operational Tool to Enhance Sub-seasonal to Seasonal Streamflow Drought Early Warning for Gaged Locations ",
-      link: "https://eartharxiv.org/repository/view/10279/",
+      title: "Machine Learning Generated Streamflow Drought Forecasts for the Conterminous United States (CONUS): Developing and Evaluating an Operational Tool to Enhance Sub-seasonal to Seasonal Streamflow Drought Early Warning for Gaged Locations",
+      link: "https://www.frontiersin.org/journals/water/articles/10.3389/frwa.2025.1709138/full",
       journal: true,
-      journal_name: "EarthArxiv",
-      journal_issue: "",
+      journal_name: "Frontiers in Water",
+      journal_issue: "7",
       software_release: false,
       data_release: false,
-      doi: "https://doi.org/10.31223/X56X77"
+      doi: "https://doi.org/10.3389/frwa.2025.1709138"
     },
     {
       reference: "Reference 3.",
