@@ -48,7 +48,7 @@ export default {
       num: "4",
       authors: "Corson-Dosch, H., Watkins, D., Ross, J., Bucknell, M., Simeone, C., Hammond, J., Archer, A. & Nell, C.",
       year: "2025",
-      title: "Streamflow Drought Assessment and Forecasting Tool",
+      title: "River DroughtCast — Streamfow drought status and forecasts",
       journal: false,
       journal_name: "",
       journal_issue: "",
