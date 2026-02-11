@@ -167,7 +167,7 @@ export default {
     },
     WhatsNext: {
         title: "What comes next?",
-        subtitle: "USGS continues to improve the model and make it more useful",
+        subtitle: "USGS continues to improve the model",
         headingA: "Collaboration",
         paragraphA1: "Building on a series of <a aria-label='Link to USGS-NIDIS National Listening Series report' href='https://www.drought.gov/documents/drought-prediction-and-water-availability-report-2022-usgs-nidis-national-listening' target='_blank'>listening sessions</a> co-organized and co-hosted with NOAA’s National Integrated Drought Information System (NIDIS) staff, USGS staff have been coordinating with other Federal Agencies and external partners to identify key drought research priorities. The goal of this collaboration is to develop and improve drought products and information at the national and regional scales in order to support decision-making. As these efforts continue, the USGS continues to collaborate on priority drought research areas and drought related data collection.",
         headingB: "Data",
