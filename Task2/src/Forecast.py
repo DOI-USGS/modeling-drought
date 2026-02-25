@@ -180,7 +180,6 @@ for j in range(lower_bound, upper_bound, int(dt / dense_dt)):
     )
 
 # add desktop annotations
-
 # limits on x axis with 1 week buffer
 x_limits = [np.datetime64(date_range[0]) + 7, np.datetime64(date_range[-1]) - 7]
 x_length = x_limits[-1] - x_limits[0]
@@ -196,12 +195,12 @@ forecast_annotations(
     [
         (x_limits[0] + x_length * 0.23, 90),
         (x_limits[0] + x_length * 0.32, 90),
-        (x_limits[0] + x_length * 0.57, 90),
+        (x_limits[0] + x_length * 0.57, 10),
     ],
     [
         (x_limits[0], 90),
         (x_limits[0], 90),
-        (x_limits[0], 90),
+        (x_limits[0], 10),
     ],
     target_fontsize_px,
     ratio_7,
@@ -235,19 +234,19 @@ forecast_annotations(
 forecast_annotations(
     ax_forecast,
     [
-        "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
-        "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
-        "Model training prioritizes\naccurate predictions below\nthe 30ᵗʰ percentile",
-    ],
-    [
-        (x_limits[0] + x_length * 0.55, 30),
-        (x_limits[0] + x_length * 0.55, 30),
-        (x_limits[0] + x_length * 0.55, 30),
+        "Model training prioritizes\naccurate predictions below\nthe 50ᵗʰ percentile",
+        "Model training prioritizes\naccurate predictions below\nthe 50ᵗʰ percentile",
+        "Model training prioritizes accurate\npredictions below the 50ᵗʰ percentile",
     ],
     [
         (x_limits[0] + x_length * 0.55, 50),
         (x_limits[0] + x_length * 0.55, 50),
-        (x_limits[0] + x_length * 0.55, 55),
+        (x_limits[0] + x_length * 0.65, 50),
+    ],
+    [
+        (x_limits[0] + x_length * 0.55, 70),
+        (x_limits[0] + x_length * 0.55, 70),
+        (x_limits[0] + x_length * 0.65, 70),
     ],
     target_fontsize_px,
     ratio_7,
@@ -265,16 +264,17 @@ ax_forecast.plot(
     gid="observation-full-forecast",
 )
 
-# de emphasize above 30
+# de emphasize above 50
 drought_labels = [
+    "",
     "Normal conditions",
     "Abnormally dry",
     "Moderate streamflow drought",
     "Severe streamflow drought",
     "Extreme streamflow drought",
 ]
-gid_prefixes = ["obsv-nm-", "obsv-ad-", "obsv-md-", "obsv-sd-", "obsv-ed-"]
-drought_label_lines = [40, 30, 20, 10, 5, 0]
+gid_prefixes = ["obsv-50-","obsv-nm-", "obsv-ad-", "obsv-md-", "obsv-sd-", "obsv-ed-"]
+drought_label_lines = [50, 40, 30, 20, 10, 5, 0]
 fontsizes = [target_fontsize_px, 0.8 * target_fontsize_px]
 for j, platform in enumerate(["", "-tablet"]):
     for i, drought_label in enumerate(drought_labels):
@@ -299,7 +299,7 @@ for j, platform in enumerate(["", "-tablet"]):
 
 ax_forecast.fill_between(
     [np.datetime64(date_range[0]), np.datetime64(date_range[-1])],
-    [30, 30],
+    [50, 50],
     [100, 100],
     edgecolor="none",
     facecolor="w",
@@ -308,7 +308,18 @@ ax_forecast.fill_between(
     gid="forecast-washout",
 )
 
-# Make a legend
+ax_forecast.fill_between(
+    [np.datetime64(date_range[0]), np.datetime64(date_range[0]) +  (np.datetime64(date_range[-1]) - np.datetime64(date_range[0])) / 2],
+    [0, 0],
+    [20, 20],
+    edgecolor="none",
+    facecolor="w",
+    alpha=0.00001,
+    zorder=99,
+    gid="forecast-washout-mobile-label",
+)
+
+# Make a legend for tablet and desktop
 legend_elements = 6
 
 for legend_element in range(0, legend_elements):
@@ -357,6 +368,54 @@ for legend_element in range(0, legend_elements):
     legend.set_zorder(100)
     legend.set(gid="forecast-legend-" + str(legend_element))
     ax_forecast.add_artist(legend)
+
+# Make a legend for mobile
+for legend_element in range(0, legend_elements):
+    if legend_element == (legend_elements / 2) - 1:
+        labelcolor = (ratio_7,)
+        # create dummy lines for observation to make legend
+        (obs_line,) = ax_forecast.plot(
+            [0, 1],
+            [-10, -10],
+            color=observation_color_hex,
+            linestyle="dotted",
+            alpha=1.0,
+        )
+    else:
+        labelcolor = [0, 0, 0, 0]
+        # create dummy lines for observation to make legend
+        (obs_line,) = ax_forecast.plot(
+            [0, 1],
+            [-10, -10],
+            color="none",
+            linestyle="dotted",
+            alpha=1.0,
+        )
+
+    # create dummy lines for forecast to make legend
+    (for_line,) = ax_forecast.plot(
+        [0, 1],
+        [-10, -10],
+        color=median_color_hex,
+        linestyle="-",
+        linewidth=2.0 - legend_element * 0.2,
+        alpha=1.0 - legend_element * 0.2,
+        solid_capstyle="round",
+    )
+
+    legend_mobile = ax_forecast.legend(
+        handles=[obs_line, for_line],
+        bbox_to_anchor=(1.0, 1.08 - legend_element * 0.02),
+        labels=["Observation", "Forecasts"],
+        loc="upper right",
+        edgecolor="none",
+        facecolor="none",
+        ncols=2,
+        labelcolor=labelcolor,
+    )
+    legend_mobile.set_zorder(100)
+    legend_mobile.set(gid="forecast-legend-mobile-" + str(legend_element))
+    ax_forecast.add_artist(legend_mobile)
 
 # forecast axis parameters
 ax_forecast.grid(visible=True, axis="y")

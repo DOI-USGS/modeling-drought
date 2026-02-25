@@ -43,9 +43,17 @@ kappa = snakemake.params["kappa"]
 
 missed_marker_size = snakemake.params["missed_marker_size"]
 
-# forecast data
+# forecast data, contains 90th PI
 forecast_data_site = feather.read_feather(snakemake.input[0])
 forecast_data = forecast_data_site[forecast_data_site["nday_forecast"] == 7.0]
+
+# 50th PI
+forecast_data_50PI_site = feather.read_feather(snakemake.input[1])
+forecast_data_50PI = forecast_data_50PI_site[forecast_data_50PI_site["nday_forecast"] == 7.0]
+
+# 75th PI
+forecast_data_75PI_site = feather.read_feather(snakemake.input[2])
+forecast_data_75PI = forecast_data_75PI_site[forecast_data_75PI_site["nday_forecast"] == 7.0]
 
 # asymmetric laplace distribution
 z_val_min, z_val_max, z_median, x_LF = laplace(loc, scale, kappa, min_percentile)
@@ -76,6 +84,8 @@ ax_forecast = fig.add_axes(
 
 # load date data
 x_forecast = forecast_data["datetime"].values.astype("datetime64[D]")
+x_forecast_50PI = forecast_data_50PI["datetime"].values.astype("datetime64[D]")
+x_forecast_75PI = forecast_data_75PI["datetime"].values.astype("datetime64[D]")
 
 # load observed data
 y_training = forecast_data["observation"]
@@ -85,14 +95,22 @@ y_forecast_lower = forecast_format(forecast_data["lower"])
 y_forecast_median = forecast_format(forecast_data["median"])
 y_forecast_upper = forecast_format(forecast_data["upper"])
 
+# load model data for 50th and 75th percentile
+y_forecast_50PI_lower = forecast_format(forecast_data_50PI["50_lower"])
+y_forecast_75PI_lower = forecast_format(forecast_data_75PI["75_lower"])
+y_forecast_50PI_upper = forecast_format(forecast_data_50PI["50_upper"])
+y_forecast_75PI_upper = forecast_format(forecast_data_75PI["75_upper"])
+
 # get temporal bounds
 lower_bound = np.argmin(np.abs(x_forecast - np.datetime64(date_range[0])))
 upper_bound = np.argmin(np.abs(x_forecast - np.datetime64(date_range[1]))) + 1
 
 # generate lines based on percentile
 pi_list = [0.05, 0.125, 0.25]
+x_list = [x_forecast,x_forecast_75PI,x_forecast_50PI]
+lower_list = [y_forecast_lower, y_forecast_75PI_lower, y_forecast_50PI_lower]
+upper_list = [y_forecast_upper, y_forecast_75PI_upper, y_forecast_50PI_upper]
 facecolor_list = [(0.9, 0.9, 0.9), (0.75, 0.75, 0.75), (0.5, 0.5, 0.5)]
-lower_limit_pi = []
 inside_proportion = []
 for i, lower_percentile in enumerate(pi_list):
 
@@ -115,35 +133,22 @@ for i, lower_percentile in enumerate(pi_list):
         gid="LF-UPPER-" + str(i),
     )
 
-    # calculate the corresponding z value
-    z_val_lower = stats.laplace_asymmetric.ppf(
-        lower_percentile, kappa=kappa, loc=loc, scale=scale
-    )
-    z_val_upper = stats.laplace_asymmetric.ppf(
-        upper_percentile, kappa=kappa, loc=loc, scale=scale
-    )
+
+    x_forecast_temp = x_list[i]
     # calculate the forecast line
     if lower_percentile < 0.50:
-        y_forecast_temp_lower = y_forecast_median + (
-            y_forecast_lower - y_forecast_median
-        ) * (z_val_lower - z_median) / (z_val_min - z_median)
+        y_forecast_temp_lower = lower_list[i]
     else:
-        y_forecast_temp_lower = y_forecast_median + (
-            y_forecast_upper - y_forecast_median
-        ) * (z_val_lower - z_median) / (z_val_max - z_median)
+        y_forecast_temp_lower = upper_list[i]
 
     if upper_percentile < 0.50:
-        y_forecast_temp_upper = y_forecast_median + (
-            y_forecast_lower - y_forecast_median
-        ) * (z_val_upper - z_median) / (z_val_min - z_median)
+        y_forecast_temp_upper = lower_list[i]
     else:
-        y_forecast_temp_upper = y_forecast_median + (
-            y_forecast_upper - y_forecast_median
-        ) * (z_val_upper - z_median) / (z_val_max - z_median)
+        y_forecast_temp_upper = upper_list[i]
 
     # plot the forecast line
     ax_forecast.fill_between(
-        x_forecast,
+        x_forecast_temp,
         y_forecast_temp_lower,
         y_forecast_temp_upper,
         color=facecolor_list[i],
@@ -153,7 +158,7 @@ for i, lower_percentile in enumerate(pi_list):
         zorder=0,
     )
     ax_forecast.plot(
-        x_forecast,
+        x_forecast_temp,
         y_forecast_temp_lower,
         color=lower_color_limit_hex,
         gid="PI-PATCH-LOWER-" + str(i),
@@ -161,21 +166,13 @@ for i, lower_percentile in enumerate(pi_list):
         zorder=0,
     )
     ax_forecast.plot(
-        x_forecast,
+        x_forecast_temp,
         y_forecast_temp_upper,
         color=upper_color_limit_hex,
         gid="PI-PATCH-UPPER-" + str(i),
         alpha=0.0,
         zorder=0,
     )
-
-    # get coordiante of upper bounds at x_max limit
-    lower_interp = interpolate.interp1d(
-        x_forecast.astype(float), y_forecast_temp_lower, kind="linear"
-    )
-    lower_limit_pi += [
-        lower_interp(np.datetime64(date_range[-1]).astype(float)) / 100.0
-    ]
 
     # calculate what's inside
     inside_count = 0
@@ -186,7 +183,7 @@ for i, lower_percentile in enumerate(pi_list):
     missed_x = []
     missed_y = []
     for j in range(lower_bound, upper_bound):
-        if y_training.values[j] < 30.0:
+        if y_training.values[j] < 50.0:
             if (
                 y_forecast_temp_lower.values[j] <= y_training.values[j]
                 and y_training.values[j] <= y_forecast_temp_upper.values[j]
@@ -201,7 +198,7 @@ for i, lower_percentile in enumerate(pi_list):
     inside_proportion += [float(inside_count) / float(count)]
 
     ax_forecast.plot(
-        x_forecast[missed_x],
+        x_forecast_temp[missed_x],
         missed_y,
         clip_on=False,
         markersize=missed_marker_size + float(i / 200),
