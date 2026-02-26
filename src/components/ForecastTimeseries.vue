@@ -62,6 +62,11 @@
     d3.select(`#${svgId}`).selectChildren()
       .attr("aria-hidden", true)
   }
+
+  function scrollToUncertainty() {
+    const targetElement = document.getElementById('uncertainty-section-title');
+     targetElement.scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
 
 <style scoped lang="scss">
