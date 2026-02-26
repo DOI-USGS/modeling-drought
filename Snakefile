@@ -75,7 +75,7 @@ rule loss_function:
         scale = params["laplace"]["scale"],
         kappa = params["laplace"]["kappa"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
+        "Task_Data/all_horizon_LSTM_50_forecasts_example.feather"
     output:
         "src/assets/svgs/lf_example_desktop.svg",
         "src/assets/svgs/lf_example_mobile.svg",
@@ -129,7 +129,9 @@ rule prediction_interval:
         kappa = params["laplace"]["kappa"],
         missed_marker_size = params["pi"]["missed_marker_size"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
+        "Task_Data/all_horizon_LSTM_50_forecasts_example.feather",
+        "Task_Data/focal_site_50PI.feather",
+        "Task_Data/focal_site_75PI.feather"
     output:
         "src/assets/svgs/pi_example_desktop.svg",
         "src/assets/svgs/pi_example_mobile.svg",
@@ -166,7 +168,7 @@ rule forecast:
         label_year = dates["label_year"],
         year_label_offset = dates["year_label_offset"],
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
+        "Task_Data/all_horizon_LSTM_50_forecasts_example.feather"
     output:
         "src/assets/svgs/fc_example_desktop.svg",
         "src/assets/svgs/fc_example_mobile.svg",
@@ -189,7 +191,7 @@ rule forecast_art:
         label_year = dates["label_year"],
         year_label_offset = dates["year_label_offset"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
+        "Task_Data/all_horizon_LSTM_50_forecasts_example.feather"
     output:
         "src/assets/svgs/fc_art_desktop.svg"
     script:
@@ -210,7 +212,7 @@ rule observation:
         label_year = dates["label_year"],
         year_label_offset = dates["year_label_offset"]
     input:
-        "Task_Data/all_horizon_LSTM_30_forecasts_example.feather"
+        "Task_Data/all_horizon_LSTM_50_forecasts_example.feather"
     output:
         "src/assets/svgs/ob_example_mobile.svg"
     script:
@@ -234,7 +236,7 @@ rule truefalsekey:
         lower_color_limit_hex_half_alpha = colors["lower_color_limit_hex_half_alpha"],
         upper_color_limit_hex_half_alpha = colors["upper_color_limit_hex_half_alpha"]
     input:
-        "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20250916.csv"
+        "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20260224.csv"
     output:
         "src/assets/svgs/fc_tf_key_desktop.svg",
         "src/assets/svgs/fc_tf_key_mobile.svg",
@@ -255,7 +257,7 @@ rule truefalsesum:
         text_bump = params["sankey_sum"]["text_bump"],
         label_pad = params["sankey_sum"]["label_pad"]
     input:
-        "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20250916.csv"
+        "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20260224.csv"
     output:
         "src/assets/svgs/fc_tf_sum_desktop.svg",
         "src/assets/svgs/fc_tf_sum_mobile.svg",
@@ -277,7 +279,7 @@ rule truefalse_outcomes:
         text_bump = params["sankey_sum"]["text_bump"],
         label_pad = params["sankey_sum"]["label_pad"]
     input:
-        "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20250916.csv"
+        "Task_Data/UQ_summaries_for_JeffreyHayley_4PanelClassificationTypesForDroughtOnly_DataCounts_20260224.csv"
     output:
         "src/assets/svgs/fc_tf_sum_nd_desktop.svg",
         "src/assets/svgs/fc_tf_sum_yd_desktop.svg",

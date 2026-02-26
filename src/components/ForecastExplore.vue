@@ -177,7 +177,7 @@
     }
 
     function drought_line(svg,opacity){
-        svg.select("#obsv-ad-line").selectAll("path")
+        svg.select("#obsv-50-line").selectAll("path")
             .style("stroke-opacity", opacity);
     }
 
@@ -189,6 +189,11 @@
         // remove washout layer
         svg.select("#forecast-washout").selectAll("path")
             .style("fill-opacity", 0.0);
+        // Add back label washout for mobile
+        if (mobileView == true){
+            svg.select("#forecast-washout-mobile-label").selectAll("path")
+                .style("fill-opacity", 0.75); 
+        }
     }
 
     function mouseenter(svg, default_line,lookback) {
@@ -199,6 +204,11 @@
         // add washout layer
         svg.select("#forecast-washout").selectAll("path")
             .style("fill-opacity", 0.75); 
+        // Remove label washout for mobile
+        if (mobileView == true){
+            svg.select("#forecast-washout-mobile-label").selectAll("path")
+                .style("fill-opacity", 0.0); 
+        }
     }
 
     function addInteractions(svgId) {
@@ -224,6 +234,23 @@
         // add observation line
         fcSVG.select("#observation-full-forecast").selectAll("path")
             .style("stroke-opacity", 1.0)
+
+        // legend
+        if (mobileView == true){
+            for (let i = 0; i <= 4; i++) {
+            fcSVG.select(`#forecast-legend-${i}`)
+                .selectAll('path, text')
+                .style('opacity', 0.0);
+            }
+            fcSVG.select("#forecast-washout-mobile-label").selectAll("path")
+                .style("fill-opacity", 0.75); 
+        }else{
+            for (let i = 0; i <= 4; i++) {
+            fcSVG.select(`#forecast-legend-mobile-${i}`)
+                .selectAll('path, text')
+                .style('opacity', 0.0);
+            }
+        }
 
         // Add interaction to loss function chart
         fcSVG.select("#axis-forecast")

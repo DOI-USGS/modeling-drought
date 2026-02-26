@@ -242,9 +242,14 @@
         obsvSVG.select("#observation-forecast-title").selectAll("text")
             .style("opacity",0.0);
 
-        // remove legend
+        // remove legends
         for (let i = 0; i <= 4; i++) {
         obsvSVG.select(`#forecast-legend-${i}`)
+            .selectAll('path, text')
+            .style('opacity', 0.0);
+        }
+        for (let i = 0; i <= 4; i++) {
+        obsvSVG.select(`#forecast-legend-mobile-${i}`)
             .selectAll('path, text')
             .style('opacity', 0.0);
         }
