@@ -46,6 +46,20 @@ export default {
     {
       reference: "Reference 4.",
       num: "4",
+      authors: "Hammond, J.C., Diaz, J., & Goodling, P.J.",
+      year: "2026",
+      title: "Model output and code for a long short-term memory model forecasting streamflow drought across the Conterminous United States by focusing on percentiles below 50 percent",
+      link: "https://www.sciencebase.gov/catalog/item/695bf56fd4be02126e7fb5a6",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      software_release: false,
+      data_release: true,
+      doi: "https://doi.org/10.5066/P13HFSYE"
+    },
+    {
+      reference: "Reference 5.",
+      num: "5",
       authors: "Corson-Dosch, H., Watkins, D., Ross, J., Bucknell, M., Simeone, C., Hammond, J., Archer, A. & Nell, C.",
       year: "2025",
       title: "River DroughtCast — Streamfow drought status and forecasts",
@@ -58,8 +72,8 @@ export default {
       doi: "https://doi.org/10.5066/P138JIEN"
     },
     {
-      reference: "Reference 5.",
-      num: "5",
+      reference: "Reference 6.",
+      num: "6",
       authors: "U.S. Drought Monitor",
       year: "2025",
       title: "Drought Classification",
@@ -72,8 +86,8 @@ export default {
       doi: null
     },
     {
-      reference: "Reference 6.",
-      num: "6",
+      reference: "Reference 7.",
+      num: "7",
       authors: "World Meteorological Organization (WMO)",
       year: "2008",
       title: "Manual on low-flow estimation and prediction",
