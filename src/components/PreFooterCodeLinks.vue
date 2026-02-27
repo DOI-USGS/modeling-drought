@@ -8,7 +8,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        See more visualizations from the USGS Vizlab
+        See more <span v-if="!mobileView">visualizations</span> from the USGS Vizlab
       </a>
       <a
         class="pre-footer-links__item"
@@ -27,6 +27,11 @@
 </template>
 
 <script setup>
+  import { isMobileOnly } from 'mobile-device-detect';
+
+  // global variables
+  const mobileView = isMobileOnly;
+
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 </script>
 
