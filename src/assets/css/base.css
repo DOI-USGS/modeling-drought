@@ -49,6 +49,7 @@
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--light-grey);
+  --color-prefooter-highlight: var(--grey-blue);
   --color-link: var(--grey-blue);
   --color-bar-focal: var(--medium-blue);
   --color-bar-default: var(--medium-grey);
