@@ -17,14 +17,11 @@
       <StreamflowDroughtExample
         :text="text.streamflowDroughtExample"
       />
-      <DefineLowStreamflow
-        :text="text.defineLowStreamflow"
-      />
       <ClassifyStreamflowDrought
         :text="text.classifyStreamflowDrought"
       />
       <CollapsibleAccordion 
-        v-for="item, index in text.accordionData"
+        v-for="item, index in text.lowFlowAccordionData"
         :key="index"
         accordion-id="low-flow-accordion"
         :heading="item.heading"
@@ -45,7 +42,6 @@
 
 <script setup>
   import StreamflowDroughtExample from "@/components/StreamflowDroughtExample.vue";
-  import DefineLowStreamflow from "@/components/DefineLowStreamflow.vue";
   import ClassifyStreamflowDrought from "@/components/ClassifyStreamflowDrought.vue";
   import CollapsibleAccordion from "@/components/CollapsibleAccordion.vue";
   import ObservationExplore from '@/components/ObservationExplore.vue';

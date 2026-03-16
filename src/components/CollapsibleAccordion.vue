@@ -70,7 +70,8 @@
           class="accordion-image-container"
         >
           <img
-            :src="getImageURL(item.content)"
+            :src="getImageURL(item.src)"
+            :alt="item.alt"
             class="accordion-image"
             :class="{ mobile: mobileView}"
           >
