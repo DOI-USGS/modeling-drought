@@ -4,13 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
  
-## [1.3.0] - 2025-02-27
+## [1.3.0] - 2025-03-16
 
 ### Added
 - Added subtitle for "How does the USGS model streamflow drought?" section
 
 ### Changed
 - Updated text to reflect switch to the LSTM <50 model, trained on observed streamflow values below the 50th percentile.
+- Moved percentiles explainer into accordion.
 
 ### Fixed
 - Fixed broken section navigation link
