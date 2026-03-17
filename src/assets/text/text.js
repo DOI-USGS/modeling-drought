@@ -26,7 +26,7 @@ export default {
             heading: "Classifying streamflow drought using percentiles",
             classifyStreamflowAccordionData: [
                 {
-                    heading: "Classifying streamflow values using percentiles",
+                    heading: "Using percentiles to categorize streamflow",
                     content: [
                         {
                             type: "text",
