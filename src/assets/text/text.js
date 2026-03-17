@@ -23,7 +23,7 @@ export default {
             caption: "Unusually low streamflow on the Peabody River in New Hampshire. Credit: John Hammond, U.S. Geological Survey"
         },
         classifyStreamflowDrought: {
-            heading: "Classifying streamflow drought using percentiles",
+            heading: "Classifying streamflow drought",
             classifyStreamflowAccordionData: [
                 {
                     heading: "Using percentiles to categorize streamflow",
